@@ -5,7 +5,8 @@
 export type Block =
   | { kind: "heading"; text: string }
   | { kind: "para"; text: string }
-  | { kind: "list"; items: string[] };
+  | { kind: "list"; items: string[] }
+  | { kind: "image"; src: string; alt: string };
 
 /** A section starts at each h2 in the source. Everything before the first one is lead. */
 export type Section = {
@@ -24,8 +25,6 @@ export type PageContent = {
   description: string;
   /** The Kubio hero background. Absent on the pages that never had one. */
   hero: PageImage | null;
-  /** Inline content images, in page order. */
-  images: PageImage[];
   lead: Block[];
   sections: Section[];
 };

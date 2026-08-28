@@ -9,7 +9,6 @@ const page: PageContent = {
   eyebrow: "Research",
   description: "The Institute of Workforce Policy and Practice (IWPP) examines both the formal and informal ways that organizations can engage in the recruitment,",
   hero: {"src": "/images/image-1.png", "alt": ""},
-  images: [],
   lead: [{"kind": "para", "text": "The Institute of Workforce Policy and Practice (IWPP) examines both the formal and informal ways that organizations can engage in the recruitment, development, and retainment of talent, with a particular focus on veterans and underserved populations. Professionals, faculty, and students that study with IWPP address critical problems affecting the political, legal, bureaucratic, organizational, economic, and social challenges faced by governing boards, business executives and policymakers. Participants are encouraged to study and reflect on the processes by which research becomes linked to policy and practice and are encouraged to develop sustainable workforce models for corporations, government agencies, non-profit groups dedicated to advocacy, and higher education institutions."}],
   sections: [],
 };

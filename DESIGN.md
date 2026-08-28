@@ -405,12 +405,15 @@ grep -rniE 'font-serif|wordmark|trajan|georgia' app components lib \
 #    comment to tell the next person not to add them. Source-grepping made the comment
 #    that prevents the mistake indistinguishable from the mistake.
 #
-#    Only Teachers College. The reference site's version of this check also caught
-#    "Columbia" and "Northeastern", and both belong on this site: the WOS model derives
-#    from research conducted at Columbia and is described that way on /our-story/, one
-#    board member's title names the university, and the WOS-Northeastern Talent Pipeline
-#    Program is a real page. A check that flags the site's own history gets ignored.
-grep -riE 'teachers college' .next/server/app/*.html
+#    The chrome phrase, not the words. The reference site's version caught "Columbia",
+#    "Northeastern", and any mention of Teachers College, and all three belong on this
+#    site: the WOS model derives from Columbia research and /our-story/ says so, the
+#    WOS-Northeastern Talent Pipeline Program is a real page, and two board biographies
+#    name Teachers College as where their faculty post or doctorate is. What must never
+#    appear is the co-branding line, which always reads "in partnership with".
+#    A check that flags the site's own history gets ignored.
+grep -riE 'in partnership with (teachers college|columbia)' \
+  .next/server/app/*.html .next/server/app/*/*.html
 
 # 6. POSITIVE control - tokens must exist in the BUILT css
 npm run build

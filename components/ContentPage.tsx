@@ -17,6 +17,20 @@ function Blocks({ blocks }: { blocks: Block[] }) {
           <p key={i} className="mt-4 text-[17px] leading-[1.65] text-ink-muted">
             {b.text}
           </p>
+        ) : b.kind === "image" ? (
+          // Diagrams and photographs both land here, and they want different sizes:
+          // an SVG diagram at full column width is enormous, a photograph at half is
+          // weak. Vector files are the diagrams, so they are the ones held back.
+          <Image
+            key={i}
+            src={b.src}
+            alt={b.alt}
+            width={1200}
+            height={800}
+            className={`mt-8 h-auto w-full object-contain ${
+              b.src.endsWith(".svg") ? "max-w-[420px]" : ""
+            }`}
+          />
         ) : (
           <ul key={i} className="mt-4 list-none p-0">
             {b.items.map((item) => (

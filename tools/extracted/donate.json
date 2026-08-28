@@ -2,6 +2,11 @@
  "route": "/donate",
  "blocks": [
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/10/WOS-Donate-Flyer-11-x-7-in-4.png",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "You\u2019re just a click away from making a difference."
   },

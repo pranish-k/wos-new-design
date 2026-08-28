@@ -24,7 +24,7 @@ function Filings({ label, filings }: { label: string; filings: Filing[] }) {
               // before the click rather than after it.
               className="flex items-baseline justify-between gap-4 py-4 text-[17px] text-ink no-underline transition-colors hover:text-action-deep"
             >
-              <span>Year ending September 30th, {f.year}</span>
+              <span>Year Ending September 30th, {f.year}</span>
               <span className="font-heading text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
                 PDF
               </span>

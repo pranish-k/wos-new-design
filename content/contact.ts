@@ -9,7 +9,6 @@ const page: PageContent = {
   eyebrow: "Contact",
   description: "Keep in touch and connect with us today!",
   hero: {"src": "/images/Holiday-Celebration-2017-picture-157-scaled-1.jpg", "alt": ""},
-  images: [],
   lead: [],
   sections: [{"heading": "Keep in touch and connect with us today!", "blocks": [{"kind": "para", "text": "Founded in 2005, WOS is a 501(c)(3) non-profit organization committed to solving today’s global workforce challenges. WOS provides holistic talent solutions across industries, empowering individuals facing employment barriers for lasting professional success. WOS has been active in over 60 locations across the U.S. and also operates in Costa Rica, France, and the Netherlands."}]}],
 };

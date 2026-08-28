@@ -9,7 +9,6 @@ const page: PageContent = {
   eyebrow: "About",
   description: "Form - 990.",
   hero: null,
-  images: [],
   lead: [],
   sections: [{"heading": "Form – 990 .", "blocks": [{"kind": "list", "items": ["Year Ending September 30th, 2025", "Year Ending September 30th, 2024", "Year Ending September 30th, 2023", "Year Ending September 30th, 2022", "Year Ending September 30th, 2021"]}]}, {"heading": "Audited Financial Statements", "blocks": [{"kind": "list", "items": ["Year Ending September 30th, 2025", "Year Ending September 30th, 2024", "Year Ending September 30th, 2023", "Year Ending September 30th, 2022", "Year Ending September 30th, 2021"]}]}],
 };

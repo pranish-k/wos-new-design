@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import { Eyebrow, PrimaryButton } from "@/components/Brand";
 import { ContentSections } from "@/components/ContentPage";
 import { CAREERS_URL, HQ, ORG_SHORT } from "@/lib/brand";
@@ -27,6 +28,17 @@ export default function Page() {
           </h1>
         </div>
       </header>
+
+      {page.hero && (
+        <Image
+          src={page.hero.src}
+          alt=""
+          width={1600}
+          height={600}
+          className="aspect-[8/3] w-full bg-surface-tint object-cover"
+          priority
+        />
+      )}
 
       <section className="py-16">
         <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2">

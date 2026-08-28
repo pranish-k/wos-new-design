@@ -2,12 +2,22 @@
  "route": "/academic-advisory-board",
  "blocks": [
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/Peter-Cappelli.jpg",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Peter Cappelli"
   },
   {
    "tag": "p",
    "text": "George W. Taylor Professor of Management, The Wharton School"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/Alan-Mandell_bw.jpg",
+   "alt": ""
   },
   {
    "tag": "h4",
@@ -18,12 +28,22 @@
    "text": "SUNY Distinguished Service Professor and College Professor of Adult Learning and Mentoring, SUNY Empire State College"
   },
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/Charles-Snow_cropped-new.jpg",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Charles Snow"
   },
   {
    "tag": "p",
    "text": "Mellon Foundation Professor of Business Administration, Smeal College of Business at Penn State University"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/David-Thomas-BW.jpg",
+   "alt": ""
   },
   {
    "tag": "h4",

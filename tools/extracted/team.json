@@ -2,12 +2,22 @@
  "route": "/team",
  "blocks": [
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/Julie-Brickell_cropped.png",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Julie L. Brickell, Esquire"
   },
   {
    "tag": "p",
    "text": "General Counsel for Artificial Intelligence"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Jose-Cabrera-1-1.jpg",
+   "alt": ""
   },
   {
    "tag": "h4",
@@ -18,12 +28,22 @@
    "text": "Associate Director of Talent Acquisition"
   },
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Andrew-Champion_cropped.jpg",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Andrew Champion"
   },
   {
    "tag": "p",
    "text": "IT Manager"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Philip-Curry-1-1.jpg",
+   "alt": ""
   },
   {
    "tag": "h4",
@@ -34,12 +54,22 @@
    "text": "Chief Financial & Administrative Officer"
   },
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Danilo-Gutierrez_cropped.png",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Danilo Gutierrez"
   },
   {
    "tag": "p",
    "text": "Senior Director of Client Services & Operations"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Dr.-Bruce-Hedin2_cropped.png",
+   "alt": ""
   },
   {
    "tag": "h4",
@@ -50,12 +80,22 @@
    "text": "Principal Scientist"
   },
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Harriet-Hope-scaled-1-1.jpg",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Harriet Hope"
   },
   {
    "tag": "p",
    "text": "VP Human Resources & Office Operations"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/04/SK.png",
+   "alt": ""
   },
   {
    "tag": "h4",
@@ -66,12 +106,22 @@
    "text": "Service Desk Manager"
   },
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/Wendy-crop-new.jpg",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Wendy LaPlaca"
   },
   {
    "tag": "p",
    "text": "Senior Client Service Manager"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Art-Langer-1_bw-1.jpg",
+   "alt": ""
   },
   {
    "tag": "h4",
@@ -82,12 +132,22 @@
    "text": "Chairman and Founder, Workforce Opportunity Services"
   },
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/04/MM.png",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Mayela Montano"
   },
   {
    "tag": "p",
    "text": "HR Generalist | Office Manager"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Steve-Petruk_cropped.png",
+   "alt": ""
   },
   {
    "tag": "h4",
@@ -98,6 +158,11 @@
    "text": "Managed Services Strategy, Sales, & Marketing"
   },
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Patrick-Spurgeon-1.jpg",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "Patrick Spurgeon"
   },
@@ -106,12 +171,22 @@
    "text": "Client Service Manager | Talent Acquisition, Systems Administrator"
   },
   {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/James-Wolf_crop.png",
+   "alt": ""
+  },
+  {
    "tag": "h4",
    "text": "James Wolf"
   },
   {
    "tag": "p",
    "text": "Principal Architect"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/01/Ming-Wu-1.jpg",
+   "alt": ""
   },
   {
    "tag": "h4",

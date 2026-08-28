@@ -25,18 +25,26 @@ Homepage built with its real section structure and the live counter values.
 Hero images, service card photographs, and the Our Impact icons are carried over.
 `tools/extract.py` now also reads CSS `background-image` from the page's `<style>` blocks, which is where Kubio puts every hero.
 
+**Audit.**
+`tools/audit.py` compares the built site against the mirror route by route: how much copy is carried, how many images, and whether every internal link resolves.
+It is the thing that caught the missing hero images, the dropped homepage copy, and a footer link to a page that had silently stopped being generated.
+
 **Verification.**
 Build and lint clean.
 All six DESIGN.md §9 checks pass, check 6 included (14 `--color-*` tokens in the built CSS).
 Zero `<img>` without alt in the built HTML.
 No rounded corners, shadows, or blur anywhere; no two tinted or two dark sections adjacent on any page.
-Route parity: everything in `wforce-header-asis.txt` has a route except person pages, the launch blockers, and the two payment endpoints.
+Route parity: everything in `wforce-header-asis.txt` has a route except the launch blockers and the two payment endpoints.
+Zero broken internal links.
+Every page carries its live copy and its live images, one h1 each, and a unique title.
+The three remaining gaps are the unnamed logos, the 16-of-68 logo strip on the homepage (deliberate), and the live "Form - 990 ." heading, rendered as "Form 990".
 
 ## Decisions
 
 - Rulebook lives in `wos-new-design/CLAUDE.md`, not the parent, because only this directory is a git repo and the rules have to travel with it.
 - Logo is the mirror's 800x163 full lockup with wordmark, not the reference site's mark-only crop.
-- DESIGN.md §9 checks 1, 4, 5 rewritten: they returned hits on a clean tree, and a check that always returns noise gets ignored. Check 5 no longer greps "Columbia" or "Northeastern", because both are part of this site's own history.
+- DESIGN.md §9 checks 1, 4, 5 rewritten: they returned hits on a clean tree, and a check that always returns noise gets ignored. Check 5 now looks for the co-branding phrase "in partnership with" rather than for the words Columbia, Northeastern, or Teachers College, all three of which appear legitimately in WOS's own history and in two board biographies.
+- Kubio section background images behind body text are not reproduced. Only the first background image on a page is carried, as the hero. The rest are fills laid under text and are the main source of contrast problems on the live site.
 - DESIGN.md title, §0 (brand) and §4 (navigation) rewritten for this site. The rest is the reference site's, verbatim.
 - Grouping labels render as headings, not links. The live site gives all six `href="#"`.
 - Nav uses the APG disclosure-navigation pattern, not a menubar, so panel links stay in normal tab order.

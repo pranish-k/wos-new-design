@@ -38,6 +38,9 @@ ROUTES = [
     "institute-of-workforce-policy-practice",
 ]
 
+# Logo and favicon, repeated on all 117 pages.
+CHROME = ("WOS-Logo", "footer-logo", "Site-Icon")
+
 DROP_TAGS = re.compile(r"<(script|style|noscript|svg|form)\b.*?</\1>", re.S | re.I)
 BLOCK = re.compile(r"<(h1|h2|h3|h4|h5|h6|p|li)\b[^>]*>(.*?)</\1>", re.S | re.I)
 
@@ -66,11 +69,21 @@ def parse(path):
     # Marked in place so a question keeps its position ahead of its own answer.
     src = ACCORDION.sub(lambda m: f"<h4>{m.group(1)}</h4>", src)
 
-    blocks = []
-    for tag, inner in BLOCK.findall(src):
-        t = text_of(inner)
+    # One ordered pass over text blocks and inline images together. Position matters:
+    # a diagram that belongs beside a paragraph is meaningless appended to the end of
+    # the page, which is what a separate image list produces.
+    ordered = []
+    for m in BLOCK.finditer(src):
+        t = text_of(m.group(2))
         if t:
-            blocks.append({"tag": tag.lower(), "text": t})
+            ordered.append((m.start(), {"tag": m.group(1).lower(), "text": t}))
+    for m in IMG.finditer(src):
+        a = dict(ATTR.findall(m.group(0)))
+        url = re.sub(r"-\d+x\d+(\.\w+)$", r"\1", a.get("src", ""))
+        if "wp-content/uploads" in url and not os.path.basename(url).startswith(CHROME):
+            ordered.append((m.start(), {"tag": "img", "text": url,
+                                        "alt": a.get("alt", "")}))
+    blocks = [b for _, b in sorted(ordered, key=lambda x: x[0])]
 
     images = []
     # Against `raw`, not `src`: Kubio emits its page CSS in <style> blocks, which the

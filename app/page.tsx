@@ -4,7 +4,8 @@ import { Eyebrow, PrimaryButton, SecondaryButton } from "@/components/Brand";
 import PartnerWall from "@/components/PartnerWall";
 import ServiceCard from "@/components/ServiceCard";
 import { CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES } from "@/content/home-sections";
-import { ORG, ORG_SHORT, TAGLINE } from "@/lib/brand";
+import { HOME_PROSE } from "@/content/home-prose";
+import { ORG, TAGLINE } from "@/lib/brand";
 
 const APPROACH = [
   {
@@ -44,43 +45,42 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1fr_1.4fr]">
-          <div>
-            <Eyebrow label="The WOS business solution" />
-            <h2 className="font-heading text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-ink md:text-[38px]">
-              A bridge between consultancy and a pipeline of future employees
-            </h2>
+      {/* The live page's four prose sections, word for word. Alternating fill gives
+          them rhythm; the live page runs all four as one undifferentiated column. */}
+      {HOME_PROSE.filter((s) => s.heading !== "Our Services").map((section, i) => (
+        <section
+          key={section.heading}
+          className={i % 2 === 1 ? "bg-surface-tint py-20" : "py-20"}
+        >
+          <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1fr_1.4fr]">
+            <div>
+              <Eyebrow label={section.heading} />
+              <h2 className="font-heading text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-ink md:text-[38px]">
+                {section.heading}
+              </h2>
+            </div>
+            <div className="text-[17px] leading-[1.65] text-ink-muted">
+              {section.body.map((para, j) => (
+                <p key={j} className={j === 0 ? "" : "mt-5"}>
+                  {para}
+                </p>
+              ))}
+            </div>
           </div>
-          <div className="text-[17px] leading-[1.65] text-ink-muted">
-            <p>
-              {ORG_SHORT} addresses a major challenge faced by companies: how to balance
-              the use of outside consultants and the hiring of more full-time staff. The
-              decision typically comes down to a question of culture, cost, control, and
-              continuity. WOS provides a unique consultant-to-employee transition process
-              that ensures smooth knowledge transfer and cultural integration.
-            </p>
-            <p className="mt-5">
-              Upon conversion to employment, our consultants already know your business
-              and culture. WOS finds talent from many sources and experience levels,
-              typically from local communities, college graduates, and military veterans.
-              We help our employees in ways that include professional development and
-              technical training, paid part-time college tuition, and financial assistance
-              where needed.
-            </p>
-          </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
       <section className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <Eyebrow label="Our services" />
-          <p className="max-w-3xl text-[17px] leading-[1.65] text-ink-muted">
-            WOS operates across many industries and roles, from information and AI
-            technology to shared services, product support, and vocational trades. We also
-            offer advisory and training services for HR and talent acquisition staff,
-            based on our own research instruments and methods.
-          </p>
+          <h2 className="max-w-3xl font-heading text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-ink md:text-[38px]">
+            Our Services
+          </h2>
+          {HOME_PROSE.find((s) => s.heading === "Our Services")?.body.map((para, i) => (
+            <p key={i} className="mt-6 max-w-3xl text-[17px] leading-[1.65] text-ink-muted">
+              {para}
+            </p>
+          ))}
 
           <h3 className="mt-14 font-heading text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink md:text-[30px]">
             Consulting to Hire Services

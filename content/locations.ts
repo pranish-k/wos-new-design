@@ -9,7 +9,6 @@ const page: PageContent = {
   eyebrow: "About",
   description: "WOS Headquarters",
   hero: null,
-  images: [],
   lead: [{"kind": "heading", "text": "WOS Headquarters"}, {"kind": "para", "text": "475 Riverside Drive Suite 1350 New York, NY 10115 — info@wforce.org Tel: 212.870.2260"}],
   sections: [{"heading": "Other WOS Offices", "blocks": [{"kind": "para", "text": "WOS Dallas Office 4101 McEwen Road Suite 800 Farmers Branch, TX 75244"}, {"kind": "para", "text": "WOS Costa Rica Office Mata Grande San José Province, Río Oro, Costa Rica"}]}],
 };
