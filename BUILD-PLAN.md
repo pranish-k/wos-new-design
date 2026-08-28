@@ -11,7 +11,7 @@ It carries the rules; this file carries the work.
 Two sources, both read only, answering different questions.
 
 **`../wforce-mirror/` answers "what does the site contain".**
-A complete HTTrack mirror plus four verified inventory files.
+A complete HTTrack mirror plus three verified inventory files.
 Content, images, page copy, and the information architecture all come from here.
 
 **`/Users/pranish/Documents/wos-new-center/proposed_center/site/` answers "how does it look".**

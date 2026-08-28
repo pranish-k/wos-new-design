@@ -12,7 +12,7 @@ The full build plan is at [BUILD-PLAN.md](BUILD-PLAN.md), and it is worth readin
 | Directory | What it is | Editable |
 | --- | --- | --- |
 | `.` (this repo) | The rebuild. All new work happens here. | Yes |
-| `../wforce-mirror/` | HTTrack mirror of the live site, plus four verified inventory files. | **Never** |
+| `../wforce-mirror/` | HTTrack mirror of the live site, plus three verified inventory files. | **Never** |
 | `../screenshot/` | Screen captures of the live site used to verify the nav. | **Never** |
 
 `../wforce-mirror/` and `../screenshot/` sit outside this repo on purpose.
@@ -35,7 +35,7 @@ The same applies to `../screenshot/`.
 
 ## What the site actually contains
 
-Four files in `../wforce-mirror/` record this, and all four are verified against the live markup and the screenshots.
+Three files in `../wforce-mirror/` record this, and all three are verified against the live markup and the screenshots.
 Read them before building any route.
 Do not infer structure from the mirror's directory tree, and never invent structure.
 
@@ -44,7 +44,11 @@ Do not infer structure from the mirror's directory tree, and never invent struct
 | `wforce-header-asis.txt` | The live navigation as observed. The factual baseline. |
 | `wforce-tree-futurebuild.txt` | The proposed navigation. Every node tagged against the baseline. |
 | `wforce-pages-clean.txt` | Flat inventory of all 117 pages, classified. |
-| `wforce-tree-clean.txt` | URL hierarchy of every mirrored page. |
+
+Two further files, `wforce-tree-clean-old.txt` and `wforce-tree-old.txt`, are superseded
+and named accordingly.
+They still hold the raw URL hierarchy if you need it, but the three files above are the
+current record and disagreements resolve in their favour.
 
 An earlier version of `wforce-tree-futurebuild.txt` drifted badly.
 It invented sections and pages that do not exist, dropped three of the five real top level nav items, and presented all of it as observed fact.
