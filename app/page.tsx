@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { Eyebrow, PrimaryButton, SecondaryButton } from "@/components/Brand";
 import PartnerWall from "@/components/PartnerWall";
+import CountUp from "@/components/CountUp";
 import ServiceCard from "@/components/ServiceCard";
 import { CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES } from "@/content/home-sections";
 import { HOME_PROSE } from "@/content/home-prose";
@@ -82,19 +82,22 @@ export default function Home() {
             </p>
           ))}
 
-          <h3 className="mt-14 font-heading text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink md:text-[30px]">
-            Consulting to Hire Services
-          </h3>
-          <div className="mt-6 grid gap-6 md:grid-cols-3">
+          {/* Subordinate to "Our Services": these are the two groupings inside it, not
+              two more sections. An eyebrow with the accent rule sets them a clear level
+              below the h2 without shrinking them into captions. */}
+          <div className="mt-16">
+            <Eyebrow label="Consulting to Hire Services" />
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
             {CONSULTING_TO_HIRE.map((card) => (
               <ServiceCard key={card.href} card={card} />
             ))}
           </div>
 
-          <h3 className="mt-16 font-heading text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink md:text-[30px]">
-            Other Services
-          </h3>
-          <div className="mt-6 grid gap-6 md:grid-cols-3">
+          <div className="mt-14">
+            <Eyebrow label="Other Services" />
+          </div>
+          <div className="grid gap-6 md:grid-cols-3">
             {OTHER_SERVICES.map((card) => (
               <ServiceCard key={card.href} card={card} />
             ))}
@@ -110,10 +113,13 @@ export default function Home() {
           <ol className="m-0 grid list-none grid-cols-1 gap-px bg-hairline-strong p-0 md:grid-cols-4">
             {APPROACH.map((a, i) => (
               <li key={a.step} className="bg-surface-dark px-6 py-8">
-                <span className="inline-flex h-8 w-8 items-center justify-center bg-white font-heading text-[15px] font-semibold text-surface-dark">
+                {/* Red on slate is 2.8:1, so it never carries text. A numeral at 34px
+                    is well past the large-text threshold and reads cleanly. */}
+                <span className="block font-heading text-[34px] font-semibold leading-none text-action">
                   {i + 1}
                 </span>
-                <h3 className="mt-5 font-heading text-[14px] font-semibold uppercase tracking-[0.08em] text-white">
+                <span className="mt-3 block h-0.5 w-6 bg-white/25" />
+                <h3 className="mt-4 font-heading text-[14px] font-semibold uppercase tracking-[0.08em] text-white">
                   {a.step}
                 </h3>
                 <p className="mt-3 text-[14px] leading-[1.6] text-white/75">{a.body}</p>
@@ -123,33 +129,30 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="bg-surface-dark py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="Our impact" />
-          <ul className="m-0 grid list-none grid-cols-1 gap-px bg-hairline p-0 md:grid-cols-3">
+          <Eyebrow label="Our impact" dark />
+          {/* The live page frames each figure in a bordered white card with a clip-art
+              icon above it, which makes three unrelated objects. On slate with no boxes
+              the numbers are the section, and the icons are not needed to carry it. */}
+          <ul className="m-0 grid list-none grid-cols-1 gap-12 p-0 md:grid-cols-3 md:gap-16">
             {IMPACT.map((stat) => (
-              <li key={stat.label} className="bg-white px-6 py-10 text-center">
-                {/* Decorative: the number and label beneath say the same thing. */}
-                <Image
-                  src={stat.icon}
-                  alt={stat.iconAlt}
-                  width={220}
-                  height={220}
-                  className="mx-auto h-24 w-auto object-contain"
+              <li key={stat.label}>
+                <CountUp
+                  value={stat.value}
+                  className="block font-heading text-[64px] font-semibold leading-none tracking-[-0.03em] text-white md:text-[76px]"
                 />
-                <p className="mt-6 font-heading text-[13px] font-semibold uppercase tracking-[0.12em] text-ink">
+                <span className="mt-5 block h-0.5 w-10 bg-accent" />
+                <p className="mt-4 font-heading text-[13px] font-semibold uppercase tracking-[0.12em] text-white">
                   {stat.label}
                 </p>
-                <p className="mt-2 font-heading text-[40px] font-semibold leading-none text-action-deep">
-                  {stat.value}
-                </p>
                 {stat.note && (
-                  <p className="mt-3 text-[13px] leading-[1.5] text-ink-muted">{stat.note}</p>
+                  <p className="mt-2 text-[14px] leading-[1.5] text-white/70">{stat.note}</p>
                 )}
               </li>
             ))}
           </ul>
-          <p className="mt-8 text-center text-sm text-ink-muted">
+          <p className="mt-14 max-w-xl text-[15px] leading-[1.6] text-white/70">
             Founded in 2005 as a 501(c)(3) social enterprise.
           </p>
         </div>

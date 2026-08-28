@@ -1,8 +1,9 @@
 // Homepage imagery, from the live page.
 //
-// The six service photographs and the three Our Impact icons. The live cards put the
+// The six service photographs and the three Our Impact figures. The live cards put the
 // label in red on slate, which is 2.8:1 and fails AA; the label is white here for that
-// reason. See DESIGN.md §2.
+// reason. Red is kept for the large numerals, which clear the large-text threshold.
+// See DESIGN.md §2.
 
 export type ServiceCard = {
   href: string;
@@ -53,24 +54,15 @@ export const OTHER_SERVICES: ServiceCard[] = [
   },
 ];
 
+/**
+ * The three Our Impact figures, counted up from zero as on the live page.
+ *
+ * The live version sets each one in a bordered white card behind a piece of clip art.
+ * The icons are dropped: at this size the number is the content, and an illustration
+ * above it adds a third object to look at without adding meaning.
+ */
 export const IMPACT = [
-  {
-    value: "65+",
-    label: "Corporate partners",
-    icon: "/images/2.png",
-    iconAlt: "",
-  },
-  {
-    value: "4",
-    label: "Locations",
-    note: "U.S, France, Costa Rica & The Netherlands",
-    icon: "/images/3.png",
-    iconAlt: "",
-  },
-  {
-    value: "8,000+",
-    label: "Careers impacted",
-    icon: "/images/1-1.png",
-    iconAlt: "",
-  },
+  { value: "65+", label: "Corporate partners" },
+  { value: "4", label: "Locations", note: "U.S, France, Costa Rica & The Netherlands" },
+  { value: "8,000+", label: "Careers impacted" },
 ];

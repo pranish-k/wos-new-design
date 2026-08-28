@@ -114,16 +114,19 @@ export function Divider({ className = "" }: { className?: string }) {
   return <hr className={`my-16 border-0 border-t border-hairline ${className}`.trim()} />;
 }
 
+/**
+ * A plain text link in the action colour.
+ *
+ * No arrow glyph. An arrow that slides on hover is a decoration every template ships
+ * with, and the underline already says the text is a link.
+ */
 export function ArrowLink({ href, children }: { href: string; children: ReactNode }) {
   return (
     <Link
       href={href}
-      className="group inline-flex w-fit items-center gap-1 text-sm text-action-deep underline hover:no-underline"
+      className="inline-block w-fit text-sm text-action-deep underline underline-offset-[3px] transition-colors hover:text-action-deeper hover:no-underline"
     >
       {children}
-      <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-[3px]">
-        &rarr;
-      </span>
     </Link>
   );
 }
@@ -275,12 +278,9 @@ export function PhotoLedCard({
           {title}
         </h3>
         <p className="m-0 flex-1 text-sm leading-[1.55] text-ink-muted">{description}</p>
-        <p className="mt-5 font-heading text-[13px] font-semibold tracking-[0.02em] text-action-deep">
-          Learn more{" "}
-          <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-[3px]">
-            &rarr;
-          </span>
-        </p>
+        {/* No "Learn more" tail: the whole card is already the link, so the label
+            restates the affordance and the arrow decorates it twice over. */}
+        <span className="mt-5 block h-0.5 w-8 bg-accent transition-[width] duration-300 ease-out group-hover:w-14" />
       </div>
     </Link>
   );
@@ -331,12 +331,7 @@ export function TintedCard({
           {name}
         </h4>
         {line ? <p className="m-0 flex-1 text-[13px] leading-[1.55] text-ink-muted">{line}</p> : null}
-        <p className="mt-5 font-heading text-xs font-semibold tracking-[0.02em] text-action-deep">
-          Read syllabus{" "}
-          <span className="inline-block transition-transform duration-200 ease-out group-hover:translate-x-[3px]">
-            &rarr;
-          </span>
-        </p>
+        <span className="mt-5 block h-0.5 w-8 bg-accent transition-[width] duration-300 ease-out group-hover:w-14" />
       </div>
     </Link>
   );

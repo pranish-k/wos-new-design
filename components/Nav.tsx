@@ -27,7 +27,7 @@ const ITEM_LINK =
 const GROUP_HEADING =
   "mb-1 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-muted";
 
-/** An external link needs the affordance in the accessible name, not only in the icon. */
+/** External links carry the affordance in the accessible name rather than in a glyph. */
 function externalProps(external?: boolean) {
   return external
     ? { target: "_blank" as const, rel: "noopener noreferrer" }
@@ -51,7 +51,6 @@ function PanelLink({
       {...externalProps(node.external)}
     >
       {node.label}
-      {node.external && <span aria-hidden="true"> ↗</span>}
     </Link>
   );
 }

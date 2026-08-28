@@ -57,6 +57,14 @@ The three remaining gaps are the unnamed logos, the 16-of-68 logo strip on the h
 - Content is extracted, not rewritten. Em dashes inside `content/*.ts` are the client's own copy and are left alone; the no-em-dash rule applies to what we write.
 - No contact form. The live one posts to WPForms and there is no backend decision yet; a form that drops enquiries is worse than an address.
 
+## Homepage and component revisions
+
+- Partner logos sit on whitespace, not in a bordered grid. The ruled cells read as a spreadsheet and each border competed with the mark inside it; alignment and a shared max height do the same work.
+- No arrow glyphs on links anywhere. `ArrowLink` is plain underlined text, and the two card primitives end on a short accent rule that widens on hover instead of a "Learn more" tail, which restated an affordance the whole-card link already carried.
+- Consulting to Hire Services and Other Services are eyebrows under the Our Services h2, not sibling headings competing with it.
+- Our Approach numerals are `action` red. Red never carries small text on slate at 2.8:1, but a 34px numeral clears the large-text threshold.
+- Our Impact is three figures on slate, counting up on scroll, with no cards and no icons. The final value is in the DOM from first paint, so it is correct with JavaScript off and a screen reader never sees the intermediate numbers. `prefers-reduced-motion` skips the animation entirely.
+
 ## Open
 
 - The five open decisions in CLAUDE.md are all still open. Phase 7 (person pages) stays blocked on decision 4.
