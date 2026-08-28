@@ -1,0 +1,173 @@
+@import "tailwindcss";
+
+/*
+  WOS design tokens.
+
+  Two layers on purpose:
+
+  1. Literal palette (--color-wos-*) mirrors the WOS Branding Guide 1:1, so a page
+     can be audited against the PDF by colour name.
+  2. Semantic roles (--color-action, --color-accent, ...) are what components consume.
+     The split matters: the old gold #b9975b did three different jobs (decorative rule,
+     CTA fill, small label text) and they resolve to three different colours here.
+     Naming the role instead of the colour makes the wrong choice unwriteable.
+
+  Four values deviate from the guide. Each is here because the guide colour fails
+  WCAG AA at the size it is used, and each is noted inline with its measured ratio.
+
+  `inline` is required, not stylistic: the font tokens reference variables that
+  next/font defines on <html>. Plain @theme would resolve them through a second
+  cascade hop that breaks the moment a font class is scoped to a subtree.
+*/
+@theme inline {
+  /* ---- Literal WOS palette (Branding Guide p.6) ----
+     Only the two the site actually builds on. Declaring a colour here is not free and
+     not neutral: @theme emits every --color-* into :root whether or not a component
+     consumes it, and more importantly an available token is an invitation to use it.
+
+     Teal #78a7b2 is deliberately absent. It was tried as the decorative accent and
+     removed - it read as a second accent competing with red, and at 2.64:1 on white it
+     could never carry text. Leaving the token declared meant `bg-wos-teal` still worked
+     and the next person had to know not to reach for it. Now it simply does not exist,
+     which is the only version of that rule that holds. Same for blue #1f628e,
+     green #86b16b, gray-light #e5e9ea and gray-mid #879299: all unused, all removed.
+     If a brand review ever needs the full palette, it is in the Branding Guide. */
+  --color-wos-red: #d44530;
+  --color-wos-slate: #2c3441;
+
+  /* ---- Semantic roles ---- */
+
+  /* Red. Guide red is 4.47:1 on white, which clears AA for large text but misses
+     the 4.5:1 needed for the 13-15px labels used throughout, hence the deeper pair. */
+  --color-action: var(--color-wos-red); /* rules, active nav, large display emphasis */
+  --color-action-deep: #bf3b28; /* DEVIATION - button fills + small red text. 5.42:1 */
+  --color-action-deeper: #a63321; /* DEVIATION - hover for the above */
+
+  /* Red is the single accent. Teal stays in the palette above for brand completeness
+     but is deliberately unused: at 2.64:1 on white it could never carry text, and as a
+     decorative rule it read as a second competing accent.
+     Red is only 2.8:1 on slate, so on dark surfaces label TEXT is white - red there is
+     limited to rules and other non-text marks. */
+  --color-accent: var(--color-wos-red);
+
+  /* Surfaces */
+  --color-surface-dark: var(--color-wos-slate);
+  --color-surface-deep: #1b212a; /* DEVIATION - photo overlays, deeper than slate */
+
+  /* Card fill: a true neutral, zero saturation. All three channels drop 8 from white, so
+     the fill has lightness but no hue - the card separates from the page without the
+     surface itself having a colour.
+     Two earlier attempts are worth not repeating. Deriving the fill from the red accent
+     failed at 3% (delta 2/6/6, invisible) and at 8% (read as pink): red lands on blush
+     before it lands on warm, and there is no usable band between. A warm cream #f7f5ee
+     was then tried, but its blue channel drops 17 against red's 8, and that skew reads
+     as yellow on a card that is meant to be a neutral surface.
+     Contrast: heading 11.7:1, muted ink 5.05:1, link 5.06:1. */
+  --color-surface-tint: #f7f7f7; /* DEVIATION - card fill, non-text */
+
+  /* Text. Slate doubles as body ink at 12.54:1. */
+  --color-ink: var(--color-wos-slate);
+  --color-ink-muted: #6a6a6a; /* DEVIATION - muted body copy, neutral. 5.41:1 */
+
+  /* Hairlines, neutral to match. */
+  --color-hairline: #e3e3e3; /* DEVIATION - 1px dividers, non-text */
+  --color-hairline-strong: #d0d0d0;
+
+  /* ---- Type ---- */
+  --font-heading: var(--font-montserrat);
+  --font-sans: var(--font-lato);
+
+  /* ---- Motion ---- */
+  --duration-fade: 600ms;
+  --ease-fade: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@layer base {
+  /* These reference the source variables rather than the @theme keys, so they hold
+     regardless of whether @theme inline emits to :root. */
+  body {
+    background: #ffffff;
+    color: var(--color-wos-slate);
+    font-family: var(--font-lato), system-ui, -apple-system, sans-serif;
+    font-size: 16px; /* up from 15px: Lato's x-height needs the extra */
+    line-height: 1.65;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-montserrat), system-ui, sans-serif;
+    font-weight: 600; /* up from 400: Montserrat reads thin at display sizes */
+  }
+
+  h1 {
+    line-height: 1.05;
+    letter-spacing: -0.025em;
+  }
+
+  h2 {
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+  }
+
+  h3 {
+    line-height: 1.35;
+    letter-spacing: -0.005em;
+  }
+
+  a {
+    color: #bf3b28;
+  }
+
+  a:hover {
+    color: #a63321;
+  }
+
+  /* One focus ring for the whole site. It is offset rather than inset so it stays
+     visible on the red button fills and on the slate surfaces, where an inset outline
+     disappears into the background. Slate rather than red: red is 2.8:1 on slate and
+     the ring has to read on both surfaces from one declaration.
+     :focus-visible, not :focus, so a mouse click on a card does not draw it. */
+  :focus-visible {
+    outline: 2px solid var(--color-wos-slate);
+    outline-offset: 2px;
+  }
+
+  /* On dark sections the slate ring vanishes, so invert it there. */
+  .bg-surface-dark :focus-visible,
+  .bg-surface-deep :focus-visible {
+    outline-color: #ffffff;
+  }
+
+  /* Anchor targets must clear the sticky header, which is 72px at md and up. */
+  :target {
+    scroll-margin-top: 6rem;
+  }
+}
+
+/* The --font-serif and .wordmark shims are gone: every call site now reads
+   `font-heading`, so the scaffolding that carried the Georgia/Trajan migration has
+   nothing left to carry.
+
+   .pull-quote stays because 12 program pages still use it. Note it sets Lato
+   deliberately - italic here is a real italic face, and overriding this to
+   `font-heading` gives a browser-synthesised slant, because Montserrat loads
+   upright only. */
+.pull-quote {
+  border-left: 3px solid var(--color-wos-red);
+  padding-left: 1.5rem;
+}
+
+.pull-quote p {
+  color: var(--color-wos-slate);
+  font-family: var(--font-lato), system-ui, sans-serif;
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.5;
+}
