@@ -22,6 +22,8 @@ DEST = os.path.join(HERE, "..", "public", "images")
 def main():
     wanted = {}
     for name in sorted(os.listdir(EXTRACTED)):
+        if name.startswith("_"):
+            continue
         for img in json.load(open(os.path.join(EXTRACTED, name)))["images"]:
             wanted.setdefault(os.path.basename(img["src"]), img["src"])
 

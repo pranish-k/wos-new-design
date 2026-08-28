@@ -42,6 +42,7 @@ EYEBROW = {
     "college-co-ops-and-internships": "Managed Service Center",
     "cohorts": "Programs", "become-a-partner": "Partners", "blog": "News & Events",
     "contact": "Contact", "donate": "Support WOS", "privacy-policy": "Legal",
+    "institute-of-workforce-policy-practice": "Research",
 }
 
 # Built by hand from the extracted output. These pages have a card grid, a person
@@ -88,6 +89,8 @@ def main():
     os.makedirs(DEST, exist_ok=True)
     written = 0
     for name in sorted(os.listdir(EXTRACTED)):
+        if name.startswith("_"):
+            continue
         data = json.load(open(os.path.join(EXTRACTED, name)))
         route = data["route"].strip("/")
         if route in BESPOKE:

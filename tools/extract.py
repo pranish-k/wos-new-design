@@ -34,6 +34,8 @@ ROUTES = [
     "itsupport", "cyber-security", "legacy-application-support",
     "data-analytics-and-ai", "shared-services", "college-co-ops-and-internships",
     "cohorts", "become-a-partner", "blog", "contact", "donate", "privacy-policy",
+    # Reachable only from the footer, which makes the footer the only path to it.
+    "institute-of-workforce-policy-practice",
 ]
 
 DROP_TAGS = re.compile(r"<(script|style|noscript|svg|form)\b.*?</\1>", re.S | re.I)

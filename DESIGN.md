@@ -37,7 +37,7 @@ Brand name strings live in `lib/brand.ts` and nowhere else.
 
 ## 1. Design philosophy
 
-The reference bar is **Columbia GSAPP, MIT Media Lab, Harvard GSD** — not a SaaS startup or a Squarespace template.
+The reference bar is **Columbia GSAPP, MIT Media Lab, Harvard GSD**, not a SaaS startup or a Squarespace template.
 
 That means:
 - **Editorial, not promotional.** Space, type, and restraint do the work, not gradients, shadows, or animations.
@@ -142,7 +142,7 @@ On a card meant to read as a neutral surface it registers as yellow rather than 
 Ceiling on any card fill is roughly 12% of a mid-tone, past which `ink-muted` drops below 4.5:1.
 At `#f7f7f7` there is a lot of headroom: muted ink is 5.05:1 and the link red is 5.06:1.
 
-If the fill ever needs to be more present, go **darker on all three channels equally** — `#f6f6f6`, `#f4f4f4`, `#f2f2f2` all still clear AA.
+If the fill ever needs to be more present, go **darker on all three channels equally**: `#f6f6f6`, `#f4f4f4`, `#f2f2f2` all still clear AA.
 Do not reintroduce a hue.
 
 ### Contrast rules that are easy to get wrong
@@ -196,7 +196,7 @@ Eyebrow label      11px uppercase, tracking 0.15em, font-semibold
 ```
 
 Base sets `h1`-`h4` to weight 600.
-Do not add `font-normal` to a heading — it fights the base and leaves Montserrat looking thin.
+Do not add `font-normal` to a heading; it fights the base and leaves Montserrat looking thin.
 
 ### Eyebrow pattern
 
@@ -210,7 +210,7 @@ Do not add `font-normal` to a heading — it fights the base and leaves Montserr
 ```
 
 Use the `Eyebrow` component in body sections.
-Interior heroes carry the same mark with the rule *below* the label — see `InteriorHero`.
+Interior heroes carry the same mark with the rule *below* the label. See `InteriorHero`.
 
 ---
 
@@ -293,7 +293,7 @@ All primitives live in `components/Brand.tsx`.
 | `ArrowLink` | Underlined red inline link with a nudging arrow. |
 | `PhotoLedCard` | Photo top, tinted block below. No border. |
 | `TintedCard` | Smaller certificate tile, same language. |
-| `StatsBar` | Four numbers. Numerals stay slate on light — red reads as an alert. No boxes or borders. |
+| `StatsBar` | Four numbers. Numerals stay slate on light; red reads as an alert. No boxes or borders. |
 | `PullQuote` | 3px red left rule, Lato italic. |
 | `Divider` | `border-t border-hairline my-16`. |
 
@@ -321,7 +321,7 @@ This is the light-surface version of the two-dark-sections anti-pattern in §8.
 
 ### Cards have no border
 
-A 1px light border between a white card and a white page divides nothing — inside and outside are the same colour, so it reads as a faint outline rather than an edge.
+A 1px light border between a white card and a white page divides nothing: inside and outside are the same colour, so it reads as a faint outline rather than an edge.
 Separation comes from the tinted fill and the photo.
 
 If a card ever needs more definition, the answer is a stronger fill or a colour-blocked text area, not a border.
@@ -397,13 +397,20 @@ grep -rnE '(bg|text|border[a-z-]*|fill|ring|placeholder|shadow)-\[(#|rgb|hsl|okl
 # 4. Retired typography. Excludes comment lines: globals.css documents that the
 #    Georgia/Trajan shims were removed, and naming a thing in order to say it is gone
 #    should not trip the check that looks for it.
-grep -rniE 'font-serif|wordmark|trajan|georgia' app components lib | grep -vE '^\S+:[0-9]+: *(//|/\*|\*)'
+grep -rniE 'font-serif|wordmark|trajan|georgia' app components lib \
+  --exclude=globals.css | grep -vE '^\S+:[0-9]+: *(//|/\*|\*)'
 
 # 5. Center-site brand language must not reach the PAGE. Grepped in the rendered
 #    output rather than in source, because lib/brand.ts deliberately names these in a
 #    comment to tell the next person not to add them. Source-grepping made the comment
 #    that prevents the mistake indistinguishable from the mistake.
-grep -riE 'northeastern|teachers college|columbia' .next/server/app/*.html
+#
+#    Only Teachers College. The reference site's version of this check also caught
+#    "Columbia" and "Northeastern", and both belong on this site: the WOS model derives
+#    from research conducted at Columbia and is described that way on /our-story/, one
+#    board member's title names the university, and the WOS-Northeastern Talent Pipeline
+#    Program is a real page. A check that flags the site's own history gets ignored.
+grep -riE 'teachers college' .next/server/app/*.html
 
 # 6. POSITIVE control - tokens must exist in the BUILT css
 npm run build
@@ -413,7 +420,7 @@ grep -oh -- '--color-[a-z-]*' .next/static/chunks/*.css | sort -u
 All six must return empty except the last, which must list every token.
 
 **Check 6 matters most and is the one that gets skipped.**
-A misspelled token in Tailwind v4 produces no error — `text-ink-mutedd` generates no rule, the element inherits, and the page looks almost right.
+A misspelled token in Tailwind v4 produces no error: `text-ink-mutedd` generates no rule, the element inherits, and the page looks almost right.
 Checks 1-5 all pass on a completely broken build.
 
 Two further traps found the hard way:
