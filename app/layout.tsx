@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat, Lato } from "next/font/google";
 import "./globals.css";
 import { ORG, DESCRIPTION } from "@/lib/brand";
+import Nav from "@/components/Nav";
+import Footer from "@/components/Footer";
 
 // Montserrat is a variable font on Google Fonts: omitting `weight` ships one file
 // covering 100-900, which is smaller than enumerating the weights we use.
@@ -65,9 +67,11 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        <Nav />
         <main id="main" className="flex-1">
           {children}
         </main>
+        <Footer />
       </body>
     </html>
   );

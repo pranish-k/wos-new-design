@@ -1,28 +1,37 @@
 # Design System
-## Center for Strategic Learning and Leadership in the Digital Age
+## wforce.org
 
-A Workforce Opportunity Services center, in partnership with Teachers College, Columbia University.
+The main Workforce Opportunity Services site.
 
 This file is the single source of truth for all visual decisions on this site.
 Before writing any component, check here.
 Before making a judgment call, add it here.
 
-For *why and what* rather than *how it looks*, see [UX.md](../../UX.md) at the repo root.
+Colour, type, components, and the anti-pattern list are ported from the center site at
+`/Users/pranish/Documents/wos-new-center/proposed_center/site/`, including the reasoning
+for the rejected alternatives.
+That reasoning is worth keeping verbatim: re-deriving it means repeating the mistakes.
+Sections 0 and 4 are the ones rewritten for this site, because brand and navigation are
+where the two differ.
+
+For the rules of the rebuild rather than its appearance, see [CLAUDE.md](CLAUDE.md).
 
 ---
 
 ## 0. Brand hierarchy
 
-**WOS leads. Teachers College is the named academic partner.**
+**WOS is the only brand on this site.**
 
-This site is one of two.
-The Columbia-led sibling lives in a separate repo (`pranish-k/new-center`) and presents the same Center with Teachers College in the lead position.
-Nothing here should be copied to that repo or vice versa without checking which brand owns the surface.
+There is no co-brand and no partnership line anywhere in the chrome.
+Teachers College and Columbia belong to the center site this design system came from, not to this one.
+Carrying either across is the most likely brand error here, because the components were written for a site that credits them.
 
 Practically:
-- The WOS mark is the only logo in the header.
-- The partnership is stated in the footer and in the Academic Partnership section on the homepage, not in the header.
-- Northeastern University is not mentioned anywhere. The Center's history predating this partnership is out of scope for this site.
+- The WOS lockup is the only logo, in both the header and the footer.
+- Corporate and academic partners are content, on `/corporate-partners/` and `/academic-partners/`. They are not chrome.
+- Northeastern is a real page on this site (the WOS-Northeastern Talent Pipeline Program) and one of the 15 unreachable pages awaiting a decision. The center site's rule against mentioning it does not apply here.
+
+Brand name strings live in `lib/brand.ts` and nowhere else.
 
 ---
 
@@ -207,14 +216,40 @@ Interior heroes carry the same mark with the rule *below* the label — see `Int
 
 ## 4. Navigation
 
-- Sticky, white, 72px tall, 1px `hairline` bottom border.
-- WOS mark at 40px, vertical hairline divider, Center name at 15px Montserrat 600 wrapping to two lines in a 310px box.
-- Four links plus a Contact button. Active state is a 2px `border-action` underline.
-- No partnership line in the header. It lives in the footer.
-- Mobile is a full-screen white overlay, not a dropdown.
+The one place this site diverges from the center site by more than a detail.
+The center has four flat links; this site has five top-level items, three levels of nesting, and six grouping labels.
+
+### The bar
+
+- Sticky, white, 72px tall, 1px `hairline` bottom border, `max-w-6xl`.
+- The full WOS lockup at 36px. No adjacent name text: the wordmark is in the asset.
+- Five top-level items plus a right-aligned Donate button in `action-deep`.
+- Active state is a 2px `border-action` underline, and a top-level item counts as active when any page beneath it is.
+
+### The dropdowns
+
+- The tree is data, in `lib/nav.ts`, not nested JSX. It is three levels deep and open decision 5 may change it.
+- A panel spans the full width of the bar rather than sitting under its trigger, because the Services panel is wider than the word "Services" and would otherwise run off the right edge.
+- Grouping labels render as headings in `ink-muted` uppercase, never as links. The live site gives all six `href="#"`, which lands a keyboard user on a target that does nothing. Do not reproduce that.
+- Nesting is shown with a 1px `hairline` left rule and 12px of padding, not with indentation alone.
+- Columns only when every direct child of a top-level item is a group, which is true of Services and of nothing else. About mixes plain links with Boards and Partners, and splitting it into columns would break the reading order of the links either side of them.
+
+### Keyboard
+
+This is the part most likely to ship broken, and type checking catches none of it.
+
+- The APG **disclosure navigation** pattern, not a menubar: panel links stay in normal tab order. A menubar would make a three-level menu require arrow keys to reach any leaf.
+- Left and right arrows walk the top bar, down opens a panel and enters it, Escape closes and returns focus to the trigger.
+- Focus leaving the bar closes the open panel, as does a pointer down anywhere outside it.
+- Verify by tabbing to every leaf under Services with no mouse.
+
+### Mobile
+
+- Full-screen white overlay, not a dropdown, with body scroll locked and Escape wired.
+- One accordion level. Nested groups render already expanded, because three taps to reach a service page is the usability problem, not the solution to it.
 
 All logo references go through `components/WosMark.tsx`.
-It is the only file that touches the asset, so swapping in the real SVG lockup is a one-file change.
+It is the only file that touches the asset, so swapping in a real SVG lockup is a one-file change.
 
 ---
 
