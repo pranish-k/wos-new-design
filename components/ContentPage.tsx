@@ -1,5 +1,5 @@
 import { Eyebrow } from "@/components/Brand";
-import type { Block, PageContent } from "@/lib/content";
+import type { Block, PageContent, Section } from "@/lib/content";
 
 function Blocks({ blocks }: { blocks: Block[] }) {
   return (
@@ -34,6 +34,42 @@ function Blocks({ blocks }: { blocks: Block[] }) {
 }
 
 /**
+ * The prose sections on their own, for pages that put something else above them.
+ *
+ * `offset` shifts which sections take the tint, so a page that has already used a
+ * tinted block above these does not end up with two of them touching.
+ */
+export function ContentSections({
+  sections,
+  offset = 0,
+}: {
+  sections: Section[];
+  offset?: number;
+}) {
+  return (
+    <>
+      {sections.map((section, i) => (
+        <section
+          key={i}
+          className={(i + offset) % 2 === 1 ? "bg-surface-tint py-16" : "py-16"}
+        >
+          <div className="mx-auto max-w-3xl px-6">
+            {section.heading && (
+              <h2 className="font-heading text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink md:text-[34px]">
+                {section.heading}
+              </h2>
+            )}
+            <div className={section.heading ? "mt-6" : ""}>
+              <Blocks blocks={section.blocks} />
+            </div>
+          </div>
+        </section>
+      ))}
+    </>
+  );
+}
+
+/**
  * The shared layout for the prose pages, which is most of the site.
  *
  * Rhythm comes from alternating fill rather than from spacing alone: every other
@@ -57,23 +93,7 @@ export default function ContentPage({ page }: { page: PageContent }) {
         </div>
       </header>
 
-      {page.sections.map((section, i) => (
-        <section
-          key={i}
-          className={i % 2 === 1 ? "bg-surface-tint py-16" : "py-16"}
-        >
-          <div className="mx-auto max-w-3xl px-6">
-            {section.heading && (
-              <h2 className="font-heading text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink md:text-[34px]">
-                {section.heading}
-              </h2>
-            )}
-            <div className={section.heading ? "mt-6" : ""}>
-              <Blocks blocks={section.blocks} />
-            </div>
-          </div>
-        </section>
-      ))}
+      <ContentSections sections={page.sections} />
     </article>
   );
 }
