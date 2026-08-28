@@ -1,0 +1,127 @@
+{
+ "route": "/legacy-application-support",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "Sustain and evolve the systems you rely on while you plan the next step. We stabilize, support, and modernize legacy apps so your teams can focus on roadmaps."
+  },
+  {
+   "tag": "p",
+   "text": "Common Stacks"
+  },
+  {
+   "tag": "li",
+   "text": ".NET and Java apps"
+  },
+  {
+   "tag": "li",
+   "text": "SQL Server and Oracle PL/SQL"
+  },
+  {
+   "tag": "li",
+   "text": "Classic SharePoint"
+  },
+  {
+   "tag": "li",
+   "text": "Access"
+  },
+  {
+   "tag": "li",
+   "text": "VBA automations"
+  },
+  {
+   "tag": "li",
+   "text": "Older Web Frameworks"
+  },
+  {
+   "tag": "li",
+   "text": "Reporting Platforms"
+  },
+  {
+   "tag": "li",
+   "text": "Batch Jobs"
+  },
+  {
+   "tag": "li",
+   "text": "COBOL"
+  },
+  {
+   "tag": "p",
+   "text": "Services"
+  },
+  {
+   "tag": "h5",
+   "text": "L2 and L3 support with defined defect queues"
+  },
+  {
+   "tag": "h5",
+   "text": "Bug fixes, minor enhancements, and release packaging"
+  },
+  {
+   "tag": "h5",
+   "text": "Test automation for regression safety"
+  },
+  {
+   "tag": "h5",
+   "text": "Performance tuning and database maintenance"
+  },
+  {
+   "tag": "h5",
+   "text": "Documentation, code hygiene, and knowledge transfer"
+  },
+  {
+   "tag": "h5",
+   "text": "Modernization roadmap and cost model"
+  },
+  {
+   "tag": "p",
+   "text": "Three Phase Approach"
+  },
+  {
+   "tag": "h5",
+   "text": "1. STABILIZE"
+  },
+  {
+   "tag": "h5",
+   "text": "Backlog Triage, Hotfixes, Monitoring, and Runbooks"
+  },
+  {
+   "tag": "h5",
+   "text": "2. Sustain"
+  },
+  {
+   "tag": "h5",
+   "text": "Defined cadence of sprint work"
+  },
+  {
+   "tag": "h5",
+   "text": "3. Modernize"
+  },
+  {
+   "tag": "h5",
+   "text": "Target state design, Component replacement, and Cloud migration plans"
+  },
+  {
+   "tag": "p",
+   "text": "Start with a six week stabilization program that produces your runbook and modernization options."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

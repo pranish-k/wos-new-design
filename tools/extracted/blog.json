@@ -1,0 +1,131 @@
+{
+ "route": "/blog",
+ "blocks": [
+  {
+   "tag": "h4",
+   "text": "Is your infrastructure ready for AI?"
+  },
+  {
+   "tag": "p",
+   "text": "Can your current infrastructure handle the projected onslaught of AI software[\u2026]"
+  },
+  {
+   "tag": "h4",
+   "text": "Does Your AI Measure Up?"
+  },
+  {
+   "tag": "p",
+   "text": "Measurement matters. Make your AI count. Is your AI providing reliable[\u2026]"
+  },
+  {
+   "tag": "h4",
+   "text": "Overcoming Key Data Challenges for Successful AI Implementation"
+  },
+  {
+   "tag": "p",
+   "text": "Is your data ready for AI? Implementing an AI solution can[\u2026]"
+  },
+  {
+   "tag": "h4",
+   "text": "Is Your Team Ready for AI? WOS Can Help!"
+  },
+  {
+   "tag": "p",
+   "text": "Are you ready for AI? You\u2019ll need more than one type[\u2026]"
+  },
+  {
+   "tag": "h4",
+   "text": "Congratulations to the 2024 WOS/ACE Software Development Cohort graduates!"
+  },
+  {
+   "tag": "p",
+   "text": "We\u2019re honored to have been part of your journey and can\u2019t[\u2026]"
+  },
+  {
+   "tag": "h4",
+   "text": "Talent Symposium"
+  },
+  {
+   "tag": "p",
+   "text": "More details to follow. Please follow our Socials for information updates.[\u2026]"
+  },
+  {
+   "tag": "h4",
+   "text": "WOS Introduces International Division"
+  },
+  {
+   "tag": "p",
+   "text": "NEW YORK, NY \u2013 Workforce Opportunity Services (WOS) is excited to[\u2026]"
+  },
+  {
+   "tag": "h4",
+   "text": "Dallas Grand Opening"
+  },
+  {
+   "tag": "p",
+   "text": "Workforce Opportunity Services (WOS) is excited to announce our center\u2019s grand opening[\u2026]"
+  },
+  {
+   "tag": "h4",
+   "text": "WOS-Prudential Partnership"
+  },
+  {
+   "tag": "p",
+   "text": "Workforce Opportunity Services (WOS) and Prudential Financial have partnered since 2005[\u2026]"
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/05/infrastructure-ready-for-ai-scaled.avif",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/04/unnamed-scaled.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/ai-data-cuallenge.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/key-data-challenges.jpeg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Cohort_2024.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/ombk2ilvvf97jw.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-International-1.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2022/09/2nfpb2y2l6zovqkv.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2019/01/Untitled-design-4.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

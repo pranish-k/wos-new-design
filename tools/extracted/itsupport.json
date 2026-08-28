@@ -1,0 +1,167 @@
+{
+ "route": "/itsupport",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "WOS offers a right-sized service desk that handles customer care and end user IT support across phone, email, chat, and self-service. We can start up new desks or augment your existing operation."
+  },
+  {
+   "tag": "p",
+   "text": "From Account unlocks, MFA, VPN, device support, Office 365, basic networking, Ticket intake and triage, knowledge base creation, self-service portal maintenance to Incident, request, and problem management using your ITSM platform and Workforce management, QA monitoring, coaching, and reporting"
+  },
+  {
+   "tag": "h5",
+   "text": "Self Service & Knowledge"
+  },
+  {
+   "tag": "p",
+   "text": "Curate FAQs, guided flows, and simple automations that deflect common requests."
+  },
+  {
+   "tag": "h5",
+   "text": "First line Support"
+  },
+  {
+   "tag": "p",
+   "text": "Verify identity, triage, and resolve the most frequent issues with clear scripts and runbooks."
+  },
+  {
+   "tag": "h5",
+   "text": "Advanced Technical Support"
+  },
+  {
+   "tag": "p",
+   "text": "Deeper troubleshooting for accounts, devices, networking, and core applications."
+  },
+  {
+   "tag": "h5",
+   "text": "Local Desk Side support"
+  },
+  {
+   "tag": "p",
+   "text": "On site help for hardware, peripherals, conference rooms, and moves, adds, changes."
+  },
+  {
+   "tag": "p",
+   "text": "Delivery Options :"
+  },
+  {
+   "tag": "h5",
+   "text": "Onsite, Remote or Hybrid"
+  },
+  {
+   "tag": "h5",
+   "text": "Onshore US, nearshore Costa Rica or Blended"
+  },
+  {
+   "tag": "h5",
+   "text": "Dedicated or Shared Agents"
+  },
+  {
+   "tag": "h5",
+   "text": "English and Spanish Coverage"
+  },
+  {
+   "tag": "p",
+   "text": "Tools We Work with:"
+  },
+  {
+   "tag": "li",
+   "text": "ServiceNow"
+  },
+  {
+   "tag": "li",
+   "text": "Jira Service Management"
+  },
+  {
+   "tag": "li",
+   "text": "Freshservice"
+  },
+  {
+   "tag": "li",
+   "text": "Zendesk"
+  },
+  {
+   "tag": "li",
+   "text": "Five9"
+  },
+  {
+   "tag": "li",
+   "text": "NICE"
+  },
+  {
+   "tag": "li",
+   "text": "Genesys Cloud"
+  },
+  {
+   "tag": "li",
+   "text": "Microsoft 365"
+  },
+  {
+   "tag": "li",
+   "text": "Google Workspace"
+  },
+  {
+   "tag": "li",
+   "text": "Okta"
+  },
+  {
+   "tag": "li",
+   "text": "Duo"
+  },
+  {
+   "tag": "p",
+   "text": "How we Launch:"
+  },
+  {
+   "tag": "h5",
+   "text": "1. Discovery and call type Mapping"
+  },
+  {
+   "tag": "h5",
+   "text": "2. Knowledge capture and runbook drafting"
+  },
+  {
+   "tag": "h5",
+   "text": "3. Pilot with shadow support and UAT"
+  },
+  {
+   "tag": "h5",
+   "text": "4. Gradual volume ramp with daily reporting"
+  },
+  {
+   "tag": "h5",
+   "text": "5. Monthly tune-ups on staffing, scripts, and KB articles"
+  },
+  {
+   "tag": "p",
+   "text": "Proof you can see:"
+  },
+  {
+   "tag": "p",
+   "text": "Weekly operations packs, call and ticket QA samples with coaching notes, and a quarterly improvement plan focused on deflection and first contact resolution."
+  },
+  {
+   "tag": "p",
+   "text": "Start with a pilot focused on your top five contact drivers."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

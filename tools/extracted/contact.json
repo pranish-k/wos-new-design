@@ -1,0 +1,31 @@
+{
+ "route": "/contact",
+ "blocks": [
+  {
+   "tag": "h2",
+   "text": "Keep in touch and connect with us today!"
+  },
+  {
+   "tag": "p",
+   "text": "Founded in 2005, WOS is a 501(c)(3) non-profit organization committed to solving today\u2019s global workforce challenges. WOS provides holistic talent solutions across industries, empowering individuals facing employment barriers for lasting professional success. WOS has been active in over 60 locations across the U.S. and also operates in Costa Rica, France, and the Netherlands."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

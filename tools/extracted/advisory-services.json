@@ -1,0 +1,87 @@
+{
+ "route": "/advisory-services",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "WOS Advisory Services: Transforming Talent and AI Integration"
+  },
+  {
+   "tag": "p",
+   "text": "In today\u2019s global and fast-paced economy, businesses face increasing demands to remain agile, innovative, and future-ready. WOS Advisory Services is designed to empower organizations to build scalable solutions for early-career talent acquisition while also embracing cutting-edge AI technologies for operational success. Backed by over 20 years of experience, our scientifically-driven methodologies and proven solutions deliver sustainable strategies tailored to your organization\u2019s unique needs. What We Offer:"
+  },
+  {
+   "tag": "p",
+   "text": "AI ADVISORY SERVICES"
+  },
+  {
+   "tag": "p",
+   "text": "Our experts help businesses assess, design, and deploy AI solutions that align with their goals, leveraging cutting-edge analytics and best practices for seamless integration and long-term efficiency."
+  },
+  {
+   "tag": "p",
+   "text": "Data Capture, Validation and Consolidation :"
+  },
+  {
+   "tag": "p",
+   "text": "Our team of experts will work with you to capture the relevant data, structure if needed, validate and consolidate into the required format depending on the applicable SOW."
+  },
+  {
+   "tag": "p",
+   "text": "Recruiting and Vetting Talent"
+  },
+  {
+   "tag": "p",
+   "text": "Identify and onboard high-potential candidates with the skills and passion to succeed."
+  },
+  {
+   "tag": "p",
+   "text": "Training and Support for Candidates"
+  },
+  {
+   "tag": "p",
+   "text": "Provide tailored training to equip talent with the tools needed for success in their roles."
+  },
+  {
+   "tag": "p",
+   "text": "Mentoring Staff"
+  },
+  {
+   "tag": "p",
+   "text": "Develop structured mentorship programs to guide employees toward growth and productivity."
+  },
+  {
+   "tag": "p",
+   "text": "Measuring Workplace Readiness:"
+  },
+  {
+   "tag": "p",
+   "text": "Assess and track readiness and performance metrics to ensure lasting results."
+  },
+  {
+   "tag": "p",
+   "text": "Whether you\u2019re looking to scale your workforce or implement innovative AI solutions, WOS Advisory Services provides the expertise and strategic insight to drive sustainable growth and measurable success."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/ai-services.webp",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

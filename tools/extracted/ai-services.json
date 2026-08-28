@@ -1,0 +1,207 @@
+{
+ "route": "/ai-services",
+ "blocks": [
+  {
+   "tag": "h2",
+   "text": "Deploy. Measure. Iterate. Monitor."
+  },
+  {
+   "tag": "p",
+   "text": "Are you getting the most out of your AI investment?"
+  },
+  {
+   "tag": "p",
+   "text": "Wherever you are in your AI journey, we can help."
+  },
+  {
+   "tag": "p",
+   "text": "We bring the technical, scientific and implementation expertise necessary to help you maximize the benefit of your AI solutions. And, we can provide the talent you may need to do the work. Our trained managed services personnel come from local communities, so you can count on an invested, stable workforce as you innovate."
+  },
+  {
+   "tag": "h4",
+   "text": "AI Advisory Expertise"
+  },
+  {
+   "tag": "p",
+   "text": "The WOS Advisory team , with over 20 years of experience in applying advanced technologies to meet clients\u2019 governmental and business goals, helps identify the operational conditions needed for your AI technology to perform at its best. Meet our AI experts."
+  },
+  {
+   "tag": "h4",
+   "text": "Skilled AI Implementation & Operations"
+  },
+  {
+   "tag": "p",
+   "text": "Our experienced WOS Managed Services team carries out the infrastructure-level blocking and tackling needed to make advanced technologies work. Managed by WOS subject matter experts under the guidance of the AI Advisory team, WOS can work remotely or on-site, short or long term. Learn more about WOS managed AI services."
+  },
+  {
+   "tag": "h2",
+   "text": "Services"
+  },
+  {
+   "tag": "h5",
+   "text": "AI Advisory Services"
+  },
+  {
+   "tag": "p",
+   "text": "With more than 20 years of experience applying advanced technologies to meet clients\u2019 governmental and business goals, the WOS AI Advisory team can help you implement new AI solutions in your organization or just make sure you\u2019re getting the most benefit from the ones you have. We can help:"
+  },
+  {
+   "tag": "li",
+   "text": "Assess the data, people, and workflow required to optimize your AI solutions."
+  },
+  {
+   "tag": "li",
+   "text": "Create and implement QA and measurement protocols to validate results."
+  },
+  {
+   "tag": "li",
+   "text": "Determine if your AI solution aligns with identified compliance standards and rapidly evolving regulation."
+  },
+  {
+   "tag": "li",
+   "text": "Recommend ways to integrate, enhance, or expand AI-enabled services in your organization."
+  },
+  {
+   "tag": "h5",
+   "text": "Managed Implementation and Operations Services"
+  },
+  {
+   "tag": "p",
+   "text": "The WOS Managed Services team, acting on recommendations by the WOS Advisory team (or by you or your technology vendor) helps you implement the infrastructure requirements of AI-enabled technologies with the requisite workflows and validation procedures, relieving you of the need to micromanage operational questions so you can focus on defining the higher-order strategic objectives of your smart tools:"
+  },
+  {
+   "tag": "li",
+   "text": "Identify, vet, and maintain comprehensive and secure management of the data that flows in and out of AI-enabled software."
+  },
+  {
+   "tag": "li",
+   "text": "Organize and maintain AI training data sets for accuracy and evergreen results of AI functionality."
+  },
+  {
+   "tag": "li",
+   "text": "Establish and implement AI quality assurance workflows to provide transparent monitoring and measurement of an AI system\u2019s effectiveness."
+  },
+  {
+   "tag": "h2",
+   "text": "Are these items on your 2025 to-do list?"
+  },
+  {
+   "tag": "p",
+   "text": "Increase Worker Productivity"
+  },
+  {
+   "tag": "p",
+   "text": "Gather business intelligence to enhance sales"
+  },
+  {
+   "tag": "p",
+   "text": "Build and retain an engaged workforce"
+  },
+  {
+   "tag": "p",
+   "text": "Increase the pace and ROI on innovation"
+  },
+  {
+   "tag": "p",
+   "text": "Meet rapidly evolving compliance and security obligations"
+  },
+  {
+   "tag": "p",
+   "text": "Help grow (and future-proof) the business"
+  },
+  {
+   "tag": "p",
+   "text": "WOS is here to help."
+  },
+  {
+   "tag": "h3",
+   "text": "Meet Our Experts"
+  },
+  {
+   "tag": "p",
+   "text": "The advisory team assembled by WOS is led by a seasoned team of consultants equipped with a broad range of perspectives and expertise relevant to the effective implementation of AI-enabled systems. Areas of expertise covered by the team include: data collection, integration, management, and security; AI protocols; statistical measurement and quality assurance; information governance; litigation readiness; governmental compliance. Each of the members of the team brings many years of practical experience applying their respective areas of expertise to real-world problems."
+  },
+  {
+   "tag": "h6",
+   "text": "Principal Scientist"
+  },
+  {
+   "tag": "h3",
+   "text": "Dr. Bruce Hedin"
+  },
+  {
+   "tag": "p",
+   "text": "Dr. Hedin , a leading expert in the assessment of the effectiveness of advanced search and analytics technologies, brings expertise in gathering the evidence that allows an assessment of the trustworthiness of a technology. In his consulting practice, he supports clients in the design and oversight of sampling and measurement protocols to validate the results of AI-enabled review technologies; he also provides guidance to clients seeking the most efficient, and scientifically sound, methods to demonstrate the trustworthiness of the technologies they have adopted. Dr. Hedin has contributed to several initiatives in keeping with his expertise, including a model ESI protocol, manifestos on the rule of law in the age of artificial intelligence, the IEEE\u2019s Ethically Aligned Design, and US NIST\u2019s Text Retrieval Conference (TREC) Legal Track ."
+  },
+  {
+   "tag": "h6",
+   "text": "Principal Architect"
+  },
+  {
+   "tag": "h3",
+   "text": "James Wolf"
+  },
+  {
+   "tag": "p",
+   "text": "Mr. Wolf brings over 30 years of experience in leading software engineering, product management, Information Technology, Information Security, Technology Architecture, Quality Assurance and Project Management to the Advisory Services leadership team. Mr. Wolf is a creative innovator, and passionate problem solver. He is an early pioneer in analytics and BI space, being named as the inventor of 10 patents related to Oracle Discoverer, on which Mr. Wolf was the Principal Engineer. Mr. Wolf is an expert in eDiscovery having led the creation of H5\u2019s Information Retrieval and AI platforms, then led the enterprise architecture of H5\u2019s eDiscovery Services. Mr. Wolf advises clients on the architecture, security, technical infrastructure, be it on site or in the cloud, applications, and application architecture needed to meet their objectives."
+  },
+  {
+   "tag": "h6",
+   "text": "General Counsel for Artificial Intelligence"
+  },
+  {
+   "tag": "h3",
+   "text": "Julie L. Brickell, Esquire"
+  },
+  {
+   "tag": "p",
+   "text": "Ms. Brickell , a lawyer, brings expertise garnered as in-house counsel and courtroom lawyer. Having served as general counsel of a technology company which deployed search and measurement expertise and technology to address ediscovery, data management, and compliance challenges, and deputy general counsel of a top consumer products company, Brickell has worked closely with business units on data security, privacy, data management, compliance, contracting, intellectual property, eDiscovery, and litigation. As faculty teaching the implications of the law to technology executives for well over a decade, Brickell communicates effectively with technology teams, advises on business processes, elucidates ethical issues in the use of artificial intelligence, and speaks and writes frequently on these topics ."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/AI-Advisory.svg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Implementation-and-Operations.svg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/AI-Advisory-Services.svg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Managed-Implementation-and-Operations-Services-1.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Dr.-Bruce-Hedin2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/James-Wolf.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Julie-L.-Brickell-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

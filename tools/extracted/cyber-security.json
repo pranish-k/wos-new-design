@@ -1,0 +1,159 @@
+{
+ "route": "/cyber-security",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "WOS provides continuous monitoring that reduces noise and speeds response. We provide L1 and L2 analysts, operate your SIEM and EDR stack, and coordinate with your internal or third party incident responders."
+  },
+  {
+   "tag": "p",
+   "text": "Scope:"
+  },
+  {
+   "tag": "h5",
+   "text": "Around the clock alert monitoring and triage"
+  },
+  {
+   "tag": "h5",
+   "text": "SIEM rule tuning and use case development"
+  },
+  {
+   "tag": "h5",
+   "text": "EDR monitoring, isolation requests, and containment support"
+  },
+  {
+   "tag": "h5",
+   "text": "Vulnerability scan scheduling and exception tracking"
+  },
+  {
+   "tag": "h5",
+   "text": "Threat intel enrichment and basic hunting"
+  },
+  {
+   "tag": "h5",
+   "text": "Incident communications and post-incident reviews"
+  },
+  {
+   "tag": "p",
+   "text": "Playbooks We Operate :"
+  },
+  {
+   "tag": "h5",
+   "text": "Phishing"
+  },
+  {
+   "tag": "h5",
+   "text": "Credential Stuffing"
+  },
+  {
+   "tag": "h5",
+   "text": "Suspicious Authentication"
+  },
+  {
+   "tag": "h5",
+   "text": "Malware Detection"
+  },
+  {
+   "tag": "h5",
+   "text": "Lateral Movement"
+  },
+  {
+   "tag": "h5",
+   "text": "Data Exfiltration Indicators"
+  },
+  {
+   "tag": "h5",
+   "text": "Ransomware Precursors"
+  },
+  {
+   "tag": "h5",
+   "text": "Insider Anomalies"
+  },
+  {
+   "tag": "p",
+   "text": "Our Stack"
+  },
+  {
+   "tag": "li",
+   "text": "Microsoft Sentinel"
+  },
+  {
+   "tag": "li",
+   "text": "Splunk"
+  },
+  {
+   "tag": "li",
+   "text": "Chronicle"
+  },
+  {
+   "tag": "li",
+   "text": "CrowdStrike"
+  },
+  {
+   "tag": "li",
+   "text": "Microsoft Defender"
+  },
+  {
+   "tag": "li",
+   "text": "SentinelOne"
+  },
+  {
+   "tag": "li",
+   "text": "Rapid7"
+  },
+  {
+   "tag": "li",
+   "text": "Tenable"
+  },
+  {
+   "tag": "li",
+   "text": "Qualys"
+  },
+  {
+   "tag": "li",
+   "text": "Okta"
+  },
+  {
+   "tag": "li",
+   "text": "Zscaler"
+  },
+  {
+   "tag": "p",
+   "text": "Governance :"
+  },
+  {
+   "tag": "p",
+   "text": "Clear RACI with your security lead, monthly tabletop or simulation, and a use case roadmap that aligns to your risk register."
+  },
+  {
+   "tag": "p",
+   "text": "What we are not :"
+  },
+  {
+   "tag": "p",
+   "text": "We are not a legal incident response counsel or forensic lead. When those are needed, we integrate with your chosen providers and drive coordination."
+  },
+  {
+   "tag": "p",
+   "text": "Begin with a readiness assessment that targets your top alert types."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "route": "/academic-advisory-board",
+ "blocks": [
+  {
+   "tag": "h4",
+   "text": "Peter Cappelli"
+  },
+  {
+   "tag": "p",
+   "text": "George W. Taylor Professor of Management, The Wharton School"
+  },
+  {
+   "tag": "h4",
+   "text": "Alan Mandell"
+  },
+  {
+   "tag": "p",
+   "text": "SUNY Distinguished Service Professor and College Professor of Adult Learning and Mentoring, SUNY Empire State College"
+  },
+  {
+   "tag": "h4",
+   "text": "Charles Snow"
+  },
+  {
+   "tag": "p",
+   "text": "Mellon Foundation Professor of Business Administration, Smeal College of Business at Penn State University"
+  },
+  {
+   "tag": "h4",
+   "text": "David Thomas"
+  },
+  {
+   "tag": "p",
+   "text": "President, Morehouse College"
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Peter-Cappelli.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Alan-Mandell_bw.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Charles-Snow_cropped-new.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/David-Thomas-BW.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "route": "/shared-services",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "WOS provides process support that clears the busywork without sacrificing accuracy. We handle repeatable tasks so your team can focus on higher value work."
+  },
+  {
+   "tag": "h5",
+   "text": "HR Operations"
+  },
+  {
+   "tag": "p",
+   "text": "Onboarding Packets, I9 and Document Checks, Background Check Coordination, Benefits Data Entry"
+  },
+  {
+   "tag": "h5",
+   "text": "Finance Operations"
+  },
+  {
+   "tag": "p",
+   "text": "AP, AR, Billing Prep, Expense Audits, PO Matching"
+  },
+  {
+   "tag": "h5",
+   "text": "Sales operations"
+  },
+  {
+   "tag": "p",
+   "text": "CRM Hygiene, List Building, Enrichment, Quoting Support"
+  },
+  {
+   "tag": "h5",
+   "text": "Recruiting operations"
+  },
+  {
+   "tag": "p",
+   "text": "Resume Screening, Interview Scheduling, Candidate Communications"
+  },
+  {
+   "tag": "h5",
+   "text": "Data operations"
+  },
+  {
+   "tag": "p",
+   "text": "Data Entry, Cleansing, Deduping, Report Building"
+  },
+  {
+   "tag": "h5",
+   "text": "Content operations"
+  },
+  {
+   "tag": "p",
+   "text": "Catalog Updates, Listings Moderation, Knowledge Base Maintenance"
+  },
+  {
+   "tag": "p",
+   "text": "Quality and Controls"
+  },
+  {
+   "tag": "p",
+   "text": "Work instructions and SOPs for every task, dual control for sensitive changes, sample based QA with acceptance thresholds, audit logs, and regular control reviews."
+  },
+  {
+   "tag": "p",
+   "text": "We measure accuracy, speed, and cost to set the long term model."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

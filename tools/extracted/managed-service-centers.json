@@ -1,0 +1,115 @@
+{
+ "route": "/managed-service-centers",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "Our Managed Service Center provides a comprehensive solution designed to optimize your business and drive growth. Our practical managed services blend trained talent, clear deliverables, and a flexible delivery model across the United States and Costa Rica. We build teams around your goals, train them for your environment, and manage outcomes you can see."
+  },
+  {
+   "tag": "p",
+   "text": "WOS Managed Services"
+  },
+  {
+   "tag": "h4",
+   "text": "Customer Service & IT Support Desk"
+  },
+  {
+   "tag": "h4",
+   "text": "Cybersecurity Monitoring"
+  },
+  {
+   "tag": "h4",
+   "text": "Legacy Applications"
+  },
+  {
+   "tag": "h4",
+   "text": "Data Analytics & AI"
+  },
+  {
+   "tag": "h4",
+   "text": "Shared Services"
+  },
+  {
+   "tag": "h4",
+   "text": "College CO-OP and Internship"
+  },
+  {
+   "tag": "h3",
+   "text": "How We Deliver"
+  },
+  {
+   "tag": "h5",
+   "text": "Talent & training"
+  },
+  {
+   "tag": "h5",
+   "text": "We recruit for aptitude and attitude, then train for your stack and workflows. Every new team member completes role based training and passes scenario based assessments before going live."
+  },
+  {
+   "tag": "h5",
+   "text": "Location & coverage"
+  },
+  {
+   "tag": "h5",
+   "text": "Teams across the U.S. and Costa Rica provide coverage across time zones. Spanish and English support is available. We can ramp to full day coverage where needed."
+  },
+  {
+   "tag": "h5",
+   "text": "Governance"
+  },
+  {
+   "tag": "h5",
+   "text": "You get a named Operations Manager, daily huddles during launch, weekly service reviews, and a monthly business review with actions. Risk, compliance, and security are part of the agenda."
+  },
+  {
+   "tag": "h5",
+   "text": "Security & Compliance"
+  },
+  {
+   "tag": "h5",
+   "text": "Background checks where required, least privilege access, MFA, secure device standards, encrypted data at rest and in transit, and documented change control. We align to common control frameworks and respect your internal policies."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/customer-service.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/cybersecurity-monitoring.webp",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/customized-solutions.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/data-ai.webp",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/scalable-services.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/expert-teams.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

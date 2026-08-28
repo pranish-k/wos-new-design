@@ -1,0 +1,203 @@
+{
+ "route": "/team",
+ "blocks": [
+  {
+   "tag": "h4",
+   "text": "Julie L. Brickell, Esquire"
+  },
+  {
+   "tag": "p",
+   "text": "General Counsel for Artificial Intelligence"
+  },
+  {
+   "tag": "h4",
+   "text": "Jose Cabrera"
+  },
+  {
+   "tag": "p",
+   "text": "Associate Director of Talent Acquisition"
+  },
+  {
+   "tag": "h4",
+   "text": "Andrew Champion"
+  },
+  {
+   "tag": "p",
+   "text": "IT Manager"
+  },
+  {
+   "tag": "h4",
+   "text": "Philip Curry"
+  },
+  {
+   "tag": "p",
+   "text": "Chief Financial & Administrative Officer"
+  },
+  {
+   "tag": "h4",
+   "text": "Danilo Gutierrez"
+  },
+  {
+   "tag": "p",
+   "text": "Senior Director of Client Services & Operations"
+  },
+  {
+   "tag": "h4",
+   "text": "Dr. Bruce Hedin"
+  },
+  {
+   "tag": "p",
+   "text": "Principal Scientist"
+  },
+  {
+   "tag": "h4",
+   "text": "Harriet Hope"
+  },
+  {
+   "tag": "p",
+   "text": "VP Human Resources & Office Operations"
+  },
+  {
+   "tag": "h4",
+   "text": "Sandy Kelton"
+  },
+  {
+   "tag": "p",
+   "text": "Service Desk Manager"
+  },
+  {
+   "tag": "h4",
+   "text": "Wendy LaPlaca"
+  },
+  {
+   "tag": "p",
+   "text": "Senior Client Service Manager"
+  },
+  {
+   "tag": "h4",
+   "text": "Dr. Arthur M. Langer"
+  },
+  {
+   "tag": "p",
+   "text": "Chairman and Founder, Workforce Opportunity Services"
+  },
+  {
+   "tag": "h4",
+   "text": "Mayela Montano"
+  },
+  {
+   "tag": "p",
+   "text": "HR Generalist | Office Manager"
+  },
+  {
+   "tag": "h4",
+   "text": "Steve Petruk"
+  },
+  {
+   "tag": "p",
+   "text": "Managed Services Strategy, Sales, & Marketing"
+  },
+  {
+   "tag": "h4",
+   "text": "Patrick Spurgeon"
+  },
+  {
+   "tag": "p",
+   "text": "Client Service Manager | Talent Acquisition, Systems Administrator"
+  },
+  {
+   "tag": "h4",
+   "text": "James Wolf"
+  },
+  {
+   "tag": "p",
+   "text": "Principal Architect"
+  },
+  {
+   "tag": "h4",
+   "text": "Ming Wu"
+  },
+  {
+   "tag": "p",
+   "text": "Bookkeeper"
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Julie-Brickell_cropped.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Jose-Cabrera-1-1.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Andrew-Champion_cropped.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Philip-Curry-1-1.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Danilo-Gutierrez_cropped.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Dr.-Bruce-Hedin2_cropped.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Harriet-Hope-scaled-1-1.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/04/SK.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Wendy-crop-new.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Art-Langer-1_bw-1.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/04/MM.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Steve-Petruk_cropped.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Patrick-Spurgeon-1.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/James-Wolf_crop.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Ming-Wu-1.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

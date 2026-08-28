@@ -1,0 +1,43 @@
+{
+ "route": "/locations",
+ "blocks": [
+  {
+   "tag": "h3",
+   "text": "WOS Headquarters"
+  },
+  {
+   "tag": "p",
+   "text": "475 Riverside Drive Suite 1350 New York, NY 10115 \u2014 info@wforce.org Tel: 212.870.2260"
+  },
+  {
+   "tag": "h2",
+   "text": "Other WOS Offices"
+  },
+  {
+   "tag": "p",
+   "text": "WOS Dallas Office 4101 McEwen Road Suite 800 Farmers Branch, TX 75244"
+  },
+  {
+   "tag": "p",
+   "text": "WOS Costa Rica Office Mata Grande San Jos\u00e9 Province, R\u00edo Oro, Costa Rica"
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

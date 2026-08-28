@@ -1,0 +1,115 @@
+{
+ "route": "/facilities-management",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "Keeping operations running takes skilled people who show up, solve problems, and work safely. We help you hire and develop that team across operations. WOS has been doing this since 2005 as a 501(c)(3) that partners with employers to source, train, and place talent from local communities."
+  },
+  {
+   "tag": "p",
+   "text": "What We Deliver"
+  },
+  {
+   "tag": "h5",
+   "text": "Recruiting and screening for facilities roles at scale"
+  },
+  {
+   "tag": "h5",
+   "text": "Job-ready training tied to your SOPs and site conditions"
+  },
+  {
+   "tag": "h5",
+   "text": "Fast fill for multi-site needs across the U.S."
+  },
+  {
+   "tag": "h5",
+   "text": "Options to pilot, ramp, and convert to FTE without friction"
+  },
+  {
+   "tag": "h5",
+   "text": "A Veteran And community-based pipeline built with a nonprofit partner that has worked with 75+ corporations in 65+ locations since 2005."
+  },
+  {
+   "tag": "h2",
+   "text": "Roles We Fill"
+  },
+  {
+   "tag": "p",
+   "text": "We fill roles across facilities and IT operations, including Building Engineers, Facilities Coordinators, Application Support, Asset Management, Security Concierge, and Moves-Adds-Changes and Space Planning support, Service Desk Analysts Tier 1 and Tier 2, Desktop Support Technicians, Field Support Technicians, Endpoint Management Specialists, Collaboration and Messaging Administrators, Identity and Access Analysts, Network Support Technicians, Application Support Analysts L1 and L2, SOC Analysts Level 1, Vulnerability Management Analysts, End User Computing Engineers, AV and Conference Room Technicians, and OT and Controls Support Technicians. Building Engineer, Facilities Coordinator, Maintenance Tech, HVAC Tech, Controls Technician, Analyst, EHS Technician, Grounds and Custodial Leads, Mailroom and Shipping/Receiving, Security Concierge, Moves-Adds-Changes and Space Planning support."
+  },
+  {
+   "tag": "h4",
+   "text": "Three Ways to Engage"
+  },
+  {
+   "tag": "h5",
+   "text": "Cohorts"
+  },
+  {
+   "tag": "p",
+   "text": "We design hiring cohorts that line up to your maintenance strategy and peak season. Candidates complete pre-hire training and arrive with site safety, CMMS basics, and the soft skills to work well with tenants and vendors. WOS has a long track record building employer-specific pipelines and integrating early-career talent into operations."
+  },
+  {
+   "tag": "h5",
+   "text": "Contract-to-hire staffin g"
+  },
+  {
+   "tag": "p",
+   "text": "Stand up teams quickly for seasonal maintenance, retrofits, or portfolio transitions. Scale headcount up or down as needs change. When someone is a great fit, convert to FTE."
+  },
+  {
+   "tag": "h5",
+   "text": "FTE Hiring"
+  },
+  {
+   "tag": "p",
+   "text": "Pre-screened candidates for permanent roles. You get people who are aligned to the work, the site, and the schedule."
+  },
+  {
+   "tag": "h2",
+   "text": "Why WOS?"
+  },
+  {
+   "tag": "p",
+   "text": "1. Community-rooted, employer-designed model that recruits, educates, trains, and places talent for long-term success. 2. Flexible engagement models that let you pilot by site, then expand across a region. 3. Proven national footprint and experience working with large enterprises."
+  },
+  {
+   "tag": "h2",
+   "text": "Example Cohort Outline"
+  },
+  {
+   "tag": "p",
+   "text": "1. Pre-hire screening : mechanical aptitude, shift readiness, safety mindset. 2. Foundation : OSHA orientation, LOTO awareness, CMMS workflows, work order triage. 3. Site specifics : your SOPs, routes, vendor playbook, escalation paths. 4. Professional skills : communication, customer handling, time and priority management."
+  },
+  {
+   "tag": "h2",
+   "text": "How we start"
+  },
+  {
+   "tag": "p",
+   "text": "1. 60-minute scoping call to align on roles, sites, and timelines. 2. Talent profile and training matrix signed off by you. 3. Launch recruiting, run training, and stage candidates for interviews. 4. Start small at one site, then replicate."
+  },
+  {
+   "tag": "h2",
+   "text": "Let\u2019s map your hiring across facilities operations and bring a proposed plan, sample profiles, and a start date."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

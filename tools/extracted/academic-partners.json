@@ -1,0 +1,135 @@
+{
+ "route": "/academic-partners",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "WOS has partnered with institutions around the country to develop and deliver tailored certificate programs for our corporate partners. WOS has the unique ability to design programs based on specific company requirements. We create opportunities for comprehensive non-traditional learning that empowers our participants to learn the skills necessary to succeed in the workplace."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Alfa-college.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/App-Academy.svg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/coding_dojo_blue.svg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture23.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture24.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/CCV_logo.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/EC-Council-logo.webp",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/El-Paso-CC.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/fscj-logo-stacked-color.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/RGB-Red-Black_Small_GeneralAssembly-Stacked.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture25.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/LSUGeauxPurp_sm2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture30.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture29.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/01/Northeastern.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture3.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture28.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture4.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture31.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture32.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture33.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/192px-University_of_Akron_logo.svg.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/University-of-Groningen.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/UMDearborn_vertical.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture38.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture37.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture6.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

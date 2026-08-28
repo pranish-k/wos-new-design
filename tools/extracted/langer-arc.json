@@ -1,0 +1,107 @@
+{
+ "route": "/langer-arc",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "The Langer Workforce Maturity Arc (LWMA) is a groundbreaking framework developed by Dr. Arthur Langer, founder of Workforce Opportunity Services (WOS). Rooted in research conducted at Columbia University, the LWMA addresses the employment challenges faced by individuals facing barriers to opportunity, focusing on building the skills they need to thrive in a rapidly changing workforce."
+  },
+  {
+   "tag": "h2",
+   "text": "The Origins of the LWMA"
+  },
+  {
+   "tag": "p",
+   "text": "Dr. Langer\u2019s research sought to understand the barriers preventing individuals facing systemic challenges from securing meaningful employment. His findings highlighted the need for vocational training programs that integrate technical competencies, communication skills, and self-esteem building. These insights led to the creation of the LWMA, a tool designed to measure and improve an individual\u2019s readiness to assimilate into corporate workplaces."
+  },
+  {
+   "tag": "h2",
+   "text": "How the LWMA Works"
+  },
+  {
+   "tag": "p",
+   "text": "The LWMA evaluates participants across six distinct sectors of workplace literacy:"
+  },
+  {
+   "tag": "h5",
+   "text": "Cognition"
+  },
+  {
+   "tag": "p",
+   "text": "Strengthening critical thinking and problem-solving skills."
+  },
+  {
+   "tag": "h5",
+   "text": "Technology"
+  },
+  {
+   "tag": "p",
+   "text": "Enhancing proficiency with digital tools and systems."
+  },
+  {
+   "tag": "h5",
+   "text": "Business Culture"
+  },
+  {
+   "tag": "p",
+   "text": "Cultivating an understanding of workplace norms and etiquette."
+  },
+  {
+   "tag": "h5",
+   "text": "Socio-Economic Values"
+  },
+  {
+   "tag": "p",
+   "text": "Developing awareness of societal and economic dynamics."
+  },
+  {
+   "tag": "h5",
+   "text": "COmmunity & Ethnic Solidarity"
+  },
+  {
+   "tag": "p",
+   "text": "Fostering collaboration and engagement with underserved communities and veterans."
+  },
+  {
+   "tag": "h5",
+   "text": "Self-Esteem"
+  },
+  {
+   "tag": "p",
+   "text": "Building confidence and self-assurance in professional settings."
+  },
+  {
+   "tag": "h2",
+   "text": "Measuring Success with Predictive Analytics"
+  },
+  {
+   "tag": "p",
+   "text": "The LWMA leverages predictive analytics to provide measurable insights into participants\u2019 readiness and potential for workplace success. By tracking individual progress, organizations can integrate talent from veterans and underserved communities more effectively while ensuring participants receive the support they need to thrive. The LWMA reflects WOS\u2019s mission to bridge the gap between individuals facing employment barriers and meaningful careers, empowering both individuals and corporations to create sustainable workforce solutions."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/image-12.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Picture1-1.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

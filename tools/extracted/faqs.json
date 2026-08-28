@@ -1,0 +1,71 @@
+{
+ "route": "/faqs",
+ "blocks": [
+  {
+   "tag": "h4",
+   "text": "How do I apply?"
+  },
+  {
+   "tag": "p",
+   "text": "You can apply online. See a list of our open jobs."
+  },
+  {
+   "tag": "h4",
+   "text": "How often do programs become available?"
+  },
+  {
+   "tag": "p",
+   "text": "There are no set dates for our career opportunities. We work with our partner corporations to assess their employment needs and recruit accordingly. We always add new positions to our website as they become available."
+  },
+  {
+   "tag": "h4",
+   "text": "When will I be notified if I\u2019m accepted?"
+  },
+  {
+   "tag": "p",
+   "text": "Upon completion of the selection process, successful candidates will be notified by a member of our team."
+  },
+  {
+   "tag": "h4",
+   "text": "Can I re-apply if I don\u2019t get accepted?"
+  },
+  {
+   "tag": "p",
+   "text": "Yes. We encourage you to re-apply if you are not accepted the first time."
+  },
+  {
+   "tag": "h4",
+   "text": "Do I have to sign a contract?"
+  },
+  {
+   "tag": "p",
+   "text": "No, there are no contracts. All we ask is that you show up on time, complete your tasks by assigned deadlines, and dedicate yourself to succeeding in your new position."
+  },
+  {
+   "tag": "h4",
+   "text": "How does the admissions process work?"
+  },
+  {
+   "tag": "p",
+   "text": "Once you submit an application, you will be contacted by WOS. If we believe you may be a good fit, we will begin our selection process which can include phone interviews, in-person interviews and/or program selection events. Program selection events are for our Cohort programs only. Typically this takes place over 2-4 sessions during one week where you will complete assessments and/or give presentations that may be in the presence of the hiring corporation."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

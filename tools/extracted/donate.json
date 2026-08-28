@@ -1,0 +1,35 @@
+{
+ "route": "/donate",
+ "blocks": [
+  {
+   "tag": "h4",
+   "text": "You\u2019re just a click away from making a difference."
+  },
+  {
+   "tag": "p",
+   "text": "Your support enables us to tackle workforce challenges head-on. With your generous contributions, we provide education, workforce development, and career-building programs that empower individuals and strengthen communities. We prepare participants for success across various industries by connecting them with a growing network of corporate partners throughout the U.S. and Europe. Thanks to your generosity, we can expand our network, enhance our training, and offer essential resources to those in need. Together, we can continue to foster positive change in the workforce and transform lives for the better."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/10/WOS-Donate-Flyer-11-x-7-in-4.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

@@ -1,0 +1,103 @@
+{
+ "route": "/educational-services",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "Dedicated to empowering individuals with vital workplace and interpersonal skills, our focused training aims for transformative learning. WOS\u2019 Educational Services Division is dedicated to providing a myriad of workforce development services."
+  },
+  {
+   "tag": "h2",
+   "text": "Current Programs"
+  },
+  {
+   "tag": "p",
+   "text": "Our Professional Development Fundamentals equips both new and current employees with vital interpersonal skills crucial for workplace success. Seamlessly integrating into your onboarding process or scheduled at your convenience, this tailored training enhances both professional acumen and personal growth."
+  },
+  {
+   "tag": "p",
+   "text": "Aligned with the values of WOS and our clients, this program empowers employees to develop self-esteem, confidence, lifelong learning, and metacognition. It also instills personal and professional core values and business culture literacy for workplace success."
+  },
+  {
+   "tag": "p",
+   "text": "These programs will include the following education-based programs:"
+  },
+  {
+   "tag": "p",
+   "text": "WORKFORCE LEADERSHIP SEMINARS"
+  },
+  {
+   "tag": "p",
+   "text": "Specifically designed to provide your senior leaders with effective strategies on how to find and retain talent emanating from local communities."
+  },
+  {
+   "tag": "p",
+   "text": "Development and Project Management"
+  },
+  {
+   "tag": "p",
+   "text": "Train your line managers on techniques and best practices that improve assimilation of new staff and maximize productivity of these resources."
+  },
+  {
+   "tag": "p",
+   "text": "Assessment Techniques"
+  },
+  {
+   "tag": "p",
+   "text": "Proven scientific and qualitative instruments that can be used to select workforce talent and how to measure individual growth."
+  },
+  {
+   "tag": "p",
+   "text": "Professional Development Courses"
+  },
+  {
+   "tag": "p",
+   "text": "That assist new and existing workforce staff to acclimate to your organization\u2019s cultures and expected performance criteria."
+  },
+  {
+   "tag": "p",
+   "text": "Individual Development Support"
+  },
+  {
+   "tag": "p",
+   "text": "That target specific employees who need individual assistance to improve or accelerate in their current roles and responsibilities."
+  },
+  {
+   "tag": "p",
+   "text": "Training Modules"
+  },
+  {
+   "tag": "p",
+   "text": "Over 40 online courses in which trainees can receive completion certificates from WOS."
+  },
+  {
+   "tag": "p",
+   "text": "Download our Educational Services Flyer to learn more about our educational services."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/IMG_3572_blur.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/04/ACE-PSE-2024-1_crop7.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

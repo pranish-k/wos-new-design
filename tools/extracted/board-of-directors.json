@@ -1,0 +1,131 @@
+{
+ "route": "/board-of-directors",
+ "blocks": [
+  {
+   "tag": "h4",
+   "text": "Chair: Camille J. Bryant"
+  },
+  {
+   "tag": "p",
+   "text": "Chief Human Resource Officer at Walker-Miller Energy Services"
+  },
+  {
+   "tag": "h4",
+   "text": "Robert E. Farina"
+  },
+  {
+   "tag": "p",
+   "text": "Chief Executive Officer at Magna5"
+  },
+  {
+   "tag": "h4",
+   "text": "Michael Garrett"
+  },
+  {
+   "tag": "p",
+   "text": "Columbia Univ., Dir. Law School Association & Exec. Mentor, Business"
+  },
+  {
+   "tag": "h4",
+   "text": "Cindy R. Jebb, Ph.D."
+  },
+  {
+   "tag": "p",
+   "text": "President of Ramapo College of New Jersey"
+  },
+  {
+   "tag": "h4",
+   "text": "Bob King"
+  },
+  {
+   "tag": "p",
+   "text": "Consultant, Connecticut Assoc. Board of Education"
+  },
+  {
+   "tag": "h4",
+   "text": "Dr. Arthur M. Langer"
+  },
+  {
+   "tag": "p",
+   "text": "Chairman and Founder, Workforce Opportunity Services"
+  },
+  {
+   "tag": "h4",
+   "text": "Warren Kudman"
+  },
+  {
+   "tag": "p",
+   "text": "Senior Vice President and Chief Information Officer at Turner Construction Company"
+  },
+  {
+   "tag": "h4",
+   "text": "Craig Cuyar"
+  },
+  {
+   "tag": "p",
+   "text": "Senior Vice President and Cheif Information Officer for Omnicom Group"
+  },
+  {
+   "tag": "h4",
+   "text": "Stuart Kippelman"
+  },
+  {
+   "tag": "p",
+   "text": "Chief Information Officer"
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Camille-Bryant-BW_crop.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Robert-Farina.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Michael-Garrett.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Cindy-Jebb_cropped.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Bob-King.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Art-Langer-1_bw-1.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/Warren-Kudman.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/12/Craig-Cuyar-new1.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2026/05/Stuart_Kippelman-2.jpg",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

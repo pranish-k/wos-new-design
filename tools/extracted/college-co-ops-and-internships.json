@@ -1,0 +1,47 @@
+{
+ "route": "/college-co-ops-and-internships",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "WOS offers co-op and internship to college students at our myriad of offsite and onsite service programs. \u200b\u200bThis provides organizations with lower costs and stronger talent pipelines that better prepare top students to transition into your company. We provide co-op students with complimentary professional development training and on-the job management that saves your staff time, recruitment and operational costs, as well as lower management oversight. The WOS professional development and management programs are specialized to support your specific culture and employee performance criteria. Once students complete the program they are better prepared to be integrated as full-time employees improving both performance and retention.\u200bWOS manages the entire process, from defining the skills requirements, coordinating interviews, and working regularly with your staff to evaluate the performance of the interns. Co-op students, after completing an 8-12 month internship, can be converted to your employment at no additional charge, or they can become WOS employees and continue to service your account as WOS consultants.\u200b\u200b"
+  },
+  {
+   "tag": "p",
+   "text": "How We Operate"
+  },
+  {
+   "tag": "h5",
+   "text": "Recruit"
+  },
+  {
+   "tag": "h5",
+   "text": "Develop"
+  },
+  {
+   "tag": "h5",
+   "text": "Deliver"
+  },
+  {
+   "tag": "h5",
+   "text": "Hire"
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

@@ -1,0 +1,71 @@
+{
+ "route": "/professional-development",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "Aligned with the values of WOS and our clients, this program empowers employees to develop self-esteem, confidence, lifelong learning, and metacognition. It also instills personal and professional core values and business culture literacy for workplace success. Our comprehensive mentorship through the interpersonal skills training cultivates professionals who are less prone to engage in workplace conflict, turnover, or absenteeism. Professional Development acts as a catalyst for equipping employees from underserved communities and veterans with the necessary interpersonal skills to successfully navigate the workplace."
+  },
+  {
+   "tag": "p",
+   "text": "Our interpersonal skills training is tailored for motivated professionals seeking to enrich both their professional and personal lives. With four courses aligned to the Langer Workforce Maturity Arc, our program ensures individuals are prepared for lasting success in the workplace by enhancing their readiness to assimilate effectively into professional environments. The Langer Workforce Maturity Arc , rooted in Columbia University research, has been fundamental to WOS\u2019 nearly two decades of operation."
+  },
+  {
+   "tag": "h2",
+   "text": "Courses"
+  },
+  {
+   "tag": "h5",
+   "text": "Self-Esteem"
+  },
+  {
+   "tag": "p",
+   "text": "Provides a framework for further developing one\u2019s self-awareness through an examination of self-esteem and self-acceptance, values, and career and life visioning."
+  },
+  {
+   "tag": "h5",
+   "text": "Metacognition"
+  },
+  {
+   "tag": "p",
+   "text": "Identifies knowledge, skills, and attitudes needed to support individual and organization learning."
+  },
+  {
+   "tag": "h5",
+   "text": "Socio-Economic Values"
+  },
+  {
+   "tag": "p",
+   "text": "Covers navigation strategies for integrating personal, community, and professional values and goals through the application of various approaches."
+  },
+  {
+   "tag": "h5",
+   "text": "Business Culture"
+  },
+  {
+   "tag": "p",
+   "text": "Lays the groundwork for exploring professionalism, employer and employee expectations, conflict management, teamwork, and other interpersonal skills of leadership, ethical behavior, citizenship, and civic literacy."
+  },
+  {
+   "tag": "p",
+   "text": "With 40 hours of immersive in-person, virtual, or self-paced instruction, Professional Development is a deep dive into the interpersonal skills needed to be successful at work, school, or in your employees\u2019 personal lives."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

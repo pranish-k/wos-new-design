@@ -1,0 +1,83 @@
+{
+ "route": "/data-analytics-and-ai",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "WOS works to hire, train and manage resources to implement the requirements of Data and AI-enabled technologies and the needed workflows to make advanced technologies work. We offer expert technical, scientific and process automation support, data analysis, plan and implement effective AI solutions\u200b."
+  },
+  {
+   "tag": "p",
+   "text": "Our Services:"
+  },
+  {
+   "tag": "h5",
+   "text": "Well-designed, cost-effective AI workflows, and ROI analysis\u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Design, planning and implementation support\u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Security, compliance and data privacy\u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Efficient Data Management\u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Quality Assurance and Performance Monitoring \u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Training and Documentation\u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Training and Documentation\u200b"
+  },
+  {
+   "tag": "p",
+   "text": "WOS Advantage:"
+  },
+  {
+   "tag": "h5",
+   "text": "Skilled Resources\u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Flexible and sustainable workforce\u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Fully outsourced, hybrid or onsite\u200b"
+  },
+  {
+   "tag": "h5",
+   "text": "Trained and optionally managed by WOS experts\u200b"
+  },
+  {
+   "tag": "p",
+   "text": "Book a consultation today and see how you can leverage your Data and AI to empower your business."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

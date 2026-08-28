@@ -1,0 +1,71 @@
+{
+ "route": "/financials",
+ "blocks": [
+  {
+   "tag": "h2",
+   "text": "Form \u2013 990 ."
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2025"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2024"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2023"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2022"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2021"
+  },
+  {
+   "tag": "h2",
+   "text": "Audited Financial Statements"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2025"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2024"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2023"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2022"
+  },
+  {
+   "tag": "li",
+   "text": "Year Ending September 30th, 2021"
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}

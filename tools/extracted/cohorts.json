@@ -1,0 +1,111 @@
+{
+ "route": "/cohorts",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "The WOS Cohort Model is a comprehensive workforce management solution designed to create dynamic, project-ready teams while addressing the ever-evolving needs of your organization. By grouping employees based on skills, expertise, and project requirements, we deliver customized talent pipelines aligned with your business goals and culture."
+  },
+  {
+   "tag": "p",
+   "text": "End-to-End Process"
+  },
+  {
+   "tag": "h5",
+   "text": "Conduct Needs Assessment"
+  },
+  {
+   "tag": "p",
+   "text": "We collaborate with your team to understand talent requirements, identify skills gaps, and establish a clear hiring and training roadmap."
+  },
+  {
+   "tag": "h5",
+   "text": "Recruitment & Selection"
+  },
+  {
+   "tag": "p",
+   "text": "Our recruiters source candidates from local communities. We prepare candidates for success through multi-tiered interviews, skills assessments, and mock interview sessions."
+  },
+  {
+   "tag": "h5",
+   "text": "Upskilling for Success"
+  },
+  {
+   "tag": "p",
+   "text": "Candidates undergo targeted training programs designed to address specific skills gaps and equip them with the technical and soft skills needed to thrive in their roles. This training is tailored to your industry and business needs, ensuring job readiness from day one."
+  },
+  {
+   "tag": "h5",
+   "text": "Deployment & Support"
+  },
+  {
+   "tag": "p",
+   "text": "Participants begin full-time work within your organization as WOS employees. They receive continuous on-site and ongoing support from our dedicated Client Services Managers to ensure smooth integration and performance."
+  },
+  {
+   "tag": "h5",
+   "text": "Ongoing Development"
+  },
+  {
+   "tag": "p",
+   "text": "Through continuous learning initiatives, including certifications, workshops, and mentorship programs, we help candidates stay ahead of industry demands and deliver lasting value."
+  },
+  {
+   "tag": "h2",
+   "text": "Corporate Partner Benefits"
+  },
+  {
+   "tag": "p",
+   "text": "The WOS Cohort Model equips your organization with a high-performing workforce that\u2019s aligned with your operational objectives, embraces a culture of lifelong learning, and drives innovation and growth."
+  },
+  {
+   "tag": "h5",
+   "text": "Ready-to-Perform Talent"
+  },
+  {
+   "tag": "p",
+   "text": "Fully vetted and trained candidates with the skills and mindset to succeed."
+  },
+  {
+   "tag": "h5",
+   "text": "Built-In Upskilling"
+  },
+  {
+   "tag": "p",
+   "text": "Tailored training ensures employees are prepared for today\u2019s challenges while developing future-ready capabilities."
+  },
+  {
+   "tag": "h5",
+   "text": "Dedicated Support"
+  },
+  {
+   "tag": "p",
+   "text": "Ongoing on-site guidance from WOS Client Services Managers for both participants and your management team."
+  },
+  {
+   "tag": "h5",
+   "text": "Cost Efficiency & Scalability"
+  },
+  {
+   "tag": "p",
+   "text": "Competitive billing rates with no hidden fees, plus flexibility to scale up or down as business needs evolve."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": ""
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": ""
+  }
+ ]
+}
