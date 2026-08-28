@@ -77,55 +77,68 @@
  "images": [
   {
    "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/05/infrastructure-ready-for-ai-scaled.avif",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/04/unnamed-scaled.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/03/ai-data-cuallenge.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/03/key-data-challenges.jpeg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/03/Cohort_2024.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/ombk2ilvvf97jw.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/WOS-International-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2022/09/2nfpb2y2l6zovqkv.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2019/01/Untitled-design-4.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   }
  ]
 }

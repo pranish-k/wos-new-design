@@ -77,55 +77,68 @@
  "images": [
   {
    "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Camille-Bryant-BW_crop.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Robert-Farina.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Michael-Garrett.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Cindy-Jebb_cropped.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Bob-King.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Art-Langer-1_bw-1.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Warren-Kudman.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/12/Craig-Cuyar-new1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2026/05/Stuart_Kippelman-2.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   }
  ]
 }

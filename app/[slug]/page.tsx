@@ -8,16 +8,19 @@ import { POSTS } from "@/content/posts";
 // Posts sit at the top level on the live site (/talent-symposium/), so they do here
 // too: those URLs are indexed and moving them would cost nine redirects for nothing.
 // Static routes win over this dynamic one, so the service pages are unaffected.
+//
+// The segment is named [slug] rather than [post] because /[slug]/[person] sits beneath
+// it for the person pages, and Next requires one name per position in the path.
 export function generateStaticParams() {
-  return POSTS.map((post) => ({ post: post.slug }));
+  return POSTS.map((post) => ({ slug: post.slug }));
 }
 
 export const dynamicParams = false;
 
-type Props = { params: Promise<{ post: string }> };
+type Props = { params: Promise<{ slug: string }> };
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { post: slug } = await params;
+  const { slug } = await params;
   const post = POSTS.find((p) => p.slug === slug);
   return post
     ? { title: post.title, description: post.excerpt }
@@ -25,7 +28,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function Page({ params }: Props) {
-  const { post: slug } = await params;
+  const { slug } = await params;
   const post = POSTS.find((p) => p.slug === slug);
   if (!post) notFound();
 

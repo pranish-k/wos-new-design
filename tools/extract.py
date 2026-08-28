@@ -47,6 +47,11 @@ ACCORDION = re.compile(
     r'accordionitem[^>]*>\s*<a\b.*?<div[^>]*>(.*?)</div>\s*</a>', re.S | re.I
 )
 IMG = re.compile(r"<img\b[^>]*>", re.I)
+
+# Kubio puts every hero image in a CSS background-image rather than an <img>, so a
+# sweep of <img> tags alone misses the lead image on 17 of the pages entirely. The
+# plugin's own decorative shapes (stripes, circles) are chrome and are excluded.
+BG = re.compile(r"background-image:\s*url\(\s*['\"]?([^)'\"]+)['\"]?\s*\)", re.I)
 ATTR = re.compile(r'(\w[\w-]*)\s*=\s*"([^"]*)"')
 TAGS = re.compile(r"<[^>]+>")
 
@@ -56,7 +61,8 @@ def text_of(raw):
 
 
 def parse(path):
-    src = DROP_TAGS.sub(" ", open(path, encoding="utf-8", errors="replace").read())
+    raw = open(path, encoding="utf-8", errors="replace").read()
+    src = DROP_TAGS.sub(" ", raw)
     # Marked in place so a question keeps its position ahead of its own answer.
     src = ACCORDION.sub(lambda m: f"<h4>{m.group(1)}</h4>", src)
 
@@ -67,12 +73,19 @@ def parse(path):
             blocks.append({"tag": tag.lower(), "text": t})
 
     images = []
+    # Against `raw`, not `src`: Kubio emits its page CSS in <style> blocks, which the
+    # tag sweep above strips, and that is where every hero background lives.
+    for url in BG.findall(html.unescape(raw)):
+        if "wp-content/uploads" in url and "kubio" not in url:
+            images.append({"src": re.sub(r"-\d+x\d+(\.\w+)$", r"\1", url), "alt": "",
+                           "role": "background"})
+
     for tag in IMG.findall(src):
         a = dict(ATTR.findall(tag))
         # WordPress resize variants regenerate through Next/Image; keep the original.
         src_attr = re.sub(r"-\d+x\d+(\.\w+)$", r"\1", a.get("src", ""))
         if src_attr and "wp-content/uploads" in src_attr:
-            images.append({"src": src_attr, "alt": a.get("alt", "")})
+            images.append({"src": src_attr, "alt": a.get("alt", ""), "role": "inline"})
     return blocks, images
 
 

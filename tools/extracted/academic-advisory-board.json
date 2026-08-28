@@ -37,35 +37,43 @@
  "images": [
   {
    "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Peter-Cappelli.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Alan-Mandell_bw.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Charles-Snow_cropped-new.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/David-Thomas-BW.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   }
  ]
 }

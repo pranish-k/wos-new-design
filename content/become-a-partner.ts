@@ -8,6 +8,8 @@ const page: PageContent = {
   title: "Become A Partner",
   eyebrow: "Partners",
   description: "Need talent now?",
+  hero: null,
+  images: [],
   lead: [],
   sections: [{"heading": "Need talent now?", "blocks": [{"kind": "para", "text": "We source and vet talent from your local community with a background equipped for your needs. We strive to be as flexible as possible. We can create unique, customized services to meet your company’s specific financial and cultural needs. We have very few geographic barriers and can build and operate in most areas of the U.S. within a few short months. To learn more about our services and pricing, please contact us."}]}],
 };

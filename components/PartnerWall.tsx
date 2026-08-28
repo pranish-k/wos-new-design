@@ -8,8 +8,14 @@ import { PARTNERS, type Partner } from "@/content/partners";
  * walls read as clutter. A fixed cell with the logo contained inside it, on
  * surface-tint, gives them a shared footprint without drawing a box around each one.
  */
-export default function PartnerWall({ limit }: { limit?: number }) {
-  const shown: Partner[] = limit ? PARTNERS.slice(0, limit) : PARTNERS;
+export default function PartnerWall({
+  partners = PARTNERS,
+  limit,
+}: {
+  partners?: readonly Partner[];
+  limit?: number;
+}) {
+  const shown: readonly Partner[] = limit ? partners.slice(0, limit) : partners;
   return (
     <ul className="m-0 grid list-none grid-cols-2 gap-px bg-hairline p-0 sm:grid-cols-3 lg:grid-cols-4">
       {shown.map((p) => (

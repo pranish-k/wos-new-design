@@ -121,403 +121,503 @@
  "images": [
   {
    "src": "wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/managed-service-center.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/managed-services-2.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/hiring.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/educational.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/talent-acquisition-1.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/research-2.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/3.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/08/1-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/ADP.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Amelia_Logo_B_Logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture3.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/American-Arbitration-Association.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture4.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Avon.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Bank-Leumi.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/BSC-Logo-Horizontal_web-300x87-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Bard-Graduate-Center.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/cropped-bellcreativeco_plain_500px-2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/03/biotest-AG-from-nature-to-life@2x.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture15.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture5-2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/BCBS-Vermont.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/BNY-Mellon.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/BP_Helios_logo.svg.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Bristol-Myers_Squibb_logo_2020.svg.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/CareCentrix.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/catalent-logo.svg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Chubb-Logo.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/CNH_Industrial.svg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture24.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture9.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/CCH_Final_Logo_CMYK.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture10.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/DTE-Energy.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/eastern.generation_nybest_26.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Eaton_Corporation_logo.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/emj_logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Eversource_logo_Social.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/og_logo_excellus.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Express_Scripts_Logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Fannie_Mae_Logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Feedback-Now.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Forrester.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/GAF-logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture4-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Guardian-Life-Insurance.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/HBO_logo.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture11.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Hewlett-Packard-Enterprise.jpeg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture12.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/1200px-HP_logo_2012.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/ibm-logo.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/IEEE.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/J-Crew.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture13.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/JJA_Logo_DarkBlue_V01.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture14.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Jewish-Theological-Seminary-scaled.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Kenvue.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture16.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/medco-logo2x.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/msk_h_rgb-43.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/logo-merck.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture5.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Mount_Sinai_Health_System_logo.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/MCO.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/03/nasco_logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Navidor.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/New_York_City_Housing_Authority_logo.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Novitex.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/logo-primary.svg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Panasonic.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture17.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture18.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture19.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/RGS-Financial.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/RR-logo.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Logo-safe-horizon.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/sbli_of_massachusetts_logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/sealed_air_product_care_logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/TelVista.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Thirteen.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Thomson-Reuters.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/tmp-large.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Tradeweb_logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture20.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/United_States_Department_of_Transportation_seal.svg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Union_Theological_Seminary_New_York_seal.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Picture21.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/03/images.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/UseReady-logo.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/01/Picture22.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/02/Weill-Cornell-Medicine.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2024/09/footer-logo-2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "wp-content/uploads/2025/03/Site-Icon-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   }
  ]
 }

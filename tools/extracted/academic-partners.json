@@ -9,127 +9,158 @@
  "images": [
   {
    "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Alfa-college.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/App-Academy.svg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/01/coding_dojo_blue.svg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture23.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture24.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/CCV_logo.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/EC-Council-logo.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/El-Paso-CC.jpg",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/fscj-logo-stacked-color.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/RGB-Red-Black_Small_GeneralAssembly-Stacked.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture25.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/LSUGeauxPurp_sm2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture30.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture29.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/01/Northeastern.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture3.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture28.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture4.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture31.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture32.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture33.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/192px-University_of_Akron_logo.svg.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/University-of-Groningen.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/UMDearborn_vertical.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture38.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture37.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/02/Picture6.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   }
  ]
 }

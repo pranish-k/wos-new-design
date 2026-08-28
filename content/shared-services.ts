@@ -8,6 +8,8 @@ const page: PageContent = {
   title: "Shared Services",
   eyebrow: "Managed Service Center",
   description: "WOS provides process support that clears the busywork without sacrificing accuracy. We handle repeatable tasks so your team can focus on higher value work.",
+  hero: {"src": "/images/scalable-services.png", "alt": ""},
+  images: [],
   lead: [{"kind": "para", "text": "WOS provides process support that clears the busywork without sacrificing accuracy. We handle repeatable tasks so your team can focus on higher value work."}, {"kind": "heading", "text": "HR Operations"}, {"kind": "para", "text": "Onboarding Packets, I9 and Document Checks, Background Check Coordination, Benefits Data Entry"}, {"kind": "heading", "text": "Finance Operations"}, {"kind": "para", "text": "AP, AR, Billing Prep, Expense Audits, PO Matching"}, {"kind": "heading", "text": "Sales operations"}, {"kind": "para", "text": "CRM Hygiene, List Building, Enrichment, Quoting Support"}, {"kind": "heading", "text": "Recruiting operations"}, {"kind": "para", "text": "Resume Screening, Interview Scheduling, Candidate Communications"}, {"kind": "heading", "text": "Data operations"}, {"kind": "para", "text": "Data Entry, Cleansing, Deduping, Report Building"}, {"kind": "heading", "text": "Content operations"}, {"kind": "para", "text": "Catalog Updates, Listings Moderation, Knowledge Base Maintenance"}, {"kind": "para", "text": "Quality and Controls"}, {"kind": "para", "text": "Work instructions and SOPs for every task, dual control for sensitive changes, sample based QA with acceptance thresholds, audit logs, and regular control reviews."}, {"kind": "para", "text": "We measure accuracy, speed, and cost to set the long term model."}],
   sections: [],
 };

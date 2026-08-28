@@ -73,43 +73,53 @@
  "images": [
   {
    "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/08/customer-service.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/08/cybersecurity-monitoring.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/08/customized-solutions.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/08/data-ai.webp",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/08/scalable-services.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/08/expert-teams.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   },
   {
    "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
-   "alt": ""
+   "alt": "",
+   "role": "inline"
   }
  ]
 }

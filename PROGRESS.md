@@ -21,6 +21,10 @@ Homepage built with its real section structure and the live counter values.
 **Phases 4 to 6 - pages.**
 33 routes: 27 prose pages through `ContentPage`, the `/managed-service-centers/` hub with its six-card grid, `/financials` with 9 PDFs, the two partner pages with the logo wall, three person index pages, `/blog` plus the 9 posts at their live top-level slugs, `/contact`, `sitemap.ts`, `robots.ts`.
 
+**Images.**
+Hero images, service card photographs, and the Our Impact icons are carried over.
+`tools/extract.py` now also reads CSS `background-image` from the page's `<style>` blocks, which is where Kubio puts every hero.
+
 **Verification.**
 Build and lint clean.
 All six DESIGN.md §9 checks pass, check 6 included (14 `--color-*` tokens in the built CSS).
@@ -40,15 +44,18 @@ Route parity: everything in `wforce-header-asis.txt` has a route except person p
 - Mobile has one accordion level, nested groups pre-expanded.
 - The header does not unmount on navigation, so each link closes the menu on click. An effect on `pathname` is what the React lint rule forbids.
 - Blog posts keep their live top-level slugs via a dynamic `app/[post]` route. Static routes win, so the service pages are unaffected.
-- Person cards are not links. Open decision 4 governs the canonical person URL and 19 redirects hang off it; linking them now would answer it silently.
+- **Person pages are built at the nested paths** (`/team/jose-cabrera`), which is what the sitemap treats as canonical, and the 18 top-level duplicate slugs redirect there permanently from `next.config.ts`. This settles the redirect *direction* in open decision 4. What remains open is whether the duplicates should exist at all in WordPress.
+- Blog posts and person pages share the `app/[slug]` segment. Next allows one dynamic name per path position, so `[post]` was renamed; `[slug]/[person]` sits beneath it.
 - Content is extracted, not rewritten. Em dashes inside `content/*.ts` are the client's own copy and are left alone; the no-em-dash rule applies to what we write.
 - No contact form. The live one posts to WPForms and there is no backend decision yet; a form that drops enquiries is worse than an address.
 
 ## Open
 
 - The five open decisions in CLAUDE.md are all still open. Phase 7 (person pages) stays blocked on decision 4.
-- **19 partner logos cannot be labelled.** Files are named `Picture1.png` to `Picture24.png` and nothing on the live page identifies the company, so there is no honest alt text. They are excluded from `content/partners.ts` and need naming by someone who knows the account list.
+- **19 corporate partner logos cannot be labelled.** Files are named `Picture1.png` to `Picture24.png` and nothing on the live page identifies the company, so there is no honest alt text. They are excluded from `content/partners.ts` and need naming by someone who knows the account list.
 - **The live /financials page links the same PDF twice**, for both the FY2025 and FY2024 audited statements. Reproduced as-is; only WOS knows which year is missing.
 - `/donate` is prose only. The live payment flow has `payment-success` and `payment-cancel` endpoints and no processor is identified in the mirror.
 - The live footer carries a USFCR Verified Vendor badge, not yet carried over.
+- **The homepage hero video is not in the mirror.** The live hero is `WOS-Overview-Video-comp.mp4`; HTTrack never fetched it, and there are zero video files in the mirror. The hero is typographic until the file is supplied. Its poster frame on the live site is a Kubio demo placeholder, not WOS footage.
+- 14 academic partner logos are unnamed for the same reason as the corporate ones.
 - **Not verified in a browser.** The Chrome extension was not connected, so §9's visual pass at 375/768/1440 and the manual keyboard walk through all three menu levels have not been run. Everything checkable from the built HTML was checked.

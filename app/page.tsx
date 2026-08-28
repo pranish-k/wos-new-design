@@ -1,24 +1,10 @@
+import Image from "next/image";
 import Link from "next/link";
-import { Eyebrow, PrimaryButton, SecondaryButton, StatsBar, TintedCard } from "@/components/Brand";
+import { Eyebrow, PrimaryButton, SecondaryButton } from "@/components/Brand";
 import PartnerWall from "@/components/PartnerWall";
+import ServiceCard from "@/components/ServiceCard";
+import { CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES } from "@/content/home-sections";
 import { ORG, ORG_SHORT, TAGLINE } from "@/lib/brand";
-import { NAV, type NavGroup, type NavLink } from "@/lib/nav";
-
-// The Services dropdown and this section list the same pages, so they read from the
-// same tree. Two hand-kept copies would drift the first time a service is renamed.
-const services = NAV.find((n) => n.label === "Services") as NavGroup;
-const consulting = services.children[0] as NavGroup;
-const other = services.children[1] as NavGroup;
-
-/** Flatten "Other Services", where two of the three children are themselves groups. */
-const otherLinks: { label: string; href: string }[] = other.children.flatMap((child) =>
-  child.kind === "link"
-    ? [{ label: child.label, href: child.href }]
-    : (child.children as NavLink[])
-        // "Overview" is only meaningful under its own heading, so it takes the group name.
-        .filter((leaf) => leaf.label === "Overview")
-        .map((leaf) => ({ label: child.label, href: leaf.href })),
-);
 
 const APPROACH = [
   {
@@ -37,13 +23,6 @@ const APPROACH = [
     step: "Deliver value",
     body: "The result is a fully prepared professional who integrates faster and delivers lasting value.",
   },
-];
-
-// The live page animates these from zero. The numbers are the counter widgets' targets.
-const IMPACT = [
-  { value: "65+", label: "Corporate partners" },
-  { value: "4", label: "Countries" },
-  { value: "8,000+", label: "Careers impacted" },
 ];
 
 export default function Home() {
@@ -93,7 +72,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-surface-tint py-20">
+      <section className="py-20">
         <div className="mx-auto max-w-6xl px-6">
           <Eyebrow label="Our services" />
           <p className="max-w-3xl text-[17px] leading-[1.65] text-ink-muted">
@@ -103,57 +82,80 @@ export default function Home() {
             based on our own research instruments and methods.
           </p>
 
-          <h3 className="mt-12 font-heading text-[13px] font-semibold uppercase tracking-[0.12em] text-ink">
-            {consulting.label}
+          <h3 className="mt-14 font-heading text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink md:text-[30px]">
+            Consulting to Hire Services
           </h3>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {(consulting.children as NavLink[]).map((s) => (
-              <TintedCard key={s.href} href={s.href} tag="Service" name={s.label} />
+          <div className="mt-6 grid gap-6 md:grid-cols-3">
+            {CONSULTING_TO_HIRE.map((card) => (
+              <ServiceCard key={card.href} card={card} />
             ))}
           </div>
 
-          <h3 className="mt-12 font-heading text-[13px] font-semibold uppercase tracking-[0.12em] text-ink">
-            {other.label}
+          <h3 className="mt-16 font-heading text-[24px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink md:text-[30px]">
+            Other Services
           </h3>
-          <div className="mt-4 grid gap-4 md:grid-cols-3">
-            {otherLinks.map((s) => (
-              <TintedCard key={s.href} href={s.href} tag="Service" name={s.label} />
+          <div className="mt-6 grid gap-6 md:grid-cols-3">
+            {OTHER_SERVICES.map((card) => (
+              <ServiceCard key={card.href} card={card} />
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="bg-surface-tint py-20">
         <div className="mx-auto max-w-6xl px-6">
           <Eyebrow label="Our approach" />
-          <ol className="m-0 grid list-none gap-8 p-0 md:grid-cols-4">
+          {/* One continuous slate band split by hairlines, as on the live page. Four
+              separate cards would read as four unrelated things rather than a sequence. */}
+          <ol className="m-0 grid list-none grid-cols-1 gap-px bg-hairline-strong p-0 md:grid-cols-4">
             {APPROACH.map((a, i) => (
-              <li key={a.step} className="border-t-2 border-hairline-strong pt-4">
-                <span className="font-heading text-[13px] font-semibold text-ink-muted">
-                  0{i + 1}
+              <li key={a.step} className="bg-surface-dark px-6 py-8">
+                <span className="inline-flex h-8 w-8 items-center justify-center bg-white font-heading text-[15px] font-semibold text-surface-dark">
+                  {i + 1}
                 </span>
-                <h3 className="mt-2 font-heading text-[19px] font-semibold leading-[1.2] text-ink">
+                <h3 className="mt-5 font-heading text-[14px] font-semibold uppercase tracking-[0.08em] text-white">
                   {a.step}
                 </h3>
-                <p className="mt-3 text-[15px] leading-[1.6] text-ink-muted">{a.body}</p>
+                <p className="mt-3 text-[14px] leading-[1.6] text-white/75">{a.body}</p>
               </li>
             ))}
           </ol>
         </div>
       </section>
 
-      <section className="bg-surface-dark py-14">
+      <section className="py-20">
         <div className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="Our impact" dark />
-          <StatsBar stats={IMPACT} dark />
-          <p className="mt-6 text-sm text-white/75">
-            Founded in 2005 as a 501(c)(3) social enterprise. WOS has operated in the
-            United States, Costa Rica, France, and the Netherlands.
+          <Eyebrow label="Our impact" />
+          <ul className="m-0 grid list-none grid-cols-1 gap-px bg-hairline p-0 md:grid-cols-3">
+            {IMPACT.map((stat) => (
+              <li key={stat.label} className="bg-white px-6 py-10 text-center">
+                {/* Decorative: the number and label beneath say the same thing. */}
+                <Image
+                  src={stat.icon}
+                  alt={stat.iconAlt}
+                  width={220}
+                  height={220}
+                  className="mx-auto h-24 w-auto object-contain"
+                />
+                <p className="mt-6 font-heading text-[13px] font-semibold uppercase tracking-[0.12em] text-ink">
+                  {stat.label}
+                </p>
+                <p className="mt-2 font-heading text-[40px] font-semibold leading-none text-action-deep">
+                  {stat.value}
+                </p>
+                {stat.note && (
+                  <p className="mt-3 text-[13px] leading-[1.5] text-ink-muted">{stat.note}</p>
+                )}
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 text-center text-sm text-ink-muted">
+            Founded in 2005 as a 501(c)(3) social enterprise.
           </p>
         </div>
       </section>
 
-      <section className="py-20">
+      <section className="bg-surface-tint py-20">
         <div className="mx-auto max-w-6xl px-6">
           <Eyebrow label="Corporate partners served" />
           <div className="mt-2">
@@ -170,9 +172,9 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="bg-surface-tint py-16">
+      <section className="bg-surface-dark py-16">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 md:flex-row md:items-center md:justify-between">
-          <h2 className="max-w-xl font-heading text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] text-ink md:text-[34px]">
+          <h2 className="max-w-xl font-heading text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] text-white md:text-[34px]">
             Schedule your free consultation
           </h2>
           <PrimaryButton href="/contact">Get in touch</PrimaryButton>

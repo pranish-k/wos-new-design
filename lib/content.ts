@@ -13,6 +13,8 @@ export type Section = {
   blocks: Block[];
 };
 
+export type PageImage = { src: string; alt: string };
+
 export type PageContent = {
   /** Live URL, for checking a page against the mirror. */
   route: string;
@@ -20,6 +22,10 @@ export type PageContent = {
   eyebrow: string;
   /** The live meta description, reused as the page description. */
   description: string;
+  /** The Kubio hero background. Absent on the pages that never had one. */
+  hero: PageImage | null;
+  /** Inline content images, in page order. */
+  images: PageImage[];
   lead: Block[];
   sections: Section[];
 };

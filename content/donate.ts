@@ -8,6 +8,8 @@ const page: PageContent = {
   title: "Donate",
   eyebrow: "Support WOS",
   description: "You’re just a click away from making a difference.",
+  hero: null,
+  images: [{"src": "/images/WOS-Donate-Flyer-11-x-7-in-4.png", "alt": ""}],
   lead: [{"kind": "heading", "text": "You’re just a click away from making a difference."}, {"kind": "para", "text": "Your support enables us to tackle workforce challenges head-on. With your generous contributions, we provide education, workforce development, and career-building programs that empower individuals and strengthen communities. We prepare participants for success across various industries by connecting them with a growing network of corporate partners throughout the U.S. and Europe. Thanks to your generosity, we can expand our network, enhance our training, and offer essential resources to those in need. Together, we can continue to foster positive change in the workforce and transform lives for the better."}],
   sections: [],
 };

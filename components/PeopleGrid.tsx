@@ -1,31 +1,46 @@
 import Image from "next/image";
+import Link from "next/link";
+import type { ReactNode } from "react";
 import type { Person } from "@/content/people";
 
+function Card({ person }: { person: Person }) {
+  return (
+    <>
+      {person.photo && (
+        <Image
+          src={person.photo}
+          alt={person.name}
+          width={480}
+          height={480}
+          className="aspect-square w-full bg-surface-tint object-cover"
+        />
+      )}
+      <h3 className="mt-4 font-heading text-[18px] font-semibold leading-[1.25] text-ink transition-colors group-hover:text-action-deep">
+        {person.name}
+      </h3>
+      <p className="mt-1 text-[15px] leading-[1.5] text-ink-muted">{person.role}</p>
+    </>
+  );
+}
+
 /**
- * Person cards, not links.
+ * Person cards. Linked where a profile page exists on the live site.
  *
- * Open decision 4 governs whether the canonical person URL is the nested path or the
- * top-level duplicate, and 19 redirects hang off the answer. Linking these before it is
- * settled would bake one answer in silently.
+ * A handful of people appear on an index page and have no page of their own; those stay
+ * as plain cards rather than becoming links to a 404.
  */
 export default function PeopleGrid({ people }: { people: Person[] }) {
   return (
     <ul className="m-0 grid list-none grid-cols-1 gap-8 p-0 sm:grid-cols-2 lg:grid-cols-3">
-      {people.map((p) => (
-        <li key={p.name}>
-          {p.photo && (
-            <Image
-              src={p.photo}
-              alt={p.name}
-              width={480}
-              height={480}
-              className="aspect-square w-full bg-surface-tint object-cover"
-            />
+      {people.map((person): ReactNode => (
+        <li key={person.name}>
+          {person.href ? (
+            <Link href={person.href} className="group block no-underline">
+              <Card person={person} />
+            </Link>
+          ) : (
+            <Card person={person} />
           )}
-          <h3 className="mt-4 font-heading text-[18px] font-semibold leading-[1.25] text-ink">
-            {p.name}
-          </h3>
-          <p className="mt-1 text-[15px] leading-[1.5] text-ink-muted">{p.role}</p>
         </li>
       ))}
     </ul>

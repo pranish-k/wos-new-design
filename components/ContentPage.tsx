@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Eyebrow } from "@/components/Brand";
 import type { Block, PageContent, Section } from "@/lib/content";
 
@@ -93,7 +94,23 @@ export default function ContentPage({ page }: { page: PageContent }) {
         </div>
       </header>
 
-      <ContentSections sections={page.sections} />
+      {/* Full-bleed under the header rather than behind the title. The live heroes are
+          Kubio background images with text laid over them, which is where the contrast
+          problems live; a strip keeps the title on a solid surface.
+          alt is empty on purpose: the heading above already says what the page is, so
+          describing the stock photograph again is noise to a screen reader. */}
+      {page.hero && (
+        <Image
+          src={page.hero.src}
+          alt=""
+          width={1600}
+          height={600}
+          className="aspect-[8/3] w-full bg-surface-tint object-cover"
+          priority
+        />
+      )}
+
+      <ContentSections sections={page.sections} offset={page.hero ? 1 : 0} />
     </article>
   );
 }
