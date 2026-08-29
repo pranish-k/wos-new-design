@@ -43,6 +43,14 @@ EYEBROW = {
     "cohorts": "Programs", "become-a-partner": "Partners", "blog": "News & Events",
     "contact": "Contact", "donate": "Support WOS", "privacy-policy": "Legal",
     "institute-of-workforce-policy-practice": "Research",
+    # The unlinked pages. Their eyebrows say where they would sit if they were placed,
+    # which is the open question, not a claim that they are reachable there today.
+    "consulting-to-hire-services": "Consulting to Hire Services",
+    "talent-acquisition": "Consulting to Hire Services",
+    "direct-hire": "Consulting to Hire Services",
+    "staff-augmentation": "Consulting to Hire Services",
+    "managedservices": "Services",
+    "wos-northeastern-talent-pipeline-program": "Programs",
 }
 
 # Built by hand from the extracted output. These pages have a card grid, a person

@@ -1,0 +1,95 @@
+{
+ "route": "/wos-northeastern-talent-pipeline-program",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "WOS has expanded its managed services operations by integrating Northeastern University\u2019s renowned student Co-op programs. Today the university is ranked No. 1 in internships/co-ops by U.S. News and World Report . Students can receive their paid internship by working directly for WOS as part of our myriad of offsite and onsite service programs. This provides organizations with lower costs and stronger talent pipelines that better prepare top students to transition into your company. The WOS/Northeastern University collaboration has a number of unique benefits including:"
+  },
+  {
+   "tag": "li",
+   "text": "First dibs on the best and brightest talent."
+  },
+  {
+   "tag": "li",
+   "text": "Co-ops are available from Northeastern\u2019s undergraduate and graduate-level programs."
+  },
+  {
+   "tag": "li",
+   "text": "Both WOS and Northeastern have multiple campuses in the US and abroad."
+  },
+  {
+   "tag": "li",
+   "text": "WOS provides co-op students with complimentary professional development training and on-the job management that saves your staff time, recruitment and operational costs, as well as lower management oversight. The WOS professional development and management programs are specialized to support your specific culture and employee performance criteria. So once students complete the program they are better prepared to be integrated as full-time employees improving both performance and retention."
+  },
+  {
+   "tag": "li",
+   "text": "WOS manages the entire process, from defining the skills requirements, coordinating interviews, and working regularly with your staff to evaluate the performance of the interns."
+  },
+  {
+   "tag": "li",
+   "text": "Co-op students, after completing an 8-12 month internship, can be converted to your employment at no additional charge, or they can become WOS employees and continue to service your account as WOS consultants."
+  },
+  {
+   "tag": "li",
+   "text": "WOS provides the necessary background checks, drug testing, and other security services while students are performing work for your organization."
+  },
+  {
+   "tag": "p",
+   "text": "Here\u2019s how it works:"
+  },
+  {
+   "tag": "li",
+   "text": "Our senior staff works with your organization to determine the different types of services we can provide to you and the number of co-op students needed in addition to our full-time staff."
+  },
+  {
+   "tag": "li",
+   "text": "Our contract will include the WOS service fees which include the paid student internship portion. There are different payment options for our services ranging from hourly rates to monthly fixed fees."
+  },
+  {
+   "tag": "li",
+   "text": "WOS works with Northeastern to start the process of identifying the type of student skills required as well as the appropriate Northeastern school entity and the preferred campus."
+  },
+  {
+   "tag": "li",
+   "text": "WOS collects student resumes, does preliminary interviews before forwarding for final client interviews and approval."
+  },
+  {
+   "tag": "li",
+   "text": "Co-op students work with WOS staff and senior personnel to provide the contract services. WOS staff and interns interact on-site or off-site to support the engagement as required."
+  },
+  {
+   "tag": "li",
+   "text": "Co-op students can be hired away after completing the internship or continue as a WOS consultant until an opportunity becomes available. Employers are never required to hire a co-op student."
+  },
+  {
+   "tag": "h2",
+   "text": "Workforce Opportunity Services (WOS) is a registered non-profit 501(c) 3 charity"
+  },
+  {
+   "tag": "p",
+   "text": "We are in the business of creating dynamic partnerships that build diverse workplaces and ultimately transform lives."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": "",
+   "role": "inline"
+  }
+ ]
+}

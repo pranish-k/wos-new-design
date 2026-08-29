@@ -104,11 +104,22 @@ Eighteen of those are person pages whose content is reachable at a duplicate URL
 The people engine closed them: the Industry Advisory Board page, the four HR Advisory Board
 member pages, the three cardless staff pages, and `/warren-kudman-2/` as a redirect.
 
-**Six remain, and each still needs an explicit decision:**
-the four-page orphaned service island, `/managedservices/`, and
-`/wos-northeastern-talent-pipeline-program/`.
-Give each a path, or retire it with a redirect.
-Carrying them over untouched reproduces the problem in the new site.
+**The other six are built but deliberately unlinked.**
+The four-page orphaned service island, `/managedservices/`, and
+`/wos-northeastern-talent-pipeline-program/` all exist at their live URLs and carry their
+live copy, and nothing links to them from anywhere.
+That is the state the live site is in, held on purpose: the content is now in the rebuild,
+so what remains is a placement decision rather than a content job.
+
+They are out of `app/sitemap.ts` while they stay unlinked, since a sitemap entry would be
+the only discovery path for a page nothing links to.
+**Placing any of them means adding it to the nav or a hub grid and to the sitemap in the
+same change.**
+
+One of them is a near-duplicate: `/staff-augmentation/` shares about 90% of its copy with
+`/on-site-remote-staffing/`, which is in the header.
+Both are built, on instruction. If they are ever both linked, they compete for the same
+search result.
 
 A finding while closing these: `wforce-header-asis.txt` lists three cardless staff pages
 under `/team/`, but `/team/andrew-gold-2/` is a fourth that the live team page does link.

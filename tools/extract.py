@@ -36,6 +36,12 @@ ROUTES = [
     "cohorts", "become-a-partner", "blog", "contact", "donate", "privacy-policy",
     # Reachable only from the footer, which makes the footer the only path to it.
     "institute-of-workforce-policy-practice",
+    # Live pages with no path to them anywhere on the site. Carried over so the content
+    # exists in the rebuild; deliberately not linked yet, so placement stays an open
+    # decision rather than a content job. See PROGRESS.md.
+    "consulting-to-hire-services", "talent-acquisition", "direct-hire",
+    "staff-augmentation", "managedservices",
+    "wos-northeastern-talent-pipeline-program",
 ]
 
 # Logo and favicon, repeated on all 117 pages.

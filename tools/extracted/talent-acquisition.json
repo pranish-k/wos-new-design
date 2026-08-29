@@ -1,0 +1,97 @@
+{
+ "route": "/talent-acquisition",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "At WOS, we understand that finding the right talent is essential to your organization\u2019s success. The hiring process can be costly, time-intensive, and unpredictable. That\u2019s why we offer tailored talent acquisition solutions that deliver skilled employees without compromise, ensuring your workforce reflects the unique needs and values of your organization."
+  },
+  {
+   "tag": "p",
+   "text": "Why choose WOS Talent Acquisition?"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/20160527_21_cropped-scaled-1-1.jpg",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Cohorts"
+  },
+  {
+   "tag": "p",
+   "text": "Build a pipeline of job-ready candidates trained to meet your specific needs."
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/shared-image_blur_crop.jpg",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Staff Augmentation"
+  },
+  {
+   "tag": "p",
+   "text": "Scale your workforce with top-tier talent for temporary or long-term projects."
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/171206_4700_cropped-scaled-1-1.jpg",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Direct Hire"
+  },
+  {
+   "tag": "p",
+   "text": "Access pre-screened, qualified candidates ready from day one."
+  },
+  {
+   "tag": "p",
+   "text": "Our Talent Acquisition Division provides comprehensive, end-to-end services designed to streamline hiring, optimize outcomes, and drive long-term success. With over a decade of experience, we specialize in identifying and cultivating high-potential employees who bring lasting value to your team. Since our founding in 2005, WOS has partnered with more than 80 corporations across 65+ locations nationwide, representing a wide array of industries and workforce needs. By leveraging our expertise, research-driven methodologies, and proven models, we empower organizations to seamlessly integrate early career and specialized talent into their operations."
+  },
+  {
+   "tag": "p",
+   "text": "Discover the WOS difference: an agile, results-oriented approach to talent acquisition that ensures you have the right people, in the right roles, at the right time. Let us help you build a workforce that drives growth and innovation."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/20160527_21_cropped-scaled-1-1.jpg",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/shared-image_blur_crop.jpg",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/171206_4700_cropped-scaled-1-1.jpg",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": "",
+   "role": "inline"
+  }
+ ]
+}

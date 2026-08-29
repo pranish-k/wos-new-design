@@ -1,0 +1,89 @@
+{
+ "route": "/consulting-to-hire-services",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "Introduction to the COnsuling to Hire service goes her"
+  },
+  {
+   "tag": "p",
+   "text": "Consulting to Hire Services Offered by WOS"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/20160527_21_cropped-scaled-1-1.jpg",
+   "alt": ""
+  },
+  {
+   "tag": "p",
+   "text": "text\u2026"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/shared-image_blur_crop.jpg",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Onsite & Remote Staffing"
+  },
+  {
+   "tag": "p",
+   "text": "text\u2026"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/02/171206_4700_cropped-scaled-1-1.jpg",
+   "alt": ""
+  },
+  {
+   "tag": "p",
+   "text": "text\u2026"
+  },
+  {
+   "tag": "p",
+   "text": "more text\u2026"
+  },
+  {
+   "tag": "p",
+   "text": "Discover the WOS difference: an agile, results-oriented approach that ensures you have the right people, in the right roles, at the right time. Let us help you build a workforce that drives growth and innovation."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/20160527_21_cropped-scaled-1-1.jpg",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/shared-image_blur_crop.jpg",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/02/171206_4700_cropped-scaled-1-1.jpg",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": "",
+   "role": "inline"
+  }
+ ]
+}

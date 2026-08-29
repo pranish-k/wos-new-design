@@ -100,9 +100,19 @@ Open decision 1 is settled: all four boards have pages and header placement.
 
 Nine of the 15 unreachable pages now have a path. Six remain: the four-page orphaned service island, `/managedservices/`, and `/wos-northeastern-talent-pipeline-program/`.
 
+## The six unlinked pages
+
+All six live pages that no visitor could reach are now built at their live URLs, with their live copy and images, and **nothing links to them**. Placement is deliberately deferred, so what is left is a nav decision rather than a content job.
+
+- `/consulting-to-hire-services/`, `/talent-acquisition/`, `/direct-hire/`, `/staff-augmentation/`, `/managedservices/`, `/wos-northeastern-talent-pipeline-program/`
+- Held out of `app/sitemap.ts` too. A sitemap entry would be the only discovery path for a page nothing links to, which is not the same as "not connected". Placing one means nav or hub grid plus sitemap in the same change.
+- Measured against the built pages with chrome stripped by frequency: `/staff-augmentation/` shares about 90% of its copy with `/on-site-remote-staffing/` and is a real duplicate. `/managedservices/` shares 0% with `/managed-service-centers/` despite the name, and is a distinct page. `/consulting-to-hire-services/` is a 55-word stub named after a menu label. The other three carry 200 to 450 words of their own.
+- Built on instruction to carry all six over. The duplicate is the one to watch: if it and On-Site & Remote Staffing are ever both linked, they compete for the same search result.
+- Adding them to `tools/extract.py` shifted the chrome-frequency corpus from 32 pages to 38. No existing content file changed; the run was purely additive, plus five new images.
+
 ## Open
 
-- Open decisions 2, 3 and 5 in CLAUDE.md are still open. Decision 1 is settled and decision 4 is settled in favour of the sitemap's nested paths.
+- Open decisions 2, 3 and 5 in CLAUDE.md are still open. Decisions 2 and 3 are now purely about where the six unlinked pages go, since their content exists. Decision 1 is settled and decision 4 is settled in favour of the sitemap's nested paths.
 - **The HR Advisory Board intro copy is missing** and only WOS can supply it.
 - `npm audit` reports a high-severity libvips advisory against the sharp bundled inside Next 16.2.4, not the one added here. Clearing it means Next 16.3.3.
 - A live-content typo carried over as-is: Craig Cuyar's title reads "Cheif Information Officer".

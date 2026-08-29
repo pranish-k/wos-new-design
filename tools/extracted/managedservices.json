@@ -1,0 +1,205 @@
+{
+ "route": "/managedservices",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "At WOS our Managed Services provide a comprehensive solution designed to optimize your business and drive growth. By outsourcing key functions to WOS, your organization can focus on its core objectives while we manage the rest with precision and expertise."
+  },
+  {
+   "tag": "p",
+   "text": "Why choose WOS for Managed Services?"
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/08/customized-solutions.png",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Customized Solutions"
+  },
+  {
+   "tag": "p",
+   "text": "Every service is tailored to your specific business needs and industry requirements."
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/08/cost-efficiency.png",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Cost Efficiency"
+  },
+  {
+   "tag": "p",
+   "text": "WOS provides cost savings by outsourcing key functions and converting fixed costs into variable expenses."
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/08/expert-teams.png",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Expert Teams"
+  },
+  {
+   "tag": "p",
+   "text": "Our trained professionals are dedicated to delivering exceptional results and seamless integration with your processes."
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/08/scalable-services.png",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Scalable Services"
+  },
+  {
+   "tag": "p",
+   "text": "Easily adjust service levels as your business grows or your needs evolve."
+  },
+  {
+   "tag": "img",
+   "text": "../wp-content/uploads/2025/08/customer-service.png",
+   "alt": ""
+  },
+  {
+   "tag": "h4",
+   "text": "Enhanced Customer Experiences"
+  },
+  {
+   "tag": "p",
+   "text": "With our high-quality support solutions, we help you build stronger customer relationships and drive loyalty."
+  },
+  {
+   "tag": "h3",
+   "text": "Our Expertise in Managed Services"
+  },
+  {
+   "tag": "p",
+   "text": "WOS specializes in providing scalable, end-to end services to cater to a variety of industries, including IT, customer service, and shared operations. Whether you need to enhance your call center capabilities, manage IT infrastructure or oversee administrative processes, WOS is your go to solutions provider."
+  },
+  {
+   "tag": "h5",
+   "text": "Customer Support Solutions"
+  },
+  {
+   "tag": "li",
+   "text": "Deliver exceptional customer experiences through our inbound and outbound call center services."
+  },
+  {
+   "tag": "li",
+   "text": "From product inquiries to technical support, our teams ensure every customer interaction is handled with professionalism and care."
+  },
+  {
+   "tag": "h5",
+   "text": "Help Desk and IT Support"
+  },
+  {
+   "tag": "li",
+   "text": "Our help desk services include 24/7 technical support, remote desktop assistance, device monitoring, and user access management to keep your IT infrastructure running smoothly."
+  },
+  {
+   "tag": "h5",
+   "text": "Shared Services Management"
+  },
+  {
+   "tag": "li",
+   "text": "Streamline back-office operations such as payroll, HR, accounting, and compliance with our centralized management solutions."
+  },
+  {
+   "tag": "li",
+   "text": "Focus on growth while we handle the day-to-day tasks."
+  },
+  {
+   "tag": "h5",
+   "text": "Technical and Product Support"
+  },
+  {
+   "tag": "li",
+   "text": "From troubleshooting to product guidance, our technical support teams ensure customers have the information and assistance they need to make the most of your products and services."
+  },
+  {
+   "tag": "h5",
+   "text": "Cybersecurity Monitoring"
+  },
+  {
+   "tag": "li",
+   "text": "Safeguard your business with proactive 24/7 cybersecurity monitoring."
+  },
+  {
+   "tag": "li",
+   "text": "We identify and mitigate threats in real-time to ensure the security of your sensitive data and systems."
+  },
+  {
+   "tag": "h5",
+   "text": "Outbound Sales and Lead Generation"
+  },
+  {
+   "tag": "li",
+   "text": "Increase your revenue and expand your customer base with our skilled outbound sales teams. We specialize in lead generation, appointment setting, and market research to drive business growth."
+  },
+  {
+   "tag": "h5",
+   "text": "AI adoption with WOS Managed Services"
+  },
+  {
+   "tag": "li",
+   "text": "Ensure secure, high-quality data management and continuous optimization of AI training datasets."
+  },
+  {
+   "tag": "li",
+   "text": "Implement and maintain AI performance monitoring and quality assurance workflows."
+  }
+ ],
+ "images": [
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/customized-solutions.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/cost-efficiency.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/expert-teams.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/scalable-services.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/08/customer-service.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": "",
+   "role": "inline"
+  }
+ ]
+}

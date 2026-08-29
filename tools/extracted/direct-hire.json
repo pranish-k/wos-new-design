@@ -1,0 +1,48 @@
+{
+ "route": "/direct-hire",
+ "blocks": [
+  {
+   "tag": "p",
+   "text": "Need talent now?"
+  },
+  {
+   "tag": "p",
+   "text": "We source and vet talent from your local community with a background equipped for your needs."
+  },
+  {
+   "tag": "p",
+   "text": "By partnering with WOS for Direct Hire, you gain access to a streamlined, reliable, and cost-effective hiring solution. Our team of experts works closely with you to understand your unique challenges and deliver talent that not only meets but exceeds your expectations. Transform your talent acquisition strategy with WOS Direct Hire\u2014because the right people make all the difference."
+  },
+  {
+   "tag": "p",
+   "text": "Contact Us!"
+  }
+ ],
+ "images": [
+  {
+   "src": "https://wforce.org/wp-content/uploads/2025/02/171206_4700_cropped-scaled-1-1-1.jpg",
+   "alt": "",
+   "role": "background"
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/WOS-Logo_Transparent_Short.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/WOS-Logo_Transparent.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2024/09/footer-logo-2.png",
+   "alt": "",
+   "role": "inline"
+  },
+  {
+   "src": "../wp-content/uploads/2025/03/Site-Icon-1.png",
+   "alt": "",
+   "role": "inline"
+  }
+ ]
+}
