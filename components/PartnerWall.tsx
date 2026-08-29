@@ -2,7 +2,7 @@ import Image from "next/image";
 import { PARTNERS, type Partner } from "@/content/partners";
 
 /**
- * Partner logos as white tiles on a tinted ground, six across, matching the live site.
+ * Partner logos as white tiles on a tinted ground, four across at full width.
  *
  * This is a deliberate exception to the no-box and no-shadow rules in DESIGN.md, and the
  * only one on the site. A logo wall is not content in a container: every mark is a
@@ -13,6 +13,13 @@ import { PARTNERS, type Partner } from "@/content/partners";
  *
  * The section behind this must be tinted. On white the tiles vanish and the shadow is the
  * only thing separating them, which is exactly the cheap look the rule exists to prevent.
+ *
+ * The grid reflows on track width rather than on breakpoints. `auto-fill` with a 240px
+ * minimum fits exactly four tracks in the 6xl container and drops to three, two and one
+ * as the window narrows, continuously and at whatever width the content actually runs
+ * out of room. Breakpoint columns would jump at three fixed sizes and leave a stranded
+ * gap either side of each jump. `auto-fill` rather than `auto-fit` so a short final row
+ * keeps its tile width instead of stretching to fill the line.
  */
 export default function PartnerWall({
   partners = PARTNERS,
@@ -23,9 +30,9 @@ export default function PartnerWall({
 }) {
   const shown: readonly Partner[] = limit ? partners.slice(0, limit) : partners;
   return (
-    <ul className="m-0 grid list-none grid-cols-2 gap-4 p-0 sm:grid-cols-3 lg:grid-cols-6">
+    <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] gap-4 p-0">
       {shown.map((p) => (
-        <li key={p.src} className="flex h-24 items-center justify-center bg-white p-4 shadow-sm">
+        <li key={p.src} className="flex h-28 items-center justify-center bg-white p-6 shadow-sm">
           <Image
             src={p.src}
             // Around 30 of these files are named Picture1.png through Picture38.png and
@@ -35,7 +42,7 @@ export default function PartnerWall({
             alt={p.name}
             width={240}
             height={96}
-            className="max-h-12 w-auto max-w-full object-contain"
+            className="max-h-14 w-auto max-w-full object-contain"
           />
         </li>
       ))}

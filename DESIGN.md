@@ -351,8 +351,8 @@ Any hand-rolled button sitting beside it needs the same padding, or they render 
 - Crop anchoring matters: the homepage hero uses `object-top` because the container runs taller than the 4:3 source and a centre crop cuts off heads.
 
 ### The partner logo wall is the one exception to no-box and no-shadow
-`components/PartnerWall.tsx` lays logos as white tiles with `shadow-sm`, six across, on a
-`surface-tint` section. This breaks two rules on purpose and nothing else on the site may.
+`components/PartnerWall.tsx` lays logos as white tiles with `shadow-sm` on a
+`surface-tint` section, four across at full width. This breaks two rules on purpose and nothing else on the site may.
 
 The reasoning: a logo wall is not content in a container. Every mark is a different shape,
 colour, weight and aspect ratio, and most are drawn to sit on white. On bare tint they
@@ -366,6 +366,13 @@ Two conditions on the exception:
   Both partner pages therefore tint the wall section and leave the CTA below it plain, so
   no two tinted blocks end up adjacent.
 - **`shadow-sm` and no more.** Anything heavier reads as a SaaS card.
+
+The grid reflows on track width, not on breakpoints:
+`grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))]`. Four tracks fit the 6xl
+container, and it steps down to three, two and one wherever the content actually runs out
+of room rather than at three fixed sizes. The inner `min(240px,100%)` is what stops the
+track overflowing a viewport narrower than 240px. Prefer this to breakpoint columns for
+any grid of same-shaped items.
 
 ### Portraits
 - Every person photo is a 1200x1200 WebP at `/images/people/<slug>.webp`, written by `tools/people-image.mjs`. Never reference a portrait by its original filename.
