@@ -68,7 +68,16 @@ async function all() {
     fs.writeFileSync(file, JSON.stringify(rec, null, 2) + "\n");
     done++;
   }
+  // A photo whose record has been deleted or merged away. It is unreachable, so it is
+  // reported rather than removed: deleting an image is not this script's decision.
+  const slugs = new Set(records().map(({ rec }) => rec.slug));
+  const orphans = fs
+    .existsSync(OUT_DIR)
+    ? fs.readdirSync(OUT_DIR).filter((f) => f.endsWith(".webp") && !slugs.has(f.slice(0, -5)))
+    : [];
+
   console.log(`${done} photos normalised`);
+  if (orphans.length) console.log(`orphan photos with no record: ${orphans.join(", ")}`);
   if (skipped.length) {
     console.log("skipped:");
     for (const s of skipped) console.log("  " + s);

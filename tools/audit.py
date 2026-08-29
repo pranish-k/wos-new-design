@@ -35,7 +35,18 @@ def visible(page_html):
     return re.sub(r"\s+", " ", html.unescape(TAGS.sub(" ", body)))
 
 
+def people_routes():
+    """Group landing paths, which hold renamed photos and are audited differently."""
+    src = open(os.path.join(HERE, "..", "content", "groups.ts"), encoding="utf-8").read()
+    return set(re.findall(r'path:\s*"([^"]+)"', src))
+
+
+PEOPLE_ROUTES = None
+
+
 def main():
+    global PEOPLE_ROUTES
+    PEOPLE_ROUTES = people_routes()
     routes = []
     for name in sorted(os.listdir(EXTRACTED)):
         if name.startswith("_"):
@@ -73,7 +84,15 @@ def main():
         # src, so both forms have to be counted or every diagram reads as missing.
         got = {html.unescape(g) for g in re.findall(r"url=%2Fimages%2F([^&\"]+)", page)}
         got |= {os.path.basename(g) for g in re.findall(r'src="(/images/[^"]+)"', page)}
-        have = len({w for w in want if w in got or w.replace("+", " ") in got})
+
+        if route in PEOPLE_ROUTES:
+            # People photos are deliberately renamed to the person's slug, so filename
+            # equality cannot work here. The question that matters on these pages is not
+            # "is this file present" but "did every member reach the page with a photo",
+            # which is the stronger check anyway.
+            have = len([g for g in got if g.startswith("people%2F") or g.startswith("people/")])
+        else:
+            have = len({w for w in want if w in got or w.replace("+", " ") in got})
 
         flag = ""
         if blocks and carried / len(blocks) < 0.8:

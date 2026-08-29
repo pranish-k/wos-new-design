@@ -27,7 +27,9 @@
       "text": "Warren is on the Advisory Board of IT Central Station, a social network where IT professionals share their experience and expertise on a wide range of IT products and services."
     }
   ],
-  "legacyPaths": [],
+  "legacyPaths": [
+    "/warren-kudman-2"
+  ],
   "membership": {
     "industry-advisory-board": {
       "role": "On-Demand Initiatives",

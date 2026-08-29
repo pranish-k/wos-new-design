@@ -113,24 +113,34 @@ function loadAll(): PersonRecord[] {
   return people;
 }
 
-// Module scope so the directory is read once per build rather than once per page.
-const ALL = loadAll();
+// Read once per build in production, because the directory cannot change while the
+// build runs and re-reading it for all 44 person pages would be pure waste.
+//
+// In development it is re-read on every call instead: the admin writes these files while
+// the server is running, and a cached copy would mean saving a record and not seeing it.
+let cached: PersonRecord[] | null = null;
+
+function all(): PersonRecord[] {
+  if (process.env.NODE_ENV === "development") return loadAll();
+  cached ??= loadAll();
+  return cached;
+}
 
 /** Published people, ordered. Pass a group to filter to its members. */
 export function listPeople(groupId?: GroupId): PersonRecord[] {
-  return ALL.filter((p) => p.status === "published" && (!groupId || p.groups.includes(groupId))).sort(
-    comparePeople(groupId),
-  );
+  return all()
+    .filter((p) => p.status === "published" && (!groupId || p.groups.includes(groupId)))
+    .sort(comparePeople(groupId));
 }
 
 /** Every record including hidden ones. For the admin and for redirect generation only. */
 export function listAllPeople(): PersonRecord[] {
-  return [...ALL].sort(comparePeople());
+  return [...all()].sort(comparePeople());
 }
 
 /** A published person by their canonical path. Hidden people resolve to undefined. */
 export function getPerson(groupId: string, slug: string): PersonRecord | undefined {
-  return ALL.find(
+  return all().find(
     (p) => p.status === "published" && p.slug === slug && p.groups[0] === groupId && p.bio.length > 0,
   );
 }

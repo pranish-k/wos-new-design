@@ -65,13 +65,51 @@ The three remaining gaps are the unnamed logos, the 16-of-68 logo strip on the h
 - Our Approach numerals are `action` red. Red never carries small text on slate at 2.8:1, but a 34px numeral clears the large-text threshold.
 - Our Impact is three figures on slate, counting up on scroll, with no cards and no icons. The final value is in the DOM from first paint, so it is correct with JavaScript off and a screen reader never sees the intermediate numbers. `prefers-reduced-motion` skips the animation entirely.
 
+## People engine
+
+One record per person at `content/people/<slug>.json`, read through `lib/people/store.ts`.
+Replaces `content/people.ts` (cards), `content/person-pages.ts` (bios), the hand-written redirect table, and three near-identical group page files. Name and photo were duplicated across the first two with nothing keeping them in sync.
+
+- `groups` decides which pages someone appears on; `groups[0]` owns their URL, so a person on two boards still has one page. `status: "hidden"` removes them without losing the record. Empty `bio` means a card with no page, replacing the old `href: null`. `legacyPaths` carries the redirects, which `next.config.ts` derives.
+- `membership` holds per-group role and order overrides. A board portfolio ("On-Demand Initiatives") and a job title ("SVP and CIO at Turner Construction") are both true, and each board orders its own page. Absent on most records.
+- Group landings are configuration in `content/groups.ts` and render from `app/[slug]/page.tsx`, beside blog posts. Next allows one dynamic segment name per path position and posts already owned `[slug]`; `[slug]/[person]` already resolved that segment as a group parent. A slug claimed by both a post and a group fails the build.
+- The store validator throws on a malformed record rather than skipping it, so a typo fails the build naming the file instead of rendering a blank card. `next.config.ts` names the file too, since it parses these before the validator runs.
+- In development the registry is re-read on every call rather than cached at module scope. Saving a record and not seeing it was the first thing that broke.
+- One file per person rather than one array, because the admin writes them back: rewriting a 600-line TS array from a form is a parser problem, and the diff now names who changed.
+
+**Photos.** `tools/people-image.mjs` normalises any input to a 1200x1200 WebP named after the slug: EXIF rotation applied and stripped, cropped square on the face with sharp's attention strategy. It deliberately does not generate responsive variants, which Next/Image already does; what Next/Image does not do is fix rotation, crop, and a 6MB ingest. 44 photos, about 53KB each. `sharp` is a devDependency, so nothing new ships to the browser.
+
+**Admin** at `/admin/people`, development only, not linked from the site. Add, edit, hide, reorder, delete, drop a photo in. Publishing is a commit, so every change is in git history with an author. **This is a local convenience, not an authentication boundary**: with the guard removed and a writable filesystem it is an unauthenticated write endpoint. A new `legacyPath` needs the dev server restarted, because Next reads the redirect table once at startup.
+
+**Data fixes found on the way through.**
+
+- Arthur Langer existed as two records, one on the board with a page and one card-only on the team page. Merged; his team card now links.
+- Camille Bryant's name field was `"Chair: Camille J. Bryant"`. The office moved to her role.
+- Six board bios opened with a redundant "Board of Directors" heading, and two showed that heading where their job title should have been. Roles now come from a real field, so the heuristic that guessed a short first paragraph is gone.
+- Names now carry their credentials consistently (Dr., Ph.D., Esquire), which the two old files disagreed about.
+- Four staff photos had never been harvested into `public/images/`.
+- The sitemap hand-listed three group paths and omitted every person page. Both are derived now. It was also missing `/institute-of-workforce-policy-practice`, which every footer links.
+
+## Boards
+
+Open decision 1 is settled: all four boards have pages and header placement.
+
+- **Industry Advisory Board** carries its live intro copy, its four responsibilities, and 12 member cards. Three members were already in the registry and now hold the board as a second group rather than a second record. Their bios sit behind Popup Maker modals loaded over AJAX and are not in the mirror, so those members are card only.
+- **HR Advisory Board** had four canonical member pages and no landing page in the mirror at all. The page is built from the group config and the four members, with their bios. **Its intro copy is missing and has to come from WOS** - a mission statement for a real board is not something to invent.
+- Chrome on the HR member pages was stripped by frequency, since Kubio emits no landmarks. The consultation form seeds per-page scrambled word fragments as a spam trap that survive that pass, so bio paragraphs are length-filtered.
+
+Nine of the 15 unreachable pages now have a path. Six remain: the four-page orphaned service island, `/managedservices/`, and `/wos-northeastern-talent-pipeline-program/`.
+
 ## Open
 
-- The five open decisions in CLAUDE.md are all still open. Phase 7 (person pages) stays blocked on decision 4.
+- Open decisions 2, 3 and 5 in CLAUDE.md are still open. Decision 1 is settled and decision 4 is settled in favour of the sitemap's nested paths.
+- **The HR Advisory Board intro copy is missing** and only WOS can supply it.
+- `npm audit` reports a high-severity libvips advisory against the sharp bundled inside Next 16.2.4, not the one added here. Clearing it means Next 16.3.3.
+- A live-content typo carried over as-is: Craig Cuyar's title reads "Cheif Information Officer".
 - **19 corporate partner logos cannot be labelled.** Files are named `Picture1.png` to `Picture24.png` and nothing on the live page identifies the company, so there is no honest alt text. They are excluded from `content/partners.ts` and need naming by someone who knows the account list.
 - **The live /financials page links the same PDF twice**, for both the FY2025 and FY2024 audited statements. Reproduced as-is; only WOS knows which year is missing.
 - `/donate` is prose only. The live payment flow has `payment-success` and `payment-cancel` endpoints and no processor is identified in the mirror.
 - The live footer carries a USFCR Verified Vendor badge, not yet carried over.
 - **The homepage hero video is not in the mirror.** The live hero is `WOS-Overview-Video-comp.mp4`; HTTrack never fetched it, and there are zero video files in the mirror. The hero is typographic until the file is supplied. Its poster frame on the live site is a Kubio demo placeholder, not WOS footage.
 - 14 academic partner logos are unnamed for the same reason as the corporate ones.
-- **Not verified in a browser.** The Chrome extension was not connected, so §9's visual pass at 375/768/1440 and the manual keyboard walk through all three menu levels have not been run. Everything checkable from the built HTML was checked.
+- **Not verified in a browser.** The Chrome extension is still not connected, so §9's visual pass at 375/768/1440 and the manual keyboard walk through all three menu levels have not been run. Everything checkable from the built HTML was checked, including one h1 per page and no two same-fill sections adjacent on any people page.

@@ -18,7 +18,14 @@ function personRedirects() {
     .readdirSync(dir)
     .filter((f) => f.endsWith(".json"))
     .flatMap((f) => {
-      const p = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+      let p;
+      try {
+        p = JSON.parse(fs.readFileSync(path.join(dir, f), "utf8"));
+      } catch (e) {
+        // This runs before the store's validator, so an unnamed SyntaxError here would
+        // be the only thing a broken record produced.
+        throw new Error(`content/people/${f}: ${(e as Error).message}`);
+      }
       // A hidden person keeps their redirect pointing at a page that no longer builds,
       // so their legacy URLs are dropped with them.
       if (p.status !== "published" || p.bio.length === 0) return [];
@@ -32,6 +39,9 @@ function personRedirects() {
 }
 
 const nextConfig: NextConfig = {
+  // sharp is a native module used by the dev-only people admin. Bundling it breaks the
+  // binary lookup, and it must never be traced into a production build.
+  serverExternalPackages: ["sharp"],
   async redirects() {
     return personRedirects();
   },

@@ -350,6 +350,16 @@ Any hand-rolled button sitting beside it needs the same padding, or they render 
 - Image placeholders behind loading photos are `bg-wos-slate`, not a colour.
 - Crop anchoring matters: the homepage hero uses `object-top` because the container runs taller than the 4:3 source and a centre crop cuts off heads.
 
+### Portraits
+- Every person photo is a 1200x1200 WebP at `/images/people/<slug>.webp`, written by `tools/people-image.mjs`. Never reference a portrait by its original filename.
+- Square, and cropped on the face rather than on the centre of the frame. These are shot for a landscape card, so a centre crop lands on the chest.
+- The pipeline deliberately produces one file per person, not a set of responsive variants. Next/Image generates those already. What it does not do is fix EXIF rotation, aspect ratio, and ingest size, which is the whole job here.
+- Alt text is the person's name. On the group grid the name is also the visible heading, so the card link is already labelled and the photo carries no extra burden.
+
+### Group landing pages
+- The intro block above a member grid is `surface-tint`, and the grid below it is plain. Three of the five groups have no intro copy at all, and a page that opens straight into the grid under the dark header is correct rather than unfinished.
+- Responsibility lists use a 2px `accent` left rule per item. A bulleted list of four items reads as filler; the rule gives them weight without drawing a box.
+
 ---
 
 ## 8. Anti-patterns
@@ -371,6 +381,12 @@ Any hand-rolled button sitting beside it needs the same padding, or they render 
 | A full box drawn around content | Decoration pretending to be structure | The weight ladder, §6 |
 | Two `surface-tint` blocks in a row | They merge into one oversized block | Put a level 2 or 3 section between |
 | Two dark sections back to back | Reads as one oversized block with a gap in it | Break with a light section |
+
+
+**`/admin/people` is outside this document on purpose.**
+It is a development-only tool that never reaches a visitor, so it uses plain form controls
+and borrowed tokens rather than the design system. Do not spend design effort on it, and do
+not let its input and select styling leak into the site.
 
 ---
 

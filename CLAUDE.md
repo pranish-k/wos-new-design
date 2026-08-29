@@ -77,10 +77,12 @@ Five questions are unresolved.
 Do not silently resolve any of them.
 If a task depends on one, raise it.
 
-1. **The four boards are handled four different ways.**
-   Board of Directors and Academic Advisory Board are in the header.
-   Industry Advisory Board is a live page nobody can reach.
-   HR Advisory Board has four live member pages and no landing page at all.
+1. ~~**The four boards are handled four different ways.**~~ **Settled.**
+   All four boards now have landing pages and header placement.
+   Industry Advisory Board carries its live copy and 12 member cards.
+   HR Advisory Board had four live member pages and no landing page in the mirror at all,
+   so its page was built from the group config and its intro copy is still missing.
+   **That copy has to come from WOS. Do not write it here.**
 2. **Program pages have no consistent home.**
    Cohorts and College Co-ops are reachable through a hub.
    The WOS-Northeastern pipeline program has no path at all.
@@ -92,15 +94,26 @@ If a task depends on one, raise it.
 5. **The Services menu is four levels deep** including the top bar.
    Preserved for parity, but deep enough to be a usability problem on touch devices.
 
-### The 15 unreachable pages are launch blockers
+### The unreachable pages are launch blockers
 
 A breadth-first crawl from `/` reaches 95 URLs and misses 35 canonical pages.
 Eighteen of those are person pages whose content is reachable at a duplicate URL, and two are payment endpoints.
-The remaining 15 are live content with no path to them at any URL.
+`wforce-header-asis.txt` records the remaining 15 as live content with no path to them at any URL.
 
-They are listed in `wforce-header-asis.txt`.
-Each needs an explicit decision: give it a path, or retire it with a redirect.
+**Nine of the 15 now have a path.**
+The people engine closed them: the Industry Advisory Board page, the four HR Advisory Board
+member pages, the three cardless staff pages, and `/warren-kudman-2/` as a redirect.
+
+**Six remain, and each still needs an explicit decision:**
+the four-page orphaned service island, `/managedservices/`, and
+`/wos-northeastern-talent-pipeline-program/`.
+Give each a path, or retire it with a redirect.
 Carrying them over untouched reproduces the problem in the new site.
+
+A finding while closing these: `wforce-header-asis.txt` lists three cardless staff pages
+under `/team/`, but `/team/andrew-gold-2/` is a fourth that the live team page does link.
+The as-is file is right that his page exists; it is the rebuild's first extraction that
+missed his card. The mirror is untouched and the discrepancy is recorded here.
 
 Four of them form an isolated island.
 `/consulting-to-hire-services/` and `/talent-acquisition/` each link out to Cohorts, Direct Hire, and Staff Augmentation, and nothing links in.
@@ -191,6 +204,13 @@ Match the existing naming, comment density, and idiom rather than importing a di
 - **Reuse before inventing.**
   The design primitives are in `components/Brand.tsx`.
   A new component needs at least two call sites, or it is a one-off pretending to be a pattern.
+- **People are one record each, in `content/people/`.**
+  Read them through `lib/people/store.ts` and never reach for the files directly.
+  A person's `groups` decides which pages they appear on and `groups[0]` owns their URL,
+  `status: "hidden"` removes them without losing the record, an empty `bio` means a card
+  with no page, and `legacyPaths` carries their old URLs.
+  Group landing pages are configuration in `content/groups.ts`, not route files.
+  `/admin/people` edits all of this and runs in development only.
 - **Do not leave migration scaffolding behind.**
   A temporary shim with a comment saying it will be removed later will not be removed later.
 - **Fix lint and type errors you touch,** including ones you did not cause.
