@@ -1,0 +1,20 @@
+{
+  "slug": "mayela-montano",
+  "name": "Mayela Montano",
+  "role": "HR Generalist | Office Manager",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 10,
+  "photo": "/images/people/mayela-montano.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Mayela Montano joined WOS as an HR Generalist/Office Manager in October of 2024. Mayela brings with her 15 years of HR leadership experience from both Non-profit and Corporate America. Mayela began her HR career working for the Texas Workforce Commission and with her most recent position in HR Operations for Corporate America."
+    }
+  ],
+  "legacyPaths": [
+    "/mayela-montano"
+  ]
+}

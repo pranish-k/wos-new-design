@@ -1,0 +1,18 @@
+{
+  "slug": "andrew-gold-2",
+  "name": "Andrew Gold",
+  "role": "Payroll Manager",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": null,
+  "photo": "/images/people/andrew-gold-2.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Andrew Gold joined WOS in September 2012. He works on all aspects of finance and human resources, including special projects. Before joining WOS, Andrew spent many years as a corporate tax accountant for Mercer Consulting Group, a subsidiary of Marsh & McLennan Insurance Company. He graduated from Rider University with a bachelor’s degree in marketing and a minor in accounting. He also has a master’s degree in education."
+    }
+  ],
+  "legacyPaths": []
+}

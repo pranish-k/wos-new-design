@@ -1,0 +1,20 @@
+{
+  "slug": "sandy-kelton",
+  "name": "Sandy Kelton",
+  "role": "Service Desk Manager",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 7,
+  "photo": "/images/people/sandy-kelton.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Sandy Kelton joined WOS as Service Desk Manager in September of 2024. Sandy brings over 20 years of experience in IT Service Desk Management. Sandy has successfully lead teams in global 24/7 environments, supporting thousands of end-users. Sandy has a proven track record in implementing process improvements, achieving cost savings, and enhancing customer satisfaction. Sandy is a driven Leader with a Customer Service mindset. Her experience includes incident management, change management, ITIL best practices, software licensing and team leadership."
+    }
+  ],
+  "legacyPaths": [
+    "/sandy-kelton"
+  ]
+}

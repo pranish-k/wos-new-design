@@ -1,0 +1,20 @@
+{
+  "slug": "patrick-spurgeon-2",
+  "name": "Patrick Spurgeon",
+  "role": "Client Service Manager | Talent Acquisition, Systems Administrator",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 12,
+  "photo": "/images/people/patrick-spurgeon-2.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Patrick Spurgeon is the Systems Administrator for Talent Acquisition and is responsible for a wide variety of programs and systems used to identify and recruit diverse talent from local communities. He previously served as a Client Service Manager responsible for managing WOS programs in Connecticut, New York, and New Jersey. Patrick is a 27-year veteran of the United States Navy Submarine Force, retiring as a Senior Chief Petty Officer before joining the WOS team in February 2013. He served on five different nuclear submarines, one tour with the Navy’s Ceremonial Guard in Washington, DC and two tours as a Navy Instructor at Naval Submarine Base, New London."
+    }
+  ],
+  "legacyPaths": [
+    "/patrick-spurgeon-2"
+  ]
+}

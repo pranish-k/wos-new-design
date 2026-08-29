@@ -1,0 +1,18 @@
+{
+  "slug": "andrew-champion",
+  "name": "Andrew Champion",
+  "role": "IT Manager",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 2,
+  "photo": "/images/people/andrew-champion.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Andrew Champion joined WOS in May 2023 as the Systems Administrator, where he oversees the organization’s network and cloud infrastructure, information systems, and cybersecurity posture. In this role, Andrew is responsible for maintaining secure and efficient data environments, developing technology solutions aligned with organizational needs, and managing key software and vendor relationships. He also plays a vital role in ensuring seamless and secure communication between WOS and its enterprise clients across the globe. Based in Dallas, Texas, Andrew brings over 20 years of IT and leadership experience, including 16 years of joint service in the United States Marine Corps and United States Army. His civilian career includes time at Amazon as an Operations Manager, further honing his expertise in large-scale systems and operational efficiency. Andrew holds a Bachelor of Science degree from the University of North Texas and several industry-recognized certifications, including ITIL, reflecting his commitment to excellence and continued professional growth."
+    }
+  ],
+  "legacyPaths": []
+}

@@ -1,0 +1,22 @@
+{
+  "slug": "philip-curry-2",
+  "name": "Philip Curry",
+  "role": "Chief Financial & Administrative Officer",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 3,
+  "photo": "/images/people/philip-curry-2.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Chief Financial & Administrative Office"
+    },
+    {
+      "kind": "para",
+      "text": "Philip Curry joined WOS as Chief Financial Officer in March 2013. Philip is a seasoned financial professional with experience in global financial services, social entrepreneurship, and consulting. He trained as an accountant with Touche Ross in London; serving a broad cross-section of financial service clients as an auditor and a consultant. Philip spent 15 years with ICAP, the world’s leading interdealer broker and market infrastructure group, most recently as CFO for the Americas, where he was responsible for the finance function in the United States, Latin America, and Israel. He was a member of the senior management team that rebuilt the North American operations, whose offices were destroyed in the September 11th terrorist attacks. He has recently returned from the Bay Area, where he advised a number of start-up social enterprises, including Credibles and Carbon Offsets to Alleviate Poverty. Philip received his B.S. in Mathematics and Business from the University of Warwick and is a Chartered Accountant."
+    }
+  ],
+  "legacyPaths": []
+}

@@ -3,58 +3,47 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Eyebrow } from "@/components/Brand";
-import { PERSON_PAGES } from "@/content/person-pages";
+import { getGroup, getPerson, listPeople, listGroups } from "@/lib/people/store";
 
-// Nested paths, because the sitemap treats those as canonical. The 19 top-level
-// duplicate slugs the index cards use on the live site redirect here, in next.config.ts.
+// Nested paths, because the sitemap treats those as canonical. The top-level duplicate
+// slugs the live index cards use redirect here; those live on each person's record as
+// `legacyPaths` and next.config.ts builds the redirect table from them.
+//
+// A person's first group owns their URL, so someone on two boards still has one page.
 export function generateStaticParams() {
-  return PERSON_PAGES.map((p) => ({ slug: p.parent, person: p.slug }));
+  return listGroups().flatMap((g) =>
+    listPeople(g.id)
+      .filter((p) => p.groups[0] === g.id && p.bio.length > 0)
+      .map((p) => ({ slug: g.path, person: p.slug })),
+  );
 }
 
 export const dynamicParams = false;
 
-const PARENT_LABEL: Record<string, string> = {
-  team: "Management Team",
-  "board-of-directors": "Board of Directors",
-  "academic-advisory-board": "Academic Advisory Board",
-};
-
 type Props = { params: Promise<{ slug: string; person: string }> };
 
-function find(parent: string, person: string) {
-  return PERSON_PAGES.find((p) => p.parent === parent && p.slug === person);
-}
-
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug: parent, person } = await params;
-  const p = find(parent, person);
+  const { slug, person } = await params;
+  const p = getPerson(slug, person);
   if (!p) return {};
-  const role = p.blocks.find((b) => b.kind === "para")?.text ?? "";
-  return { title: p.name, description: `${p.name}. ${role}`.trim() };
+  return { title: p.name, description: `${p.name}. ${p.role}`.trim() };
 }
 
 export default async function Page({ params }: Props) {
-  const { slug: parent, person } = await params;
-  const p = find(parent, person);
+  const { slug, person } = await params;
+  const p = getPerson(slug, person);
   if (!p) notFound();
-
-  // The first paragraph on every one of these pages is the job title, so it is set as
-  // a subtitle rather than as the opening line of the biography.
-  const [role, ...rest] = p.blocks;
-  const hasRole = role?.kind === "para" && role.text.length < 120;
-  const body = hasRole ? rest : p.blocks;
+  const group = getGroup(slug)!;
 
   return (
     <article>
       <header className="bg-surface-dark">
         <div className="mx-auto max-w-6xl px-6 pb-14 pt-20">
-          <Eyebrow label={PARENT_LABEL[p.parent] ?? "WOS"} dark />
+          <Eyebrow label={group.title} dark />
           <h1 className="font-heading text-[36px] font-semibold leading-[1.1] tracking-[-0.02em] text-white md:text-[50px]">
             {p.name}
           </h1>
-          {hasRole && (
-            <p className="mt-4 text-[18px] leading-[1.5] text-white/80">{role.text}</p>
-          )}
+          {p.role && <p className="mt-4 text-[18px] leading-[1.5] text-white/80">{p.role}</p>}
         </div>
       </header>
 
@@ -70,7 +59,7 @@ export default async function Page({ params }: Props) {
           />
         )}
         <div>
-          {body.map((block, i) =>
+          {p.bio.map((block, i) =>
             block.kind === "heading" ? (
               <h2
                 key={i}
@@ -85,10 +74,10 @@ export default async function Page({ params }: Props) {
             ),
           )}
           <Link
-            href={`/${p.parent}`}
+            href={`/${group.path}`}
             className="mt-10 inline-block font-heading text-[15px] font-semibold text-action-deep no-underline hover:text-action-deeper"
           >
-            Back to {PARENT_LABEL[p.parent] ?? "the list"}
+            Back to {group.title}
           </Link>
         </div>
       </div>

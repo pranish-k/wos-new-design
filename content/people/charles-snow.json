@@ -1,0 +1,24 @@
+{
+  "slug": "charles-snow",
+  "name": "Charles Snow",
+  "role": "Mellon Foundation Professor of Business Administration, Smeal College of Business at Penn State University",
+  "groups": [
+    "academic-advisory-board"
+  ],
+  "status": "published",
+  "order": 26,
+  "photo": "/images/people/charles-snow.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Mellon Foundation Professor of Business Administration in the Smeal College of Business at Penn State University"
+    },
+    {
+      "kind": "para",
+      "text": "Charles Snow is the Mellon Foundation Professor of Business Administration in the Smeal College of Business at Penn State University. He brings extensive knowledge and experience related to innovation management, organization design, and new organizational forms to WOS. Over the course of his career in academia, he has taught management subjects to executives and MBA students in more than 25 countries. Snow has been a visiting professor at The Amos Tuck School (Dartmouth College), Norwegian School of Management, and the University of Oregon. Snow co-founded OrgDesign.com, which is a community created to improve the practice of organizational design to accelerate the development of new designs that can meet the opportunities and challenges of the 21st-century global economy. He has co-authored books that include Organizational Strategy, Structure, and Process (McGraw-Hill, 1978) , Fit, Failure, and the Hall of Fame: How Firms Succeed or Fail (Free Press, 1994), and Collaborative Entrepreneurship: How Communities of Networked Firms Use Continuous Innovation to Create Economic Wealth (Stanford University Press, 2005). He serves on the editorial board of the Strategic Management Journal, Journal of Management, Journal of Engineering and Technology Management, Journal of World Business, and several other academic journals."
+    }
+  ],
+  "legacyPaths": [
+    "/charles-snow"
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "ming-wu-2",
+  "name": "Ming Wu",
+  "role": "Bookkeeper",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 14,
+  "photo": "/images/people/ming-wu-2.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Ming Wu joined WOS in December, 2018 as a Bookkeeper working alongside with the Executive Administrator and CFO to create a more effective and efficient way of data management. Before joining WOS, Ming worked as a staff accountant in Professional Bookkeeping Services, where he managed multiple clients’ bookkeeping services to ensure all data recorded are accurate in accordance with Generally Accepted Accounting Principles (GAAP)."
+    }
+  ],
+  "legacyPaths": [
+    "/ming-wu-2"
+  ]
+}

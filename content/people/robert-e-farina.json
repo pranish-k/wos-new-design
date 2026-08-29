@@ -1,0 +1,20 @@
+{
+  "slug": "robert-e-farina",
+  "name": "Robert E. Farina",
+  "role": "Chief Executive Officer at Magna5",
+  "groups": [
+    "board-of-directors"
+  ],
+  "status": "published",
+  "order": 16,
+  "photo": "/images/people/robert-e-farina.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Robert (Bob) Farina is an experienced CEO of Private Equity and Venture Capital backed technology companies with over 30 years of experience leading start-ups, turnarounds and high growth enterprises in the managed services (MS), software-as-a-service (SaaS) and business process outsourcing (BPO) business segments. In addition to his experience successfully running multiple businesses backed by professional investors, Farina has served on a number of Boards of Directors, started and successfully exited his own business, and ran a division of a publicly held company. He has been a finalist for the Ernst & Young Entrepreneur of the Year award for the State of New Jersey three times in his career and serves on the Advisory Board of the Columbia University Master’s Degree program for Information Technology Management. Farina is a graduate of the Wharton School of the University of Pennsylvania."
+    }
+  ],
+  "legacyPaths": [
+    "/robert-e-farina"
+  ]
+}

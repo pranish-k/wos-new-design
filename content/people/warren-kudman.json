@@ -1,0 +1,30 @@
+{
+  "slug": "warren-kudman",
+  "name": "Warren Kudman",
+  "role": "Senior Vice President and Chief Information Officer at Turner Construction Company",
+  "groups": [
+    "board-of-directors"
+  ],
+  "status": "published",
+  "order": 21,
+  "photo": "/images/people/warren-kudman.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "CIO of Turner Construction"
+    },
+    {
+      "kind": "para",
+      "text": "​Previously, he was the Chief Information Officer of Sealed Air Corporation, a $7.8 billion global manufacturer and world leader in food and industrial packaging and cleaning and hygiene solutions. As CIO, Warren was responsible for delivering information services that enabled the execution of the Sealed Air’s strategic objectives, improved customers’ ease of doing business with the company, and supported continuous improvement in Sealed Air’s day-to-day operations. During his time as CIO, Warren was also selected to lead the Integration Program for Sealed Air’s acquisition of Diversey, a $3 billion global entity."
+    },
+    {
+      "kind": "para",
+      "text": "Prior to joining Sealed Air, Warren spent six years with McKinsey & Company in the New York, New Jersey, and Copenhagen offices. During this time, he advised clients in market strategy, information technology strategy and management, operations improvement, and sales force productivity in the transportation, financial services, telecommunications, and pharmaceutical industries."
+    },
+    {
+      "kind": "para",
+      "text": "Warren is on the Advisory Board of IT Central Station, a social network where IT professionals share their experience and expertise on a wide range of IT products and services."
+    }
+  ],
+  "legacyPaths": []
+}

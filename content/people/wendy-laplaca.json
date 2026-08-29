@@ -1,0 +1,20 @@
+{
+  "slug": "wendy-laplaca",
+  "name": "Wendy LaPlaca",
+  "role": "Senior Client Service Manager",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 8,
+  "photo": "/images/people/wendy-laplaca.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Wendy LaPlaca joined WOS in January 2018 as a Client Service Manager in Lincolnshire, IL. Prior to joining WOS, Wendy served as a Program Director for CASA Lake County, a non-profit organization dedicated to providing advocacy for abused and neglected children in the juvenile court system. In this role, she managed a professional staff and was responsible for overseeing the work of over 200 trained volunteer advocates. Previously Wendy worked on a national sales team at the IBM Corporation. Wendy earned a master’s in educational administration from Illinois State University and a Bachelor of Arts in Special Education and Psychology from Mac Murray College."
+    }
+  ],
+  "legacyPaths": [
+    "/wendy-laplaca"
+  ]
+}

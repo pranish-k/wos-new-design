@@ -1,0 +1,20 @@
+{
+  "slug": "bob-king-2",
+  "name": "Bob King",
+  "role": "Consultant, Connecticut Assoc. Board of Education",
+  "groups": [
+    "board-of-directors"
+  ],
+  "status": "published",
+  "order": 19,
+  "photo": "/images/people/bob-king-2.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "A retired IBM executive, Robert (Bob) King is a former chair and officer of the Stamford Board of Education where, during his tenure, he served on committees focused on curriculum, community engagement and more. A member of the NAACP, Bob is a veteran of the US Army and graduate of the University of Connecticut. He has served in leadership positions for organizations throughout the community and he and his wife, Beverly, reside in Stamford and have three children."
+    }
+  ],
+  "legacyPaths": [
+    "/bob-king-2"
+  ]
+}

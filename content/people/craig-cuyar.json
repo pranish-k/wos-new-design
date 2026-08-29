@@ -1,0 +1,48 @@
+{
+  "slug": "craig-cuyar",
+  "name": "Craig Cuyar",
+  "role": "Senior Vice President and Cheif Information Officer for Omnicom Group",
+  "groups": [
+    "board-of-directors"
+  ],
+  "status": "published",
+  "order": 22,
+  "photo": "/images/people/craig-cuyar.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "SVP & Global CIO for Omincom Group"
+    },
+    {
+      "kind": "para",
+      "text": "Craig Cuyar serves as the SVP & Global CIO for Omnicom Group (NYSE: OMC), a Fortune 200 media and communications company operating in 70+ countries. He interacts with the board frequently, and owns P&L Management of a $500M budget after reducing annual operating costs by $100M while still introducing new technology capabilities and partnerships. As a strategist who plays chess, not checkers, Craig leverages his global experience to “see around corners.”"
+    },
+    {
+      "kind": "para",
+      "text": "In advance of current M&A activity, Craig developed and implemented Omnicom’s standardized global M&A IT integration framework, expediting due diligence, board communication, rapid onboarding, and technology harmonization across multiple acquisitions. He successfully leveraged this approach to acquire and integrate 12 companies ranging up to $1B in size within a two-year time period across North America, EMEA, and APAC, driving operational synergies, cost savings, and scalable growth. Craig has guided organizations through acquisitions, divestitures, complex restructurings, and journeys from public to private and vice versa."
+    },
+    {
+      "kind": "para",
+      "text": "Craig’s strategic global expertise also includes navigating complex geopolitical landscapes—including Russia, China, and Ukraine—where he proactively assesses risk, ensures regulatory compliance, and adapts IT operations to evolving international policies and sanctions. He’s cultivated strong cross-border partnerships, safeguarded data sovereignty, and developed robust contingency plans to bolster resilience and business continuity in advance of and amid global uncertainty."
+    },
+    {
+      "kind": "para",
+      "text": "As risk is a key factor in business, Craig advised his organization on creating a proactive risk management strategy by building and leading a dedicated IT risk function, integrating advanced risk assessment tools, and establishing robust governance frameworks. Similarly, he drove continuous innovation by aligning security strategy with business objectives and implementing key frameworks, resulting in a 50% reduction in security incidents and accelerated digital transformation worldwide."
+    },
+    {
+      "kind": "para",
+      "text": "Understanding the power of data and emerging technology, Craig built relationships with Google, Meta and Microsoft designed to enable new revenue-generating capabilities, leveraging AI/ML, RPA and driving millions in additional revenue and cost reductions. He developed a global Data Strategy and programs designed to ensure proper governance, privacy, security, and classification of owned and third-party data inclusive of text/video analytics, sentiment analysis, machine learning and programmatic placement of advertisements. In addition, Craig built a global Information Security program in two organizations to properly position over 500 separate companies for European Union Data Privacy Regulations and ISO 27001 certifications, including the development and establishment of global policies to support the efforts."
+    },
+    {
+      "kind": "para",
+      "text": "A true collaborator, natural mentor, and life-long learner, since 2009 Craig has been an Adjunct Faculty member and taught Master’s Degree candidates in the Executive Technology Management programs at Columbia University and now Northeastern University. Teachings include Enterprise Architecture, Transformational CIO Leadership, Business Value of IT, Ethical and Legal issues of IT, Artificial Intelligence, and Data Monetization and Governance."
+    },
+    {
+      "kind": "para",
+      "text": "Craig lives with his wife and three daughters in northern New Jersey"
+    }
+  ],
+  "legacyPaths": [
+    "/craig-cuyar"
+  ]
+}

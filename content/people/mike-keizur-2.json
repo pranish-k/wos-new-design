@@ -1,0 +1,18 @@
+{
+  "slug": "mike-keizur-2",
+  "name": "Mike Keizur",
+  "role": "VP Client Success",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": null,
+  "photo": "/images/people/mike-keizur-2.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Mike Keizur joined the WOS team in October 2009. Mike has been involved in the technology industry for over 20 years. Prior to joining WOS, he was the Program Director for the CIO Institute, an exclusive educational program designed to train and mentor future Fortune 1000 CIOs. From 1999 through 2005 Mike served as VP of Infrastructure and Architecture at Nike, Inc. in Portland, Oregon, where he provided back-end services and project leadership in a $400M SAP BW implementation."
+    }
+  ],
+  "legacyPaths": []
+}

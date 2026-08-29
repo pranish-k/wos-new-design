@@ -1,0 +1,20 @@
+{
+  "slug": "david-thomas",
+  "name": "David Thomas",
+  "role": "President, Morehouse College",
+  "groups": [
+    "academic-advisory-board"
+  ],
+  "status": "published",
+  "order": 27,
+  "photo": "/images/people/david-thomas.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Dr. David Thomas serves as the President of Morehouse College. Prior to being appointed to the helm of Morehouse, he was the H. Naylor Fitzhugh Professor of Business Administration at Harvard Business School. His research addresses issues related to executive development, workforce representation, leadership, and organizational change. He served as a professor of management at Georgetown University’s McDonough School of Business, where he served as dean from 2011 to 2016. While at McDonough, Thomas was a member of the Federal City Council, and in 2014, the Washington Business Journal recognized him as a top Minority Business Leader. Prior to Georgetown, Thomas spent two decades at Harvard Business School (HBS). While he had multiple responsibilities during his tenure, he launched new research initiatives and increased research funding, grew Executive Education program revenues by 400 percent. His efforts lead to the growth of HBS’ endowment and increased philanthropic giving, ending the school’s capital campaign $30 million above its $100 million fundraising goal. Thomas received a bachelor’s degree, as well as masters and doctoral degrees in Organizational Behavior, from Yale University. He also holds a master’s in Organizational Psychology from Columbia University. He currently is a member of the Board of Governors for the American Red Cross, the Board of Directors of DTE Energy, and the Estoril Conferences Advisory Board. He also is an industry advisor for Brightwood Capital Advisors."
+    }
+  ],
+  "legacyPaths": [
+    "/david-thomas"
+  ]
+}

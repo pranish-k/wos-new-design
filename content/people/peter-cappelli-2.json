@@ -1,0 +1,20 @@
+{
+  "slug": "peter-cappelli-2",
+  "name": "Peter Cappelli",
+  "role": "George W. Taylor Professor of Management, The Wharton School",
+  "groups": [
+    "academic-advisory-board"
+  ],
+  "status": "published",
+  "order": 24,
+  "photo": "/images/people/peter-cappelli-2.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Peter Cappelli currently serves as a George W. Taylor Professor of Management at The Wharton School and Director of Wharton’s Center for Human Resources. He is also a Research Associate at the National Bureau of Economic Research in Cambridge, MA. Cappelli brings knowledge and expertise in areas surrounding human resource practices, public policy related to employment, and talent and performance management to WOS. He formerly served as a Senior Advisor to the Kingdom of Bahrain for Employment Policy and was appointed to serve on the U.S. Secretary of Labor’s Commission on Workforce Quality and Labor Market Efficiency, the U.S. Department of Education’s National Center on the Educational Quality of the Workforce, and the U.S. Department of Education’s National Center on Post-Secondary Improvement. Cappelli—who has authored several best-selling books that cover emerging workforce development trends—is currently conducting research that examines employment relations in the U.S. and their implications."
+    }
+  ],
+  "legacyPaths": [
+    "/peter-cappelli-2"
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "slug": "dr-bruce-hedin",
+  "name": "Dr. Bruce Hedin",
+  "role": "Principal Scientist",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 5,
+  "photo": "/images/people/dr-bruce-hedin.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Dr. Hedin, a leading expert in the assessment of the effectiveness of advanced search and analytics technologies, brings expertise in gathering the evidence that allows an assessment of the trustworthiness of a technology. In his consulting practice, he supports clients in the design and oversight of sampling and measurement protocols to validate the results of AI-enabled review technologies; he also provides guidance to clients seeking the most efficient, and scientifically sound, methods to demonstrate the trustworthiness of the technologies they have adopted. Dr. Hedin has contributed to several initiatives in keeping with his expertise, including a model ESI protocol, manifestos on the rule of law in the age of artificial intelligence, the IEEE’s Ethically Aligned Design, and US NIST’s Text Retrieval Conference (TREC) Legal Track."
+    }
+  ],
+  "legacyPaths": []
+}

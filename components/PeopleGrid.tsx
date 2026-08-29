@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import type { Person } from "@/content/people";
+import { personHref, type PersonRecord } from "@/lib/people/store";
 
-function Card({ person }: { person: Person }) {
+function Card({ person }: { person: PersonRecord }) {
   return (
     <>
       {person.photo && (
@@ -24,25 +24,28 @@ function Card({ person }: { person: Person }) {
 }
 
 /**
- * Person cards. Linked where a profile page exists on the live site.
+ * Person cards, linked where the person has a bio.
  *
- * A handful of people appear on an index page and have no page of their own; those stay
- * as plain cards rather than becoming links to a 404.
+ * Someone with no bio has no page, so their card stays a plain card rather than becoming
+ * a link to a 404. That is one field on the record now, not two files agreeing.
  */
-export default function PeopleGrid({ people }: { people: Person[] }) {
+export default function PeopleGrid({ people }: { people: PersonRecord[] }) {
   return (
     <ul className="m-0 grid list-none grid-cols-1 gap-8 p-0 sm:grid-cols-2 lg:grid-cols-3">
-      {people.map((person): ReactNode => (
-        <li key={person.name}>
-          {person.href ? (
-            <Link href={person.href} className="group block no-underline">
+      {people.map((person): ReactNode => {
+        const href = personHref(person);
+        return (
+          <li key={person.slug}>
+            {href ? (
+              <Link href={href} className="group block no-underline">
+                <Card person={person} />
+              </Link>
+            ) : (
               <Card person={person} />
-            </Link>
-          ) : (
-            <Card person={person} />
-          )}
-        </li>
-      ))}
+            )}
+          </li>
+        );
+      })}
     </ul>
   );
 }

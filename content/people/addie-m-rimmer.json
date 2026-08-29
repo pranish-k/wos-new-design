@@ -1,0 +1,18 @@
+{
+  "slug": "addie-m-rimmer",
+  "name": "Addie M. Rimmer",
+  "role": "Director, Student Learning",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": null,
+  "photo": "/images/people/addie-m-rimmer.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Dr. Addie M. Rimmer, Director of Student Learning, has designed and taught interpersonal skills courses for WOS since 2008. She previously served as a newspaper editor and journalism faculty member. She has a bachelor’s degree from The City College of New York, a master’s in journalism from Columbia University, and a doctorate in Adult Learning and Leadership from Teachers College, Columbia University."
+    }
+  ],
+  "legacyPaths": []
+}

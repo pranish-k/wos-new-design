@@ -1,0 +1,20 @@
+{
+  "slug": "james-wolf-2",
+  "name": "James Wolf",
+  "role": "Principal Architect",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": 13,
+  "photo": "/images/people/james-wolf-2.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Mr. Wolf brings over 30 years of experience in leading software engineering, product management, Information Technology, Information Security, Technology Architecture, Quality Assurance and Project Management to the Advisory Services leadership team. Mr. Wolf is a creative innovator, and passionate problem solver. He is an early pioneer in analytics and BI space, being named as the inventor of 10 patents related to Oracle Discoverer, on which Mr. Wolf was the Principal Engineer. Mr. Wolf is an expert in eDiscovery having led the creation of H5’s Information Retrieval and AI platforms, then led the enterprise architecture of H5’s eDiscovery Services. Mr. Wolf advises clients on the architecture, security, technical infrastructure, be it on site or in the cloud, applications, and application architecture needed to meet their objectives."
+    }
+  ],
+  "legacyPaths": [
+    "/james-wolf-2"
+  ]
+}

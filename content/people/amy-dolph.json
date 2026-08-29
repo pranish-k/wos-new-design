@@ -1,0 +1,18 @@
+{
+  "slug": "amy-dolph",
+  "name": "Amy Dolph",
+  "role": "Educational Services Coordinator",
+  "groups": [
+    "team"
+  ],
+  "status": "published",
+  "order": null,
+  "photo": "/images/people/amy-dolph.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Amy Dolph has a stron background in nonprofit program coordination, educational services, and small business management. With a strong commitment to community engagement and a passion for creating impactful programming that supports underserved populations and veterans, impactful programming, she brings over a decade of experience supporting initiatives that serve and uplift others. In her current role as Educational Services Coordinator with Workforce Opportunity Services (WOS), she assists in the delivery of virtual training programs, coordinates outreach, and has managed participant progress for over 700 learners, and develops user-friendly course content using the Canvas LMS. Her facilitation of cultural exploration sessions has reached more than 1,200 participants, reflecting her ability to plan and execute meaningful, accessible programming."
+    }
+  ],
+  "legacyPaths": []
+}

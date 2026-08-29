@@ -1,0 +1,21 @@
+{
+  "slug": "arthur-m-langer",
+  "name": "Dr. Arthur M. Langer",
+  "role": "Chairman and Founder, Workforce Opportunity Services",
+  "groups": [
+    "board-of-directors",
+    "team"
+  ],
+  "status": "published",
+  "order": 20,
+  "photo": "/images/people/arthur-m-langer.webp",
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Dr. Arthur M. Langer is the Chairman and Founder of Workforce Opportunity Services. He serves in a number of roles at Northeastern University including Assoc. Vice-Provost and Director of the Center for Technology Management and Digital Leadership as well as Professor of Professional Practice at the Department of Entrepreneurship and Innovation at the D-Amore-McKim School of Business. Dr. Langer also is Professor of Practice and Director of the Workforce Education and Development Advanced Certificate Program in the Department of Organization and Leadership at Columbia University’s Graduate School of Education (Teachers College). He also serves on the faculty of the Department of Organization and Leadership at the Graduate School of Education (Teachers College) and is the faculty director of the Workforce Education and Development Advanced Certificate Program. Previously, Dr. Langer held multiple positions at Columbia University where he was Professor of Professional Practice, Director of the Center for Technology Management, and Academic Director of the M.S. in Technology Management programs at Columbia University. Dr. Langer is the author of Analysis and Design of Next Generation Software Architecture (2020), Strategic Information Technology: Best Practices to Drive Digital Transformation (2nd Ed., 2018 with Lyle Yorks), Information Technology and Organizational Learning (3rd Ed., 2018), Guide to Software Development: Designing and Managing the Life Cycle (2nd Ed., 2016), Analysis and Design of Information Systems (2007), Applied Ecommerce (2002), and The Art of Analysis (1997) and has published numerous articles and papers relating to service learning for underserved populations, IT organizational integration, mentoring and staff development. Dr. Langer consults with corporations and universities on information technology, staff development, management transformation, and curriculum development around the globe. Prior to joining the full-time faculty at Columbia University, Dr. Langer was Executive Director of Computer Support Services at Coopers and Lybrand, General Manager and Partner of Software Plus, and President of Macco Software."
+    }
+  ],
+  "legacyPaths": [
+    "/arthur-m-langer"
+  ]
+}
