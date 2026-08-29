@@ -104,8 +104,11 @@ Eighteen of those are person pages whose content is reachable at a duplicate URL
 The people engine closed them: the Industry Advisory Board page, the four HR Advisory Board
 member pages, the three cardless staff pages, and `/warren-kudman-2/` as a redirect.
 
-**The other six are built but deliberately unlinked.**
-The four-page orphaned service island, `/managedservices/`, and
+**Two of the other six are now in the Services menu:**
+`/consulting-to-hire-services/` and `/managedservices/`.
+
+**The remaining four are built but deliberately unlinked.**
+`/talent-acquisition/`, `/direct-hire/`, `/staff-augmentation/` and
 `/wos-northeastern-talent-pipeline-program/` all exist at their live URLs and carry their
 live copy, and nothing links to them from anywhere.
 That is the state the live site is in, held on purpose: the content is now in the rebuild,

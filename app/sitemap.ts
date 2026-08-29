@@ -17,6 +17,9 @@ const ROUTES = [
   "data-analytics-and-ai", "shared-services", "college-co-ops-and-internships",
   "cohorts", "become-a-partner", "blog", "contact", "donate", "privacy-policy",
   "institute-of-workforce-policy-practice",
+  // Linked from the Services menu, so they are discoverable and belong here. The other
+  // four carried-over pages stay out while nothing links to them.
+  "consulting-to-hire-services", "managedservices",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

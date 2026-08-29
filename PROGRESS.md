@@ -102,10 +102,12 @@ Nine of the 15 unreachable pages now have a path. Six remain: the four-page orph
 
 ## The six unlinked pages
 
-All six live pages that no visitor could reach are now built at their live URLs, with their live copy and images, and **nothing links to them**. Placement is deliberately deferred, so what is left is a nav decision rather than a content job.
+All six live pages that no visitor could reach are now built at their live URLs with their live copy and images. **Two are now in the header; four are still linked from nothing.**
 
-- `/consulting-to-hire-services/`, `/talent-acquisition/`, `/direct-hire/`, `/staff-augmentation/`, `/managedservices/`, `/wos-northeastern-talent-pipeline-program/`
-- Held out of `app/sitemap.ts` too. A sitemap entry would be the only discovery path for a page nothing links to, which is not the same as "not connected". Placing one means nav or hub grid plus sitemap in the same change.
+- **In the Services menu:** `/consulting-to-hire-services/` as the Overview child of its own grouping, matching how Educational Services and Advisory Services already work. `/managedservices/` as a sibling of the two groupings, since it is an umbrella offering rather than a line under either. Its label sits one row from "Managed Service Center", a different page, which is a naming collision worth watching.
+- **Still unlinked:** `/talent-acquisition/`, `/direct-hire/`, `/staff-augmentation/`, `/wos-northeastern-talent-pipeline-program/`.
+- **`/consulting-to-hire-services/` was an unfinished wireframe on the live site.** Its opening line reads "Introduction to the COnsuling to Hire service goes her" and four body paragraphs are the literal strings "text…" and "more text…". The placeholders are dropped, because the page is now in the header. Nothing was written to replace them: what is left is the one real paragraph, a heading, and three photographs that now carry hand-written alt text. **The page is thin and wants real copy from WOS.** Its live meta description was the truncated placeholder, so it would have shipped as the search result; it now uses the real closing sentence.
+- The four still-unlinked pages are held out of `app/sitemap.ts`. A sitemap entry would be the only discovery path for a page nothing links to, which is not the same as "not connected". Placing one means nav or hub grid plus sitemap in the same change.
 - Measured against the built pages with chrome stripped by frequency: `/staff-augmentation/` shares about 90% of its copy with `/on-site-remote-staffing/` and is a real duplicate. `/managedservices/` shares 0% with `/managed-service-centers/` despite the name, and is a distinct page. `/consulting-to-hire-services/` is a 55-word stub named after a menu label. The other three carry 200 to 450 words of their own.
 - Built on instruction to carry all six over. The duplicate is the one to watch: if it and On-Site & Remote Staffing are ever both linked, they compete for the same search result.
 - Adding them to `tools/extract.py` shifted the chrome-frequency corpus from 32 pages to 38. No existing content file changed; the run was purely additive, plus five new images.
@@ -114,6 +116,7 @@ All six live pages that no visitor could reach are now built at their live URLs,
 
 - Open decisions 2, 3 and 5 in CLAUDE.md are still open. Decisions 2 and 3 are now purely about where the six unlinked pages go, since their content exists. Decision 1 is settled and decision 4 is settled in favour of the sitemap's nested paths.
 - **The HR Advisory Board intro copy is missing** and only WOS can supply it.
+- **The Consulting to Hire Services page needs real copy.** It is in the header now and carries one paragraph, a heading and three photographs.
 - `npm audit` reports a high-severity libvips advisory against the sharp bundled inside Next 16.2.4, not the one added here. Clearing it means Next 16.3.3.
 - A live-content typo carried over as-is: Craig Cuyar's title reads "Cheif Information Officer".
 - **19 corporate partner logos cannot be labelled.** Files are named `Picture1.png` to `Picture24.png` and nothing on the live page identifies the company, so there is no honest alt text. They are excluded from `content/partners.ts` and need naming by someone who knows the account list.

@@ -23,8 +23,11 @@ export type NavLink = {
  *
  * The live markup gives these href="#", which reads to a screen reader as a link that
  * goes nowhere and traps a keyboard user on a dead target. We render them as headings.
- * Two of the six ("Consulting to Hire Services", "Educational Services") do have a real
- * page at the matching slug, but the live menu does not link to it, so neither do we.
+ * Where a grouping does have a real page at the matching slug, it is linked as an
+ * "Overview" child rather than by making the heading itself a link. Educational Services
+ * and Advisory Services already worked that way; Consulting to Hire Services now does
+ * too. The live menu links none of them, which is a gap we are closing rather than
+ * copying.
  */
 export type NavGroup = {
   kind: "group";
@@ -72,6 +75,7 @@ export const NAV: NavNode[] = [
         kind: "group",
         label: "Consulting to Hire Services",
         children: [
+          { kind: "link", label: "Overview", href: "/consulting-to-hire-services/" },
           { kind: "link", label: "Managed Service Center", href: "/managed-service-centers/" },
           { kind: "link", label: "Facilities Management", href: "/facilities-management/" },
           { kind: "link", label: "On-Site & Remote Staffing", href: "/on-site-remote-staffing/" },
@@ -105,6 +109,10 @@ export const NAV: NavNode[] = [
           { kind: "link", label: "Research", href: "/langer-arc/" },
         ],
       },
+      // A sibling of the two groupings rather than inside either: it is an umbrella
+      // offering, not a consulting-to-hire line or an "other" service. Note the name sits
+      // one row away from "Managed Service Center", which is a different page.
+      { kind: "link", label: "Managed Services", href: "/managedservices/" },
     ],
   },
   { kind: "link", label: "News & Events", href: "/blog/" },
