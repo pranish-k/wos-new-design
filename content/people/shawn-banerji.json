@@ -1,0 +1,19 @@
+{
+  "slug": "shawn-banerji",
+  "name": "Shawn Banerji",
+  "role": "New Business Opportunities",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 2,
+  "photo": "/images/people/shawn-banerji.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "New Business Opportunities",
+      "order": 2
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "evon-jones",
+  "name": "Evon Jones",
+  "role": "Diversity From Local Communities",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 7,
+  "photo": "/images/people/evon-jones.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Diversity From Local Communities",
+      "order": 7
+    }
+  }
+}

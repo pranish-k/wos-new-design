@@ -47,6 +47,8 @@ export const NAV: NavNode[] = [
         children: [
           { kind: "link", label: "Board of Directors", href: "/board-of-directors/" },
           { kind: "link", label: "Academic Advisory Board", href: "/academic-advisory-board/" },
+          { kind: "link", label: "Industry Advisory Board", href: "/industry-advisory-board/" },
+          { kind: "link", label: "HR Advisory Board", href: "/hr-advisory-board/" },
         ],
       },
       {

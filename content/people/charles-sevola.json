@@ -1,0 +1,19 @@
+{
+  "slug": "charles-sevola",
+  "name": "Charles Sevola",
+  "role": "Veteran Initiatives",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 11,
+  "photo": "/images/people/charles-sevola.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Veteran Initiatives",
+      "order": 11
+    }
+  }
+}

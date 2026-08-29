@@ -1,0 +1,19 @@
+{
+  "slug": "diana-beecher",
+  "name": "Diana Beecher",
+  "role": "Mid-Career Advancement Services",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 3,
+  "photo": "/images/people/diana-beecher.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Mid-Career Advancement Services",
+      "order": 3
+    }
+  }
+}

@@ -3,7 +3,8 @@
   "name": "Warren Kudman",
   "role": "Senior Vice President and Chief Information Officer at Turner Construction Company",
   "groups": [
-    "board-of-directors"
+    "board-of-directors",
+    "industry-advisory-board"
   ],
   "status": "published",
   "order": 21,
@@ -26,5 +27,11 @@
       "text": "Warren is on the Advisory Board of IT Central Station, a social network where IT professionals share their experience and expertise on a wide range of IT products and services."
     }
   ],
-  "legacyPaths": []
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "On-Demand Initiatives",
+      "order": 9
+    }
+  }
 }

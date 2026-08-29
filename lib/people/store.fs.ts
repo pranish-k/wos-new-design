@@ -44,6 +44,22 @@ function parse(file: string, raw: string): PersonRecord {
   const name = str("name");
   const role = str("role");
 
+  let membership: PersonRecord["membership"];
+  if (r.membership !== undefined) {
+    if (typeof r.membership !== "object" || r.membership === null) {
+      return bad("membership must be an object");
+    }
+    membership = {};
+    for (const [k, v] of Object.entries(r.membership)) {
+      if (!GROUP_IDS.has(k as GroupId)) return bad(`membership has unknown group ${k}`);
+      const o = v as Record<string, unknown>;
+      if (typeof o !== "object" || o === null) return bad(`membership.${k} must be an object`);
+      if (o.role !== undefined && typeof o.role !== "string") return bad(`membership.${k}.role must be a string`);
+      if (o.order !== undefined && typeof o.order !== "number") return bad(`membership.${k}.order must be a number`);
+      membership[k as GroupId] = { ...(o.role !== undefined ? { role: o.role as string } : {}), ...(o.order !== undefined ? { order: o.order as number } : {}) };
+    }
+  }
+
   if (!Array.isArray(r.groups) || r.groups.length === 0) return bad("groups must be a non-empty array");
   const groups = r.groups.map((g) =>
     typeof g === "string" && GROUP_IDS.has(g as GroupId) ? (g as GroupId) : bad(`unknown group ${JSON.stringify(g)}`),
@@ -71,6 +87,7 @@ function parse(file: string, raw: string): PersonRecord {
     slug,
     name,
     role,
+    ...(membership ? { membership } : {}),
     groups,
     status: r.status,
     order: r.order as number | null,
@@ -101,12 +118,14 @@ const ALL = loadAll();
 
 /** Published people, ordered. Pass a group to filter to its members. */
 export function listPeople(groupId?: GroupId): PersonRecord[] {
-  return ALL.filter((p) => p.status === "published" && (!groupId || p.groups.includes(groupId))).sort(comparePeople);
+  return ALL.filter((p) => p.status === "published" && (!groupId || p.groups.includes(groupId))).sort(
+    comparePeople(groupId),
+  );
 }
 
 /** Every record including hidden ones. For the admin and for redirect generation only. */
 export function listAllPeople(): PersonRecord[] {
-  return [...ALL].sort(comparePeople);
+  return [...ALL].sort(comparePeople());
 }
 
 /** A published person by their canonical path. Hidden people resolve to undefined. */

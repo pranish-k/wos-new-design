@@ -1,0 +1,19 @@
+{
+  "slug": "julie-o-brien",
+  "name": "Julie O’Brien",
+  "role": "Chief Marketing Officer at Dazz",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 10,
+  "photo": "/images/people/julie-o-brien.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Chief Marketing Officer at Dazz",
+      "order": 10
+    }
+  }
+}

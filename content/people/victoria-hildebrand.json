@@ -1,0 +1,19 @@
+{
+  "slug": "victoria-hildebrand",
+  "name": "Victoria Hildebrand",
+  "role": "Healthcare Initiatives",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 6,
+  "photo": "/images/people/victoria-hildebrand.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Healthcare Initiatives",
+      "order": 6
+    }
+  }
+}

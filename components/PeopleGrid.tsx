@@ -1,9 +1,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { personHref, type PersonRecord } from "@/lib/people/store";
+import { personHref, roleIn, type GroupId, type PersonRecord } from "@/lib/people/store";
 
-function Card({ person }: { person: PersonRecord }) {
+function Card({ person, groupId }: { person: PersonRecord; groupId: GroupId }) {
   return (
     <>
       {person.photo && (
@@ -18,7 +18,7 @@ function Card({ person }: { person: PersonRecord }) {
       <h3 className="mt-4 font-heading text-[18px] font-semibold leading-[1.25] text-ink transition-colors group-hover:text-action-deep">
         {person.name}
       </h3>
-      <p className="mt-1 text-[15px] leading-[1.5] text-ink-muted">{person.role}</p>
+      <p className="mt-1 text-[15px] leading-[1.5] text-ink-muted">{roleIn(person, groupId)}</p>
     </>
   );
 }
@@ -29,7 +29,7 @@ function Card({ person }: { person: PersonRecord }) {
  * Someone with no bio has no page, so their card stays a plain card rather than becoming
  * a link to a 404. That is one field on the record now, not two files agreeing.
  */
-export default function PeopleGrid({ people }: { people: PersonRecord[] }) {
+export default function PeopleGrid({ people, groupId }: { people: PersonRecord[]; groupId: GroupId }) {
   return (
     <ul className="m-0 grid list-none grid-cols-1 gap-8 p-0 sm:grid-cols-2 lg:grid-cols-3">
       {people.map((person): ReactNode => {
@@ -38,10 +38,10 @@ export default function PeopleGrid({ people }: { people: PersonRecord[] }) {
           <li key={person.slug}>
             {href ? (
               <Link href={href} className="group block no-underline">
-                <Card person={person} />
+                <Card person={person} groupId={groupId} />
               </Link>
             ) : (
-              <Card person={person} />
+              <Card person={person} groupId={groupId} />
             )}
           </li>
         );

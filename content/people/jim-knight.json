@@ -1,0 +1,19 @@
+{
+  "slug": "jim-knight",
+  "name": "Jim Knight",
+  "role": "Professional Associations",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 8,
+  "photo": "/images/people/jim-knight.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Professional Associations",
+      "order": 8
+    }
+  }
+}

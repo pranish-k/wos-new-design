@@ -1,0 +1,19 @@
+{
+  "slug": "nicholas-donofrio",
+  "name": "Nicholas Donofrio",
+  "role": "Executive Interfaces",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 4,
+  "photo": "/images/people/nicholas-donofrio.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Executive Interfaces",
+      "order": 4
+    }
+  }
+}

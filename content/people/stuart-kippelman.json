@@ -3,7 +3,8 @@
   "name": "Stuart Kippelman",
   "role": "Chief Information Officer",
   "groups": [
-    "board-of-directors"
+    "board-of-directors",
+    "industry-advisory-board"
   ],
   "status": "published",
   "order": 23,
@@ -14,5 +15,11 @@
       "text": "Stuart Kippelman is a global Chief Information Officer, strategic advisor, and technology executive recognized for turning technology from a cost center into a source of revenue, innovation, efficiency, and competitive advantage. He has led digital and business transformations across some of the world’s most complex organizations spanning defense, healthcare, manufacturing, energy, and consumer sectors. Most recently at Xerox Corporation, Stuart served as Chief Information and AI Officer, repositioning the company from a legacy hardware provider into a competitive AI and professional services business. Previously, Stuart served as Chief Digital and Information Officer at Parsons Corporation, a leading defense and intelligence technology company, where he drove enterprise-wide digital transformation and modernization, deployed AI solutions including automation and digital twins directly into customer operations to enable predictive modeling and operational insight, and commercialized enterprise cybersecurity capabilities into a market-leading services business. Earlier in his career, he served as CIO at Platform Specialty Products, Covanta Holdings, and Biotest Pharmaceuticals, and held progressive leadership roles at Johnson and Johnson including Chief Technology Officer, across corporate IT, R&D, supply chain, manufacturing, and scientific computing. He holds multiple U.S. and EU patents in AI, machine learning, and data mining. Stuart serves as an independent CxO advisor across AI strategy, cybersecurity, and digital transformation for organizations ranging from Fortune 500 enterprises to early-stage startups. He is a Distinguished Fellow at Avasant, speaks at industry forums on AI, cybersecurity, digital transformation, and leadership. He is a recent recipient of the HMG Strategy CIO of the Year award and Computerworld’s Premier 100 IT Leader recognition."
     }
   ],
-  "legacyPaths": []
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Chair, Industry Advisory Board. New Business Initiatives",
+      "order": 0
+    }
+  }
 }

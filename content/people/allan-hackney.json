@@ -1,0 +1,19 @@
+{
+  "slug": "allan-hackney",
+  "name": "Allan Hackney",
+  "role": "Women in Technology",
+  "groups": [
+    "industry-advisory-board"
+  ],
+  "status": "published",
+  "order": 5,
+  "photo": "/images/people/allan-hackney.webp",
+  "bio": [],
+  "legacyPaths": [],
+  "membership": {
+    "industry-advisory-board": {
+      "role": "Women in Technology",
+      "order": 5
+    }
+  }
+}

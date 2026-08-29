@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Eyebrow } from "@/components/Brand";
-import { getGroup, getPerson, listPeople, listGroups } from "@/lib/people/store";
+import { getGroup, getPerson, listPeople, listGroups, roleIn } from "@/lib/people/store";
 
 // Nested paths, because the sitemap treats those as canonical. The top-level duplicate
 // slugs the live index cards use redirect here; those live on each person's record as
@@ -43,7 +43,9 @@ export default async function Page({ params }: Props) {
           <h1 className="font-heading text-[36px] font-semibold leading-[1.1] tracking-[-0.02em] text-white md:text-[50px]">
             {p.name}
           </h1>
-          {p.role && <p className="mt-4 text-[18px] leading-[1.5] text-white/80">{p.role}</p>}
+          {roleIn(p, group.id) && (
+            <p className="mt-4 text-[18px] leading-[1.5] text-white/80">{roleIn(p, group.id)}</p>
+          )}
         </div>
       </header>
 

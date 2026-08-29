@@ -78,7 +78,7 @@ function GroupLanding({ path }: { path: string }) {
 
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <PeopleGrid people={people} />
+          <PeopleGrid people={people} groupId={group.id} />
         </div>
       </section>
     </article>

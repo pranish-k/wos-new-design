@@ -5,4 +5,4 @@
 
 export { listPeople, listAllPeople, getPerson, listGroups, getGroup, PEOPLE_DIR } from "./store.fs";
 export type { Group, GroupId, PersonRecord, BioBlock } from "./types";
-export { personHref, comparePeople } from "./types";
+export { personHref, comparePeople, roleIn, orderIn } from "./types";

@@ -22,6 +22,15 @@ export type PersonRecord = {
   name: string;
   role: string;
   /**
+   * Per-group overrides, for the few people who sit on a board and on staff.
+   *
+   * Role and position are facts about a membership, not about a person: a board
+   * portfolio ("On-Demand Initiatives") and a job title ("SVP and CIO at Turner
+   * Construction") are both true, and each board orders its own page. The common case
+   * is a single group with neither override, so this stays absent on most records.
+   */
+  membership?: Partial<Record<GroupId, { role?: string; order?: number }>>;
+  /**
    * Which pages this person appears on. More than one is allowed; `groups[0]` owns the
    * canonical URL, so a person in both boards still has exactly one page.
    */
@@ -53,6 +62,16 @@ export type Group = {
   order: number;
 };
 
+/** The role to show on a given group's page, falling back to the job title. */
+export function roleIn(p: PersonRecord, groupId: GroupId): string {
+  return p.membership?.[groupId]?.role ?? p.role;
+}
+
+/** This person's position on a given group's page. */
+export function orderIn(p: PersonRecord, groupId: GroupId): number | null {
+  return p.membership?.[groupId]?.order ?? p.order;
+}
+
 /** The canonical page for a person, or null when they have no bio to put on one. */
 export function personHref(p: PersonRecord): string | null {
   return p.bio.length > 0 ? `/${p.groups[0]}/${p.slug}` : null;
@@ -62,13 +81,17 @@ export function personHref(p: PersonRecord): string | null {
  * Surname, because that is how every group is ordered on the live site. An explicit
  * `order` wins so a board chair can be pinned to the top.
  */
-export function comparePeople(a: PersonRecord, b: PersonRecord): number {
-  if (a.order !== null || b.order !== null) {
-    if (a.order === null) return 1;
-    if (b.order === null) return -1;
-    if (a.order !== b.order) return a.order - b.order;
-  }
-  return surname(a.name).localeCompare(surname(b.name));
+export function comparePeople(groupId?: GroupId) {
+  return (a: PersonRecord, b: PersonRecord): number => {
+    const ao = groupId ? orderIn(a, groupId) : a.order;
+    const bo = groupId ? orderIn(b, groupId) : b.order;
+    if (ao !== null || bo !== null) {
+      if (ao === null) return 1;
+      if (bo === null) return -1;
+      if (ao !== bo) return ao - bo;
+    }
+    return surname(a.name).localeCompare(surname(b.name));
+  };
 }
 
 function surname(name: string): string {
