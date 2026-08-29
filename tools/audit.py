@@ -14,6 +14,7 @@ import html
 import json
 import os
 import re
+import urllib.parse
 import sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -82,7 +83,10 @@ def main():
             want.add(base)
         # Next/Image proxies rasters through /_next/image but leaves SVG as a plain
         # src, so both forms have to be counted or every diagram reads as missing.
-        got = {html.unescape(g) for g in re.findall(r"url=%2Fimages%2F([^&\"]+)", page)}
+        # unquote as well as unescape: Next percent-encodes characters that are legal in
+        # a filename but not in a query value, so biotest-...@2x.png arrives as %402x.
+        got = {urllib.parse.unquote(html.unescape(g))
+               for g in re.findall(r"url=%2Fimages%2F([^&\"]+)", page)}
         got |= {os.path.basename(g) for g in re.findall(r'src="(/images/[^"]+)"', page)}
 
         if route in PEOPLE_ROUTES:

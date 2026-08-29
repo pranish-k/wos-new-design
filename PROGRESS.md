@@ -112,6 +112,15 @@ All six live pages that no visitor could reach are now built at their live URLs 
 - Built on instruction to carry all six over. The duplicate is the one to watch: if it and On-Site & Remote Staffing are ever both linked, they compete for the same search result.
 - Adding them to `tools/extract.py` shifted the chrome-frequency corpus from 32 pages to 38. No existing content file changed; the run was purely additive, plus five new images.
 
+## Partner walls
+
+Both walls now show every logo the live pages show: **corporate 87/87, academic 27/27**, up from 67 and 13. The missing ones were the unlabelled files, previously excluded for want of honest alt text and now included as decorative on instruction.
+
+- The layout matches the live site: white tiles with `shadow-sm`, six across, on a `surface-tint` section. **This is a deliberate exception to DESIGN.md's no-box and no-shadow rules and the only one on the site**, recorded in §7 with its two conditions. A logo wall is not content in a container: every mark is a different shape, colour and weight, and on bare tint the darker ones read as heavier partners, which is not true. A uniform tile makes eighty-odd unrelated marks scan as one set.
+- The wall section has to be tinted or the white tiles vanish. Both partner pages therefore tint the wall and leave the CTA below it plain, so no two tinted blocks sit adjacent.
+- This reverses the earlier whitespace-only treatment, on instruction and with the screenshot of the live page as the reference.
+- Two data fixes found while doing it: Biotest was listed as `biotest AG from nature to life@2x` and the Jewish Theological Seminary as `Jewish Theological Seminary scaled 1`, both filename-derived. `tools/audit.py` was also under-counting, since Next percent-encodes `@` in image URLs and the basename comparison never matched.
+
 ## Open
 
 - Open decisions 2, 3 and 5 in CLAUDE.md are still open. Decisions 2 and 3 are now purely about where the six unlinked pages go, since their content exists. Decision 1 is settled and decision 4 is settled in favour of the sitemap's nested paths.
@@ -119,10 +128,10 @@ All six live pages that no visitor could reach are now built at their live URLs 
 - **The Consulting to Hire Services page needs real copy.** It is in the header now and carries one paragraph, a heading and three photographs.
 - `npm audit` reports a high-severity libvips advisory against the sharp bundled inside Next 16.2.4, not the one added here. Clearing it means Next 16.3.3.
 - A live-content typo carried over as-is: Craig Cuyar's title reads "Cheif Information Officer".
-- **19 corporate partner logos cannot be labelled.** Files are named `Picture1.png` to `Picture24.png` and nothing on the live page identifies the company, so there is no honest alt text. They are excluded from `content/partners.ts` and need naming by someone who knows the account list.
+- **30 partner logos are shown but unlabelled.** Files named `Picture1.png` to `Picture38.png`, plus `RR-logo.png`, `images.png` and `logo-primary.svg`. Nothing on the live page identifies them, so they carry `name: ""`, which renders `alt=""`: visible to sighted visitors, skipped by a screen reader rather than announced as a filename. That is the honest trade until someone supplies the account list. Filling in a name is a one-word fix per logo.
 - **The live /financials page links the same PDF twice**, for both the FY2025 and FY2024 audited statements. Reproduced as-is; only WOS knows which year is missing.
 - `/donate` is prose only. The live payment flow has `payment-success` and `payment-cancel` endpoints and no processor is identified in the mirror.
 - The live footer carries a USFCR Verified Vendor badge, not yet carried over.
 - **The homepage hero video is not in the mirror.** The live hero is `WOS-Overview-Video-comp.mp4`; HTTrack never fetched it, and there are zero video files in the mirror. The hero is typographic until the file is supplied. Its poster frame on the live site is a Kubio demo placeholder, not WOS footage.
-- 14 academic partner logos are unnamed for the same reason as the corporate ones.
+
 - **Not verified in a browser.** The Chrome extension is still not connected, so §9's visual pass at 375/768/1440 and the manual keyboard walk through all three menu levels have not been run. Everything checkable from the built HTML was checked, including one h1 per page and no two same-fill sections adjacent on any people page.

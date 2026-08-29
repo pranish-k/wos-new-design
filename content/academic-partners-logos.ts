@@ -1,9 +1,8 @@
 // Academic partner logos, from /academic-partners/ on the live site.
 //
 // Same problem as the corporate wall: the live markup carries no alt text, so names are
-// recovered from the filenames. 13 more logos on that page are named Picture3.png
-// through Picture38.png with nothing on the page identifying the institution, so they
-// are not here. See PROGRESS.md.
+// recovered from the filenames. 14 of these carry name: "" because nothing on the live
+// page identifies the institution; see the note in content/partners.ts.
 
 import type { Partner } from "@/content/partners";
 
@@ -59,5 +58,61 @@ export const ACADEMIC_PARTNERS: Partner[] = [
   {
     name: "University of Michigan-Dearborn",
     src: "/images/UMDearborn_vertical.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture23.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture24.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture25.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture30.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture29.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture3.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture28.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture4.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture31.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture32.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture33.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture38.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture37.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture6.png"
   }
 ];

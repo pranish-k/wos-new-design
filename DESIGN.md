@@ -345,10 +345,27 @@ Any hand-rolled button sitting beside it needs the same padding, or they render 
 
 ### Treatment
 - **No rounded corners.** Straight edges read as authoritative.
-- **No drop shadows.**
+- **No drop shadows,** with exactly one exception: the partner logo wall. See below.
 - Dark overlays for legibility: `bg-surface-deep/85`, never a flat opaque colour.
 - Image placeholders behind loading photos are `bg-wos-slate`, not a colour.
 - Crop anchoring matters: the homepage hero uses `object-top` because the container runs taller than the 4:3 source and a centre crop cuts off heads.
+
+### The partner logo wall is the one exception to no-box and no-shadow
+`components/PartnerWall.tsx` lays logos as white tiles with `shadow-sm`, six across, on a
+`surface-tint` section. This breaks two rules on purpose and nothing else on the site may.
+
+The reasoning: a logo wall is not content in a container. Every mark is a different shape,
+colour, weight and aspect ratio, and most are drawn to sit on white. On bare tint they
+fight each other and the darker marks read as heavier than the lighter ones, which says
+something about the partners that is not true. A uniform tile is what makes eighty-odd
+unrelated logos scan as one set.
+
+Two conditions on the exception:
+- **The section behind it must be `surface-tint`.** On white the tiles disappear and the
+  shadow becomes the only separation, which is the cheap look the rule exists to prevent.
+  Both partner pages therefore tint the wall section and leave the CTA below it plain, so
+  no two tinted blocks end up adjacent.
+- **`shadow-sm` and no more.** Anything heavier reads as a SaaS card.
 
 ### Portraits
 - Every person photo is a 1200x1200 WebP at `/images/people/<slug>.webp`, written by `tools/people-image.mjs`. Never reference a portrait by its original filename.
@@ -380,6 +397,7 @@ Any hand-rolled button sitting beside it needs the same padding, or they render 
 | Every section `py-20` | Flat rhythm | Vary per §5 |
 | A full box drawn around content | Decoration pretending to be structure | The weight ladder, §6 |
 | Two `surface-tint` blocks in a row | They merge into one oversized block | Put a level 2 or 3 section between |
+| A drop shadow anywhere but the partner wall | Reads as a SaaS card; the wall earns it, nothing else does | Separate with fill, spacing and type |
 | Two dark sections back to back | Reads as one oversized block with a gap in it | Break with a light section |
 
 

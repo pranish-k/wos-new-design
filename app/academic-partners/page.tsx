@@ -28,14 +28,15 @@ export default function Page() {
         </div>
       </header>
 
-      <section className="py-16">
+      {/* Tinted on purpose: the white logo tiles need a ground to sit on. */}
+      <section className="bg-surface-tint py-16">
         <div className="mx-auto max-w-6xl px-6">
           <Eyebrow label="Academic partners" />
           <PartnerWall partners={ACADEMIC_PARTNERS} />
         </div>
       </section>
 
-      <section className="bg-surface-tint py-16">
+      <section className="py-16">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 md:flex-row md:items-center md:justify-between">
           <h2 className="max-w-xl font-heading text-[28px] font-semibold leading-[1.15] text-ink">
             Interested in partnering with WOS?

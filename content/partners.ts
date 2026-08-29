@@ -1,10 +1,14 @@
 // Corporate partner logos, from /corporate-partners/ on the live site.
 //
 // Names are recovered from the filenames because the live markup carries no alt text on
-// any of them. 19 further logos are on the live page and are not here: their files are
-// named Picture1.png through Picture24.png and nothing on the page identifies the
-// company, so there is no way to write honest alt text for them. They need naming by
-// someone who knows the account list. See PROGRESS.md.
+// any of them. The wall is complete: every logo the live page shows is here.
+//
+// 18 of them carry name: "" - files named Picture1.png through Picture24.png, plus
+// RR-logo.png and images.png, where nothing on the live page identifies the company. An
+// empty name renders as alt="" so a screen reader skips the image rather than announcing
+// a filename. They are visible to sighted visitors and invisible to assistive technology,
+// which is the honest trade until someone supplies the account list. Filling in a name
+// here is all it takes to fix one. See PROGRESS.md.
 
 export type Partner = { name: string; src: string };
 
@@ -54,7 +58,7 @@ export const PARTNERS: Partner[] = [
     src: "/images/cropped-bellcreativeco_plain_500px-2.png"
   },
   {
-    name: "biotest AG from nature to life@2x",
+    name: "Biotest",
     src: "/images/biotest-AG-from-nature-to-life@2x.png"
   },
   {
@@ -170,7 +174,7 @@ export const PARTNERS: Partner[] = [
     src: "/images/J-Crew.png"
   },
   {
-    name: "Jewish Theological Seminary scaled 1",
+    name: "The Jewish Theological Seminary",
     src: "/images/Jewish-Theological-Seminary-scaled-1.jpg"
   },
   {
@@ -280,5 +284,81 @@ export const PARTNERS: Partner[] = [
   {
     name: "Weill Cornell Medicine",
     src: "/images/Weill-Cornell-Medicine.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture1.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture15.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture5-2.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture24.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture9.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture10.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture4-1.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture11.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture13.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture14.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture16.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture5.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture17.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture18.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture19.png"
+  },
+  {
+    name: "",
+    src: "/images/RR-logo.png"
+  },
+  {
+    name: "",
+    src: "/images/Picture21.png"
+  },
+  {
+    name: "",
+    src: "/images/images.png"
+  },
+  {
+    name: "",
+    src: "/images/logo-primary.svg"
   }
 ];
