@@ -85,6 +85,10 @@ export const NAV: NavNode[] = [
         kind: "group",
         label: "Other Services",
         children: [
+          // Leads the grouping rather than sitting beside it. Note the label lands one
+          // row above "Educational Services" and two columns from "Managed Service
+          // Center", which is a different page with 0% shared copy.
+          { kind: "link", label: "Managed Services", href: "/managedservices/" },
           {
             kind: "group",
             label: "Educational Services",
@@ -109,10 +113,6 @@ export const NAV: NavNode[] = [
           { kind: "link", label: "Research", href: "/langer-arc/" },
         ],
       },
-      // A sibling of the two groupings rather than inside either: it is an umbrella
-      // offering, not a consulting-to-hire line or an "other" service. Note the name sits
-      // one row away from "Managed Service Center", which is a different page.
-      { kind: "link", label: "Managed Services", href: "/managedservices/" },
     ],
   },
   { kind: "link", label: "News & Events", href: "/blog/" },
