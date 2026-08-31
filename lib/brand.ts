@@ -44,3 +44,18 @@ export const SOCIAL = [
   { name: "Instagram", href: "https://www.instagram.com/wforceorg/" },
   { name: "YouTube", href: "https://www.youtube.com/@workforceopportunityservic7284" },
 ] as const;
+
+/**
+ * The site's own origin, used for canonical metadata, og:image and the sitemap.
+ *
+ * Not a bare constant, because hardcoding wforce.org breaks every preview deploy: the
+ * share card and the sitemap would point at the live WordPress site rather than at the
+ * deployment under review, so a preview link shared for feedback would render the old
+ * site. Vercel sets VERCEL_URL per deployment and VERCEL_ENV to distinguish production
+ * from a preview; NEXT_PUBLIC_SITE_URL overrides both for anywhere that is neither.
+ */
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL && process.env.VERCEL_ENV !== "production"
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://wforce.org");

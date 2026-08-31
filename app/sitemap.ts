@@ -1,6 +1,7 @@
 import type { MetadataRoute } from "next";
 import { POSTS } from "@/content/posts";
 import { listGroups, listPeople, personHref } from "@/lib/people/store";
+import { SITE_URL } from "@/lib/brand";
 
 // Kept as an explicit list rather than a filesystem walk: the routes here are the ones
 // that should be indexed, which is not the same as the ones that happen to build.
@@ -23,7 +24,7 @@ const ROUTES = [
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://wforce.org";
+  const base = SITE_URL;
   const groups = listGroups();
   const people = groups.flatMap((g) =>
     listPeople(g.id)

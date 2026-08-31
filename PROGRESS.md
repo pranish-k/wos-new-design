@@ -6,7 +6,7 @@ Plan in [BUILD-PLAN.md](BUILD-PLAN.md), rules in [CLAUDE.md](CLAUDE.md).
 
 ## Built
 
-Next 16.2.4 / React 19 / TS strict / Tailwind v4, zero runtime dependencies.
+Next 16.3.3 / React 19 / TS strict / Tailwind v4, zero runtime dependencies.
 Design system ported from the reference site so tokens needed no translation.
 
 - **Chrome.** `lib/nav.ts` drives a rebuilt three-level `Nav.tsx`, plus `Footer.tsx` and `WosMark.tsx`.
@@ -14,6 +14,12 @@ Design system ported from the reference site so tokens needed no translation.
 - **~50 routes.** Prose pages through `ContentPage`, the Managed Service Centers hub, `/financials` with 9 PDFs, both partner walls, five people groups, `/blog` plus 9 posts at their live slugs, `sitemap.ts`, `robots.ts`.
 - **People engine.** One JSON record per person, an image pipeline, and a dev-only admin. See below.
 - **`tools/audit.py`.** Compares the built site against the mirror route by route: copy carried, images carried, every internal link resolves. It has caught missing heroes, dropped homepage copy, a footer link to a page that had stopped generating, and its own percent-encoding blind spot.
+- **Shipping chrome.** A styled 404 and a route-level error boundary, the live site's own
+  512px WOS icon as `app/icon.png`, and a 1200x630 share card at `app/opengraph-image.png`
+  composed by `tools/og-image.mjs`. `robots.ts` disallows `/admin/` and `/api/`.
+- **The site origin is derived, not hardcoded.** `SITE_URL` in `lib/brand.ts` resolves to
+  `wforce.org` in production and to `VERCEL_URL` on a preview, so a preview link's share
+  card and sitemap point at the deployment rather than at the live WordPress site.
 
 **Green:** build, lint, types. All six DESIGN.md §9 checks including check 6 (14 `--color-*` in built CSS). Zero broken internal links, zero `<img>` without alt, one h1 per page, no two same-fill sections adjacent. Mirror byte-identical.
 
@@ -58,6 +64,9 @@ Open decision 1 settled: all four boards have pages and header placement.
 - **Homepage:** partner logos on whitespace not in a grid, no arrow glyphs anywhere, service groupings as eyebrows under the Our Services h2, Approach numerals in red at 34px (red never carries small text on slate at 2.8:1, but 34px clears the large-text threshold), Our Impact as three counted figures on slate with no cards or icons. The final values are in the DOM from first paint, so they are correct with JavaScript off and a screen reader never sees the intermediate numbers; `prefers-reduced-motion` skips the animation.
 - **Partner walls show every logo:** corporate 87/87, academic 27/27, up from 67 and 13. White tiles with `shadow-sm` on a `surface-tint` section, four across at full width. **The one sanctioned exception to DESIGN.md's no-box and no-shadow rules**, recorded in §7 with its conditions: a logo wall is not content in a container, and on bare tint the darker marks read as heavier partners, which is not true. The section must be tinted or the tiles vanish, so both partner pages tint the wall and leave the CTA below it plain.
 - The wall grid reflows on track width, not breakpoints: `repeat(auto-fill,minmax(min(240px,100%),1fr))`. It steps down where content runs out of room rather than at three fixed sizes.
+- 52 orphaned images were removed in the audit: superseded WordPress headshots, duplicate
+  logo variants, and four `Picture*.png` that appear on no live partner page.
+  `public/images` went 45M to 27M, and the partner walls still measure 87/87 and 27/27.
 
 ## Open
 
@@ -75,5 +84,4 @@ Open decision 1 settled: all four boards have pages and header placement.
 
 - Open decisions 2, 3 and 5 in CLAUDE.md. Decisions 2 and 3 are now only about where the four unlinked pages go, since their content exists.
 - The USFCR Verified Vendor footer badge is not carried over.
-- `npm audit` reports a high-severity libvips advisory against the sharp bundled inside Next 16.2.4, not the one added here. Clearing it means Next 16.3.3.
 - **Not verified in a browser.** The Chrome extension has never connected, so §9's visual pass at 375/768/1440 and the keyboard walk through all three menu levels have not been run. Everything checkable from the built HTML was checked.

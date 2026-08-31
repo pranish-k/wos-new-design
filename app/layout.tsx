@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Montserrat, Lato } from "next/font/google";
 import "./globals.css";
-import { ORG, DESCRIPTION } from "@/lib/brand";
+import { ORG, DESCRIPTION, SITE_URL } from "@/lib/brand";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
 
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description: DESCRIPTION,
   // Without metadataBase, Next cannot resolve relative image paths and drops og:image
   // entirely, which is the failure mode where a share renders as a bare link.
-  metadataBase: new URL("https://wforce.org"),
+  metadataBase: new URL(SITE_URL),
   // No title or description here on purpose. Setting them would pin every page to the
   // homepage's, so sharing a service page would show the generic one. Left unset, Next
   // fills og:title and og:description from whatever each page resolved.
