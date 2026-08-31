@@ -68,6 +68,16 @@ Open decision 1 settled: all four boards have pages and header placement.
   logo variants, and four `Picture*.png` that appear on no live partner page.
   `public/images` went 45M to 27M, and the partner walls still measure 87/87 and 27/27.
 
+- **The header panels were rebuilt.** They had two problems, both visible in
+  `screenshot/header ss.png`. One `GROUP_HEADING` style was used at every depth, so a
+  grouping and the grouping inside it were pixel-identical, and it was a bare uppercase
+  label with no rule, which DESIGN.md §8 lists as an anti-pattern. And the panel was
+  anchored to the viewport, so Services' content sat at the far left while its trigger sat
+  middle-right with two thirds of the sheet empty.
+  Fixed by flattening "Other Services" away, giving every group a column with an `Eyebrow`
+  head, collecting loose links into one row beneath, and anchoring each panel's right edge
+  to its trigger on a `surface-tint` fill. All 33 hrefs unchanged.
+
 ## Open
 
 **Needs WOS or Pranish:**
@@ -82,6 +92,6 @@ Open decision 1 settled: all four boards have pages and header placement.
 
 **Still to do:**
 
-- Open decisions 2, 3 and 5 in CLAUDE.md. Decisions 2 and 3 are now only about where the four unlinked pages go, since their content exists.
+- Open decisions 2 and 3 in CLAUDE.md, now only about where the four unlinked pages go, since their content exists. Decision 5 is settled.
 - The USFCR Verified Vendor footer badge is not carried over.
 - **Not verified in a browser.** The Chrome extension has never connected, so §9's visual pass at 375/768/1440 and the keyboard walk through all three menu levels have not been run. Everything checkable from the built HTML was checked.

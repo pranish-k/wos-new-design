@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import WosMark from "@/components/WosMark";
+import { Eyebrow } from "@/components/Brand";
 import { DONATE, NAV, type NavGroup, type NavNode } from "@/lib/nav";
 import { ORG } from "@/lib/brand";
 
@@ -23,9 +24,6 @@ function isActive(pathname: string, href: string) {
 
 const ITEM_LINK =
   "block py-1.5 text-[15px] leading-[1.4] text-ink no-underline transition-colors hover:text-action-deep";
-
-const GROUP_HEADING =
-  "mb-1 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-muted";
 
 /** External links carry the affordance in the accessible name rather than in a glyph. */
 function externalProps(external?: boolean) {
@@ -56,10 +54,12 @@ function PanelLink({
 }
 
 /**
- * One column of a dropdown.
+ * A flat list of links.
  *
- * A group is a heading with an indented list, never a link. Six of these carry
- * href="#" on the live site, which a keyboard user lands on and cannot act on.
+ * Flat, not recursive: the tree is two levels below the bar since the "Other Services"
+ * wrapper came out, so a group inside a group no longer occurs. It used to render as a
+ * 12px indent under a heading styled identically to the one above it, which is what
+ * made the panel unreadable.
  */
 function PanelNodes({
   nodes,
@@ -76,11 +76,11 @@ function PanelNodes({
             <PanelLink node={node} onNavigate={onNavigate} />
           </li>
         ) : (
-          <li key={node.label} className="mt-4 first:mt-0">
-            <p className={GROUP_HEADING}>{node.label}</p>
-            <div className="border-l border-hairline pl-3">
-              <PanelNodes nodes={node.children} onNavigate={onNavigate} />
-            </div>
+          // Defensive: nothing in lib/nav.ts nests this deep any more, and the panel
+          // layout assumes it does not. Rendering the children inline keeps every leaf
+          // reachable if one is ever added back, rather than dropping it silently.
+          <li key={node.label}>
+            <PanelNodes nodes={node.children} onNavigate={onNavigate} />
           </li>
         ),
       )}
@@ -89,35 +89,51 @@ function PanelNodes({
 }
 
 /**
- * Columns when every direct child is a group, one list otherwise.
+ * Every group is a column, and the loose links share one row beneath them.
  *
- * Services is two groups and reads as two columns. About mixes plain links with Boards
- * and Partners, and splitting that into columns would break the reading order of the
- * links either side of them.
+ * One layout for all three panels rather than a branch on shape. The old version fell
+ * back to a single stacked list whenever a panel mixed links with groups, which is what
+ * made About one tall column and buried Services' headings inside it.
+ *
+ * Column heads use Eyebrow, so the uppercase label carries the accent rule. Without it
+ * they are the "uppercase label with no rule" that DESIGN.md lists as an anti-pattern,
+ * and six of them stacked in one panel is where that reads worst.
  */
 function Panel({ group, onNavigate }: { group: NavGroup; onNavigate: () => void }) {
-  const allGroups = group.children.every((c) => c.kind === "group");
-  if (!allGroups) {
-    return (
-      <div className="min-w-[240px]">
-        <PanelNodes nodes={group.children} onNavigate={onNavigate} />
-      </div>
-    );
-  }
+  const columns = group.children.filter((c) => c.kind === "group");
+  const loose = group.children.filter((c) => c.kind === "link");
+
   return (
-    <div className="flex gap-10">
-      {group.children.map((child) => (
-        <div key={child.label} className="min-w-[220px]">
-          <p className={GROUP_HEADING}>{child.label}</p>
-          <div className="border-l border-hairline pl-3">
-            <PanelNodes
-              nodes={(child as NavGroup).children}
-              onNavigate={onNavigate}
-            />
-          </div>
+    <>
+      {columns.length > 0 && (
+        <div className="flex gap-10">
+          {columns.map((child) => (
+            <div key={child.label} className="min-w-[220px]">
+              <Eyebrow label={child.label} />
+              {/* -mt-1 pulls the list up against Eyebrow's mb-4, which is tuned for
+                  body sections rather than for a dense menu. */}
+              <div className="-mt-1">
+                <PanelNodes nodes={child.children} onNavigate={onNavigate} />
+              </div>
+            </div>
+          ))}
         </div>
-      ))}
-    </div>
+      )}
+
+      {loose.length > 0 && (
+        <div
+          className={
+            columns.length > 0
+              ? "mt-6 flex flex-wrap gap-x-10 border-t border-hairline pt-5"
+              : "min-w-[220px]"
+          }
+        >
+          {loose.map((node) => (
+            <PanelLink key={node.href} node={node} onNavigate={onNavigate} />
+          ))}
+        </div>
+      )}
+    </>
   );
 }
 
@@ -219,9 +235,12 @@ export default function Nav() {
           <WosMark className="h-8 w-auto md:h-9" decorative priority />
         </Link>
 
+        {/* self-stretch here and on each trigger wrapper so a wrapper is as tall as the
+            bar. Without it the wrapper is only as tall as its button and the panel's
+            top-full lands halfway up the bar, over the bar's own bottom border. */}
         <nav
           aria-label="Main"
-          className="hidden flex-shrink-0 items-center gap-6 md:flex lg:gap-8"
+          className="hidden flex-shrink-0 items-center gap-6 md:flex md:self-stretch lg:gap-8"
         >
           {NAV.map((node, i) => {
             const active = hrefsOf(node).some((h) => isActive(pathname, h));
@@ -250,7 +269,7 @@ export default function Nav() {
             }
 
             return (
-              <div key={node.label} className="static">
+              <div key={node.label} className="relative flex items-center self-stretch">
                 <button
                   type="button"
                   ref={(el) => {
@@ -269,16 +288,22 @@ export default function Nav() {
                   </span>
                 </button>
 
-                {/* Anchored to the bar, not the item: the Services panel is wider than
-                    its trigger and would otherwise overflow the viewport on the right. */}
+                {/* Anchored by its right edge to the trigger, so it grows leftward.
+                    It used to span the bar, which left the Services panel's content at
+                    the far left while its trigger sat middle-right. Left-anchoring to
+                    the trigger is what would overflow; rightward there is always room,
+                    because the nav cluster sits right of centre.
+
+                    surface-tint rather than white with a border: a panel floating over
+                    the page needs a boundary, and DESIGN.md bans both a box around
+                    content and a shadow anywhere but the partner wall. A fill is what
+                    it prescribes instead. */}
                 <div
                   id={`nav-panel-${i}`}
                   hidden={open !== i}
-                  className="absolute left-0 right-0 top-full border-b border-hairline bg-white"
+                  className="absolute right-0 top-full mt-px w-max max-w-[calc(100vw-3rem)] bg-surface-tint px-8 py-7"
                 >
-                  <div className="mx-auto max-w-6xl px-6 py-8">
-                    <Panel group={node} onNavigate={close} />
-                  </div>
+                  <Panel group={node} onNavigate={close} />
                 </div>
               </div>
             );

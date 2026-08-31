@@ -5,8 +5,10 @@
 // the live site is inconsistent about them (/team and /financials have none, everything
 // else does) and normalising here would silently change 30 URLs.
 //
-// The tree is data rather than nested JSX because it is three levels deep and open
-// decision 5 (menu depth) is unresolved, so it will change. Nested JSX would rot.
+// The tree is data rather than nested JSX because the grouping under Services has been
+// reorganised twice already and nested JSX would rot. It is two levels below the bar:
+// open decision 5 was about Services being four deep including the bar, and flattening
+// it away is what settled that. Every href below is still the live one.
 
 import { CAREERS_URL, TALENT_COMMUNITY_URL } from "@/lib/brand";
 
@@ -38,12 +40,13 @@ export type NavGroup = {
 export type NavNode = NavLink | NavGroup;
 
 export const NAV: NavNode[] = [
+  // Groups first, then the loose links. Panel renders every group as a column and
+  // collects the loose links into one row beneath them, so contiguous is not cosmetic:
+  // interleaving them would scatter the row.
   {
     kind: "group",
     label: "About",
     children: [
-      { kind: "link", label: "Our Story", href: "/our-story/" },
-      { kind: "link", label: "Management Team", href: "/team" },
       {
         kind: "group",
         label: "Boards",
@@ -62,6 +65,8 @@ export const NAV: NavNode[] = [
           { kind: "link", label: "Academic Partners", href: "/academic-partners/" },
         ],
       },
+      { kind: "link", label: "Our Story", href: "/our-story/" },
+      { kind: "link", label: "Management Team", href: "/team" },
       { kind: "link", label: "Locations", href: "/locations/" },
       { kind: "link", label: "Financials", href: "/financials" },
       { kind: "link", label: "FAQs", href: "/faqs/" },
@@ -71,6 +76,11 @@ export const NAV: NavNode[] = [
     kind: "group",
     label: "Services",
     children: [
+      // The live menu wraps the last three of these in an "Other Services" grouping,
+      // which put Educational and Advisory Services a level below Consulting to Hire
+      // and made the two heading levels indistinguishable in the panel. Dropping the
+      // wrapper makes all three peers. It is the only structural departure from the
+      // live menu here, and it is what settled open decision 5.
       {
         kind: "group",
         label: "Consulting to Hire Services",
@@ -83,36 +93,30 @@ export const NAV: NavNode[] = [
       },
       {
         kind: "group",
-        label: "Other Services",
+        label: "Educational Services",
         children: [
-          // Leads the grouping rather than sitting beside it. Note the label lands one
-          // row above "Educational Services" and two columns from "Managed Service
-          // Center", which is a different page with 0% shared copy.
-          { kind: "link", label: "Managed Services", href: "/managedservices/" },
+          { kind: "link", label: "Overview", href: "/educational-services/" },
           {
-            kind: "group",
-            label: "Educational Services",
-            children: [
-              { kind: "link", label: "Overview", href: "/educational-services/" },
-              {
-                kind: "link",
-                label: "Professional Development Fundamentals",
-                href: "/professional-development-fundamentals",
-              },
-              { kind: "link", label: "Professional Development", href: "/professional-development/" },
-            ],
+            kind: "link",
+            label: "Professional Development Fundamentals",
+            href: "/professional-development-fundamentals",
           },
-          {
-            kind: "group",
-            label: "Advisory Services",
-            children: [
-              { kind: "link", label: "Overview", href: "/advisory-services/" },
-              { kind: "link", label: "AI Solutions", href: "/ai-services/" },
-            ],
-          },
-          { kind: "link", label: "Research", href: "/langer-arc/" },
+          { kind: "link", label: "Professional Development", href: "/professional-development/" },
         ],
       },
+      {
+        kind: "group",
+        label: "Advisory Services",
+        children: [
+          { kind: "link", label: "Overview", href: "/advisory-services/" },
+          { kind: "link", label: "AI Solutions", href: "/ai-services/" },
+        ],
+      },
+      // Neither belongs under any of the three headings above. Note "Managed Services"
+      // sits a column away from "Managed Service Center", which is a different page
+      // with 0% shared copy.
+      { kind: "link", label: "Managed Services", href: "/managedservices/" },
+      { kind: "link", label: "Research", href: "/langer-arc/" },
     ],
   },
   { kind: "link", label: "News & Events", href: "/blog/" },

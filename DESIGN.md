@@ -217,22 +217,26 @@ Interior heroes carry the same mark with the rule *below* the label. See `Interi
 ## 4. Navigation
 
 The one place this site diverges from the center site by more than a detail.
-The center has four flat links; this site has five top-level items, three levels of nesting, and six grouping labels.
+The center has four flat links; this site has four top-level items and five grouping labels.
+It had six grouping labels across three levels until "Other Services" was flattened away, which is what settled open decision 5.
 
 ### The bar
 
 - Sticky, white, 72px tall, 1px `hairline` bottom border, `max-w-6xl`.
 - The full WOS lockup at 36px. No adjacent name text: the wordmark is in the asset.
-- Five top-level items plus a right-aligned Donate button in `action-deep`.
+- Four top-level items plus a right-aligned Donate button in `action-deep`. About, Services and Join Us open panels; News & Events is a plain link.
 - Active state is a 2px `border-action` underline, and a top-level item counts as active when any page beneath it is.
 
 ### The dropdowns
 
-- The tree is data, in `lib/nav.ts`, not nested JSX. It is three levels deep and open decision 5 may change it.
-- A panel spans the full width of the bar rather than sitting under its trigger, because the Services panel is wider than the word "Services" and would otherwise run off the right edge.
-- Grouping labels render as headings in `ink-muted` uppercase, never as links. The live site gives all six `href="#"`, which lands a keyboard user on a target that does nothing. Do not reproduce that.
-- Nesting is shown with a 1px `hairline` left rule and 12px of padding, not with indentation alone.
-- Columns only when every direct child of a top-level item is a group, which is true of Services and of nothing else. About mixes plain links with Boards and Partners, and splitting it into columns would break the reading order of the links either side of them.
+- The tree is data, in `lib/nav.ts`, not nested JSX. It is two levels below the bar.
+- **One layout for every panel: each group is a column, and the loose links share one row beneath them,** separated by a `hairline`. Not a branch on shape. The previous version fell back to a single stacked list whenever a panel mixed links with groups, which made About one tall column and buried the Services headings inside it.
+- **Column heads use `Eyebrow`,** so the uppercase label carries the accent rule. A bare uppercase label is the §8 anti-pattern, and six of them stacked in one panel is where it reads worst.
+- **A panel is anchored by its right edge to its trigger** and grows leftward. It used to span the bar, which left the Services content at the far left while its trigger sat middle-right, with two thirds of the sheet empty. *Left*-anchoring to the trigger is what would overflow; rightward there is always room, because the nav cluster sits right of centre.
+- **The panel is filled `surface-tint`, with no border and no shadow.** A panel floating over the page needs a boundary, and §8 bans both a box around content and a shadow anywhere but the partner wall. A fill is what §8 prescribes instead, and a tinted sheet hanging off the white bar separates cleanly from a white page.
+- The trigger wrapper and the desktop `nav` both take `self-stretch` so a wrapper is as tall as the bar. Without it `top-full` lands halfway up the bar, over its own bottom border.
+- Grouping labels render as headings, never as links. The live site gives all six `href="#"`, which lands a keyboard user on a target that does nothing. Do not reproduce that.
+- **There is no nested-group styling any more,** because there are no nested groups. The old 1px left rule and 12px indent encoded depth that no longer exists. `PanelNodes` still renders a nested group's children inline rather than dropping them, so adding one back stays reachable, but it will not read as nested.
 
 ### Keyboard
 
@@ -246,7 +250,7 @@ This is the part most likely to ship broken, and type checking catches none of i
 ### Mobile
 
 - Full-screen white overlay, not a dropdown, with body scroll locked and Escape wired.
-- One accordion level. Nested groups render already expanded, because three taps to reach a service page is the usability problem, not the solution to it.
+- One accordion level, and now that the tree is two levels deep it is the only level there is. Flattening "Other Services" removed a tap from every leaf under Educational and Advisory Services, which is the touch-device complaint open decision 5 was actually about.
 
 All logo references go through `components/WosMark.tsx`.
 It is the only file that touches the asset, so swapping in a real SVG lockup is a one-file change.

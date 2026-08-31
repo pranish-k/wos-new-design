@@ -73,8 +73,8 @@ Hub pages are load bearing: empty one and everything it links to becomes unreach
 
 ## Open decisions
 
-Five questions are unresolved.
-Do not silently resolve any of them.
+Two of the five remain unresolved.
+Do not silently resolve either of them.
 If a task depends on one, raise it.
 
 1. ~~**The four boards are handled four different ways.**~~ **Settled.**
@@ -91,8 +91,17 @@ If a task depends on one, raise it.
 4. **Person page URLs are inconsistent.**
    19 of 29 person cards link to top level duplicate slugs while the sitemap treats the nested paths as canonical.
    This governs 19 redirects and must be settled before person pages are built.
-5. **The Services menu is four levels deep** including the top bar.
-   Preserved for parity, but deep enough to be a usability problem on touch devices.
+5. ~~**The Services menu is four levels deep** including the top bar.~~ **Settled.**
+   The "Other Services" grouping was flattened away, so Educational Services and Advisory
+   Services are now peers of Consulting to Hire Services and the menu is two levels below
+   the bar. Nothing moved: all 33 hrefs are unchanged and only the wrapper label is gone.
+   This was the fix the decision asked for. The complaint was about touch devices, and the
+   mobile overlay renders the same tree, so it removed a tap from every leaf under
+   Educational and Advisory Services.
+   It also fixed the desktop panel, where the wrapper put two heading levels in the same
+   style and made "OTHER SERVICES" and "EDUCATIONAL SERVICES" indistinguishable.
+   **This is the one structural departure from the live menu.** The live site does have an
+   "Other Services" label; we do not.
 
 ### The unreachable pages are launch blockers
 
