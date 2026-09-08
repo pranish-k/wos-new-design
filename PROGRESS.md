@@ -54,6 +54,12 @@ Open decision 1 settled: all four boards have pages and header placement.
 
 Three things WOS is doing that the mirror has no record of, plus the homepage recomposition they forced.
 
+**Each of the three is its own homepage section**, not three columns of one band.
+The first version wrapped them in an `Eyebrow` reading "Partnerships and centers" and an h2 reading "What we are building next".
+That h2 was written here rather than carried from the live site, and every other heading on the page is the client's own words, so it was an invented marketing line sitting among seven extracted ones.
+Both the umbrella heading and the three-column grid are gone. Each item now carries its own h2, its own fill and its own `status` eyebrow, at `py-16` so the run of three reads as related without adding three more `py-20`s to a page that was just rescued from a flat rhythm.
+Fill alternates from the index rather than living on the record, so a fourth entry stays legal on its own.
+
 - **WOS-Hunter College AI & Digital Operations Partnership.** Hand-authored from the executive overview WOS supplied, at `/wos-hunter-college-partnership/`, in the header under About > Partners and in the sitemap in the same change. The Hunter mark joins the academic partner wall. It is the one entry there not from the live site.
 - **Center for Imagination, Reflective Development, and AI Futures**, at `/center-for-imagination/`, eyebrow "Proposed". **Every funder name, every dollar figure and the whole five-year budget table are deliberately absent.** The source is a fundraising document naming roughly twenty foundations, technology and entertainment companies and federal agencies as *targets*; none has agreed, and publishing the list would state an intention as a fact and tell each named party the size of the ask before it is made. The proposed organisational divisions are out for a related reason: five named laboratories imply an institution that does not exist.
 - **Center for Strategic Learning and Leadership for the Digital Age** is named on the homepage and links out to its own deployment at `https://new-center-pi.vercel.app/`. External, `noopener noreferrer`, new tab, following the `CAREERS_URL` convention. The link goes there rather than to a summary page here: two pages describing one center would compete for the same search result, which is the problem recorded below for `/staff-augmentation/`. Note that deployment's chrome is Teachers College branded, which is consistent with the credit on the card and is why the card carries it.

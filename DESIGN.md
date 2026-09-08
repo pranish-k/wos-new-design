@@ -36,7 +36,7 @@ Brand name strings live in `lib/brand.ts` and nowhere else.
 ### One sanctioned Teachers College credit
 
 The chrome carries no co-brand, and that part of the rule is unchanged.
-The single exception is the homepage partnerships band, which names the Center for Strategic Learning and Leadership for the Digital Age, a WOS sub-brand center, and states that it runs in partnership with Teachers College, Columbia University.
+The single exception is the homepage section for the Center for Strategic Learning and Leadership for the Digital Age, a WOS sub-brand center, which states that it runs in partnership with Teachers College, Columbia University.
 
 The compliant version was to name the Center without its institution.
 A center with no institution behind it reads as a marketing label rather than as a thing that exists, which is the opposite of the reason for listing it at all.
@@ -499,9 +499,9 @@ grep -rniE 'font-serif|wordmark|trajan|georgia' app components lib \
 #    appear is the co-branding line, which always reads "in partnership with".
 #    A check that flags the site's own history gets ignored.
 #
-#    Narrowed for the one sanctioned occurrence, §0. The homepage partnerships band
-#    names the Center for Strategic Learning and Leadership for the Digital Age and
-#    credits its Teachers College partnership. What the check was written to catch is
+#    Narrowed for the one sanctioned occurrence, §0. The homepage section for the
+#    Center for Strategic Learning and Leadership for the Digital Age credits its
+#    Teachers College partnership. What the check was written to catch is
 #    this site's own CHROME being co-branded, and chrome renders on every route, so
 #    5a is a stronger version of the original: a co-branded header or footer returns
 #    every page, and it names them.

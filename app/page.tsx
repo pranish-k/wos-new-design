@@ -7,7 +7,7 @@ import PartnerWall from "@/components/PartnerWall";
 import ServiceCard from "@/components/ServiceCard";
 import { HOME_PROSE } from "@/content/home-prose";
 import { CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES } from "@/content/home-sections";
-import { PARTNERSHIPS } from "@/content/partnerships";
+import { PARTNERSHIPS, type Partnership } from "@/content/partnerships";
 import { ORG, TAGLINE } from "@/lib/brand";
 
 const APPROACH = [
@@ -61,6 +61,62 @@ function ProseSection({ heading, tint }: { heading: string; tint?: boolean }) {
             </p>
           ))}
         </div>
+      </FadeIn>
+    </section>
+  );
+}
+
+/**
+ * One partnership or center, as a homepage section in its own right.
+ *
+ * Single column rather than the two-column ProseSection shape above. Those sections
+ * carry one long paragraph each; these carry two or three sentences, which would leave
+ * the wide right column looking half empty beside a display heading.
+ *
+ * `dark` alternates from the call site rather than living on the record, so adding a
+ * fourth entry keeps the fills legal without anyone having to think about it. The run
+ * starts tint, and whether it ends tint or dark the section after it is white either way.
+ *
+ * The heading is smaller than the page's other h2s at 26/32 against 30/38. These are long
+ * proper names, not short headings: the Center's runs to 62 characters and would take
+ * three lines at 38px.
+ */
+function PartnershipSection({ item, dark }: { item: Partnership; dark: boolean }) {
+  return (
+    <section className={dark ? "bg-surface-dark py-16" : "bg-surface-tint py-16"}>
+      <FadeIn className="mx-auto max-w-6xl px-6">
+        <Eyebrow label={item.status} dark={dark} />
+        <h2
+          className={`max-w-3xl font-heading text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] md:text-[32px] ${
+            dark ? "text-white" : "text-ink"
+          }`}
+        >
+          {item.title}
+        </h2>
+        <p
+          className={`mt-5 max-w-2xl text-[17px] leading-[1.65] ${
+            dark ? "text-white/75" : "text-ink-muted"
+          }`}
+        >
+          {item.body}
+        </p>
+        {item.href && (
+          <Link
+            href={item.href}
+            {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+            aria-label={item.external ? `${item.title} (opens in a new tab)` : undefined}
+            /* Red is 2.8:1 on slate, so on dark the link is white and carries an
+               underline to stay distinguishable from the body copy without colour. On
+               tint action-deep is 5.06:1 and needs no underline to be found. */
+            className={`mt-6 inline-block font-heading text-[15px] font-semibold ${
+              dark
+                ? "text-white underline underline-offset-[5px] hover:no-underline"
+                : "text-action-deep no-underline hover:text-action-deeper"
+            }`}
+          >
+            {item.external ? "Visit the Center" : "Read more"}
+          </Link>
+        )}
       </FadeIn>
     </section>
   );
@@ -177,52 +233,18 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      {/* 6. Partnerships and centers. Three unlike things: a live partnership with a page
-             behind it, a center whose site is not deployed, and a proposal. The status
-             label above each one is what keeps that honest, and it is why these are three
-             columns of type rather than three identical cards.
-             No Hunter logo here. It is purple and would not read on slate; it lives
-             on the white tiles of the academic partner wall and on its own page. */}
-      <section className="bg-surface-dark py-24">
-        <FadeIn className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="Partnerships and centers" dark />
-          <h2 className="max-w-3xl font-heading text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-white md:text-[38px]">
-            What we are building next
-          </h2>
-          <ul className="m-0 mt-14 grid list-none grid-cols-1 gap-12 p-0 md:grid-cols-3 md:gap-10">
-            {PARTNERSHIPS.map((item) => (
-              <li key={item.title}>
-                <span className="block h-0.5 w-6 bg-accent" />
-                <p className="mt-3 font-heading text-[11px] font-bold uppercase tracking-[0.18em] text-white/85">
-                  {item.status}
-                </p>
-                <h3 className="mt-3 font-heading text-[20px] font-semibold leading-[1.25] text-white">
-                  {item.title}
-                </h3>
-                <p className="mt-3 text-[15px] leading-[1.6] text-white/75">{item.body}</p>
-                {/* Red is 2.8:1 on slate, so the link is white and carries an underline
-                    to stay distinguishable from the body copy without colour. */}
-                {item.href && (
-                  <Link
-                    href={item.href}
-                    {...(item.external
-                      ? { target: "_blank", rel: "noopener noreferrer" }
-                      : {})}
-                    aria-label={
-                      item.external ? `${item.title} (opens in a new tab)` : undefined
-                    }
-                    className="mt-5 inline-block font-heading text-[15px] font-semibold text-white underline underline-offset-[5px] hover:no-underline"
-                  >
-                    {item.external ? "Visit the Center" : "Read more"}
-                  </Link>
-                )}
-              </li>
-            ))}
-          </ul>
-        </FadeIn>
-      </section>
+      {/* 6, 7 and 8. One section each, named for what each thing actually is.
+             They were one band under the heading "What we are building next", which was
+             written here rather than carried from the live site. Every other heading on
+             this page is the client's own words and this one was not, which is the
+             promotional register DESIGN.md §1 rules out.
+             No Hunter logo in any of them. It is purple, it would not read on slate, and
+             it lives on the white tiles of the academic partner wall and on its own page. */}
+      {PARTNERSHIPS.map((item, i) => (
+        <PartnershipSection key={item.title} item={item} dark={i % 2 === 1} />
+      ))}
 
-      {/* 7. Our approach. White rather than tint: its tiles are slate, and a tinted
+      {/* 9. Our approach. White rather than tint: its tiles are slate, and a tinted
              section holding dark tiles directly under the dark section above would read
              as two dark blocks with a grey seam between them. */}
       <section className="py-20">
@@ -249,7 +271,7 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      {/* 8. Our History, merged with the partner wall it used to sit six sections away
+      {/* 10. Our History, merged with the partner wall it used to sit six sections away
              from. The copy names Parsons, J&J, GE, HP, Prudential, BNY Mellon, American
              Airlines and JetBlue, and the wall below shows those marks, so running one
              into the other makes the wall evidence rather than decoration.
@@ -287,7 +309,7 @@ export default function Home() {
         </FadeIn>
       </section>
 
-      {/* 9. */}
+      {/* 11. */}
       <section className="bg-surface-dark py-16">
         <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 md:flex-row md:items-center md:justify-between">
           <h2 className="max-w-xl font-heading text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] text-white md:text-[34px]">

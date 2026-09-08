@@ -1,10 +1,14 @@
 // The three partnerships and centers shown on the homepage.
 //
-// They are not equals and the section must not present them as equals: Hunter is a live
+// One homepage SECTION each, not three columns of one band. They were a band under an
+// invented heading, which put a marketing line on a page whose every other heading is
+// the client's own words.
+//
+// They are not equals and the page must not present them as equals: Hunter is a live
 // partnership with a page behind it, the Center for Strategic Learning is an existing WOS
-// center whose site is not deployed yet, and CIRDAF is a proposal. The `status` line is
-// what carries that difference, and it is the reason this is a list of three unlike
-// things rather than three identical cards.
+// center with its own deployment, and CIRDAF is a proposal. `status` is what carries that
+// difference. It renders as each section's eyebrow, so the distinction is the first thing
+// read rather than something inferred from the copy.
 //
 // `href: null` means the item is named but not linked. A card that links nowhere is
 // honest; a card that links to a page which does not exist is not.

@@ -207,7 +207,7 @@ The reference site is a WOS sub-brand in partnership with Teachers College, and 
 This site is the main WOS site and its chrome must not carry it.
 
 **There is exactly one sanctioned exception, and it is not the chrome.**
-The homepage partnerships band names the Center for Strategic Learning and Leadership for the Digital Age and credits its Teachers College partnership, because that is the Center's real name and naming it without its institution reads as a marketing label rather than as something that exists.
+The homepage section for the Center for Strategic Learning and Leadership for the Digital Age names it and credits its Teachers College partnership, because that is the Center's real name and naming it without its institution reads as a marketing label rather than as something that exists.
 The Center is the subject of that sentence and WOS never is.
 The strings live in `content/partnerships.ts`, the rule is written out in `DESIGN.md` §0, and `DESIGN.md` §9 check 5 is split into 5a and 5b to enforce both halves: the phrase reaches the homepage and no other route, and on the homepage it is attached to the Center.
 Do not remove that credit as a brand error. It was a decision.
