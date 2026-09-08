@@ -33,6 +33,23 @@ Practically:
 
 Brand name strings live in `lib/brand.ts` and nowhere else.
 
+### One sanctioned Teachers College credit
+
+The chrome carries no co-brand, and that part of the rule is unchanged.
+The single exception is the homepage partnerships band, which names the Center for Strategic Learning and Leadership for the Digital Age, a WOS sub-brand center, and states that it runs in partnership with Teachers College, Columbia University.
+
+The compliant version was to name the Center without its institution.
+A center with no institution behind it reads as a marketing label rather than as a thing that exists, which is the opposite of the reason for listing it at all.
+
+Two conditions on the exception.
+
+**The Center is the subject of the sentence, never WOS.**
+"A WOS center, in partnership with Teachers College, Columbia University" is the sanctioned form.
+"Workforce Opportunity Services, in partnership with Teachers College" is the sentence that must never be written, and §9 check 5b exists to catch precisely that.
+
+**It appears on the homepage and nowhere else.**
+§9 check 5a fails if the phrase reaches any other built route, which is what a co-branded header or footer would do.
+
 ---
 
 ## 1. Design philosophy
@@ -40,7 +57,7 @@ Brand name strings live in `lib/brand.ts` and nowhere else.
 The reference bar is **Columbia GSAPP, MIT Media Lab, Harvard GSD**, not a SaaS startup or a Squarespace template.
 
 That means:
-- **Editorial, not promotional.** Space, type, and restraint do the work, not gradients, shadows, or animations.
+- **Editorial, not promotional.** Space, type, and restraint do the work, not gradients, shadows, or decorative animation. Motion exists here but it is a narrow, documented set, and §10 is the boundary around it rather than a relaxation of this line.
 - **Typographic hierarchy is the design.** If the layout collapsed and you only had text, it should still communicate authority.
 - **Images support the content.** They are never decoration. Every image earns its space or it does not appear.
 - **Earned complexity.** A page should feel considered, not busy. One strong visual move per section, then get out of the way.
@@ -229,14 +246,36 @@ It had six grouping labels across three levels until "Other Services" was flatte
 
 ### The dropdowns
 
+This menu was built three times.
+The record matters more than the rules, because the first two both followed the rules and both were rejected.
+
+1. **Columns, an `Eyebrow` accent rule per column head, `surface-tint` fill, anchored to the trigger's right edge.** Every choice was defensible against this document. Together they read as a designed object rather than a menu. Rejected as "pretty but impractical".
+2. **A conventional single-column white dropdown.** Rejected too.
+3. **A bordered card of columns divided by vertical rules**, built to a reference the client chose (`screenshot/image.png`, the Browserbase header). This is what shipped.
+
+The lesson worth keeping: **§2 to §8 are written for page content, and a menu is chrome.**
+Applying the page rules literally to the nav is what produced version 1.
+
 - The tree is data, in `lib/nav.ts`, not nested JSX. It is two levels below the bar.
-- **One layout for every panel: each group is a column, and the loose links share one row beneath them,** separated by a `hairline`. Not a branch on shape. The previous version fell back to a single stacked list whenever a panel mixed links with groups, which made About one tall column and buried the Services headings inside it.
-- **Column heads use `Eyebrow`,** so the uppercase label carries the accent rule. A bare uppercase label is the §8 anti-pattern, and six of them stacked in one panel is where it reads worst.
-- **A panel is anchored by its right edge to its trigger** and grows leftward. It used to span the bar, which left the Services content at the far left while its trigger sat middle-right, with two thirds of the sheet empty. *Left*-anchoring to the trigger is what would overflow; rightward there is always room, because the nav cluster sits right of centre.
-- **The panel is filled `surface-tint`, with no border and no shadow.** A panel floating over the page needs a boundary, and §8 bans both a box around content and a shadow anywhere but the partner wall. A fill is what §8 prescribes instead, and a tinted sheet hanging off the white bar separates cleanly from a white page.
-- The trigger wrapper and the desktop `nav` both take `self-stretch` so a wrapper is as tall as the bar. Without it `top-full` lands halfway up the bar, over its own bottom border.
+- **The panel is a bordered white card**, positioned against the bar rather than the trigger, so all three panels share one position. `right-6` matches the bar's `px-6`, putting the card's right edge where Donate ends.
+- **Groups become labelled columns, divided by `divide-x divide-hairline`.** All loose links collect into one unlabelled column whose position follows source order: About opens with a link so its loose column leads with Our Story, Services opens with a group so Managed Services and Research trail. One rule, correct in both.
+- The unlabelled column holds an empty label line so every column's first link shares a baseline. Join Us has no labelled column to align with, so it holds nothing.
+- **Two tiers, not three.** The reference puts a one-line description under each item. We have no copy for that: meta descriptions average 155 characters and several are junk, page opening lines run 90 to 137, and three pages have none. Writing them was declined. **If WOS ever supplies ~20 short lines, the third tier is the single biggest improvement available here.**
+- Column widths are content-driven; `min-w-[170px]` is only a floor. "Professional Development Fundamentals" sets the card's width. At `px-8` and a 190px floor, Services' four columns came to ~1153px against 1104px of container and spilled past the left edge, so the spacing is `px-6` inside `p-6`.
+- Items are `text-[15px]` `ink` hovering to `action-deep`, with **no hover fill**, which competed with the dividers.
 - Grouping labels render as headings, never as links. The live site gives all six `href="#"`, which lands a keyboard user on a target that does nothing. Do not reproduce that.
-- **There is no nested-group styling any more,** because there are no nested groups. The old 1px left rule and 12px indent encoded depth that no longer exists. `PanelNodes` still renders a nested group's children inline rather than dropping them, so adding one back stays reachable, but it will not read as nested.
+- The mobile overlay is untouched by all of this. It keeps `PanelNodes`, the recursive heading-and-indent list, because an accordion has no columns to put a subtree in.
+
+#### Two sanctioned exceptions, both here
+
+**The border.** The panel is white with a 1px `hairline` border and no shadow.
+§8 bans a 1px light border around a white card, and that rule stands where it was aimed: a card sitting inside a section.
+A menu floating over page content is not that. It needs an edge to be a menu, and the tinted fill §8 prescribes instead was built, looked at, and read as a grey slab.
+No shadow, so it stays a smaller exception than the partner wall's in §7.
+
+**The bare uppercase column label.** §8 bans an uppercase label with no rule because it floats.
+Inside a divided column it does not float: the divider anchors it, which is the reason the dividers are structural rather than decorative.
+Version 1 obeyed §8 here by using `Eyebrow`, and the red rules were what read as decoration.
 
 ### Keyboard
 
@@ -292,8 +331,8 @@ All primitives live in `components/Brand.tsx`.
 | `Eyebrow` | Red rule + muted label. `dark` variant for slate backgrounds. |
 | `InteriorHero` | Slate band, red signature bar top-left, red rule under the eyebrow. Optional `image` prop renders a square portrait beside the text. `subtitle` accepts `ReactNode` so parts can be emphasised. |
 | `ProgramHero` | Slate band with an overlapping photo, for program detail pages. |
-| `PrimaryButton` | The one filled CTA. `size="lg"` is the loud variant. One per page. |
-| `SecondaryButton` | Slate outline, so it never competes with the primary. |
+| `PrimaryButton` | The one filled CTA. `size="lg"` is the loud variant. One per page, read as one per *distinct* action: the homepage hero and its closing band both point at `/contact` and bookend the same ask, which is the one place two appear. |
+| `SecondaryButton` | Outlined, so it never competes with the primary. `dark` is required on slate: the default is red-on-slate at 2.31:1. |
 | `ArrowLink` | Underlined red inline link with a nudging arrow. |
 | `PhotoLedCard` | Photo top, tinted block below. No border. |
 | `TintedCard` | Smaller certificate tile, same language. |
@@ -400,9 +439,9 @@ any grid of same-shaped items.
 | Reaching for a guide colour that is not a token | It was removed on purpose; see §2 | An existing semantic token |
 | Campaign yellow/orange/green in core UI | Guide reserves them for campaign material | Palette colours |
 | Red + green, or teal + green | Banned pairings, Guide p.8 | An approved trio |
-| A 1px light border around a white card | Divides nothing, reads as unfinished | Tinted fill, no border |
+| A 1px light border around a white card | Divides nothing, reads as unfinished | Tinted fill, no border. The nav panel is the written exception, §4: a menu over page content needs an edge, and the tinted version read as a grey slab |
 | `font-normal` on a heading | Fights the base 600 and reads thin in Montserrat | Let the base weight stand |
-| Uppercase label with no rule | Floats, reads as an afterthought | The eyebrow pattern |
+| Uppercase label with no rule | Floats, reads as an afterthought | The eyebrow pattern. The nav card's column labels are the written exception, §4: a column divider anchors the label, and the eyebrow's rule read as decoration in a menu |
 | `rounded-*` or `shadow-*` on photos | Softens everything, loses authority | Straight edges, no shadow |
 | Emoji in body copy | Unprofessional on a graduate institution site | Small typographic labels |
 | Every section `py-20` | Flat rhythm | Vary per §5 |
@@ -410,6 +449,8 @@ any grid of same-shaped items.
 | Two `surface-tint` blocks in a row | They merge into one oversized block | Put a level 2 or 3 section between |
 | A drop shadow anywhere but the partner wall | Reads as a SaaS card; the wall earns it, nothing else does | Separate with fill, spacing and type |
 | Two dark sections back to back | Reads as one oversized block with a gap in it | Break with a light section |
+| Decorative animation: parallax, autoplay, looping, entrance animation on chrome | Motion here is a state change, not an effect | The five gestures in §10, or nothing |
+| `SecondaryButton` on a dark surface without `dark` | Resolves to red on slate at 2.31:1, the row three above this one. It shipped in the homepage hero | `SecondaryButton dark`, §6 |
 
 
 **`/admin/people` is outside this document on purpose.**
@@ -457,15 +498,35 @@ grep -rniE 'font-serif|wordmark|trajan|georgia' app components lib \
 #    name Teachers College as where their faculty post or doctorate is. What must never
 #    appear is the co-branding line, which always reads "in partnership with".
 #    A check that flags the site's own history gets ignored.
-grep -riE 'in partnership with (teachers college|columbia)' \
-  .next/server/app/*.html .next/server/app/*/*.html
+#
+#    Narrowed for the one sanctioned occurrence, §0. The homepage partnerships band
+#    names the Center for Strategic Learning and Leadership for the Digital Age and
+#    credits its Teachers College partnership. What the check was written to catch is
+#    this site's own CHROME being co-branded, and chrome renders on every route, so
+#    5a is a stronger version of the original: a co-branded header or footer returns
+#    every page, and it names them.
+#
+# 5a. The phrase may appear on the homepage and nowhere else.
+grep -rl -iE 'in partnership with (teachers college|columbia)' \
+  .next/server/app --include='*.html' \
+  | grep -v '^\.next/server/app/index\.html$'
+
+# 5b. And on that page the sentence must be about the CENTER, never about WOS.
+#     Matched on the words immediately before the phrase rather than on the Center's
+#     name: the name runs 60 characters and sits in its own element, so a window wide
+#     enough to reach it is wide enough to swallow a second sentence. "A WOS center,"
+#     is the sanctioned subject and is what §0 actually requires.
+#     Tags are stripped first, since the name and the credit are separate elements.
+sed -e 's/<[^>]*>/ /g' .next/server/app/index.html \
+  | grep -ioE '.{0,40}in partnership with (teachers college|columbia)' \
+  | grep -ivE 'A WOS center, in partnership with'
 
 # 6. POSITIVE control - tokens must exist in the BUILT css
 npm run build
 grep -oh -- '--color-[a-z-]*' .next/static/chunks/*.css | sort -u
 ```
 
-All six must return empty except the last, which must list every token.
+All of these must return empty except the last, which must list every token. Check 5 is two commands and both must be empty.
 
 **Check 6 matters most and is the one that gets skipped.**
 A misspelled token in Tailwind v4 produces no error: `text-ink-mutedd` generates no rule, the element inherits, and the page looks almost right.
@@ -475,3 +536,89 @@ Two further traps found the hard way:
 
 - **Grep the compiled CSS, not just components.** The teal border on `.pull-quote` lived in `globals.css` and was used by all twelve program detail pages; no component-level search would have found it.
 - **Turbopack's cache goes stale on token changes.** After editing `globals.css`, `rm -rf .next` and restart, then confirm the value in the CSS the browser actually receives. A hot reload will silently serve the old colour.
+
+---
+
+## 10. Motion
+
+§1 says restraint does the work rather than animation, and that still governs.
+This section is the boundary around it, not a relaxation of it.
+
+It is written down because the boundary already existed and was undocumented.
+`--duration-fade` and `--ease-fade` sat in `globals.css` with zero call sites, and `PhotoLedCard` carried three hover gestures that no page on the homepage used.
+The rule and the code disagreed, and an undocumented boundary is one each person has to guess at.
+
+Motion here is a state change or an arrival.
+It is never an effect, never a loop, and never something a visitor has to wait through.
+
+### The sanctioned gestures
+
+There are five, and there is no sixth without a row in this table.
+
+| Gesture | Where | Timing |
+|---|---|---|
+| Colour swap | Links, buttons, nav items | `transition-colors`, Tailwind's default 150ms |
+| Card lift | `PhotoLedCard`, `TintedCard`, `ServiceCard` | `-translate-y-[3px]`, 250ms `ease-out` |
+| Image scale inside a fixed frame | The same three cards | `scale-[1.03]` to `scale-[1.04]`, 500 to 600ms `ease-out` |
+| Accent rule growth | The same three cards | `w-8` to `w-14`, `transition-[width]` 300ms `ease-out` |
+| Section arrival | `FadeIn`, on body sections below the fold | opacity plus a 12px rise, `--duration-fade` on `--ease-fade` |
+
+The homepage partner wall desaturates its tiles and restores colour on hover.
+That is the colour swap row applied to a filter, and it is opt-in: on `/corporate-partners/` and `/academic-partners/` the logos are the content of the page, and greying out the content is not a treatment.
+
+`CountUp` is the one exception to "nothing a visitor waits through".
+It counts a figure from zero over 1100ms on an ease-out cubic.
+It earns the exception because the number is the content, and the count is what makes a visitor read the figure rather than scroll past it.
+Nothing else on this site animates its own content.
+
+Durations are vocabulary, not free values.
+250ms is a response to a pointer and 600ms is an arrival.
+A value picked between them was picked by feel and should move to one of the two.
+
+Prefer an explicit property list to `transition-all`, which animates layout properties nobody meant to animate.
+`transition-[width]` on the card rule is the pattern to copy.
+
+### Reduced motion is a guarantee, not a courtesy
+
+`globals.css` collapses every animation and transition duration to 0.01ms under `prefers-reduced-motion: reduce`.
+It is a global rule on `*`, `*::before` and `*::after`, so any CSS transition added anywhere is already covered and the author does not have to remember.
+
+JavaScript motion is not covered by that and has to guard itself.
+`CountUp` and `FadeIn` both read `window.matchMedia("(prefers-reduced-motion: reduce)").matches` and skip the animation outright rather than shortening it.
+Skipping is correct and shortening is not: a 0.01ms count from zero still repaints the figure, and a 0.01ms fade is still a fade.
+
+### The SSR rule
+
+**The final state ships in the HTML.**
+A scroll-triggered component renders its finished appearance on the server and departs from it only after mount, in the browser, and only for elements the visitor cannot currently see.
+
+This is not a style preference.
+`CountUp` holds `useState(target)`, so the real figure is in the markup: the page is correct with JavaScript off and a screen reader never announces an intermediate value.
+`FadeIn` holds `useState(true)`, so a wrapped section ships visible and hides itself after paint, only when it is below the fold, and only when reduced motion is not set.
+
+An earlier version of `FadeIn` on the reference site computed the reduced-motion query during render.
+That query is always false on the server, so every wrapped section shipped at `opacity: 0`.
+A slow or failed script load rendered a hero above blank space, and a reduced-motion visitor hydrated straight into a style mismatch.
+The docblock in `components/FadeIn.tsx` records this and is not surplus.
+
+### Where FadeIn does not go
+
+- Anything containing the `h1`. The page's identity does not arrive, it is there.
+- Anything above the fold. On the homepage that is the hero and the impact band under it. `FadeIn` guards this at runtime, but relying on the guard leaves the intent out of the source.
+- The `<section>` element itself when it carries a fill. Wrap the inner container, so the band stays put and only its content arrives. A fading full-bleed band is a curtain going up.
+- Anything already carrying a scroll-triggered gesture. The impact figures have `CountUp` at `threshold: 0.4` and `FadeIn` fires at `0.1`, so the numbers would start counting while the block was still fading.
+- Chrome. The header and the footer are furniture, and furniture does not arrive.
+
+Stagger is `delay={i * 60}` and it belongs only inside a grid of sibling cards.
+It resets per grid, so a second row does not begin half a second after the first.
+A stagger running across unrelated sections is a page assembling itself, which is the promotional register §1 rules out.
+
+### Still banned
+
+Parallax.
+Scroll-jacking of any kind.
+Autoplaying carousels and anything that loops.
+Entrance animation on the header, the footer or the nav panels.
+Animated counters on any figure that is not a headline statistic.
+Hover motion on a photograph that is not inside a card.
+Any gesture whose duration was chosen so that it would be noticed.

@@ -50,6 +50,42 @@ Open decision 1 settled: all four boards have pages and header placement.
 - **Four remain built and linked from nothing:** `/talent-acquisition/`, `/direct-hire/`, `/staff-augmentation/`, `/wos-northeastern-talent-pipeline-program/`. Held out of the sitemap too, since that would be their only discovery path. Placing one means nav or hub grid plus sitemap together.
 - Measured with chrome stripped: `/staff-augmentation/` shares ~90% of its copy with `/on-site-remote-staffing/` and is a real duplicate, built on instruction. `/managedservices/` shares 0% with `/managed-service-centers/` despite the name. `/consulting-to-hire-services/` was an unfinished wireframe whose opening line read "Introduction to the COnsuling to Hire service goes her" with four paragraphs of literal "text…". The placeholders were dropped rather than carried into the header and nothing was written to replace them.
 
+## Partnerships, and the homepage that holds them
+
+Three things WOS is doing that the mirror has no record of, plus the homepage recomposition they forced.
+
+- **WOS-Hunter College AI & Digital Operations Partnership.** Hand-authored from the executive overview WOS supplied, at `/wos-hunter-college-partnership/`, in the header under About > Partners and in the sitemap in the same change. The Hunter mark joins the academic partner wall. It is the one entry there not from the live site.
+- **Center for Imagination, Reflective Development, and AI Futures**, at `/center-for-imagination/`, eyebrow "Proposed". **Every funder name, every dollar figure and the whole five-year budget table are deliberately absent.** The source is a fundraising document naming roughly twenty foundations, technology and entertainment companies and federal agencies as *targets*; none has agreed, and publishing the list would state an intention as a fact and tell each named party the size of the ask before it is made. The proposed organisational divisions are out for a related reason: five named laboratories imply an institution that does not exist.
+- **Center for Strategic Learning and Leadership for the Digital Age** is named on the homepage and links out to its own deployment at `https://new-center-pi.vercel.app/`. External, `noopener noreferrer`, new tab, following the `CAREERS_URL` convention. The link goes there rather than to a summary page here: two pages describing one center would compete for the same search result, which is the problem recorded below for `/staff-augmentation/`. Note that deployment's chrome is Teachers College branded, which is consistent with the credit on the card and is why the card carries it.
+- **`Research` became a nav grouping** under Services, holding the Langer Arc, the Institute of Workforce Policy & Practice and the new Center. The Institute was previously reachable only from `FOOTER_LEGAL`. This does not reopen decision 5, which was about depth: Research sits level with Consulting to Hire, so Services is still two levels below the bar.
+
+### The homepage was recomposed, not decorated
+
+Eight of nine sections were `py-20`, the fills alternated mechanically, there was no photograph above the partner logos, and the proof of the organisation sat at position seven of nine.
+
+- **Our impact moved to position two** and flipped from slate to tint, so it reads as a proof strip and gives the dark hero a light section to land on. Numerals dropped 64/76 to 52/64 for a `py-12` band. `CountUp` is unchanged.
+- **Our History moved down to introduce the partner wall.** Its copy names Parsons, J&J, GE, HP, Prudential, BNY Mellon, American Airlines and JetBlue and the wall shows those marks, so the wall is evidence rather than a logo dump. "Founded in 2005 as a 501(c)(3) social enterprise." moved with it, from the impact band where it read as a footnote to nothing.
+- **The hero carries a photograph**, a WOS panel discussion, under a `surface-deep/85` overlay with the section keeping its slate fill. A failed image load lands on exactly the previous design, so the h1's contrast is a floor rather than a hope.
+- Fill sequence is now dark, tint, white, tint, white, dark, white, tint, dark, verified in the built HTML. Padding runs 12 to 32 rather than nine `py-20`s.
+- **A live AA failure was fixed on the way through.** `SecondaryButton` resolves to `text-action-deep`, which is **2.31:1 on `surface-dark`** - the §8 "red text on slate" row - and the homepage hero was the one place it sat on a dark surface. It has a `dark` prop now. This was not caused by this change; it shipped with the original homepage.
+
+### Motion: the port was finished, not invented
+
+`--duration-fade` and `--ease-fade` had been declared in `globals.css` since the token port **with zero call sites**, and `PhotoLedCard` carried three hover gestures the homepage never used. The rule and the code disagreed.
+
+- `components/FadeIn.tsx` ported from the reference site verbatim, docblock included. It starts visible and hides only after mount, only below the fold, only when reduced motion is not set. Zero `opacity:0` in the built homepage HTML, which is the regression that docblock exists to prevent.
+- `ServiceCard` gained the lift and the growing rule. **It was not replaced by `PhotoLedCard`**, which needs a `description` per card, and the six service pages' meta descriptions are unusable as one: `/on-site-remote-staffing/` is literally "Our Expertise". Same wall the nav's third tier hit. Six one-line descriptions would close both at once.
+- The partner wall desaturates on the homepage only, via an opt-in `muted` prop. On the two partner pages the logos are the content and greying out the content is not a treatment.
+- **DESIGN.md §10 is new** and records the five gestures, the reduced-motion guarantee, the SSR rule and what stays banned. §1's "not animations" line now points at it.
+
+### The one Teachers College credit
+
+**Decided deliberately, overriding two written rules, both amended in the same change.**
+
+The homepage names the Center and credits its Teachers College partnership, because a center named without its institution reads as a marketing label. The Center is the subject of that sentence and WOS never is.
+
+`DESIGN.md` §9 check 5 is now 5a and 5b. 5a asserts the phrase reaches the homepage and no other route, which catches a co-branded header or footer harder than the original did, because chrome renders everywhere and 5a names the offending files. 5b asserts that on the homepage the phrase is preceded by "A WOS center,". Do not remove the credit as a brand error.
+
 ## Decisions
 
 - Rulebook lives in `wos-new-design/CLAUDE.md`, not the parent, because only this directory is a git repo.
@@ -68,19 +104,26 @@ Open decision 1 settled: all four boards have pages and header placement.
   logo variants, and four `Picture*.png` that appear on no live partner page.
   `public/images` went 45M to 27M, and the partner walls still measure 87/87 and 27/27.
 
-- **The header panels were rebuilt.** They had two problems, both visible in
-  `screenshot/header ss.png`. One `GROUP_HEADING` style was used at every depth, so a
-  grouping and the grouping inside it were pixel-identical, and it was a bare uppercase
-  label with no rule, which DESIGN.md §8 lists as an anti-pattern. And the panel was
-  anchored to the viewport, so Services' content sat at the far left while its trigger sat
-  middle-right with two thirds of the sheet empty.
-  Fixed by flattening "Other Services" away, giving every group a column with an `Eyebrow`
-  head, collecting loose links into one row beneath, and anchoring each panel's right edge
-  to its trigger on a `surface-tint` fill. All 33 hrefs unchanged.
+- **The header dropdown took three attempts.** The faults in `screenshot/header ss.png`
+  were real: one `GROUP_HEADING` style at every depth, so a grouping and the grouping
+  inside it were identical, and a panel anchored to the viewport rather than its trigger.
+  Version 1 fixed both with `Eyebrow`-headed columns on a `surface-tint` fill and was
+  rejected as "pretty but impractical". Version 2 was a plain single-column dropdown and
+  was rejected too. Version 3 was built to a reference the client supplied
+  (`screenshot/image.png`): a bordered white card of columns divided by vertical rules.
+  **All three were built without ever seeing them render**, because the Chrome extension
+  has never connected. That is the actual reason it took three passes, not the design.
+  The flattened two-level tree was kept throughout and all 33 hrefs are unchanged.
+  The reference's third tier, a one-line description per item, was declined for lack of
+  copy; it remains the single biggest available improvement if WOS supplies ~20 lines.
 
 ## Open
 
 **Needs WOS or Pranish:**
+
+- **The Hunter 92% figure needs a source.** The overview claims "approximately 92% of WOS revenue is reinvested in participant wages, tuition assistance, and workforce development". It is carried on the page as written. On a 501(c)(3) site with `/financials/` and nine filed PDFs one click away, an unsourced tilde-prefixed percentage is the highest-risk line in that copy. Either tie it to a named year and a filing, or drop the figure and keep the claim.
+- **Six one-line service descriptions** would promote the homepage service grid from `ServiceCard` to `PhotoLedCard`. The same twenty-odd lines would give the nav its third tier.
+- **A Hunter photograph.** The partnership page has no image of its own, and the homepage hero photo is now on three pages.
 
 - **HR Advisory Board intro copy** is missing.
 - **Consulting to Hire Services needs real copy.** It is in the header carrying one paragraph, a heading and three photographs.

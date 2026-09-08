@@ -3,7 +3,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
 import WosMark from "@/components/WosMark";
-import { Eyebrow } from "@/components/Brand";
 import { DONATE, NAV, type NavGroup, type NavNode } from "@/lib/nav";
 import { ORG } from "@/lib/brand";
 
@@ -22,8 +21,26 @@ function isActive(pathname: string, href: string) {
   return pathname === clean || pathname === `${clean}/`;
 }
 
+// No hover fill. A tint band behind the item competed with the column dividers, which
+// are what carry the structure in the desktop card.
 const ITEM_LINK =
-  "block py-1.5 text-[15px] leading-[1.4] text-ink no-underline transition-colors hover:text-action-deep";
+  "block py-[7px] text-[15px] leading-[1.35] text-ink no-underline transition-colors hover:text-action-deep";
+
+/**
+ * Head of a column in the desktop card.
+ *
+ * A bare uppercase label, which §8 bans as something that floats. It does not float
+ * here: the column divider beside it is what anchors it, and that is the whole reason
+ * the dividers exist rather than being decoration. An `Eyebrow` with its accent rule
+ * was tried in an earlier pass and the red rules read as decoration in a menu.
+ * Recorded as an exception in DESIGN.md §4.
+ */
+const SECTION_LABEL =
+  "font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-muted";
+
+/** Mobile only. The overlay is an accordion, not a card, so it keeps a plain heading. */
+const GROUP_HEADING =
+  "mt-3 pb-0.5 font-heading text-[13px] font-semibold text-ink first:mt-0";
 
 /** External links carry the affordance in the accessible name rather than in a glyph. */
 function externalProps(external?: boolean) {
@@ -54,12 +71,10 @@ function PanelLink({
 }
 
 /**
- * A flat list of links.
+ * The mobile accordion list: links, and groups as a heading over an indented list.
  *
- * Flat, not recursive: the tree is two levels below the bar since the "Other Services"
- * wrapper came out, so a group inside a group no longer occurs. It used to render as a
- * 12px indent under a heading styled identically to the one above it, which is what
- * made the panel unreadable.
+ * Desktop uses Panel below instead. This stays recursive because the mobile overlay
+ * renders a whole top-level item's subtree in place with no columns to put it in.
  */
 function PanelNodes({
   nodes,
@@ -76,11 +91,11 @@ function PanelNodes({
             <PanelLink node={node} onNavigate={onNavigate} />
           </li>
         ) : (
-          // Defensive: nothing in lib/nav.ts nests this deep any more, and the panel
-          // layout assumes it does not. Rendering the children inline keeps every leaf
-          // reachable if one is ever added back, rather than dropping it silently.
           <li key={node.label}>
-            <PanelNodes nodes={node.children} onNavigate={onNavigate} />
+            <p className={GROUP_HEADING}>{node.label}</p>
+            <div className="pl-3">
+              <PanelNodes nodes={node.children} onNavigate={onNavigate} />
+            </div>
           </li>
         ),
       )}
@@ -89,51 +104,93 @@ function PanelNodes({
 }
 
 /**
- * Every group is a column, and the loose links share one row beneath them.
+ * One column of the desktop card.
  *
- * One layout for all three panels rather than a branch on shape. The old version fell
- * back to a single stacked list whenever a panel mixed links with groups, which is what
- * made About one tall column and buried Services' headings inside it.
+ * min-w is a floor, not the width: each column sizes to its longest label, and
+ * "Professional Development Fundamentals" is the one that sets the card's width.
+ * Services runs four columns, which at px-8 and a 190px floor came to ~1153px against
+ * 1104px of container and spilled past the left edge. These values fit with room.
+ */
+function Column({
+  label,
+  reserveLabel,
+  links,
+  onNavigate,
+}: {
+  label: string | null;
+  /** Hold an empty label line so every column's first link shares a baseline. */
+  reserveLabel: boolean;
+  links: Extract<NavNode, { kind: "link" }>[];
+  onNavigate: () => void;
+}) {
+  return (
+    <div className="min-w-[170px] px-6 first:pl-0 last:pr-0">
+      {label ? (
+        <p className={SECTION_LABEL}>{label}</p>
+      ) : (
+        reserveLabel && (
+          // aria-hidden: an empty heading announces as an empty heading.
+          <p className={SECTION_LABEL} aria-hidden="true">
+            &nbsp;
+          </p>
+        )
+      )}
+      <ul className="m-0 mt-2 list-none p-0">
+        {links.map((node) => (
+          <li key={node.href}>
+            <PanelLink node={node} onNavigate={onNavigate} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
+
+/**
+ * The desktop panel: a bordered card of columns divided by vertical rules.
  *
- * Column heads use Eyebrow, so the uppercase label carries the accent rule. Without it
- * they are the "uppercase label with no rule" that DESIGN.md lists as an anti-pattern,
- * and six of them stacked in one panel is where that reads worst.
+ * Two earlier versions came off. Columns with an accent rule per head on a tinted fill
+ * read as a designed object rather than a menu; a plain single-column dropdown was too
+ * plain. This follows the reference the client chose (screenshot/image.png), minus its
+ * per-item description line, which we have no copy for.
+ *
+ * Groups become labelled columns and every loose link collects into one unlabelled
+ * column. Its position follows source order rather than being pinned: About opens with
+ * a link so its loose column leads with Our Story, and Services opens with a group so
+ * Managed Services and Research trail. One rule, and it happens to be right both times.
  */
 function Panel({ group, onNavigate }: { group: NavGroup; onNavigate: () => void }) {
-  const columns = group.children.filter((c) => c.kind === "group");
+  const groups = group.children.filter((c) => c.kind === "group");
   const loose = group.children.filter((c) => c.kind === "link");
+  const looseFirst = group.children[0]?.kind === "link";
+
+  // Join Us is all loose links, so there is no labelled column to line up with and the
+  // reserved label line would just be an empty row at the top of the card.
+  const looseColumn =
+    loose.length > 0 ? (
+      <Column
+        key="__loose"
+        label={null}
+        reserveLabel={groups.length > 0}
+        links={loose}
+        onNavigate={onNavigate}
+      />
+    ) : null;
 
   return (
-    <>
-      {columns.length > 0 && (
-        <div className="flex gap-10">
-          {columns.map((child) => (
-            <div key={child.label} className="min-w-[220px]">
-              <Eyebrow label={child.label} />
-              {/* -mt-1 pulls the list up against Eyebrow's mb-4, which is tuned for
-                  body sections rather than for a dense menu. */}
-              <div className="-mt-1">
-                <PanelNodes nodes={child.children} onNavigate={onNavigate} />
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
-
-      {loose.length > 0 && (
-        <div
-          className={
-            columns.length > 0
-              ? "mt-6 flex flex-wrap gap-x-10 border-t border-hairline pt-5"
-              : "min-w-[220px]"
-          }
-        >
-          {loose.map((node) => (
-            <PanelLink key={node.href} node={node} onNavigate={onNavigate} />
-          ))}
-        </div>
-      )}
-    </>
+    <div className="flex divide-x divide-hairline">
+      {looseFirst && looseColumn}
+      {groups.map((child) => (
+        <Column
+          key={child.label}
+          label={child.label}
+          reserveLabel
+          links={child.children.filter((n) => n.kind === "link")}
+          onNavigate={onNavigate}
+        />
+      ))}
+      {!looseFirst && looseColumn}
+    </div>
   );
 }
 
@@ -217,7 +274,7 @@ export default function Nav() {
     <header className="sticky top-0 z-50 bg-white">
       <div
         ref={barRef}
-        className="mx-auto flex w-full max-w-6xl items-center justify-between gap-4 border-b border-hairline px-6 py-3 md:min-h-[72px] md:py-0"
+        className="relative mx-auto flex w-full max-w-6xl items-center justify-between gap-4 border-b border-hairline px-6 py-3 md:min-h-[72px] md:py-0"
         onMouseLeave={close}
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node)) close();
@@ -235,12 +292,9 @@ export default function Nav() {
           <WosMark className="h-8 w-auto md:h-9" decorative priority />
         </Link>
 
-        {/* self-stretch here and on each trigger wrapper so a wrapper is as tall as the
-            bar. Without it the wrapper is only as tall as its button and the panel's
-            top-full lands halfway up the bar, over the bar's own bottom border. */}
         <nav
           aria-label="Main"
-          className="hidden flex-shrink-0 items-center gap-6 md:flex md:self-stretch lg:gap-8"
+          className="hidden flex-shrink-0 items-center gap-6 md:flex lg:gap-8"
         >
           {NAV.map((node, i) => {
             const active = hrefsOf(node).some((h) => isActive(pathname, h));
@@ -269,7 +323,7 @@ export default function Nav() {
             }
 
             return (
-              <div key={node.label} className="relative flex items-center self-stretch">
+              <div key={node.label} className="static">
                 <button
                   type="button"
                   ref={(el) => {
@@ -288,20 +342,20 @@ export default function Nav() {
                   </span>
                 </button>
 
-                {/* Anchored by its right edge to the trigger, so it grows leftward.
-                    It used to span the bar, which left the Services panel's content at
-                    the far left while its trigger sat middle-right. Left-anchoring to
-                    the trigger is what would overflow; rightward there is always room,
-                    because the nav cluster sits right of centre.
+                {/* Positioned against the bar, not the trigger, so all three panels
+                    share one position. right-6 matches the bar's px-6, putting the
+                    card's right edge where Donate ends; a three-column card is about
+                    700px against 1104px of content width, so it still covers its own
+                    trigger and cannot overflow. mt-px clears the bar's bottom border.
 
-                    surface-tint rather than white with a border: a panel floating over
-                    the page needs a boundary, and DESIGN.md bans both a box around
-                    content and a shadow anywhere but the partner wall. A fill is what
-                    it prescribes instead. */}
+                    White with a 1px hairline border, no shadow. §8 bans a border around
+                    a card in a section, but this is not that: a menu floating over page
+                    content needs an edge, and the tinted fill that rule prescribes was
+                    tried here and read as a grey slab. Recorded as an exception in §4. */}
                 <div
                   id={`nav-panel-${i}`}
                   hidden={open !== i}
-                  className="absolute right-0 top-full mt-px w-max max-w-[calc(100vw-3rem)] bg-surface-tint px-8 py-7"
+                  className="absolute right-6 top-full mt-px w-max max-w-[calc(100vw-3rem)] border border-hairline bg-white p-6"
                 >
                   <Panel group={node} onNavigate={close} />
                 </div>

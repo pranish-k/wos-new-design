@@ -9,6 +9,9 @@
 // reorganised twice already and nested JSX would rot. It is two levels below the bar:
 // open decision 5 was about Services being four deep including the bar, and flattening
 // it away is what settled that. Every href below is still the live one.
+//
+// Order matters. The panel is a single column that renders these in source order, so
+// this list is the menu's reading order rather than just its contents.
 
 import { CAREERS_URL, TALENT_COMMUNITY_URL } from "@/lib/brand";
 
@@ -40,13 +43,14 @@ export type NavGroup = {
 export type NavNode = NavLink | NavGroup;
 
 export const NAV: NavNode[] = [
-  // Groups first, then the loose links. Panel renders every group as a column and
-  // collects the loose links into one row beneath them, so contiguous is not cosmetic:
-  // interleaving them would scatter the row.
   {
     kind: "group",
     label: "About",
     children: [
+      // Live order, and in a single-column panel the source order is the reading order,
+      // so this is what puts Our Story and Management Team at the top of the menu.
+      { kind: "link", label: "Our Story", href: "/our-story/" },
+      { kind: "link", label: "Management Team", href: "/team" },
       {
         kind: "group",
         label: "Boards",
@@ -63,10 +67,15 @@ export const NAV: NavNode[] = [
         children: [
           { kind: "link", label: "Corporate Partners", href: "/corporate-partners/" },
           { kind: "link", label: "Academic Partners", href: "/academic-partners/" },
+          // Not on the live site. The partnership post-dates it, and this is the only
+          // path to the page, so it is here and in app/sitemap.ts together.
+          {
+            kind: "link",
+            label: "Hunter College Partnership",
+            href: "/wos-hunter-college-partnership",
+          },
         ],
       },
-      { kind: "link", label: "Our Story", href: "/our-story/" },
-      { kind: "link", label: "Management Team", href: "/team" },
       { kind: "link", label: "Locations", href: "/locations/" },
       { kind: "link", label: "Financials", href: "/financials" },
       { kind: "link", label: "FAQs", href: "/faqs/" },
@@ -116,7 +125,22 @@ export const NAV: NavNode[] = [
       // sits a column away from "Managed Service Center", which is a different page
       // with 0% shared copy.
       { kind: "link", label: "Managed Services", href: "/managedservices/" },
-      { kind: "link", label: "Research", href: "/langer-arc/" },
+      // Research was a single link to /langer-arc/. It is a grouping now because there
+      // are three of them, and because the Institute page was reachable only from the
+      // footer, which is not a home for a research programme.
+      {
+        kind: "group",
+        label: "Research",
+        children: [
+          { kind: "link", label: "Langer Workforce Maturity Arc", href: "/langer-arc/" },
+          {
+            kind: "link",
+            label: "Institute of Workforce Policy & Practice",
+            href: "/institute-of-workforce-policy-practice/",
+          },
+          { kind: "link", label: "Center for Imagination", href: "/center-for-imagination" },
+        ],
+      },
     ],
   },
   { kind: "link", label: "News & Events", href: "/blog/" },

@@ -160,12 +160,30 @@ export function PrimaryButton({
 /**
  * Outlined in the brand red rather than slate: a slate outline read as a plain black
  * box. It stays distinct from PrimaryButton by being outlined rather than filled.
+ *
+ * `dark` is not a theme variant, it is a contrast fix. The default resolves to
+ * text-action-deep, which is 2.31:1 on surface-dark and is exactly the §8 "red text on
+ * slate" anti-pattern. It shipped that way in the homepage hero, where it was the one
+ * place on the site this component sat on a dark surface. On dark the outline and the
+ * label are both white, following §2's rule that label text is white on dark.
  */
-export function SecondaryButton({ href, children }: { href: string; children: ReactNode }) {
+export function SecondaryButton({
+  href,
+  children,
+  dark = false,
+}: {
+  href: string;
+  children: ReactNode;
+  dark?: boolean;
+}) {
   return (
     <Link
       href={href}
-      className="inline-block border border-action-deep bg-transparent px-7 py-3 font-heading text-sm font-semibold text-action-deep transition-colors hover:bg-action-deep hover:text-white"
+      className={`inline-block border bg-transparent px-7 py-3 font-heading text-sm font-semibold transition-colors ${
+        dark
+          ? "border-white/50 text-white hover:bg-white/15"
+          : "border-action-deep text-action-deep hover:bg-action-deep hover:text-white"
+      }`}
     >
       {children}
     </Link>

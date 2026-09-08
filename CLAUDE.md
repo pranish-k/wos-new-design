@@ -177,6 +177,10 @@ A 1px light border between a white card and a white page divides nothing and rea
 Not every section gets `py-20`.
 Never put two `surface-tint` blocks in a row or two dark sections back to back; both read as one oversized block.
 
+**Motion is the five gestures in `DESIGN.md` §10 and nothing else.**
+Any JavaScript-driven motion ships its final state in the server-rendered HTML and guards itself on `prefers-reduced-motion`.
+CSS transitions are already covered by the global reduced-motion rule in `globals.css`.
+
 ## Verifying visual changes
 
 Type checking catches none of this.
@@ -200,7 +204,13 @@ Brand name strings live in `lib/brand.ts` and nowhere else.
 
 **Teachers College and Columbia belong to the center site, not this one.**
 The reference site is a WOS sub-brand in partnership with Teachers College, and its chrome credits that partnership.
-This site is the main WOS site and must not carry it.
+This site is the main WOS site and its chrome must not carry it.
+
+**There is exactly one sanctioned exception, and it is not the chrome.**
+The homepage partnerships band names the Center for Strategic Learning and Leadership for the Digital Age and credits its Teachers College partnership, because that is the Center's real name and naming it without its institution reads as a marketing label rather than as something that exists.
+The Center is the subject of that sentence and WOS never is.
+The strings live in `content/partnerships.ts`, the rule is written out in `DESIGN.md` §0, and `DESIGN.md` §9 check 5 is split into 5a and 5b to enforce both halves: the phrase reaches the homepage and no other route, and on the homepage it is attached to the Center.
+Do not remove that credit as a brand error. It was a decision.
 
 **Northeastern is a special case.**
 The reference site's rules say never mention it.

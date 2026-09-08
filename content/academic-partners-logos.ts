@@ -3,6 +3,9 @@
 // Same problem as the corporate wall: the live markup carries no alt text, so names are
 // recovered from the filenames. 14 of these carry name: "" because nothing on the live
 // page identifies the institution; see the note in content/partners.ts.
+//
+// Hunter College is the one entry that is not from the live site. The partnership
+// post-dates it. See content/hunter-partnership.ts.
 
 import type { Partner } from "@/content/partners";
 
@@ -38,6 +41,10 @@ export const ACADEMIC_PARTNERS: Partner[] = [
   {
     name: "General Assembly",
     src: "/images/RGB-Red-Black_Small_GeneralAssembly-Stacked.png"
+  },
+  {
+    name: "Hunter College, The City University of New York",
+    src: "/images/Hunter-College.png"
   },
   {
     name: "Louisiana State University",

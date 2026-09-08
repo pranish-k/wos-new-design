@@ -20,19 +20,27 @@ import { PARTNERS, type Partner } from "@/content/partners";
  * out of room. Breakpoint columns would jump at three fixed sizes and leave a stranded
  * gap either side of each jump. `auto-fill` rather than `auto-fit` so a short final row
  * keeps its tile width instead of stretching to fill the line.
+ *
+ * `muted` desaturates the marks and restores colour on hover. It is opt-in rather than
+ * the default because on /corporate-partners/ and /academic-partners/ the logos are the
+ * content of the page, and greying out the content is not a treatment. On the homepage
+ * the wall is a proof strip sitting under a link to the full page, and eighty-odd
+ * competing brand colours there pull the eye off the sections either side of it.
  */
 export default function PartnerWall({
   partners = PARTNERS,
   limit,
+  muted = false,
 }: {
   partners?: readonly Partner[];
   limit?: number;
+  muted?: boolean;
 }) {
   const shown: readonly Partner[] = limit ? partners.slice(0, limit) : partners;
   return (
     <ul className="m-0 grid list-none grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))] gap-4 p-0">
       {shown.map((p) => (
-        <li key={p.src} className="flex h-28 items-center justify-center bg-white p-6 shadow-sm">
+        <li key={p.src} className="group flex h-28 items-center justify-center bg-white p-6 shadow-sm">
           <Image
             src={p.src}
             // Around 30 of these files are named Picture1.png through Picture38.png and
@@ -42,7 +50,16 @@ export default function PartnerWall({
             alt={p.name}
             width={240}
             height={96}
-            className="max-h-14 w-auto max-w-full object-contain"
+            // Desaturated rather than dimmed. Around 30 of these are unlabelled and are
+            // already invisible to assistive technology; lowering their opacity as well
+            // would make them hard to see for everyone else too.
+            // transition-[filter] rather than transition-all, which would animate layout
+            // properties nobody meant to animate.
+            className={`max-h-14 w-auto max-w-full object-contain ${
+              muted
+                ? "grayscale transition-[filter] duration-300 ease-out group-hover:grayscale-0"
+                : ""
+            }`}
           />
         </li>
       ))}
