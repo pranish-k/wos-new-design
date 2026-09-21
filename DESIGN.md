@@ -322,6 +322,101 @@ Feature (hero, quote, big visual)   py-24 – py-32
 
 ---
 
+### Lists are tiles, not a rule down the left
+
+A `list` renders as a band of filled cells split by its own `gap-px`, never as items
+with a hairline on the left edge.
+
+The left rule drew a long vertical line beside a column of text and separated nothing,
+and these lists are selling points, delivery options and tool names - sets of things,
+which want to read as a set.
+The separation is fill and gap, not an outline on each cell, so this stays inside the
+no-box rule in §8: `gap-px` over a `hairline-strong` background is the same construction
+as the homepage approach band.
+
+Short items (six or more, four words or fewer) go two to four across; substantive items
+go two across and take the accent rule above the text.
+
+### A closing instruction is a `cta` block
+
+The last line of a service page is usually an instruction - "Begin with a readiness
+assessment", "Start with a pilot".
+On three pages it was a full sentence used as a section `h2` over an empty section, which
+rendered as an orphan heading with nothing under it and nothing to click.
+`cta` carries the sentence, a destination and a button label.
+The label reuses the homepage's "Schedule a free consultation" rather than inventing a
+second verb for the same action.
+
+---
+
+### The interior hero is a panel, not a band
+
+A content page with a hero renders it beside the title inside the slate header, on a
+`md:grid-cols-[1.05fr_0.95fr]` split, not as a full-bleed `aspect-[8/3]` strip under it.
+
+The strip was the loudest thing on every service page and carried no information: 1600
+by 600 of stock photography spanning the viewport, directly above a `max-w-3xl` column
+of text.
+Paired with the slate block the same photograph reads as one masthead, the accent bar
+sits on it the way it does on the homepage and `ProgramHero`, and the page starts at its
+content instead of at a banner.
+
+A page with no hero keeps the full-width header, so nothing is left with a hole in it.
+
+### Width follows content, not the page
+
+Prose is capped at `max-w-3xl` because that is a reading measure.
+Structure is not prose: a `steps` or `cards` grid inside a reading column has nowhere to
+go, and that is what made the services pages look like text packed into one strip.
+`ContentSections` gives a section carrying either block `max-w-6xl` and everything else
+`max-w-3xl`.
+
+---
+
+### The content page block vocabulary
+
+`lib/content.ts` defines what a prose page can say, and the vocabulary is the ceiling on
+how structured those pages can look.
+It was four kinds - `heading`, `para`, `list`, `image` - and a step sequence had no way
+to be anything but a run of headings, so every services page rendered as one flat column.
+
+```
+heading   a sub-heading inside a section
+para      body copy
+list      a set of items; six or more short ones render in columns, not a tall stack
+steps     an ordered process, numerals rendered positionally
+cards     titled peers in a grid, no photo and no link
+image     measured against lib/image-dims.json, never upscaled
+```
+
+`steps` and `cards` differ only in whether order carries meaning, and that is the whole
+test for which to use.
+Neither takes a photograph: `PhotoLedCard` is the one that does, and it needs a real
+`href` and a real description, so a block of copy with a stock image bolted on is not the
+same thing.
+
+### Section density and fill
+
+A `Section` takes an optional `density` and `fill`.
+Leave both unset unless the default is wrong.
+
+```
+density   tight    py-12    one block
+          normal   py-16    the default
+          feature  py-24    opt-in only; long prose does not want more air
+fill      white | tint | dark, alternating from the section above when unset
+```
+
+Density defaults from how much is in the block, which is what the weight ladder in §6
+asks for.
+Every section at `py-16` with the fill alternating on array index is the flat rhythm
+§8 rules out, and it is what these pages did before.
+
+`ContentSections` throws when two tinted or two dark sections end up adjacent, so that
+anti-pattern fails the build rather than shipping.
+
+---
+
 ## 6. Components
 
 All primitives live in `components/Brand.tsx`.
@@ -430,6 +525,16 @@ any grid of same-shaped items.
 ---
 
 ## 8. Anti-patterns
+
+**Text on a surface that resolves to the same token.**
+`--color-ink` and `--color-surface-dark` are both `--color-wos-slate`.
+A `text-ink` heading on `bg-surface-dark` is therefore 1:1 and invisible, and 112 of them
+shipped that way because `ContentPage` recoloured only `p` inside its dark header.
+The fix was to narrow the type so the case cannot be expressed, not to recolour it:
+`PageContent.lead` accepts paragraphs only, and a heading there is a compile error.
+When a block can land on either surface, pass the surface down and pick the colour from
+it, the way `Blocks` takes `dark`.
+
 
 | Pattern | Why | Replace with |
 |---|---|---|
@@ -561,7 +666,7 @@ There are five, and there is no sixth without a row in this table.
 | Card lift | `PhotoLedCard`, `TintedCard`, `ServiceCard` | `-translate-y-[3px]`, 250ms `ease-out` |
 | Image scale inside a fixed frame | The same three cards | `scale-[1.03]` to `scale-[1.04]`, 500 to 600ms `ease-out` |
 | Accent rule growth | The same three cards | `w-8` to `w-14`, `transition-[width]` 300ms `ease-out` |
-| Section arrival | `FadeIn`, on body sections below the fold | opacity plus a 12px rise, `--duration-fade` on `--ease-fade` |
+| Section arrival | `FadeIn`, on body sections below the fold, including every `ContentSections` section | opacity plus a 12px rise, `--duration-fade` on `--ease-fade` |
 
 The homepage partner wall desaturates its tiles and restores colour on hover.
 That is the colour swap row applied to a filter, and it is opt-in: on `/corporate-partners/` and `/academic-partners/` the logos are the content of the page, and greying out the content is not a treatment.

@@ -420,3 +420,28 @@ export function PullQuote({
     </blockquote>
   );
 }
+
+/**
+ * The h2 that opens a section, shared so the prose pages and the hub grids agree.
+ *
+ * The hubs used an Eyebrow here, which gave their card grid no heading at all: on
+ * /managed-service-centers/ that left six card h3s sitting directly under the page h1
+ * with the level between them missing. An eyebrow is a label, not an outline entry.
+ */
+export function SectionHeading({
+  children,
+  dark = false,
+}: {
+  children: ReactNode;
+  dark?: boolean;
+}) {
+  return (
+    <h2
+      className={`font-heading text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] md:text-[34px] ${
+        dark ? "text-white" : "text-ink"
+      }`}
+    >
+      {children}
+    </h2>
+  );
+}

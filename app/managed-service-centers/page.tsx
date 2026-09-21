@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Eyebrow, PhotoLedCard } from "@/components/Brand";
+import { PhotoLedCard, SectionHeading } from "@/components/Brand";
 import ContentPage, { ContentSections } from "@/components/ContentPage";
 import { MSC_CARDS } from "@/content/managed-service-centers-hub";
 import page from "@/content/managed-service-centers";
@@ -21,8 +21,8 @@ export default function Page() {
 
       <section className="py-16">
         <div className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="WOS Managed Services" />
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <SectionHeading>WOS Managed Services</SectionHeading>
+          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {MSC_CARDS.map((card) => (
               <PhotoLedCard
                 key={card.href}

@@ -9,8 +9,8 @@ const page: PageContent = {
   eyebrow: "Consulting to Hire Services",
   description: "Need talent now?",
   hero: {"src": "/images/171206_4700_cropped-scaled-1-1-1.jpg", "alt": ""},
-  lead: [{"kind": "para", "text": "Need talent now?"}, {"kind": "para", "text": "We source and vet talent from your local community with a background equipped for your needs."}, {"kind": "para", "text": "By partnering with WOS for Direct Hire, you gain access to a streamlined, reliable, and cost-effective hiring solution. Our team of experts works closely with you to understand your unique challenges and deliver talent that not only meets but exceeds your expectations. Transform your talent acquisition strategy with WOS Direct Hire—because the right people make all the difference."}, {"kind": "para", "text": "Contact Us!"}],
-  sections: [],
+  lead: [{"kind": "para", "text": "Need talent now?"}, {"kind": "para", "text": "We source and vet talent from your local community with a background equipped for your needs."}],
+  sections: [{"blocks": [{"kind": "para", "text": "By partnering with WOS for Direct Hire, you gain access to a streamlined, reliable, and cost-effective hiring solution. Our team of experts works closely with you to understand your unique challenges and deliver talent that not only meets but exceeds your expectations. Transform your talent acquisition strategy with WOS Direct Hire—because the right people make all the difference."}, {"kind": "para", "text": "Contact Us!"}]}],
 };
 
 export default page;

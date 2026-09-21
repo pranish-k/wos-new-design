@@ -36,6 +36,20 @@ def visible(page_html):
     return re.sub(r"\s+", " ", html.unescape(TAGS.sub(" ", body)))
 
 
+def squash(text):
+    """Letters and digits only, lowercased.
+
+    The mirror writes an ordered list as one paragraph, "1. Discovery 2. Knowledge",
+    and the rebuild renders it as a steps block whose numerals are positional and whose
+    "Label : body" pairs are separate elements. Every word survives, but none of the
+    punctuation does, so a literal substring test reported five such blocks on
+    /itsupport as missing copy while all five were on the page. Comparing on letters
+    alone asks the question this check is actually for - did the words arrive - rather
+    than whether the numbering convention still matches.
+    """
+    return re.sub(r"[^a-z0-9]+", "", text.lower())
+
+
 def people_routes():
     """Group landing paths, which hold renamed photos and are audited differently."""
     src = open(os.path.join(HERE, "..", "content", "groups.ts"), encoding="utf-8").read()
@@ -67,7 +81,8 @@ def main():
         # A block counts as carried when a distinctive slice of it appears in the output.
         blocks = [b["text"] for b in data["blocks"]
                   if b["tag"] != "img" and len(b["text"]) > 25]
-        carried = sum(1 for b in blocks if b[:60] in text)
+        squashed = squash(text)
+        carried = sum(1 for b in blocks if squash(b)[:50] in squashed)
 
         # Only the first background counts: the rest are Kubio section fills laid
         # behind body text, which the rebuild deliberately does not reproduce.

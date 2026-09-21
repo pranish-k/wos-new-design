@@ -7,7 +7,13 @@
 //
 // The placeholders are dropped rather than carried, because this page is now in the
 // header. Nothing here is written: every word below is text that is already on the live
-// page. The page is thin and wants real copy from WOS.
+// page.
+//
+// What the page had left was 46 words and three stock photographs stacked full-width,
+// and because it has no h2 the extractor put all of it in the lead, so it rendered
+// inside the dark header. The photographs now carry the three sibling pages as a hub
+// grid in app/consulting-to-hire-services/page.tsx, which is what an Overview in a
+// four-item nav group is for. The page still wants real copy from WOS.
 
 import type { PageContent } from "@/lib/content";
 
@@ -21,23 +27,6 @@ const page: PageContent = {
     "An agile, results-oriented approach that ensures you have the right people, in the right roles, at the right time.",
   hero: null,
   lead: [
-    { kind: "para", text: "Consulting to Hire Services Offered by WOS" },
-    {
-      kind: "image",
-      src: "/images/20160527_21_cropped-scaled-1-1.jpg",
-      alt: "WOS consultants at work along a row of desktop workstations in a training lab.",
-    },
-    {
-      kind: "image",
-      src: "/images/shared-image_blur_crop.jpg",
-      alt: "A WOS training session in progress, seen from outside the room through a glass wall.",
-    },
-    { kind: "heading", text: "Onsite & Remote Staffing" },
-    {
-      kind: "image",
-      src: "/images/171206_4700_cropped-scaled-1-1.jpg",
-      alt: "Three panellists seated at a WOS event, one speaking into a microphone.",
-    },
     {
       kind: "para",
       text: "Discover the WOS difference: an agile, results-oriented approach that ensures you have the right people, in the right roles, at the right time. Let us help you build a workforce that drives growth and innovation.",
