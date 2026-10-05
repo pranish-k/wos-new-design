@@ -177,7 +177,7 @@ A 1px light border between a white card and a white page divides nothing and rea
 Not every section gets `py-20`.
 Never put two `surface-tint` blocks in a row or two dark sections back to back; both read as one oversized block.
 
-**Motion is the five gestures in `DESIGN.md` §10 and nothing else.**
+**Motion is the seven gestures in `DESIGN.md` §10 and nothing else.**
 Any JavaScript-driven motion ships its final state in the server-rendered HTML and guards itself on `prefers-reduced-motion`.
 CSS transitions are already covered by the global reduced-motion rule in `globals.css`.
 

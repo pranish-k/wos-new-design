@@ -23,7 +23,7 @@ const ROUTES = [
   "consulting-to-hire-services", "managedservices",
   // Not on the live site. Both are linked from the header and from the homepage
   // partnerships band, so they are discoverable and belong here.
-  "wos-hunter-college-partnership", "center-for-imagination",
+  "wos-hunter-college-partnership", "ai-institute",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

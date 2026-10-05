@@ -289,6 +289,7 @@ This is the part most likely to ship broken, and type checking catches none of i
 ### Mobile
 
 - Full-screen white overlay, not a dropdown, with body scroll locked and Escape wired.
+- The overlay serves everything below `lg`, not `md`. Five bar items plus Donate need about 830px, so at 768 the bar ran 57px off the page once the AI Institute joined it. Shrinking the bar type to fit a tablet would cost every desktop visitor legibility; a tablet in the overlay loses nothing.
 - One accordion level, and now that the tree is two levels deep it is the only level there is. Flattening "Other Services" removed a tap from every leaf under Educational and Advisory Services, which is the touch-device complaint open decision 5 was actually about.
 
 All logo references go through `components/WosMark.tsx`.
@@ -466,6 +467,14 @@ If a card ever needs more definition, the answer is a stronger fill or a colour-
 
 Borders that remain are the ones doing real work: an outlined button, where the outline *is* the button, and form controls, where an input with no boundary is not recognisably an input.
 
+### Icons
+
+Line icons from `lucide-react`, at `strokeWidth={1.5}` and 28px, and only on `/ai-institute`, where a set of named fields, pillars and audiences needed a mark to scan by.
+They are decorative and carry `aria-hidden`; the label beside each one is what says it.
+Red on light surfaces is legal because an icon is not text, and white on slate.
+Never set one inside a filled circle or a tinted square: that is the SaaS feature-grid look §1 rules out, and the icon reads fine bare.
+Never use an icon in place of a label, and never in body copy, for the same reason as emoji.
+
 ### Buttons must match
 
 `PrimaryButton size="lg"` is `px-8 py-4`.
@@ -554,7 +563,7 @@ it, the way `Blocks` takes `dark`.
 | Two `surface-tint` blocks in a row | They merge into one oversized block | Put a level 2 or 3 section between |
 | A drop shadow anywhere but the partner wall | Reads as a SaaS card; the wall earns it, nothing else does | Separate with fill, spacing and type |
 | Two dark sections back to back | Reads as one oversized block with a gap in it | Break with a light section |
-| Decorative animation: parallax, autoplay, looping, entrance animation on chrome | Motion here is a state change, not an effect | The five gestures in §10, or nothing |
+| Decorative animation: parallax, autoplay, looping, entrance animation on chrome | Motion here is a state change, not an effect | The gestures in §10, or nothing |
 | `SecondaryButton` on a dark surface without `dark` | Resolves to red on slate at 2.31:1, the row three above this one. It shipped in the homepage hero | `SecondaryButton dark`, §6 |
 
 
@@ -658,7 +667,7 @@ It is never an effect, never a loop, and never something a visitor has to wait t
 
 ### The sanctioned gestures
 
-There are five, and there is no sixth without a row in this table.
+There are seven, and there is no eighth without a row in this table.
 
 | Gesture | Where | Timing |
 |---|---|---|
@@ -667,6 +676,8 @@ There are five, and there is no sixth without a row in this table.
 | Image scale inside a fixed frame | The same three cards | `scale-[1.03]` to `scale-[1.04]`, 500 to 600ms `ease-out` |
 | Accent rule growth | The same three cards | `w-8` to `w-14`, `transition-[width]` 300ms `ease-out` |
 | Section arrival | `FadeIn`, on body sections below the fold, including every `ContentSections` section | opacity plus a 12px rise, `--duration-fade` on `--ease-fade` |
+| Arc draw | `ArcDraw`, the Fantasy Arc on `/ai-institute` only | `stroke-dashoffset` 1 to 0 on a `pathLength={1}` path, 1100ms on `--ease-fade`, once |
+| Node sequence | The same diagram's nodes, drop lines and labels | opacity, 250ms `ease-out`, each delayed to the moment the stroke reaches it, once |
 
 The homepage partner wall desaturates its tiles and restores colour on hover.
 That is the colour swap row applied to a filter, and it is opt-in: on `/corporate-partners/` and `/academic-partners/` the logos are the content of the page, and greying out the content is not a treatment.
@@ -674,6 +685,10 @@ That is the colour swap row applied to a filter, and it is opt-in: on `/corporat
 `CountUp` is the one exception to "nothing a visitor waits through".
 It counts a figure from zero over 1100ms on an ease-out cubic.
 It earns the exception because the number is the content, and the count is what makes a visitor read the figure rather than scroll past it.
+`ArcDraw` earns the same exception on the same argument.
+The arc is a developmental sequence, and drawing it left to right is the sequence; a static curve has to be read to be understood, a drawn one is understood as it arrives.
+It runs once, is 1100ms like `CountUp`, and follows the SSR rule below: the drawn state ships in the HTML and is only rewound below the fold.
+The nodes do not use the grid's 60ms stagger. `--ease-fade` covers most of the distance in the first third of the time, so a fixed stagger left the line three nodes ahead of its dots; each node is instead delayed by the inverse of the easing, so it appears as the stroke arrives. Its fade is 250ms because it is a response to the stroke, not an arrival of its own.
 Nothing else on this site animates its own content.
 
 Durations are vocabulary, not free values.

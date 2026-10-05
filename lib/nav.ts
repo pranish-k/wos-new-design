@@ -125,9 +125,10 @@ export const NAV: NavNode[] = [
       // sits a column away from "Managed Service Center", which is a different page
       // with 0% shared copy.
       { kind: "link", label: "Managed Services", href: "/managedservices/" },
-      // Research was a single link to /langer-arc/. It is a grouping now because there
-      // are three of them, and because the Institute page was reachable only from the
-      // footer, which is not a home for a research programme.
+      // Research was a single link to /langer-arc/. It is a grouping because the Institute
+      // of Workforce Policy & Practice was reachable only from the footer, which is not a
+      // home for a research programme. The Center for Imagination left it when it became
+      // the AI Institute, which has its own place on the bar below.
       {
         kind: "group",
         label: "Research",
@@ -138,11 +139,14 @@ export const NAV: NavNode[] = [
             label: "Institute of Workforce Policy & Practice",
             href: "/institute-of-workforce-policy-practice/",
           },
-          { kind: "link", label: "Center for Imagination", href: "/center-for-imagination" },
         ],
       },
     ],
   },
+  // The one top-level item that is not on the live site. WOS promoted the
+  // Center for Imagination to the bar as the Workforce AI Institute; the old
+  // /center-for-imagination URL redirects here from next.config.ts.
+  { kind: "link", label: "AI Institute", href: "/ai-institute" },
   { kind: "link", label: "News & Events", href: "/blog/" },
   {
     kind: "group",

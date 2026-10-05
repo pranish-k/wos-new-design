@@ -43,7 +43,12 @@ const nextConfig: NextConfig = {
   // binary lookup, and it must never be traced into a production build.
   serverExternalPackages: ["sharp"],
   async redirects() {
-    return personRedirects();
+    return [
+      // The proposal page moved when it became the Workforce AI Institute. One entry
+      // covers both slash forms: Next strips the trailing slash before redirects run.
+      { source: "/center-for-imagination", destination: "/ai-institute", permanent: true },
+      ...personRedirects(),
+    ];
   },
 };
 

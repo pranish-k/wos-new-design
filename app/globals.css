@@ -145,7 +145,7 @@
     outline-color: #ffffff;
   }
 
-  /* Anchor targets must clear the sticky header, which is 72px at md and up. */
+  /* Anchor targets must clear the sticky header, which is 72px at lg and up. */
   :target {
     scroll-margin-top: 6rem;
   }

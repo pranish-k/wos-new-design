@@ -6,7 +6,7 @@
 //
 // They are not equals and the page must not present them as equals: Hunter is a live
 // partnership with a page behind it, the Center for Strategic Learning is an existing WOS
-// center with its own deployment, and CIRDAF is a proposal. `status` is what carries that
+// center with its own deployment, and the AI Institute is a WOS institute. `status` carries that
 // difference. It renders as each section's eyebrow, so the distinction is the first thing
 // read rather than something inferred from the copy.
 //
@@ -46,9 +46,9 @@ export const PARTNERSHIPS: Partnership[] = [
     external: true,
   },
   {
-    status: "Proposed",
-    title: "Center for Imagination, Reflective Development, and AI Futures",
-    body: "A proposed research laboratory studying how people develop imagination, ethical foresight and innovation in the age of AI, grounded in Dr. Arthur Langer’s Fantasy Arc framework.",
-    href: "/center-for-imagination",
+    status: "WOS Institute",
+    title: "Workforce AI Institute",
+    body: "Home of the Center for Imagination, Reflective Development, and AI Futures, studying how people develop imagination, ethical foresight and innovation in the age of AI, grounded in Dr. Arthur Langer’s Fantasy Arc framework.",
+    href: "/ai-institute",
   },
 ];

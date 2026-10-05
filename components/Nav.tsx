@@ -272,9 +272,12 @@ export default function Nav() {
 
   return (
     <header className="sticky top-0 z-50 bg-white">
+      {/* z-50 lifts the bar over the mobile overlay below it, which shares this header's
+          stacking context. Without it the overlay covered the logo and the close button,
+          and Escape was the only way out of the menu. */}
       <div
         ref={barRef}
-        className="relative mx-auto flex w-full max-w-6xl items-center justify-between gap-4 border-b border-hairline px-6 py-3 md:min-h-[72px] md:py-0"
+        className="relative z-50 mx-auto flex w-full max-w-6xl items-center justify-between gap-4 border-b border-hairline px-6 py-3 lg:min-h-[72px] lg:py-0"
         onMouseLeave={close}
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node)) close();
@@ -289,12 +292,12 @@ export default function Nav() {
             setMobileOpen(false);
           }}
         >
-          <WosMark className="h-8 w-auto md:h-9" decorative priority />
+          <WosMark className="h-8 w-auto lg:h-9" decorative priority />
         </Link>
 
         <nav
           aria-label="Main"
-          className="hidden flex-shrink-0 items-center gap-6 md:flex lg:gap-8"
+          className="hidden flex-shrink-0 items-center gap-6 lg:flex xl:gap-8"
         >
           {NAV.map((node, i) => {
             const active = hrefsOf(node).some((h) => isActive(pathname, h));
@@ -375,7 +378,7 @@ export default function Nav() {
 
         <button
           type="button"
-          className="flex-shrink-0 text-ink md:hidden"
+          className="flex-shrink-0 text-ink lg:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileOpen}
@@ -400,7 +403,7 @@ export default function Nav() {
           is the usability problem open decision 5 is about. */}
       <nav
         aria-label="Mobile"
-        className={`fixed inset-0 z-40 flex flex-col gap-6 overflow-y-auto bg-white px-8 pb-16 pt-24 md:hidden
+        className={`fixed inset-0 z-40 flex flex-col gap-6 overflow-y-auto bg-white px-8 pb-16 pt-24 lg:hidden
           transition-[opacity,visibility] duration-[250ms] ease-out
           ${mobileOpen ? "visible opacity-100" : "pointer-events-none invisible opacity-0"}`}
       >
