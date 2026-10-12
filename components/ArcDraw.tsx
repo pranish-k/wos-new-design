@@ -13,53 +13,66 @@ import { useEffect, useRef, useState } from "react";
  * point moves the nodes and their labels with it.
  */
 
-export type ArcStep = { tag: string; name?: string; detail?: string };
+export type ArcStep = { tag: string; name: string; detail: string };
 
 const W = 1000;
 const H = 320;
 const BASE = 300;
-// Six equal columns, so the HTML label grid under the drawing lines up with the nodes
-// without either side knowing the other's pixel width.
-const COL = W / 6;
-const P0 = [COL / 2, BASE];
-const P3 = [W - COL / 2, 40];
-// Rises slowly, then steeply: most people stall in the lower stages, and the shape says
-// that before any label does.
-const P1 = [460, BASE];
-const P2 = [640, 50];
-const PATH = `M ${P0} C ${P1} ${P2} ${P3}`;
 
-function bezier(t: number, i: 0 | 1) {
-  const u = 1 - t;
-  return u * u * u * P0[i] + 3 * u * u * t * P1[i] + 3 * u * t * t * P2[i] + t * t * t * P3[i];
-}
+/**
+ * The curve for a given number of stages. One equal column per stage, so the HTML label
+ * grid under the drawing lines up with the nodes without either side knowing the other's
+ * pixel width.
+ */
+function curve(columns: number) {
+  const col = W / columns;
+  const P0 = [col / 2, BASE];
+  const P3 = [W - col / 2, 40];
+  const span = P3[0] - P0[0];
+  // Rises slowly, then steeply: most people stall in the lower stages, and the shape says
+  // that before any label does. The handles sit at fixed fractions of the span, so the
+  // shape holds whatever the stage count.
+  const P1 = [P0[0] + span * 0.452, BASE];
+  const P2 = [P0[0] + span * 0.668, 50];
 
-/** The point on the curve at a given x. x(t) is monotonic here, so bisection is exact enough. */
-function atX(x: number) {
-  let lo = 0;
-  let hi = 1;
-  for (let k = 0; k < 30; k++) {
-    const mid = (lo + hi) / 2;
-    if (bezier(mid, 0) < x) lo = mid;
-    else hi = mid;
-  }
-  return { x, y: bezier(lo, 1), t: lo };
+  const bezier = (t: number, i: 0 | 1) => {
+    const u = 1 - t;
+    return u * u * u * P0[i] + 3 * u * u * t * P1[i] + 3 * u * t * t * P2[i] + t * t * t * P3[i];
+  };
+
+  /** The point on the curve at a given x. x(t) is monotonic here, so bisection is exact enough. */
+  const atX = (x: number) => {
+    let lo = 0;
+    let hi = 1;
+    for (let k = 0; k < 30; k++) {
+      const mid = (lo + hi) / 2;
+      if (bezier(mid, 0) < x) lo = mid;
+      else hi = mid;
+    }
+    return { x, y: bezier(lo, 1), t: lo };
+  };
+
+  /** Length along the curve from its start to parameter t, by sampling. */
+  const lengthTo = (t: number, steps = 200) => {
+    let len = 0;
+    let prev = { x: P0[0], y: P0[1] };
+    for (let k = 1; k <= steps; k++) {
+      const u = (k / steps) * t;
+      const pt = { x: bezier(u, 0), y: bezier(u, 1) };
+      len += Math.hypot(pt.x - prev.x, pt.y - prev.y);
+      prev = pt;
+    }
+    return len;
+  };
+
+  return {
+    path: `M ${P0} C ${P1} ${P2} ${P3}`,
+    points: Array.from({ length: columns }, (_, i) => atX(col / 2 + i * col)),
+    lengthTo,
+  };
 }
 
 const DRAW_MS = 1100;
-
-/** Length along the curve from its start to parameter t, by sampling. */
-function lengthTo(t: number, steps = 200) {
-  let len = 0;
-  let prev = { x: P0[0], y: P0[1] };
-  for (let k = 1; k <= steps; k++) {
-    const u = (k / steps) * t;
-    const pt = { x: bezier(u, 0), y: bezier(u, 1) };
-    len += Math.hypot(pt.x - prev.x, pt.y - prev.y);
-    prev = pt;
-  }
-  return len;
-}
 
 /**
  * The moment the stroke reaches a given fraction of its length.
@@ -109,7 +122,7 @@ export default function ArcDraw({ steps }: { steps: ArcStep[] }) {
   }, []);
 
   const hidden = phase === "rewound";
-  const points = Array.from({ length: steps.length }, (_, i) => atX(COL / 2 + i * COL));
+  const { path, points, lengthTo } = curve(steps.length);
   const total = lengthTo(1);
   const fade = (i: number) => ({
     opacity: hidden ? 0 : 1,
@@ -140,7 +153,7 @@ export default function ArcDraw({ steps }: { steps: ArcStep[] }) {
           ),
         )}
         <path
-          d={PATH}
+          d={path}
           pathLength={1}
           fill="none"
           className="stroke-white/80"
@@ -161,7 +174,7 @@ export default function ArcDraw({ steps }: { steps: ArcStep[] }) {
               <circle
                 cx={p.x}
                 cy={p.y}
-                r={top ? 11 : i === 0 ? 5 : 7}
+                r={top ? 11 : 7}
                 className={top ? "fill-action" : "fill-surface-dark stroke-white"}
                 strokeWidth={top ? 0 : 2.5}
               />
@@ -170,35 +183,24 @@ export default function ArcDraw({ steps }: { steps: ArcStep[] }) {
         })}
       </svg>
 
-      {/* Labels are HTML in a grid that shares the drawing's six columns, so they stay real
-          text at every width rather than scaling with the viewBox. */}
-      {/* Every step gets the same three sizes, so no stage outranks another by type alone.
-          A step the source says something about has its tag in full white; the rest are
-          muted, so the eye goes to the stages that mean something. */}
+      {/* Labels are HTML in a grid that shares the drawing's columns, so they stay real
+          text at every width rather than scaling with the viewBox. Every step gets the same
+          three sizes, so no stage outranks another by type alone. */}
       {/* Subgrid rows, so a name that wraps to two lines does not push its detail below
           its neighbours'. */}
-      <ol className="m-0 mt-5 grid list-none grid-cols-6 gap-x-3 p-0">
+      <ol
+        className="m-0 mt-5 grid list-none gap-x-3 p-0"
+        style={{ gridTemplateColumns: `repeat(${steps.length}, minmax(0, 1fr))` }}
+      >
         {steps.map((step, i) => (
           <li key={step.tag} className="row-span-3 grid grid-rows-subgrid text-center" style={fade(i)}>
-            <span
-              className={`block font-heading text-[11px] font-semibold uppercase tracking-[0.15em] ${
-                step.name || step.detail ? "text-white" : "text-white/50"
-              }`}
-            >
+            <span className="block font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-white">
               {step.tag}
             </span>
-            {/* Rendered only when present, so a step with a detail but no name (Stage 3)
-                lifts its detail up under the tag instead of leaving a gap. */}
-            {step.name && (
-              <span className="mt-2 block font-heading text-[15px] font-semibold leading-[1.25] text-white">
-                {step.name}
-              </span>
-            )}
-            {step.detail && (
-              <span className={`${step.name ? "mt-1.5" : "mt-2"} block text-[13px] leading-[1.4] text-white/75`}>
-                {step.detail}
-              </span>
-            )}
+            <span className="mt-2 block font-heading text-[15px] font-semibold leading-[1.25] text-white">
+              {step.name}
+            </span>
+            <span className="mt-1.5 block text-[13px] leading-[1.4] text-white/75">{step.detail}</span>
           </li>
         ))}
       </ol>

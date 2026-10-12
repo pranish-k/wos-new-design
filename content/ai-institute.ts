@@ -89,26 +89,42 @@ const page = {
 
   arc: {
     intro:
-      "Grounded in Dr. Arthur Langer’s Fantasy Arc framework, the Institute investigates how people progress from indoctrinated knowledge toward “Abstracts of New Possibilities,” the highest stage of imaginative and reflective maturity, across the lifespan from K-12 through adult and executive education.",
-    // Every word here comes from the proposal, the only Langer source this page has. It
-    // describes the starting point, Stage 3 and Stage 5 and says nothing about Stages 1, 2
-    // and 4, so those carry their number and nothing else. Names for them come from
-    // Dr. Langer or not at all: a borrowed scheme was tried and taken out.
+      "Grounded in Dr. Arthur Langer’s Fantasy Arc framework, the Institute investigates how people progress through five stages, from Indoctrinated Knowledge toward “Abstracts of New Possibilities,” the highest stage of imaginative and reflective maturity, across the lifespan from K-12 through adult and executive education.",
+    // Stage names, descriptors and the five sectors come from "The Alchemist and Langer’s
+    // Fantasy Arc" deck, slide 3, which cites Langer’s 2026 article. The proposal named only
+    // the first and last stages, and reading "from indoctrinated knowledge" as a starting
+    // point before Stage 1 once gave this arc a sixth node: Indoctrinated Knowledge is
+    // Stage 1. The deck is inconsistent in two places and the fuller form is used for both:
+    // "Stable Exam & Application" (slides 3, 4, 10) against "Stable Examination &
+    // Application" (slide 6), and "Organization Design" against the notes' "Organization
+    // Creativity/Design".
     steps: [
-      { tag: "Start", name: "Indoctrinated knowledge", detail: "Where the arc begins" },
-      { tag: "Stage 1" },
-      { tag: "Stage 2" },
-      { tag: "Stage 3", detail: "Where institutions become trapped" },
-      { tag: "Stage 4" },
+      { tag: "Stage 1", name: "Indoctrinated Knowledge", detail: "Authority and the status quo" },
+      { tag: "Stage 2", name: "Acknowledge Multiplicity", detail: "Alternatives become visible" },
+      { tag: "Stage 3", name: "Acceptance of Complexity", detail: "Contradiction is tolerated" },
+      {
+        tag: "Stage 4",
+        name: "Stable Examination & Application",
+        detail: "Reflection becomes action",
+      },
       {
         tag: "Stage 5",
         name: "Abstracts of New Possibilities",
-        detail: "Generating transformative ideas",
+        detail: "Imagination creates futures",
       },
     ],
+    sectors: [
+      { name: "Data Cognition", detail: "Information sources" },
+      { name: "Imagination of the Mind", detail: "Creative engine" },
+      { name: "Organization Design", detail: "Ways of working" },
+      { name: "Human Ethics", detail: "Wisdom and values" },
+      { name: "Self-Relevance", detail: "Leader identity" },
+    ],
     principle: "Reflection-Before-Action",
+    // In the deck reflection is what it takes to reach the advanced stages, not something
+    // Stage 5 hands out, so the sentence must not read as a reward for getting there.
     principleBody:
-      "The capacity to envision and evaluate future possibilities prior to implementation. Future societies require it, and it is what Stage 5 makes possible.",
+      "The capacity to envision and evaluate future possibilities prior to implementation. Future-oriented decisions require it, and so does reaching the Arc’s advanced stages.",
   },
 
   foundationSource:

@@ -127,7 +127,7 @@ export default function Page() {
             </div>
           </FadeIn>
 
-          {/* Six columns of labels do not fit a phone, so below md the arc becomes the
+          {/* Five columns of labels do not fit a phone, so below md the arc becomes the
               ordered list it is underneath. */}
           <div className="mt-16 hidden md:block">
             <ArcDraw steps={page.arc.steps} />
@@ -148,26 +148,37 @@ export default function Page() {
                     aria-hidden="true"
                   />
                   <span>
-                    <span
-                      className={`block font-heading text-[11px] font-semibold uppercase tracking-[0.15em] ${
-                        s.name || s.detail ? "text-white" : "text-white/50"
-                      }`}
-                    >
+                    <span className="block font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-white">
                       {s.tag}
                     </span>
-                    {s.name && (
-                      <span className="mt-1 block font-heading text-[16px] font-semibold text-white">
-                        {s.name}
-                      </span>
-                    )}
-                    {s.detail && (
-                      <span className="mt-1 block text-[14px] leading-[1.45] text-white/75">{s.detail}</span>
-                    )}
+                    <span className="mt-1 block font-heading text-[16px] font-semibold text-white">{s.name}</span>
+                    <span className="mt-1 block text-[14px] leading-[1.45] text-white/75">{s.detail}</span>
                   </span>
                 </li>
               );
             })}
           </ol>
+
+          {/* The arc's second axis: the stages measure how far, the sectors measure in what. */}
+          <FadeIn className="mt-20">
+            <h3 className="font-heading text-[20px] font-semibold text-white">
+              Five creative skill sectors
+            </h3>
+            {/* Subgrid rows, so a name that wraps does not push its line below its neighbours'. */}
+            <ul className="m-0 mt-6 grid list-none gap-x-8 gap-y-6 p-0 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-0">
+              {page.arc.sectors.map((sector) => (
+                <li
+                  key={sector.name}
+                  className="border-t border-white/20 pt-4 lg:row-span-2 lg:grid lg:grid-rows-subgrid"
+                >
+                  <p className="font-heading text-[16px] font-semibold leading-[1.3] text-white">
+                    {sector.name}
+                  </p>
+                  <p className="mt-1.5 text-[14px] leading-[1.5] text-white/75">{sector.detail}</p>
+                </li>
+              ))}
+            </ul>
+          </FadeIn>
         </div>
       </section>
 
