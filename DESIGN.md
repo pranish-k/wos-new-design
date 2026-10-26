@@ -49,6 +49,7 @@ Two conditions on the exception.
 
 **It appears on the homepage and nowhere else.**
 §9 check 5a fails if the phrase reaches any other built route, which is what a co-branded header or footer would do.
+`/alternate-home` (§11) is a second rendering of the homepage's own content, so it carries the same credit in the same sentence and is the one other route 5a allows.
 
 ---
 
@@ -620,10 +621,12 @@ grep -rniE 'font-serif|wordmark|trajan|georgia' app components lib \
 #    5a is a stronger version of the original: a co-branded header or footer returns
 #    every page, and it names them.
 #
-# 5a. The phrase may appear on the homepage and nowhere else.
+# 5a. The phrase may appear on the homepage and nowhere else. /alternate-home renders
+#     the homepage's own content in the §11 exploration, so it is the one other route
+#     allowed, and only because it is the same sentence from the same content file.
 grep -rl -iE 'in partnership with (teachers college|columbia)' \
   .next/server/app --include='*.html' \
-  | grep -v '^\.next/server/app/index\.html$'
+  | grep -vE '^\.next/server/app/(index|alternate-home)\.html$'
 
 # 5b. And on that page the sentence must be about the CENTER, never about WOS.
 #     Matched on the words immediately before the phrase rather than on the Center's
@@ -742,3 +745,26 @@ Entrance animation on the header, the footer or the nav panels.
 Animated counters on any figure that is not a headline statistic.
 Hover motion on a photograph that is not inside a card.
 Any gesture whose duration was chosen so that it would be noticed.
+
+---
+
+## 11. `/alternate-home`: the colour-chapter exploration
+
+`/alternate-home` renders the homepage's content in a different direction, so the two can be compared side by side on the real site.
+It is a design exploration, not a page: nothing links to it, it is out of `app/sitemap.ts`, and it is set to `noindex`.
+It was developed as a standalone demo first and approved by the client for comparison.
+
+**It is exempt from §1, §2's single-accent rule, §6's eyebrow and card patterns and §10's motion list, and from nothing else.**
+Everything it uses is deliberately scoped so that the rest of the site is unaffected and the whole exploration can be removed by deleting `app/alternate-home/` and `components/alternate-home/`.
+
+What it does differently:
+
+- **Colour chapters.** Every section is a full-bleed field of a brand colour: white, `surface-tint`, slate, `surface-deep`, `action-deeper` and red. The fields are classes in `app/alternate-home/alternate-home.css` built only from existing tokens; no hue is added. Two neighbouring chapters never share a field, and `Chapters` throws at build time if they do.
+- **One gradient.** The opening and the close sit on a slow drifting gradient of deep slate, slate and red. White type is placed over the deep side only. It is frozen under reduced motion.
+- **The conversion arrows.** The O from the WOS mark, drawn as an SVG (`components/alternate-home/Motif.tsx`), is the page's one shape.
+- **Dense copy set as structure.** Lists inside sentences are set as lists, the impact figures are written into one sentence, and the conversion sentence gets a chapter of its own. No copy is cut and every word comes from the same content files as `/`.
+- **Motion.** The headline rises line by line, sections reveal as they arrive, the arrows draw on, and "Our approach" pins and fills a ring as the visitor scrolls (GSAP ScrollTrigger, 900px and up only). Every hidden state sits inside `prefers-reduced-motion: no-preference` and is armed by script, so the server-rendered page is always complete.
+
+It keeps square corners, no shadows, the site's header and footer, its buttons and its type.
+
+If the direction is adopted, this section and §1, §2 and §10 are what get rewritten, and the full rules are in the demo's `DEMO-DESIGN.md`.

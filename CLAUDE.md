@@ -149,6 +149,9 @@ The menu was reorganised and the old landing pages were left behind.
 Read it before writing any component.
 Before making a visual judgment call, add it there.
 
+`/alternate-home` is a scoped design exploration that breaks several of the rules below on purpose.
+Its exemptions are written out in `DESIGN.md` §11; they do not apply anywhere else.
+
 The rules below are the ones most often broken.
 
 **Never write a hex literal in a component.**

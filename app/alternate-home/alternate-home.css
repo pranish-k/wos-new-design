@@ -1,0 +1,172 @@
+/*
+ * Styles for /alternate-home, a design exploration of the homepage. See DESIGN.md §11.
+ *
+ * Kept in its own file, imported only by that route, so the exploration can be removed
+ * by deleting one folder and one components folder. Every colour is an existing token
+ * from globals.css: nothing here adds a hue.
+ *
+ * Fields. A chapter names its field and inherits background, ink and muted ink from it,
+ * so a component inside never has to know which colour it is sitting on.
+ *
+ *   paper    slate ink 12.54:1     tint     slate ink 11.70:1
+ *   slate    white 12.54:1         deep     white 16.18:1
+ *   crimson  white 6.74:1 (action-deeper, body copy may sit on it)
+ *   red      white 4.47:1, large type only
+ */
+.alt-field-paper,
+.alt-field-tint {
+  --field-ink: var(--color-ink);
+  --field-muted: var(--color-ink-muted);
+}
+.alt-field-paper {
+  --field-bg: white;
+}
+.alt-field-tint {
+  --field-bg: var(--color-surface-tint);
+}
+.alt-field-slate,
+.alt-field-deep,
+.alt-field-crimson,
+.alt-field-red {
+  --field-ink: white;
+  --field-muted: color-mix(in oklab, white 78%, transparent);
+}
+.alt-field-slate {
+  --field-bg: var(--color-wos-slate);
+}
+.alt-field-deep {
+  --field-bg: var(--color-surface-deep);
+}
+.alt-field-crimson {
+  --field-bg: var(--color-action-deeper);
+}
+.alt-field-red {
+  --field-bg: var(--color-wos-red);
+}
+.alt-field {
+  background-color: var(--field-bg);
+  color: var(--field-ink);
+}
+
+/*
+ * The signature gradient: the page's one gradient, used by the opening and the close.
+ * Brand colours only. Deep slate holds the left side, where the type sits, so white text
+ * is measured against deep (16:1) and never against red. The stop positions are
+ * registered custom properties so they interpolate, which lets the field drift with no
+ * JavaScript; the global reduced-motion rule freezes it.
+ */
+@property --g-red-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 84%;
+}
+@property --g-red-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 16%;
+}
+@property --g-crimson-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 96%;
+}
+.alt-gradient {
+  background-color: var(--color-surface-deep);
+  background-image:
+    radial-gradient(55% 70% at var(--g-red-x) var(--g-red-y), color-mix(in oklab, var(--color-wos-red) 80%, transparent) 0%, transparent 70%),
+    radial-gradient(50% 65% at var(--g-crimson-x) 100%, color-mix(in oklab, var(--color-action-deeper) 85%, transparent) 0%, transparent 70%),
+    radial-gradient(70% 90% at 8% 30%, var(--color-surface-deep) 0%, transparent 75%),
+    linear-gradient(105deg, var(--color-surface-deep) 40%, var(--color-wos-slate) 100%);
+  animation: alt-gradient-drift 24s ease-in-out infinite alternate;
+}
+@keyframes alt-gradient-drift {
+  0% {
+    --g-red-x: 84%;
+    --g-red-y: 16%;
+    --g-crimson-x: 96%;
+  }
+  50% {
+    --g-red-x: 72%;
+    --g-red-y: 30%;
+    --g-crimson-x: 84%;
+  }
+  100% {
+    --g-red-x: 90%;
+    --g-red-y: 8%;
+    --g-crimson-x: 100%;
+  }
+}
+
+/*
+ * Motion. Every hidden starting state lives inside prefers-reduced-motion:
+ * no-preference, so with reduced motion the server-rendered page is the finished page.
+ * Scroll reveals additionally wait for InView to arm them, so a page whose scripts never
+ * run shows everything.
+ */
+.alt-mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.alt-mask-line > span {
+  display: block;
+}
+.alt-motif-stroke {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The opening headline rises line by line, once, on load. */
+  .alt-mask-line > span {
+    animation: alt-mask-rise 1000ms var(--ease-fade) both;
+    animation-delay: calc(var(--i, 0) * 80ms + 120ms);
+  }
+  .alt-rise-in {
+    animation: alt-soft-rise 900ms var(--ease-fade) both;
+    animation-delay: var(--delay, 500ms);
+  }
+
+  /* The motif draws itself: on load when it is marked to, otherwise when scrolled to. */
+  .alt-motif-draw .alt-motif-stroke {
+    animation: alt-motif-draw 1800ms var(--ease-fade) both;
+    animation-delay: calc(var(--i, 0) * 220ms + 200ms);
+  }
+  [data-observe] .alt-motif-stroke {
+    transition: stroke-dashoffset 1800ms var(--ease-fade);
+    transition-delay: calc(var(--i, 0) * 220ms + 200ms);
+  }
+  [data-armed]:not([data-inview]) .alt-motif-stroke {
+    stroke-dashoffset: 1;
+  }
+
+  /* Section content arrives gently, staggered by --i. */
+  .alt-reveal {
+    transition:
+      opacity 800ms var(--ease-fade),
+      transform 800ms var(--ease-fade);
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  [data-armed]:not([data-inview]) .alt-reveal {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes alt-mask-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+@keyframes alt-soft-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@keyframes alt-motif-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
+}

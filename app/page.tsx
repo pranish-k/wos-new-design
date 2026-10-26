@@ -6,28 +6,9 @@ import FadeIn from "@/components/FadeIn";
 import PartnerWall from "@/components/PartnerWall";
 import ServiceCard from "@/components/ServiceCard";
 import { HOME_PROSE } from "@/content/home-prose";
-import { CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES } from "@/content/home-sections";
+import { APPROACH, CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES } from "@/content/home-sections";
 import { PARTNERSHIPS, type Partnership } from "@/content/partnerships";
 import { ORG, TAGLINE } from "@/lib/brand";
-
-const APPROACH = [
-  {
-    step: "Recruit the best",
-    body: "We identify high-potential individuals using a rigorous, research-backed screening process.",
-  },
-  {
-    step: "Train & mentor",
-    body: "Our programs develop both the hard and soft skills needed to thrive, with dedicated mentorship.",
-  },
-  {
-    step: "Employ & manage",
-    body: "We provide a supportive structure and a dedicated Client Service Manager for a seamless transition.",
-  },
-  {
-    step: "Deliver value",
-    body: "The result is a fully prepared professional who integrates faster and delivers lasting value.",
-  },
-];
 
 /**
  * The four HOME_PROSE blocks are now placed individually rather than mapped, because

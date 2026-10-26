@@ -66,3 +66,26 @@ export const IMPACT = [
   { value: "4", label: "Locations", note: "U.S, France, Costa Rica & The Netherlands" },
   { value: "8,000+", label: "Careers impacted" },
 ];
+
+/**
+ * The four stages of the WOS approach, shared by the homepage and /alternate-home so
+ * the two cannot drift apart.
+ */
+export const APPROACH = [
+  {
+    step: "Recruit the best",
+    body: "We identify high-potential individuals using a rigorous, research-backed screening process.",
+  },
+  {
+    step: "Train & mentor",
+    body: "Our programs develop both the hard and soft skills needed to thrive, with dedicated mentorship.",
+  },
+  {
+    step: "Employ & manage",
+    body: "We provide a supportive structure and a dedicated Client Service Manager for a seamless transition.",
+  },
+  {
+    step: "Deliver value",
+    body: "The result is a fully prepared professional who integrates faster and delivers lasting value.",
+  },
+];
