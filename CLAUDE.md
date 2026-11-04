@@ -20,7 +20,7 @@ They are large, they are reference, and they must never be committed here.
 
 There is a fourth directory, also outside this repo:
 
-`/Users/pranish/Documents/wos-new-center/proposed_center/site/` is a Next.js app for a WOS sub-brand center site.
+The reference center site (a separate private repo) is a Next.js app for a WOS sub-brand center site.
 It is the visual reference for this rebuild and is **read only**.
 Its `DESIGN.md` is the source of truth for how the rebuild looks.
 

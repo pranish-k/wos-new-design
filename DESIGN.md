@@ -7,8 +7,8 @@ This file is the single source of truth for all visual decisions on this site.
 Before writing any component, check here.
 Before making a judgment call, add it here.
 
-Colour, type, components, and the anti-pattern list are ported from the center site at
-`/Users/pranish/Documents/wos-new-center/proposed_center/site/`, including the reasoning
+Colour, type, components, and the anti-pattern list are ported from the reference center site
+(a separate private repo), including the reasoning
 for the rejected alternatives.
 That reasoning is worth keeping verbatim: re-deriving it means repeating the mistakes.
 Sections 0 and 4 are the ones rewritten for this site, because brand and navigation are
