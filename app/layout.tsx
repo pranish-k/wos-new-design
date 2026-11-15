@@ -50,8 +50,12 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
+  banner,
 }: {
   children: React.ReactNode;
+  /** app/@banner: an announcement bar above the header. Empty on every route but
+      /announcements-demo; see app/@banner/default.tsx. */
+  banner: React.ReactNode;
 }) {
   return (
     <html
@@ -67,6 +71,7 @@ export default function RootLayout({
         >
           Skip to content
         </a>
+        {banner}
         <Nav />
         <main id="main" className="flex-1">
           {children}

@@ -8,10 +8,12 @@ import { Arrow, Chapter, Chapters, type Field } from "@/components/alternate-hom
 import InView from "@/components/alternate-home/InView";
 import JourneyScene from "@/components/alternate-home/JourneyScene";
 import Motif from "@/components/alternate-home/Motif";
+import VideoEmbed from "@/components/alternate-home/VideoEmbed";
 import { HOME_PROSE } from "@/content/home-prose";
 import { APPROACH, CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES, type ServiceCard } from "@/content/home-sections";
 import { PARTNERS } from "@/content/partners";
 import { PARTNERSHIPS } from "@/content/partnerships";
+import { CHANNEL_URL, OVERVIEW, PARTNER_STORIES } from "@/content/videos";
 import { DESCRIPTION } from "@/lib/brand";
 
 /**
@@ -162,6 +164,32 @@ export default function AlternateHome() {
             ))}
           </ul>
         </div>
+      </Chapter>
+
+      {/* The overview film, straight after the figures: the numbers say what WOS has
+             done, and this is the quickest way to see what that looks like. */}
+      <Chapter field="deep" id="watch">
+        <InView className={`${WRAP} ${PAD} grid items-center gap-10 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] md:gap-16`}>
+          <div>
+            <h2 className={`alt-reveal ${H2}`}>{OVERVIEW.title}</h2>
+            <p className={`alt-reveal mt-6 max-w-[40ch] ${LEAD} text-[var(--field-muted)]`} style={i(1)}>
+              {OVERVIEW.summary}
+            </p>
+            <a
+              href={CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`alt-reveal mt-8 ${LINK} underline hover:no-underline`}
+              style={i(2)}
+            >
+              More on our YouTube channel <Arrow />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          </div>
+          <div className="alt-reveal" style={i(1)}>
+            <VideoEmbed video={OVERVIEW} sizes="(min-width: 768px) 60vw, 100vw" />
+          </div>
+        </InView>
       </Chapter>
 
       {/* 3. The business solution and the method. Headings run the full width so they
@@ -351,6 +379,36 @@ export default function AlternateHome() {
       {/* 7. The approach, as the page's one pinned scene. */}
       <Chapter field="deep" id="approach">
         <JourneyScene steps={APPROACH} />
+      </Chapter>
+
+      {/* Partner stories: three of the partnerships the page names, in their own words. */}
+      <Chapter field="paper" id="stories">
+        <div className={`${WRAP} ${PAD}`}>
+          <InView className="flex flex-wrap items-end justify-between gap-6">
+            <h2 className={`alt-reveal ${H2}`}>Partner stories</h2>
+            <a
+              href={CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`alt-reveal ${LINK_SHAPE} text-action-deeper hover:underline`}
+              style={i(1)}
+            >
+              All videos on YouTube <Arrow />
+              <span className="sr-only">(opens in a new tab)</span>
+            </a>
+          </InView>
+          <InView as="ul" className="m-0 mt-10 grid list-none gap-10 p-0 md:mt-12 md:grid-cols-3 md:gap-8">
+            {PARTNER_STORIES.map((video, n) => (
+              <li key={video.id} className="alt-reveal" style={i(n)}>
+                <VideoEmbed video={video} sizes="(min-width: 768px) 33vw, 100vw" />
+                <h3 className="mt-5 font-heading text-[22px] font-semibold leading-snug tracking-[-0.01em]">
+                  {video.title}
+                </h3>
+                <p className={`mt-2 ${BODY} text-ink-muted`}>{video.summary}</p>
+              </li>
+            ))}
+          </InView>
+        </div>
       </Chapter>
 
       {/* 8. History, beside the people it is about, with the partners it names below. */}
