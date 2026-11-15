@@ -81,17 +81,23 @@ type Variation = {
 };
 
 const VARIATIONS: Record<VariantKey, Variation> = {
-  picked: { tone: DARK, columns: "rule", guide: "neutral", size: "base", height: "lg:h-[405px] xl:h-[380px]" },
-  "red-guide": { tone: DARK, columns: "none", guide: "red", size: "base", height: "lg:h-[385px] xl:h-[360px]" },
-  "hover-guide": { tone: DARK, columns: "rule", guide: "hover", size: "base", height: "lg:h-[405px] xl:h-[380px]" },
-  roomy: { tone: DARK, columns: "rule", guide: "neutral", size: "roomy", height: "lg:h-[435px] xl:h-[410px]" },
-  divided: { tone: DARK, columns: "divided", guide: "neutral", size: "base", height: "h-[385px]" },
-  light: { tone: LIGHT, columns: "rule", guide: "neutral", size: "base", height: "lg:h-[405px] xl:h-[380px]" },
+  picked: { tone: DARK, columns: "rule", guide: "neutral", size: "base", height: "lg:h-[440px] xl:h-[415px]" },
+  "red-guide": { tone: DARK, columns: "none", guide: "red", size: "base", height: "lg:h-[420px] xl:h-[400px]" },
+  "hover-guide": { tone: DARK, columns: "rule", guide: "hover", size: "base", height: "lg:h-[440px] xl:h-[415px]" },
+  roomy: { tone: DARK, columns: "rule", guide: "neutral", size: "roomy", height: "lg:h-[475px] xl:h-[450px]" },
+  divided: { tone: DARK, columns: "divided", guide: "neutral", size: "base", height: "h-[420px]" },
+  light: { tone: LIGHT, columns: "rule", guide: "neutral", size: "base", height: "lg:h-[440px] xl:h-[415px]" },
 };
 
+/**
+ * Spacing is set for Services, the densest section: two of its three columns stack two
+ * groups each. At 24px between stacked groups and 8px between links they read as one
+ * block ("packed"), so groups are now 40px apart and links 12px. Services sets every
+ * variation's height, which is why About and Join Us have room to spare.
+ */
 const SIZES = {
-  base: { head: "text-[19px]", link: "text-[18px] py-1", stack: "space-y-6", pages: "space-y-3" },
-  roomy: { head: "text-[21px]", link: "text-[19px] py-1.5", stack: "space-y-8", pages: "space-y-4" },
+  base: { head: "text-[19px]", link: "text-[18px] py-1.5", list: "mt-3", stack: "space-y-10", pages: "space-y-3" },
+  roomy: { head: "text-[21px]", link: "text-[19px] py-2", list: "mt-3.5", stack: "space-y-12", pages: "space-y-4" },
 } as const;
 
 /**
@@ -180,7 +186,7 @@ function UnitView({ unit, v, onNavigate }: { unit: Unit; v: Variation; onNavigat
       )}
       {/* The indent says these belong to the heading above; the guide line says it
           louder. */}
-      <ul className={`m-0 ml-0.5 mt-2 list-none border-l-2 p-0 pl-4 ${guide}`}>
+      <ul className={`m-0 ml-0.5 list-none border-l-2 p-0 pl-4 ${size.list} ${guide}`}>
         {links.map((link) => (
           <li key={link.href}>
             <MenuLink
