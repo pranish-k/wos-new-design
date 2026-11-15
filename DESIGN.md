@@ -661,3 +661,18 @@ Changing scroll speed or direction.
 Animated counters on any figure that is not a headline statistic.
 Hover motion on a photograph that is not inside a link.
 Any gesture whose duration was chosen so that it would be noticed.
+
+---
+
+## 11. Demo routes
+
+Two routes exist to compare options on the real page, and neither is part of the site.
+Each is unlinked, out of `app/sitemap.ts`, and set to `noindex`.
+
+- **`/announcements-demo`** lays five ways of announcing something over the real homepage, chosen by `?show=bar,hero,band,dialog,corner`. The bar sits above the header, which a page cannot reach, so it renders through the `@banner` slot.
+- **`/nav-demo`** puts the real homepage under eight candidate headers, chosen by `?v=` (keys in `components/nav-demo/variants.ts`), with a switcher fixed to the bottom of the screen. The header renders through the `@header` slot, which holds the real `Nav` on every other route.
+
+Both slots need three files that render the default (`default.tsx`, `page.tsx`, `[...rest]/page.tsx`), because on a client-side navigation Next keeps a slot's last page when nothing in it matches the new URL. Without them a demo's header or bar follows the visitor out of the demo.
+
+The `/nav-demo` candidates share one behaviour module (`components/nav-demo/shared.tsx`): Escape closes and returns focus, a pointer down outside closes, ArrowDown on a trigger enters its panel, a route change closes everything, and below `lg` every bar falls back to the full-screen menu.
+Once a header is chosen it replaces `components/Nav.tsx`, §4 is rewritten for it, and the demo and the `@header` slot come out.

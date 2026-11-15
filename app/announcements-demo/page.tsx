@@ -11,7 +11,7 @@ import { ANNOUNCEMENT } from "@/content/announcements";
  * /announcements-demo: the real homepage with ways of putting an announcement in front
  * of a visitor laid over it, each switchable, so they can be compared on the page they
  * would ship on. A demo, not a page: unlinked, out of the sitemap, not indexed.
- * DESIGN.md §12.
+ * DESIGN.md §11.
  *
  * `?show=bar,hero` picks the patterns; with no query it shows all five.
  * The bar is not rendered here: it sits above the header, which this page
