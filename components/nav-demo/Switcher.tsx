@@ -4,55 +4,60 @@ import Link from "next/link";
 import { useState } from "react";
 import { VARIANTS, type VariantKey } from "./variants";
 
+const ROWS = [
+  { family: "two", label: "Option 2 variations" },
+  { family: "other", label: "Other options" },
+] as const;
+
 /**
- * The control for /nav-demo: one button per header, and the selected one's note. Fixed
- * to the bottom of the screen so it is never under the header it is switching, and
- * collapsible so it is never in the way of judging one.
+ * The control for /nav-demo: one button per header, grouped so option 2's variations
+ * sit together, and the selected one's note. Fixed to the bottom of the screen so it is
+ * never under the header it is switching, and collapsible so it is never in the way of
+ * judging one.
  */
 export default function Switcher({ current }: { current: VariantKey }) {
   const [collapsed, setCollapsed] = useState(false);
-  const index = VARIANTS.findIndex((v) => v.key === current);
-  const variant = VARIANTS[index];
+  const variant = VARIANTS.find((v) => v.key === current)!;
 
   return (
     <aside
       aria-label="Header options"
-      className="field field-deep fixed inset-x-3 bottom-3 z-[80] mx-auto max-w-[920px] border-t-2 border-wos-red md:inset-x-6 md:bottom-5"
+      className="field field-deep fixed inset-x-3 bottom-3 z-[80] mx-auto max-w-[980px] border-t-2 border-wos-red md:inset-x-6 md:bottom-5"
     >
       <div className="flex items-center justify-between gap-4 px-4 py-3 md:px-5">
-        <p className="m-0 font-heading text-[15px] font-semibold">
-          <span className="text-white/60">Header {index + 1} of {VARIANTS.length}:</span> {variant.name}
+        <p className="m-0 font-heading text-[16px] font-semibold">
+          <span className="text-white/60">Showing {variant.num}:</span> {variant.name}
         </p>
         <button
           type="button"
           onClick={() => setCollapsed(!collapsed)}
           aria-expanded={!collapsed}
-          className="cursor-pointer font-heading text-[14px] font-semibold text-white/75 underline underline-offset-[4px] hover:text-white"
+          className="cursor-pointer font-heading text-[15px] font-semibold text-white/75 underline underline-offset-[4px] hover:text-white"
         >
           {collapsed ? "Show options" : "Hide"}
         </button>
       </div>
       {!collapsed && (
         <div className="border-t border-white/15 px-4 pb-4 pt-3 md:px-5">
-          <p className="m-0 max-w-[70ch] text-[15px] leading-[1.5] text-white/80">{variant.note}</p>
-          <ul className="m-0 mt-3 flex list-none flex-wrap gap-2 p-0">
-            {VARIANTS.map((v, i) => (
-              <li key={v.key}>
+          <p className="m-0 max-w-[75ch] text-[16px] leading-[1.5] text-white/80">{variant.note}</p>
+          {ROWS.map((row) => (
+            <div key={row.family} className="mt-3 flex flex-wrap items-center gap-2">
+              <span className="mr-1 w-full font-heading text-[13px] font-semibold text-white/60 sm:w-auto">{row.label}</span>
+              {VARIANTS.filter((v) => v.family === row.family).map((v) => (
                 <Link
+                  key={v.key}
                   href={`/nav-demo?v=${v.key}`}
                   scroll={false}
                   aria-current={v.key === current ? "true" : undefined}
                   className={`inline-block px-3 py-1.5 font-heading text-[14px] font-semibold no-underline transition-colors ${
-                    v.key === current
-                      ? "bg-action-deep text-white hover:text-white"
-                      : "bg-white/10 text-white hover:bg-white/20 hover:text-white"
+                    v.key === current ? "bg-action-deep text-white hover:text-white" : "bg-white/10 text-white hover:bg-white/20 hover:text-white"
                   }`}
                 >
-                  {i + 1}. {v.name}
+                  {v.num}. {v.name}
                 </Link>
-              </li>
-            ))}
-          </ul>
+              ))}
+            </div>
+          ))}
         </div>
       )}
     </aside>
