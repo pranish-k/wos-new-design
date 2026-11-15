@@ -272,55 +272,57 @@ A label never stands in for a heading; the outline is the headings.
 ## 4. Navigation
 
 The one place this site diverges from the center site by more than a detail.
-The center has four flat links; this site has four top-level items and five grouping labels.
+The center has four flat links; this site has five top-level items and a two-level tree beneath three of them.
+The tree is data, in `lib/nav.ts`, not nested JSX.
 
 **§2 to §8 are written for page content, and a menu is chrome.**
-The nav is the one part of the site that does not sit on a field; it is white with ink, which is the root's values.
+The bar is white with ink, which is the root's values; the panels are on the deep field.
+
+### How it was chosen
+
+The header was rebuilt five times, and the record matters more than the rules, because the first three all followed the rules and all were rejected.
+
+1. **Columns with an accent rule per column head on a tint fill.** Rejected as "pretty but impractical".
+2. **A conventional single-column white dropdown.** Rejected too.
+3. **A bordered white card of columns divided by vertical rules**, to a reference the client chose. Shipped, then rejected after the colour-chapter redesign as the weakest part of the site.
+4. **`/nav-demo`, eleven candidates over the real homepage.** The client chose the full-width panel, then rejected its first cut on three counts: its height changed between sections, it showed too much at once, and its 15-16px type was too small for an audience that skews past 35.
+5. **The full-width panel in three columns**, refined over three rounds and then chosen from six variations: the roomier type with the red guide line. This is what ships. The candidates and variations are in git history (8db7124 to eab6bd1).
 
 ### The bar
 
-- Sticky, white, 72px tall, with a 1px `hairline` border on the full width of the header.
-- Its content sits on the page grid (`max-w-[1320px]`, `px-5 md:px-8`), so the logo lines up with every chapter's left edge.
+- Sticky, white, 76px tall at `lg`, with a 1px `hairline` border across the full width of the header.
+- Content on the page grid (`max-w-[1320px]`, `px-5 md:px-8`), so the logo lines up with every chapter's left edge.
 - The full WOS lockup at 36px. No adjacent name text: the wordmark is in the asset.
-- Four top-level items plus a right-aligned Donate button in `action-deep`. About, Services and Join Us open panels; News & Events is a plain link.
+- Five items at **17px** Montserrat medium, then Donate in `action-deep`. About, Services and Join Us open panels; AI Institute and News & Events are links.
 - Active state is a 2px `border-action` underline, and a top-level item counts as active when any page beneath it is.
 
-### The dropdowns
+### The panels
 
-This menu was built three times.
-The record matters more than the rules, because the first two both followed the rules and both were rejected.
-
-1. **Columns, an accent rule per column head, `surface-tint` fill, anchored to the trigger's right edge.** Every choice was defensible against this document. Together they read as a designed object rather than a menu. Rejected as "pretty but impractical".
-2. **A conventional single-column white dropdown.** Rejected too.
-3. **A bordered card of columns divided by vertical rules**, built to a reference the client chose (`screenshot/image.png`, the Browserbase header). This is what shipped.
-
-- The tree is data, in `lib/nav.ts`, not nested JSX. It is two levels below the bar.
-- **The panel is a bordered white card**, positioned against the bar rather than the trigger, so all three panels share one position. Its right edge matches the bar's padding, where Donate ends.
-- **Groups become labelled columns, divided by `divide-x divide-hairline`.** All loose links collect into one unlabelled column whose position follows source order.
-- The unlabelled column holds an empty label line so every column's first link shares a baseline.
-- **Two tiers, not three.** The reference puts a one-line description under each item. We have no copy for that. **If WOS ever supplies ~20 short lines, the third tier is the single biggest improvement available here.**
-- Column widths are content-driven; `min-w-[170px]` is only a floor.
-- Items are `text-[15px]` `ink` hovering to `action-deep`, with **no hover fill**.
-- Grouping labels render as headings, never as links. The live site gives all six `href="#"`, which lands a keyboard user on a target that does nothing. Do not reproduce that.
-- The mobile overlay keeps `PanelNodes`, the recursive heading-and-indent list.
-
-**The border** is the one 1px light border around a white card on the site, and it is right here: a menu floating over page content needs an edge, and the tinted fill was built, looked at, and read as a grey slab.
-**The bare uppercase column label** is anchored by the column divider, so it does not float.
+- **Full width, on the deep field**, directly under the bar. The page below dims (`surface-deep` at 45%) while one is open, so the panel is the one thing on screen and its edge shows over the dark homepage opening. The dim takes no pointer events, so moving onto the page closes the menu.
+- **One fixed height for every section**, so the edge below the menu never moves between About, Services and Join Us. Services is the tallest and sets it: `lg:h-[460px] xl:h-[435px]`, measured at 1440, 1280 and 1024px. **Change the tree and re-measure**: a taller Services overflows silently.
+- **At most three columns.** A section's groups, and its own pages as one unit, are packed in source order and balanced by rows (`stacks` in `components/nav/parts.tsx`). Services' five become [Consulting to Hire] [Educational, Advisory] [Research, Managed Services]. Five narrow columns wrapped long names onto three lines at 1024px.
+- **Every top-level entry is a bold 21px heading**, whether it is a page on its own ("Managed Services", "Our Story") or a group ("Boards"). The client asked for the rank to be visible regardless of what sits beneath.
+- **A group's pages are indented under its heading on a 2px red guide line**, at 19px. The indent says they belong to it; the red line says so at a glance. Without the line the hierarchy read by position alone; with a red rule over every column as well, there was more red than meaning.
+- **A group's "Overview" link becomes its heading.** The tree gives Consulting to Hire, Educational and Advisory Services an "Overview" child; the heading links there, with an arrow bound to its last word, and the Overview row goes.
+- **Groups stacked in one column are 48px apart.** At 24px, Educational and Advisory read as one block.
+- **"Schedule a free consultation"** is one line along the bottom edge, not a block.
+- **Hover intent.** With nothing open, a pointer has to rest on a trigger for 150ms before its panel opens, so a mouse crossing the bar does not flash one over the page. With one open, moving between triggers switches at once.
+- **No grouping label is a dead link.** The live site gives its grouping labels `href="#"`. A heading here either links to a real page or is plain text.
 
 ### Keyboard
 
 This is the part most likely to ship broken, and type checking catches none of it.
 
 - The APG **disclosure navigation** pattern, not a menubar: panel links stay in normal tab order.
-- Left and right arrows walk the top bar, down opens a panel and enters it, Escape closes and returns focus to the trigger.
-- Focus leaving the bar closes the open panel, as does a pointer down anywhere outside it.
-- Verify by tabbing to every leaf under Services with no mouse.
+- Left and right arrows walk the whole bar, links included, and wrap. With a panel open they switch to the next section's panel.
+- Down opens a panel and moves into it. Escape closes and returns focus to the trigger.
+- **Each panel sits directly after its trigger in the DOM** (a `static` wrapper keeps it positioned against the header), so Tab goes from a trigger into its open panel and Shift+Tab comes back. Rendered after Donate, Shift+Tab out of a panel landed on Donate.
+- Focus leaving the header closes the open panel, as does a pointer down anywhere outside it, and a route change closes it by derivation.
 
 ### Mobile
 
-- Full-screen white overlay, not a dropdown, with body scroll locked and Escape wired.
-- The overlay serves everything below `lg`, not `md`. Five bar items plus Donate need about 830px.
-- One accordion level, which is the only level the tree has.
+- Below `lg`, one button opens a full-screen menu on the gradient, with page scroll locked and Escape wired. Five bar items and Donate need about 930px at 17px.
+- The five sections are 30px names that start closed, so the first thing a visitor sees is five names rather than the whole site. A section opens in place, and inside it the tree is drawn exactly as on the desktop panel: bold headings, pages indented on the red guide line.
 
 All logo references go through `components/WosMark.tsx`.
 
@@ -521,7 +523,7 @@ The fields make this unwriteable inside a chapter: read `--field-ink`, never `te
 | Red text under 24px, or red text on slate at any size | Fails AA | `--field-accent`, which already knows |
 | `min-[1320px]:` for layout | Sorts before `md:` and is silently overridden | `wrap:` |
 | Copy over a photograph, or an overlay to make it legible | The gradient exists so no photo is dimmed | Type beside the image |
-| A 1px light border around a white card | Divides nothing | A panel fill. The nav panel is the written exception, §4 |
+| A 1px light border around a white card | Divides nothing | A panel fill |
 | `rounded-*`, or `shadow-*` anywhere but the partner wall | Softens everything; reads as a SaaS card | Straight edges, fill and spacing |
 | An 11px uppercase eyebrow | Retired, §3 | `TYPE.label`, or nothing |
 | `font-normal` on a heading | Fights the base 600 | Let the base weight stand |
@@ -666,13 +668,11 @@ Any gesture whose duration was chosen so that it would be noticed.
 
 ## 11. Demo routes
 
-Two routes exist to compare options on the real page, and neither is part of the site.
-Each is unlinked, out of `app/sitemap.ts`, and set to `noindex`.
+**`/announcements-demo`** exists to compare options on the real page, and is not part of the site.
+It is unlinked, out of `app/sitemap.ts`, and set to `noindex`.
 
-- **`/announcements-demo`** lays five ways of announcing something over the real homepage, chosen by `?show=bar,hero,band,dialog,corner`. The bar sits above the header, which a page cannot reach, so it renders through the `@banner` slot.
-- **`/nav-demo`** puts the real homepage under the chosen header, the three-column panel (`components/nav-demo/Mega.tsx`), in six variations chosen by `?v=` (keys in `components/nav-demo/variants.ts`), with a switcher fixed to the bottom of the screen. Every variation is a row of settings on one component: a full-width panel at one fixed height for every section, at most three columns, every top-level entry a bold 19px heading whether it is a page or a group, a group's pages indented beneath it on a guide line, 18px links, 17px bar items, and the page dimmed behind an open panel. The other candidates it was picked from are in git history.
+It lays five ways of announcing something over the real homepage, chosen by `?show=bar,hero,band,dialog,corner`.
+The bar sits above the header, which a page cannot reach, so it renders through the `@banner` slot.
+That slot needs three files that render nothing (`default.tsx`, `page.tsx`, `[...rest]/page.tsx`), because on a client-side navigation Next keeps a slot's last page when nothing in it matches the new URL; without them the demo's bar would follow the visitor out of the demo.
 
-Both slots need three files that render the default (`default.tsx`, `page.tsx`, `[...rest]/page.tsx`), because on a client-side navigation Next keeps a slot's last page when nothing in it matches the new URL. Without them a demo's header or bar follows the visitor out of the demo.
-
-The `/nav-demo` candidates share one behaviour module (`components/nav-demo/shared.tsx`): Escape closes and returns focus, a pointer down outside closes, ArrowDown on a trigger enters its panel, a route change closes everything, and below `lg` every bar falls back to the full-screen menu.
-Once a header is chosen it replaces `components/Nav.tsx`, §4 is rewritten for it, and the demo and the `@header` slot come out.
+`/nav-demo` was the same kind of route for the header. It came out once the header was chosen, §4, and is in git history.

@@ -3,6 +3,7 @@ import { Montserrat, Lato } from "next/font/google";
 import "./globals.css";
 import { ORG, DESCRIPTION, SITE_URL } from "@/lib/brand";
 import Footer from "@/components/Footer";
+import Nav from "@/components/Nav";
 
 // Montserrat is a variable font on Google Fonts: omitting `weight` ships one file
 // covering 100-900, which is smaller than enumerating the weights we use.
@@ -50,15 +51,11 @@ export const metadata: Metadata = {
 export default function RootLayout({
   children,
   banner,
-  header,
 }: {
   children: React.ReactNode;
   /** app/@banner: an announcement bar above the header. Empty on every route but
       /announcements-demo; see app/@banner/default.tsx. */
   banner: React.ReactNode;
-  /** app/@header: the site header. The real Nav on every route but /nav-demo, which
-      swaps in the header being compared; see app/@header/default.tsx. */
-  header: React.ReactNode;
 }) {
   return (
     <html
@@ -75,7 +72,7 @@ export default function RootLayout({
           Skip to content
         </a>
         {banner}
-        {header}
+        <Nav />
         <main id="main" className="flex-1">
           {children}
         </main>
