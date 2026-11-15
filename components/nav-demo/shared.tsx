@@ -120,7 +120,13 @@ export function useMenu(containerRef: RefObject<HTMLElement | null>) {
   const open = state && state.path === pathname ? state.label : null;
   const setOpen = useCallback((label: string | null) => setState(label ? { label, path: pathname } : null), [pathname]);
   const triggers = useRef<Record<string, HTMLButtonElement | null>>({});
-  const close = useCallback(() => setState(null), []);
+  const hoverTimer = useRef<number | undefined>(undefined);
+  const close = useCallback(() => {
+    window.clearTimeout(hoverTimer.current);
+    setState(null);
+  }, []);
+
+  useEffect(() => () => window.clearTimeout(hoverTimer.current), []);
 
   useEffect(() => {
     if (open === null) return;
@@ -148,7 +154,20 @@ export function useMenu(containerRef: RefObject<HTMLElement | null>) {
     "aria-expanded": open === label,
     "aria-controls": panelId,
     onClick: () => setOpen(open === label ? null : label),
-    ...(hover ? { onMouseEnter: () => setOpen(label) } : {}),
+    // Hover intent. With nothing open, a pointer has to rest on a trigger briefly
+    // before its panel opens, so a mouse crossing the bar on its way somewhere else
+    // does not flash a panel over the page. Once one is open, moving between triggers
+    // switches at once, which is the moment a visitor is actually browsing.
+    ...(hover
+      ? {
+          onMouseEnter: () => {
+            window.clearTimeout(hoverTimer.current);
+            if (open !== null) setOpen(label);
+            else hoverTimer.current = window.setTimeout(() => setOpen(label), 150);
+          },
+          onMouseLeave: () => window.clearTimeout(hoverTimer.current),
+        }
+      : {}),
     onKeyDown: (e: React.KeyboardEvent) => {
       if (e.key !== "ArrowDown") return;
       e.preventDefault();

@@ -13,7 +13,7 @@ export const VARIANTS = [
   {
     key: "mega",
     name: "Full-width panel",
-    note: "The menu opens as a deep chapter across the whole width, with big type and the consultation call beside it.",
+    note: "The menu opens as a deep band across the whole width, at one fixed height for every section, with quiet links and one rule per column.",
   },
   {
     key: "dark",
