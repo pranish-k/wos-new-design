@@ -16,7 +16,6 @@ import { DONATE, NAV, type NavGroup, type NavLink, type NavNode } from "@/lib/na
 
 export const HOME_ARIA = `${ORG}, home`;
 export const GROUPS = NAV.filter((n): n is NavGroup => n.kind === "group");
-export const LINKS = NAV.filter((n): n is NavLink => n.kind === "link");
 
 /** Every href beneath a node. */
 export function hrefsOf(node: NavNode): string[] {
