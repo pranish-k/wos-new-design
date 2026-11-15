@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
-import { ArrowLink, Eyebrow, SectionHeading } from "@/components/Brand";
-import ContentPage from "@/components/ContentPage";
-import FadeIn from "@/components/FadeIn";
+import { PAD, PageHero, TextLink, TYPE, WRAP, stagger } from "@/components/Brand";
+import { Chapter } from "@/components/Chapter";
+import InView from "@/components/InView";
 import { mapLink, mapSrc, OFFICES, type Office } from "@/content/offices";
 import page from "@/content/locations";
 
@@ -11,29 +11,26 @@ export const metadata: Metadata = {
 };
 
 /**
- * Address beside its map, one band per office.
+ * Address beside its map, one chapter per office.
  *
  * The map is the larger half: on a locations page it is the content, and an address a
- * visitor cannot place is the thing the page exists to fix. The frame is square-edged
- * and sits on a tint fill, so a blocked or slow iframe leaves a panel rather than a hole.
+ * visitor cannot place is the thing the page exists to fix. The frame sits on the
+ * field's panel colour, so a blocked or slow iframe leaves a panel rather than a hole.
  *
  * `loading="lazy"` is doing privacy work as well as performance work. Three eager frames
  * would hand Google a request for every visitor who lands on the page, including the
  * ones who never scroll to Dallas or Costa Rica.
  */
-function OfficeBand({ office, tint }: { office: Office; tint: boolean }) {
+function OfficeChapter({ office, tint }: { office: Office; tint: boolean }) {
   return (
-    <section className={tint ? "bg-surface-tint py-16" : "py-16"}>
-      <FadeIn className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 px-6 md:grid-cols-[0.8fr_1.2fr]">
+    <Chapter field={tint ? "tint" : "paper"}>
+      <InView className={`${WRAP} ${PAD} grid grid-cols-1 items-center gap-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-16`}>
         <div>
-          <span className="block h-0.5 w-6 bg-accent" />
-          <h2 className="mt-3 font-heading text-[24px] font-semibold leading-[1.2] text-ink md:text-[28px]">
-            {office.name}
-          </h2>
+          <h2 className={`reveal ${TYPE.h2}`}>{office.name}</h2>
 
           {/* not-italic: the browser default for <address> is italic, which reads as a
               quotation rather than as somewhere you can go. */}
-          <address className="mt-5 not-italic text-[17px] leading-[1.65] text-ink-muted">
+          <address className={`reveal mt-6 not-italic ${TYPE.lead}`} style={stagger(1)}>
             {office.street.map((line) => (
               <span key={line} className="block">
                 {line}
@@ -47,59 +44,46 @@ function OfficeBand({ office, tint }: { office: Office; tint: boolean }) {
               self-evident from their shape, and "Tel" as a label is a line of chrome
               between a visitor and the thing they came to copy. */}
           {(office.email || office.tel) && (
-            <p className="mt-5 border-t border-hairline pt-5 text-[16px] leading-[1.7]">
+            <p className={`reveal mt-6 border-t-2 border-[var(--field-rule)] pt-5 ${TYPE.body}`} style={stagger(2)}>
               {office.email && (
-                <a href={`mailto:${office.email}`} className="block">
+                <a href={`mailto:${office.email}`} className="block w-fit">
                   {office.email}
                 </a>
               )}
               {office.tel && (
-                <a
-                  href={`tel:+1${office.tel.replace(/\D/g, "")}`}
-                  className="block"
-                >
+                <a href={`tel:+1${office.tel.replace(/\D/g, "")}`} className="block w-fit">
                   {office.tel}
                 </a>
               )}
             </p>
           )}
 
-          <div className="mt-6">
-            <ArrowLink href={mapLink(office.mapQuery)}>
-              Open in Google Maps
-            </ArrowLink>
+          <div className="reveal mt-8" style={stagger(3)}>
+            <TextLink href={mapLink(office.mapQuery)}>Open in Google Maps</TextLink>
           </div>
         </div>
 
-        <div className="bg-surface-tint">
+        <div className="reveal bg-[var(--field-panel)]" style={stagger(1)}>
           <iframe
             src={mapSrc(office.mapQuery)}
             title={office.mapLabel}
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
-            className="block h-[320px] w-full border-0 md:h-[400px]"
+            className="block h-[320px] w-full border-0 md:h-[440px]"
           />
         </div>
-      </FadeIn>
-    </section>
+      </InView>
+    </Chapter>
   );
 }
 
 export default function Page() {
   return (
-    <>
-      <ContentPage page={page} />
-
-      <section className="pt-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="Where we are" />
-          <SectionHeading>Our offices</SectionHeading>
-        </div>
-      </section>
-
+    <article>
+      <PageHero label={page.eyebrow} title={page.title} />
       {OFFICES.map((office, i) => (
-        <OfficeBand key={office.id} office={office} tint={i % 2 === 1} />
+        <OfficeChapter key={office.id} office={office} tint={i % 2 === 1} />
       ))}
-    </>
+    </article>
   );
 }

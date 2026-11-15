@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Eyebrow, PrimaryButton } from "@/components/Brand";
+import { CloseChapter, PAD, PageHero, SectionHeading, WRAP } from "@/components/Brand";
+import { Chapter } from "@/components/Chapter";
+import InView from "@/components/InView";
 import PartnerWall from "@/components/PartnerWall";
 import page from "@/content/corporate-partners";
 
@@ -11,38 +13,21 @@ export const metadata: Metadata = {
 export default function Page() {
   return (
     <article>
-      <header className="bg-surface-dark">
-        <div className="mx-auto max-w-6xl px-6 pb-16 pt-20">
-          <Eyebrow label="About" dark />
-          <h1 className="font-heading text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[56px]">
-            {page.title}
-          </h1>
-          {page.lead.map((b, i) =>
-            b.kind === "para" ? (
-              <p key={i} className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-white/80">
-                {b.text}
-              </p>
-            ) : null,
-          )}
-        </div>
-      </header>
+      <PageHero label={page.eyebrow} title={page.title} lead={page.lead.map((b) => b.text)} />
 
-      {/* Tinted on purpose: the white logo tiles need a ground to sit on. */}
-      <section className="bg-surface-tint py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="Corporate partners served" />
-          <PartnerWall />
+      {/* Tinted on purpose: the white logo tiles need a ground to sit on. DESIGN.md §7. */}
+      <Chapter field="tint">
+        <div className={`${WRAP} ${PAD}`}>
+          <InView>
+            <SectionHeading>Corporate partners served</SectionHeading>
+          </InView>
+          <div className="mt-10 md:mt-12">
+            <PartnerWall />
+          </div>
         </div>
-      </section>
+      </Chapter>
 
-      <section className="py-16">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 md:flex-row md:items-center md:justify-between">
-          <h2 className="max-w-xl font-heading text-[28px] font-semibold leading-[1.15] text-ink">
-            Interested in partnering with WOS?
-          </h2>
-          <PrimaryButton href="/become-a-partner">Become a partner</PrimaryButton>
-        </div>
-      </section>
+      <CloseChapter title="Interested in partnering with WOS?" href="/become-a-partner" action="Become a partner" />
     </article>
   );
 }

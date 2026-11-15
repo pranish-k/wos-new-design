@@ -1,17 +1,11 @@
 import Image from "next/image";
-import { Eyebrow, PrimaryButton, SectionHeading } from "@/components/Brand";
-import FadeIn from "@/components/FadeIn";
+import { CloseChapter, HeroImage, PageHero, PAD, PAD_TIGHT, SectionHeading, TYPE, WRAP, stagger } from "@/components/Brand";
+import { assertNoRepeats, Chapter, type Field } from "@/components/Chapter";
+import InView from "@/components/InView";
 import DIMS from "@/lib/image-dims.json";
-import type {
-  Block,
-  LeadBlock,
-  PageContent,
-  Section,
-  SectionDensity,
-  SectionFill,
-} from "@/lib/content";
+import type { Block, PageContent, Section, SectionFill } from "@/lib/content";
 
-/** The prose column: max-w-3xl (768px) less px-6 on both sides. */
+/** The reading column: max-w-3xl (768px) less the gutters. */
 const COLUMN = 720;
 
 const SIZES = `(max-width: 768px) 100vw, ${COLUMN}px`;
@@ -35,7 +29,7 @@ function ContentImage({
         alt={alt}
         width={420}
         height={420}
-        className="mt-8 h-auto w-full max-w-[420px] object-contain"
+        className="reveal mt-10 h-auto w-full max-w-[420px] object-contain"
       />
     );
   }
@@ -45,9 +39,7 @@ function ContentImage({
   // An unmeasured file is a missing manifest entry, not a reason to guess: 1200x800 for
   // everything is exactly the bug this replaced. Run tools/image-dims.mjs.
   if (!dims || dims.length !== 2) {
-    throw new Error(
-      `No dimensions for ${src}. Run \`node tools/image-dims.mjs\` after adding an image.`,
-    );
+    throw new Error(`No dimensions for ${src}. Run \`node tools/image-dims.mjs\` after adding an image.`);
   }
   const [width, height] = dims;
 
@@ -59,7 +51,7 @@ function ContentImage({
         width={width}
         height={height}
         sizes="(max-width: 768px) 100vw, 33vw"
-        className="aspect-[4/3] w-full bg-surface-tint object-cover"
+        className="aspect-[4/3] w-full bg-[var(--field-panel)] object-cover"
       />
     );
   }
@@ -74,28 +66,23 @@ function ContentImage({
       // Never upscale. Several of these are icons of 100px or so, and `w-full` on one
       // blew it up to the full column width.
       style={{ maxWidth: Math.min(width, COLUMN) }}
-      className="mt-8 h-auto w-full object-contain"
+      className="reveal mt-10 h-auto w-full object-contain"
     />
   );
 }
 
 /**
+ * The content block vocabulary, rendered for whatever field it lands on. Every colour is
+ * the field's (var(--field-*)), so a list on slate and a list on paper are one branch.
+ *
  * `level` keeps the outline intact. A section with its own heading renders that as the
  * h2 and everything inside it as h3; a section without one would otherwise put h3s
- * directly under the page h1 and skip a level, which is what nine pages were doing.
+ * directly under the page h1 and skip a level.
  */
-function Blocks({
-  blocks,
-  dark = false,
-  level = 3,
-}: {
-  blocks: Block[];
-  dark?: boolean;
-  level?: 2 | 3;
-}) {
+function Blocks({ blocks, level = 3 }: { blocks: Block[]; level?: 2 | 3 }) {
   const H = level === 2 ? "h2" : "h3";
-  const heading = dark ? "text-white" : "text-ink";
-  const body = dark ? "text-white/80" : "text-ink-muted";
+  let n = 0;
+  const next = () => stagger(Math.min(n++, 6));
 
   return (
     <>
@@ -103,71 +90,63 @@ function Blocks({
         switch (b.kind) {
           case "heading":
             return (
-              <H
-                key={i}
-                className={`mt-10 font-heading font-semibold leading-[1.25] first:mt-0 ${
-                  level === 2 ? "text-[24px] md:text-[28px]" : "text-[20px]"
-                } ${heading}`}
-              >
+              <H key={i} className={`reveal mt-12 max-w-[34ch] ${TYPE.h3} first:mt-0`} style={next()}>
                 {b.text}
               </H>
             );
 
           case "para":
             return (
-              <p key={i} className={`mt-4 text-[17px] leading-[1.65] ${body}`}>
+              <p key={i} className={`reveal mt-5 max-w-[66ch] ${TYPE.body} first:mt-0`} style={next()}>
                 {b.text}
               </p>
             );
 
-          // Tiles, not a rule down the left.
-          //
-          // A hairline on the left edge of every item drew a long vertical line beside
-          // a column of text and separated nothing; these are selling points and tool
-          // names, and they want to read as a set of things. The band is split by its
-          // own gaps rather than by borders on each cell, so it stays inside the "no
-          // box drawn around content" rule in DESIGN.md section 8: the separation is
-          // fill, not outline.
+          // A set of things, each on the field's rule. How an item is set follows how
+          // long it is, not how many there are: a short item is a name ("Okta", "Onsite,
+          // Remote or Hybrid") and is set as one, in the heading face; a sentence stays
+          // body copy. Short items run three across once there are enough to fill a row,
+          // so eleven tool names are a block rather than a tall stack.
+          // "Label : body" is how the source writes a definition, and setting the label
+          // as a heading is the difference between a wall of bullets and a list you can scan.
           case "list": {
-            const terse =
-              b.items.length >= 6 &&
-              b.items.every((item) => item.split(/\s+/).length <= 4);
-            const seam = dark ? "bg-white/20" : "bg-hairline-strong";
-            const cell = dark ? "bg-surface-dark" : "bg-surface-tint";
+            const terse = b.items.every((item) => item.split(/\s+/).length <= 8 && !item.includes(" : "));
             return (
               <ul
                 key={i}
-                className={`m-0 mt-6 grid list-none gap-px p-0 ${seam} ${
+                className={`m-0 mt-8 grid list-none p-0 first:mt-0 ${
                   terse
-                    ? "grid-cols-2 sm:grid-cols-3 lg:grid-cols-4"
-                    : "grid-cols-1 sm:grid-cols-2"
+                    ? `grid-cols-1 gap-x-8 sm:grid-cols-2 ${b.items.length >= 5 ? "lg:grid-cols-3" : ""}`
+                    : "grid-cols-1 gap-x-10 gap-y-8 md:grid-cols-2"
                 }`}
               >
                 {b.items.map((item, j) => {
-                  // "Label : body" is how the source writes a definition. Bolding the
-                  // label is the difference between a wall of bullets and a list you
-                  // can scan; the separator itself is noise once the weight carries it.
-                  const [, label, rest] =
-                    /^([^:]{2,60}?)\s+:\s+([\s\S]+)$/.exec(item) ?? [];
-                  return (
+                  const [, label, rest] = /^([^:]{2,60}?)\s+:\s+([\s\S]+)$/.exec(item) ?? [];
+                  return terse ? (
                     <li
                       key={j}
-                      className={`${cell} ${
-                        terse ? "px-4 py-3 text-[15px]" : "px-6 py-5 text-[16px]"
-                      } leading-[1.5] ${body}`}
+                      className="reveal border-t-2 border-[var(--field-rule)] py-3 font-heading text-[18px] font-semibold leading-snug"
+                      style={stagger(Math.min(j, 8))}
                     >
-                      {!terse && (
-                        <span className="mb-3 block h-0.5 w-6 bg-accent" />
-                      )}
+                      {item}
+                    </li>
+                  ) : (
+                    <li
+                      key={j}
+                      className="reveal border-t-2 border-[var(--field-rule)] pt-4"
+                      style={stagger(Math.min(j, 8))}
+                    >
                       {label ? (
                         <>
-                          <strong className={`font-semibold ${heading}`}>
+                          <strong className="block font-heading text-[19px] font-semibold leading-snug">
                             {label}
-                          </strong>{" "}
-                          {rest}
+                          </strong>
+                          <span className={`mt-2 block ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>
+                            {rest}
+                          </span>
                         </>
                       ) : (
-                        item
+                        <span className={`block ${TYPE.small} md:text-[17px]`}>{item}</span>
                       )}
                     </li>
                   );
@@ -177,80 +156,56 @@ function Blocks({
           }
 
           // An ordered process. The numeral is positional, so renumbering the data
-          // renumbers the page and the two can never disagree.
+          // renumbers the page and the two can never disagree. It is set in the field's
+          // accent at 28px, which clears the large-text floor on every field it can land on.
           case "steps":
             return (
               <ol
                 key={i}
-                className={`m-0 mt-8 grid list-none grid-cols-1 gap-px p-0 sm:grid-cols-2 ${
-                  dark ? "bg-white/20" : "bg-hairline-strong"
-                }`}
+                className="m-0 mt-10 grid list-none grid-cols-1 gap-x-12 gap-y-10 p-0 first:mt-0 md:grid-cols-2"
               >
                 {b.items.map((step, j) => (
-                  <li
-                    key={j}
-                    className={dark ? "bg-surface-dark p-6" : "bg-surface-tint p-6"}
-                  >
-                    {/* Red on 28px clears the large-text threshold, which is the only
-                        way it is legal on either surface. See DESIGN.md section 8. */}
-                    <span className="block font-heading text-[28px] font-semibold leading-none text-action">
+                  <li key={j} className="reveal grid grid-cols-[3rem_1fr] gap-4" style={stagger(Math.min(j, 8))}>
+                    <span className="font-heading text-[30px] font-semibold leading-none text-[var(--field-accent)]">
                       {j + 1}
                     </span>
-                    <H
-                      className={`mt-3 font-heading text-[17px] font-semibold leading-[1.3] ${heading}`}
-                    >
-                      {step.title}
-                    </H>
-                    {step.body && (
-                      <p className={`mt-2 text-[15px] leading-[1.6] ${body}`}>
-                        {step.body}
-                      </p>
-                    )}
+                    <div>
+                      <H className="font-heading text-[21px] font-semibold leading-tight md:text-[23px]">{step.title}</H>
+                      {step.body && (
+                        <p className={`mt-2 max-w-[52ch] ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>
+                          {step.body}
+                        </p>
+                      )}
+                    </div>
                   </li>
                 ))}
               </ol>
             );
 
-          // Unordered peers. No photo and no link, so this is not PhotoLedCard: these
-          // are titled blocks of copy, and inventing a stock image for each would be
-          // decoration standing in for content.
+          // Unordered peers. With images they are panels on the field's panel colour;
+          // without, titled blocks on the rule.
           case "cards": {
             const withImages = b.items.some((c) => c.image);
+            const many = b.items.length >= 6;
             return (
               <ul
                 key={i}
-                className={`m-0 mt-8 grid list-none grid-cols-1 gap-6 p-0 sm:grid-cols-2 ${
-                  withImages ? "lg:grid-cols-3" : ""
+                className={`m-0 mt-10 grid list-none grid-cols-1 p-0 first:mt-0 sm:grid-cols-2 ${
+                  withImages ? "gap-6 lg:grid-cols-3" : `gap-x-10 gap-y-10 ${many || b.items.length === 3 ? "lg:grid-cols-3" : ""}`
                 }`}
               >
                 {b.items.map((card, j) => (
                   <li
                     key={j}
-                    className={
-                      withImages
-                        ? dark
-                          ? "flex flex-col bg-white/10"
-                          : "flex flex-col bg-surface-tint"
-                        : ""
-                    }
+                    className={`reveal ${withImages ? "flex flex-col bg-[var(--field-panel)]" : "border-t-4 border-[var(--field-rule)] pt-5"}`}
+                    style={stagger(Math.min(j, 8))}
                   >
-                    {card.image && (
-                      <ContentImage
-                        src={card.image}
-                        alt={card.imageAlt ?? ""}
-                        frame
-                      />
-                    )}
-                    <div className={withImages ? "p-6" : ""}>
-                      <span className="block h-0.5 w-6 bg-accent" />
-                      <H
-                        className={`mt-3 font-heading text-[18px] font-semibold leading-[1.3] ${heading}`}
-                      >
+                    {card.image && <ContentImage src={card.image} alt={card.imageAlt ?? ""} frame />}
+                    <div className={withImages ? "p-6 md:p-7" : ""}>
+                      <H className="font-heading text-[21px] font-semibold leading-tight tracking-[-0.01em] md:text-[23px]">
                         {card.title}
                       </H>
-                      <p className={`mt-2 text-[15px] leading-[1.6] ${body}`}>
-                        {card.body}
-                      </p>
+                      <p className={`mt-3 ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>{card.body}</p>
                     </div>
                   </li>
                 ))}
@@ -258,20 +213,13 @@ function Blocks({
             );
           }
 
-          // The closing line of a service page is an instruction to do something, and
-          // it was rendering as an orphan h2 over an empty section on three pages.
+          // A cta mid-page. The common case, a page's closing instruction, never reaches
+          // here: ContentPage lifts it into the CloseChapter.
           case "cta":
             return (
-              <div key={i} className="mt-2">
-                <p
-                  className={`max-w-2xl font-heading text-[22px] font-semibold leading-[1.3] md:text-[26px] ${heading}`}
-                >
-                  {b.text}
-                </p>
-                <div className="mt-7">
-                  <PrimaryButton href={b.href}>{b.label}</PrimaryButton>
-                </div>
-              </div>
+              <p key={i} className={`reveal mt-8 max-w-[40ch] ${TYPE.h3}`} style={next()}>
+                {b.text}
+              </p>
             );
 
           case "image":
@@ -282,175 +230,124 @@ function Blocks({
   );
 }
 
-const PADDING: Record<SectionDensity, string> = {
-  tight: "py-12",
-  normal: "py-16",
-  feature: "py-24",
-};
+/** A section's field when the content names one. `dark` is slate. */
+const NAMED: Record<SectionFill, Field> = { white: "paper", tint: "tint", dark: "slate" };
 
 /**
- * Prose is capped at a reading measure, structure is not.
+ * Resolve each section's field once, so adjacency can be checked before anything renders.
  *
- * A four-card grid or a step sequence inside max-w-3xl is the "text packed into one
- * space" complaint: the column is sized for line length, and a grid in it has nowhere
- * to go. Sections carrying structure get the standard page width instead.
+ * A section with no explicit fill alternates paper and tint from whatever resolved above
+ * it. A step sequence with no fill of its own goes to deep: an ordered process is the one
+ * block that reads better as a scene than as copy, and it breaks the light run the way
+ * the homepage's approach chapter does. Not when it is the last thing before the footer,
+ * though, which is slate and would merge with it.
  */
-function widthFor(section: Section): string {
-  const structured = section.blocks.some(
-    (b) => b.kind === "steps" || b.kind === "cards",
-  );
-  return structured ? "max-w-6xl" : "max-w-3xl";
-}
-
-const FILL: Record<SectionFill, string> = {
-  white: "",
-  tint: "bg-surface-tint",
-  dark: "bg-surface-dark",
-};
-
-/**
- * Resolve each section's fill once, so adjacency can be checked before anything renders.
- *
- * A section with no explicit fill takes the opposite of whatever resolved above it,
- * which is the old alternation generalised: it still produces white/tint/white with no
- * fills set, but it no longer breaks when one section opts out. White follows dark
- * rather than tint, because tint under a dark block reads as a grey seam on it.
- */
-function resolveFills(sections: Section[], offset: number): SectionFill[] {
-  // The fill the alternation behaves as though it just emitted, so section 0 lands the
-  // same way the old `(i + offset) % 2` did.
-  let prev: SectionFill = offset % 2 === 1 ? "white" : "tint";
-
-  return sections.map((section) => {
-    const fill =
-      section.fill ?? (prev === "tint" ? "white" : prev === "dark" ? "white" : "tint");
-    prev = fill;
-    return fill;
+function resolveFields(sections: Section[], after: Field, footerNext: boolean): Field[] {
+  let prev = after;
+  return sections.map((section, i) => {
+    const beforeFooter = footerNext && i === sections.length - 1;
+    let field: Field;
+    if (section.fill) field = NAMED[section.fill];
+    else if (section.blocks.some((b) => b.kind === "steps") && prev !== "deep" && !beforeFooter) field = "deep";
+    else field = prev === "paper" ? "tint" : "paper";
+    prev = field;
+    return field;
   });
 }
 
+/** A section carrying structure gets the page grid; prose keeps a reading measure. */
+function structured(section: Section) {
+  return section.blocks.some((b) => b.kind === "steps" || b.kind === "cards" || (b.kind === "list" && b.items.length > 4));
+}
+
 /**
- * The prose sections on their own, for pages that put something else above them.
+ * A page's last section, when all it holds is the closing instruction, is the close: it
+ * becomes the CloseChapter, on the gradient, rather than a sentence over an empty band.
+ */
+function splitClose(sections: Section[]) {
+  const last = sections.at(-1);
+  const only = last?.blocks.length === 1 ? last.blocks[0] : undefined;
+  if (only?.kind === "cta") return { body: sections.slice(0, -1), close: only };
+  return { body: sections, close: undefined };
+}
+
+/**
+ * The prose sections as chapters, for any page, closing on the CloseChapter when the
+ * last section is the page's closing instruction.
  *
- * `offset` shifts which sections take the tint, so a page that has already used a
- * tinted block above these does not end up with two of them touching.
+ * `after` is the field of the chapter directly above, so the first section here never
+ * repeats it. Two chapters of one field in a row fail the build, DESIGN.md §5.
+ *
+ * `last` says nothing follows but the footer. The footer is slate, so a run that ends the
+ * page must not end on slate or deep, where the two would merge into one block.
  */
 export function ContentSections({
   sections,
-  offset = 0,
+  after = "gradient",
+  last = true,
 }: {
   sections: Section[];
-  offset?: number;
+  after?: Field;
+  last?: boolean;
 }) {
-  const fills = resolveFills(sections, offset);
-
-  // Two tinted or two dark blocks in a row read as one oversized block. Only an
-  // explicit fill can produce that now, so it is an authoring mistake and should fail
-  // the build rather than ship. DESIGN.md section 8.
-  for (let i = 1; i < fills.length; i += 1) {
-    if (fills[i] === fills[i - 1] && fills[i] !== "white") {
-      throw new Error(
-        `Two ${fills[i]} sections in a row (${i - 1} and ${i}: ` +
-          `"${sections[i - 1].heading ?? "untitled"}" then "${sections[i].heading ?? "untitled"}"). ` +
-          `Set fill on one of them.`,
-      );
-    }
+  const { body, close } = splitClose(sections);
+  const fields = resolveFields(body, after, last && !close);
+  const where = `ContentSections (first: "${body[0]?.heading ?? "untitled"}")`;
+  assertNoRepeats([after, ...fields], where);
+  const end = fields.at(-1);
+  if (last && !close && (end === "slate" || end === "deep")) {
+    throw new Error(`${where} ends the page on the ${end} field, which merges into the footer. Give the last section a light fill.`);
   }
 
   return (
     <>
-      {sections.map((section, i) => {
-        const fill = fills[i];
-        // Density follows how much is in the block, not the index. A one-block section
-        // given the same room as a six-block one is the flat rhythm DESIGN.md section 5
-        // rules out; `feature` stays opt-in because long prose does not want more air.
-        const density = section.density ?? (section.blocks.length <= 1 ? "tight" : "normal");
+      {body.map((section, i) => {
+        const wide = structured(section);
+        // Density follows how much is in the block: a single paragraph given the room of
+        // a six-block section is the flat rhythm DESIGN.md §5 rules out.
+        const pad = section.density === "feature" ? PAD : section.blocks.length <= 1 && !wide ? PAD_TIGHT : PAD;
 
         return (
-          <section key={i} className={`${FILL[fill]} ${PADDING[density]}`.trim()}>
-            <FadeIn className={`mx-auto ${widthFor(section)} px-6`}>
-              {section.heading && (
-                <SectionHeading dark={fill === "dark"}>
-                  {section.heading}
-                </SectionHeading>
+          <Chapter key={i} field={fields[i]}>
+            <InView className={`${WRAP} ${pad}`}>
+              {section.heading ? (
+                <div className={wide ? "" : "grid gap-8 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1.15fr)] lg:gap-16"}>
+                  <SectionHeading>{section.heading}</SectionHeading>
+                  <div className={wide ? "mt-10 md:mt-12" : "lg:pt-2"}>
+                    <Blocks blocks={section.blocks} level={3} />
+                  </div>
+                </div>
+              ) : (
+                <div className={wide ? "" : "max-w-3xl"}>
+                  <Blocks blocks={section.blocks} level={2} />
+                </div>
               )}
-              <div className={section.heading ? "mt-6" : ""}>
-                <Blocks
-                  blocks={section.blocks}
-                  dark={fill === "dark"}
-                  level={section.heading ? 3 : 2}
-                />
-              </div>
-            </FadeIn>
-          </section>
+            </InView>
+          </Chapter>
         );
       })}
+      {close && <CloseChapter title={close.text} href={close.href} action={close.label} />}
     </>
   );
 }
 
 /**
- * The shared layout for the prose pages, which is most of the site.
+ * The shared layout for the prose pages, which is most of the site: the gradient
+ * opening, then the sections as chapters, then the close when the page has one.
  *
- * Rhythm comes from alternating fill and from density, not from spacing alone. Uniform
- * py-20 on twenty pages is the failure this avoids.
- *
- * The lead is paragraphs only, and that is enforced by LeadBlock rather than here: it
- * renders inside the dark header where only `p` is recoloured, so a heading put here
- * rendered slate on slate and disappeared. See lib/content.ts.
+ * The lead is paragraphs only, enforced by LeadBlock in lib/content.ts.
  */
 export default function ContentPage({ page }: { page: PageContent }) {
-  const hero = page.hero;
-
   return (
     <article>
-      {/* The hero is a panel beside the title, not a full-bleed strip under it.
-          A 1600x600 band of stock photography spanning the viewport was the loudest
-          thing on every service page and said nothing; paired with the slate block it
-          reads as one masthead instead of a banner followed by a picture. With no
-          image the header keeps the full width, so nothing has a hole in it. */}
-      <header className="relative bg-surface-dark text-white">
-        <span className="absolute left-0 top-0 z-10 h-[3px] w-20 bg-action" />
-        <div
-          className={
-            hero
-              ? "mx-auto grid max-w-7xl grid-cols-1 items-stretch md:grid-cols-[1.05fr_0.95fr]"
-              : "mx-auto max-w-6xl px-6 pb-16 pt-20"
-          }
-        >
-          <div className={hero ? "px-6 py-16 md:py-24 lg:pl-10" : ""}>
-            <Eyebrow label={page.eyebrow} dark />
-            <h1 className="max-w-3xl font-heading text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[52px]">
-              {page.title}
-            </h1>
-            {page.lead.length > 0 && (
-              <div className="mt-6 max-w-xl">
-                {page.lead.map((b: LeadBlock, i) => (
-                  <p key={i} className="mt-4 text-[17px] leading-[1.65] text-white/80">
-                    {b.text}
-                  </p>
-                ))}
-              </div>
-            )}
-          </div>
-
-          {/* alt is empty on purpose: the heading beside it already says what the page
-              is, so describing the stock photograph again is noise to a screen reader. */}
-          {hero && (
-            <div className="relative min-h-[260px] md:min-h-0">
-              <Image
-                src={hero.src}
-                alt=""
-                fill
-                sizes="(max-width: 768px) 100vw, 50vw"
-                className="object-cover"
-                priority
-              />
-            </div>
-          )}
-        </div>
-      </header>
-
+      <PageHero
+        label={page.eyebrow}
+        title={page.title}
+        lead={page.lead.map((b) => b.text)}
+        // Empty alt: the title beside it already says what the page is, and describing
+        // the stock photograph again is noise to a screen reader.
+        media={page.hero ? <HeroImage src={page.hero.src} alt="" /> : undefined}
+      />
       <ContentSections sections={page.sections} />
     </article>
   );

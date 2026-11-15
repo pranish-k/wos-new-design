@@ -5,7 +5,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 /**
  * Marks its wrapper `data-inview` the first time it scrolls into view.
  *
- * It owns no motion: alternate-home.css decides what changes. Content is hidden only
+ * It owns no motion: the .reveal rules in globals.css decide what changes. Content is hidden only
  * once this component has armed it (`data-armed`), and only if it starts below the
  * fold, so the server-rendered page is always complete and nothing already on screen
  * blinks out and back in.

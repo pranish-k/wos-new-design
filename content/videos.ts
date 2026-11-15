@@ -1,4 +1,4 @@
-// Videos from the WOS YouTube channel, for /alternate-home.
+// Videos from the WOS YouTube channel, for the homepage.
 //
 // Titles are the channel's own. Each summary is taken from the video's description on
 // YouTube, cut to its first sentence or two, so the page says what WOS says about the

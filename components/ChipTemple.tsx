@@ -122,10 +122,10 @@ export default function ChipTemple() {
       {/* Package with a chamfered pin-1 corner, then the die with its circuit grid. */}
       <path
         d={`M ${x0 + 14} ${y0} H ${x0 + size} V ${y0 + size} H ${x0} V ${y0 + 14} Z`}
-        className="fill-surface-dark stroke-white"
+        className="fill-[var(--field-bg)] stroke-white"
         strokeWidth={2.5}
       />
-      <rect x={c.x - 42} y={c.y - 42} width={84} height={84} className="fill-surface-dark stroke-white/45" />
+      <rect x={c.x - 42} y={c.y - 42} width={84} height={84} className="fill-[var(--field-bg)] stroke-white/45" />
       {grid.map((g) => (
         <g key={g} className="stroke-white/10">
           <line x1={c.x - 42 + g} y1={c.y - 42} x2={c.x - 42 + g} y2={c.y + 42} />

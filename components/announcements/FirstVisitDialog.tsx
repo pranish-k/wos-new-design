@@ -1,7 +1,6 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef } from "react";
-import { Eyebrow } from "@/components/Brand";
 import type { Announcement } from "@/content/announcements";
 import { CloseButton, useDismissal } from "./dismissal";
 
@@ -56,7 +55,7 @@ export default function FirstVisitDialog({ item }: { item: Announcement }) {
           onClick={close}
           className="absolute right-3 top-3 text-ink-muted hover:bg-surface-tint hover:text-ink"
         />
-        <Eyebrow label={item.label} />
+        <p className="mb-3 font-heading text-[15px] font-semibold text-ink-muted">{item.label}</p>
         <h2
           id="first-visit-heading"
           className="pr-8 font-heading text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] text-ink md:text-[30px]"
@@ -70,7 +69,7 @@ export default function FirstVisitDialog({ item }: { item: Announcement }) {
           <Link
             href={item.href}
             onClick={close}
-            className="inline-block bg-action-deep px-7 py-3 font-heading text-sm font-semibold tracking-[0.02em] text-white transition-colors hover:bg-action-deeper"
+            className="inline-block bg-action-deep px-7 py-3.5 font-heading text-[15px] font-semibold tracking-[0.01em] text-white no-underline transition-colors hover:bg-action-deeper hover:text-white"
           >
             {item.cta}
           </Link>

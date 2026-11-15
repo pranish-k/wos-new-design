@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 /**
  * The Fantasy Arc, drawn once when it scrolls into view.
  *
- * DESIGN.md section 10 gestures 6 and 7. It follows the same SSR rule as FadeIn: the
+ * One of the sanctioned gestures in DESIGN.md §10, and it follows the SSR rule there: the
  * finished diagram is what the server renders, and it is only rewound after mount, only
  * when it sits below the fold, and never under reduced motion. With JavaScript off the
  * arc is simply there.
@@ -175,7 +175,7 @@ export default function ArcDraw({ steps }: { steps: ArcStep[] }) {
                 cx={p.x}
                 cy={p.y}
                 r={top ? 11 : 7}
-                className={top ? "fill-action" : "fill-surface-dark stroke-white"}
+                className={top ? "fill-action" : "fill-[var(--field-bg)] stroke-white"}
                 strokeWidth={top ? 0 : 2.5}
               />
             </g>
@@ -194,13 +194,13 @@ export default function ArcDraw({ steps }: { steps: ArcStep[] }) {
       >
         {steps.map((step, i) => (
           <li key={step.tag} className="row-span-3 grid grid-rows-subgrid text-center" style={fade(i)}>
-            <span className="block font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-white">
+            <span className="block font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--field-muted)]">
               {step.tag}
             </span>
-            <span className="mt-2 block font-heading text-[15px] font-semibold leading-[1.25] text-white">
+            <span className="mt-2 block font-heading text-[16px] font-semibold leading-[1.25]">
               {step.name}
             </span>
-            <span className="mt-1.5 block text-[13px] leading-[1.4] text-white/75">{step.detail}</span>
+            <span className="mt-1.5 block text-[14px] leading-[1.45] text-[var(--field-muted)]">{step.detail}</span>
           </li>
         ))}
       </ol>

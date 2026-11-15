@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { PhotoLedCard, SectionHeading } from "@/components/Brand";
-import ContentPage, { ContentSections } from "@/components/ContentPage";
+import { HeroImage, PageHero, SectionHeading, ServiceBands, WRAP } from "@/components/Brand";
+import { Chapter } from "@/components/Chapter";
+import { ContentSections } from "@/components/ContentPage";
+import InView from "@/components/InView";
 import { MSC_CARDS } from "@/content/managed-service-centers-hub";
 import page from "@/content/managed-service-centers";
 
@@ -10,37 +12,28 @@ export const metadata: Metadata = {
 };
 
 /**
- * A hub, not a leaf. The card grid below is the only path to six live pages, so it
- * comes before the prose rather than after it.
+ * A hub, not a leaf. The bands below are the only path to six live pages, so they come
+ * straight after the opening, before the prose.
  */
 export default function Page() {
-  const { sections, ...rest } = page;
   return (
-    <>
-      <ContentPage page={{ ...rest, sections: [] }} />
+    <article>
+      <PageHero
+        label={page.eyebrow}
+        title={page.title}
+        lead={page.lead.map((b) => b.text)}
+        media={page.hero ? <HeroImage src={page.hero.src} alt="" /> : undefined}
+      />
 
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-6">
+      <Chapter field="paper">
+        <InView className={`${WRAP} pb-12 pt-20 md:pb-14 md:pt-28`}>
           <SectionHeading>WOS Managed Services</SectionHeading>
-          <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {MSC_CARDS.map((card) => (
-              <PhotoLedCard
-                key={card.href}
-                href={card.href}
-                image={card.image}
-                imageAlt={card.imageAlt}
-                tag="Managed service"
-                title={card.title}
-                description={card.description}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
+        </InView>
+        <ServiceBands items={MSC_CARDS} />
+      </Chapter>
 
-      {/* Offset by one: the card grid above is untinted, so the first prose section
-          takes the tint rather than stacking two plain blocks. */}
-      <ContentSections sections={sections} offset={1} />
-    </>
+      {/* after="crimson": the chapter above ends on its last band, which is crimson. */}
+      <ContentSections sections={page.sections} after="crimson" />
+    </article>
   );
 }

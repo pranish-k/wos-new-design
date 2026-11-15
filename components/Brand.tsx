@@ -1,140 +1,53 @@
-import Link from "next/link";
 import Image from "next/image";
-import type { ReactNode } from "react";
+import Link from "next/link";
+import type { CSSProperties, ReactNode } from "react";
+import { Arrow, Chapter, fieldClass, type Field } from "@/components/Chapter";
+import InView from "@/components/InView";
+import Motif from "@/components/Motif";
 
 /**
- * Design primitives.
+ * Design primitives. DESIGN.md §3, §5 and §6.
  *
- * Colour rules that are easy to get wrong here:
- * - Red is the only accent. Teal was tried and removed: it read as a second competing
- *   accent, and its hue leaked into the neutrals, tinting every card toward cyan.
- * - Red is 4.47:1 on white and 2.8:1 on slate. So red marks rules and fills, but never
- *   small text on either surface. Label text is muted ink on light, white on slate.
- * - Red fills use action-deep (5.42:1 with white) because every button label is 13-15px.
- * - Cards have no border: a light border between a white card and a white page divides
- *   nothing. Separation comes from the neutral fill and the photo.
+ * Nothing here takes a `dark` prop. Every colour that has to change with its surface -
+ * ink, muted ink, link, button, rule, accent numeral - is read from the field the
+ * component sits on (var(--field-*), set in globals.css), so the same button is correct
+ * on paper, on slate and on red without the caller saying which.
  */
 
-/**
- * Rule + label. DESIGN.md requires the rule: an uppercase label must never float alone.
- *
- * mb-4, not mb-8. It was mb-8, and 43 of the 55 call sites cancelled 16px of it back off
- * with a `-mt-4` on the next element, which is the spacing they all actually wanted.
- * The gap belongs in the primitive; a caller that genuinely needs more air adds a
- * positive margin, which reads as a decision rather than as a fight with the component.
- */
-export function Eyebrow({
-  label,
-  dark = false,
-  className = "",
-}: {
-  label: string;
-  dark?: boolean;
-  className?: string;
-}) {
-  return (
-    <div className={`mb-4 ${className}`.trim()}>
-      <span className="block h-0.5 w-6 bg-accent" />
-      <p
-        className={`mt-3 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] ${
-          dark ? "text-white/75" : "text-ink-muted"
-        }`}
-      >
-        {label}
-      </p>
-    </div>
-  );
+/** The page grid. Every chapter's content, the header and the footer share this edge. */
+export const WRAP = "mx-auto w-full max-w-[1320px] px-5 md:px-8";
+
+/** Chapter padding. Standard, and tight for a chapter carrying one short block. */
+export const PAD = "py-20 md:py-28";
+export const PAD_TIGHT = "py-14 md:py-20";
+
+/** The type scale, as class strings so a page can set an element without a wrapper. */
+export const TYPE = {
+  /** Interior page title. The homepage tagline is its own, larger, uppercase setting. */
+  title: "font-heading text-[clamp(36px,4.8vw,64px)] font-semibold leading-[1.05] tracking-[-0.025em]",
+  h2: "font-heading text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] md:text-[46px]",
+  h3: "font-heading text-[22px] font-semibold leading-[1.2] tracking-[-0.015em] md:text-[26px]",
+  /** A sentence set as display type: a claim, a figure, a closing line. */
+  statement: "font-heading font-semibold leading-[1.15] tracking-[-0.02em]",
+  lead: "text-[20px] leading-[1.55] md:text-[22px]",
+  body: "text-[18px] leading-[1.65]",
+  small: "text-[16px] leading-[1.6]",
+  /** What a group of things is, above the group: muted, sentence case, no rule. */
+  label: "font-heading text-[16px] font-semibold leading-snug text-[var(--field-muted)] md:text-[18px]",
+} as const;
+
+/** The stagger index a `.reveal` element reads. */
+export const stagger = (n: number): CSSProperties => ({ ["--i" as string]: n });
+
+function external(href: string) {
+  return /^https?:\/\//.test(href);
 }
 
-export function InteriorHero({
-  eyebrow,
-  title,
-  subtitle,
-  actions,
-  image,
-  imageAlt = "",
-}: {
-  eyebrow: string;
-  title: string;
-  /** ReactNode so callers can emphasise parts of a multi-line subtitle. */
-  subtitle?: ReactNode;
-  actions?: ReactNode;
-  /** Optional portrait beside the text. Omitted, the hero stays purely typographic. */
-  image?: string;
-  imageAlt?: string;
-}) {
-  const text = (
-    <>
-      <p className="mb-3 font-heading text-[11px] font-bold uppercase tracking-[0.18em] text-white/85">
-        {eyebrow}
-      </p>
-      {/* Short accent rule under the eyebrow, matching the Eyebrow component used in
-          body sections so interior heroes carry the same mark. */}
-      <span className="mb-6 block h-0.5 w-8 bg-accent" />
-      <h1 className="max-w-2xl font-heading text-[42px] font-semibold leading-[1.08] tracking-[-0.025em] md:text-[52px]">
-        {title}
-      </h1>
-      {/* whitespace-pre-line so a subtitle can carry its own line breaks (e.g. a title
-          and an appointment on separate lines) without callers needing JSX. */}
-      {subtitle ? (
-        <p className="mt-6 max-w-xl whitespace-pre-line text-[15px] leading-[1.7] text-white/80">
-          {subtitle}
-        </p>
-      ) : null}
-      {actions ? <div className="mt-10 flex flex-wrap gap-4">{actions}</div> : null}
-    </>
-  );
-
-  return (
-    <section className="relative bg-surface-dark text-white">
-      {/* Red signature bar, mirroring the rule under the logo on Branding Guide p.9. */}
-      <span className="absolute left-0 top-0 h-[3px] w-20 bg-action" />
-      {image ? (
-        <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-10 px-6 py-20 md:grid-cols-[1.4fr_auto] md:gap-14 md:py-24">
-          <div>{text}</div>
-          <div className="relative h-[240px] w-[240px] flex-shrink-0 md:h-[300px] md:w-[300px]">
-            <Image
-              src={image}
-              alt={imageAlt}
-              fill
-              priority
-              className="object-cover"
-              sizes="300px"
-            />
-          </div>
-        </div>
-      ) : (
-        <div className="mx-auto max-w-6xl px-6 py-24 md:py-28">{text}</div>
-      )}
-    </section>
-  );
-}
-
-export function Divider({ className = "" }: { className?: string }) {
-  return <hr className={`my-16 border-0 border-t border-hairline ${className}`.trim()} />;
-}
+const NEW_TAB = { target: "_blank", rel: "noopener noreferrer" } as const;
 
 /**
- * A plain text link in the action colour.
- *
- * No arrow glyph. An arrow that slides on hover is a decoration every template ships
- * with, and the underline already says the text is a link.
- */
-export function ArrowLink({ href, children }: { href: string; children: ReactNode }) {
-  return (
-    <Link
-      href={href}
-      className="inline-block w-fit text-sm text-action-deep underline underline-offset-[3px] transition-colors hover:text-action-deeper hover:no-underline"
-    >
-      {children}
-    </Link>
-  );
-}
-
-/**
- * The one filled CTA. `size="lg"` is the loud variant that used to be GoldButton -
- * kept as a size rather than a colour, since after the rebrand both were the same red
- * and two identically-styled primitives is how the old drift started. Still one per page.
+ * The one filled call to action. Red on paper, tint and the dark fields; white with slate
+ * type on crimson and red, where a red fill would vanish. One per distinct action.
  */
 export function PrimaryButton({
   href,
@@ -148,8 +61,9 @@ export function PrimaryButton({
   return (
     <Link
       href={href}
-      className={`inline-block bg-action-deep font-heading font-semibold tracking-[0.02em] text-white transition-colors hover:bg-action-deeper ${
-        size === "lg" ? "px-8 py-4 text-[15px]" : "px-7 py-3 text-sm"
+      {...(external(href) ? NEW_TAB : {})}
+      className={`inline-block bg-[var(--field-btn)] font-heading font-semibold tracking-[0.01em] text-[var(--field-btn-ink)] no-underline transition-colors hover:bg-[var(--field-btn-hover)] hover:text-[var(--field-btn-ink)] ${
+        size === "lg" ? "px-8 py-4 text-[16px]" : "px-7 py-3.5 text-[15px]"
       }`}
     >
       {children}
@@ -158,31 +72,25 @@ export function PrimaryButton({
 }
 
 /**
- * Outlined in the brand red rather than slate: a slate outline read as a plain black
- * box. It stays distinct from PrimaryButton by being outlined rather than filled.
- *
- * `dark` is not a theme variant, it is a contrast fix. The default resolves to
- * text-action-deep, which is 2.31:1 on surface-dark and is exactly the §8 "red text on
- * slate" anti-pattern. It shipped that way in the homepage hero, where it was the one
- * place on the site this component sat on a dark surface. On dark the outline and the
- * label are both white, following §2's rule that label text is white on dark.
+ * Outlined, in the field's link colour, so it never competes with PrimaryButton. Hover
+ * fills it with that colour and drops the label into the field's own background, which
+ * inverts correctly on every field.
  */
 export function SecondaryButton({
   href,
   children,
-  dark = false,
+  size = "md",
 }: {
   href: string;
   children: ReactNode;
-  dark?: boolean;
+  size?: "md" | "lg";
 }) {
   return (
     <Link
       href={href}
-      className={`inline-block border bg-transparent px-7 py-3 font-heading text-sm font-semibold transition-colors ${
-        dark
-          ? "border-white/50 text-white hover:bg-white/15"
-          : "border-action-deep text-action-deep hover:bg-action-deep hover:text-white"
+      {...(external(href) ? NEW_TAB : {})}
+      className={`inline-block border-2 border-[var(--field-link)] bg-transparent font-heading font-semibold tracking-[0.01em] text-[var(--field-link)] no-underline transition-colors hover:bg-[var(--field-link)] hover:text-[var(--field-bg)] ${
+        size === "lg" ? "px-8 py-[14px] text-[16px]" : "px-7 py-3 text-[15px]"
       }`}
     >
       {children}
@@ -190,258 +98,346 @@ export function SecondaryButton({
   );
 }
 
-/** Large interior hero with an overlapping photo card on the right (program detail pages). */
-export function ProgramHero({
-  eyebrow,
-  title,
-  subtitle,
-  image,
-  imageAlt = "",
-  meta = [],
-  actions,
-}: {
-  eyebrow: string;
-  title: string;
-  subtitle?: string;
-  image: string;
-  imageAlt?: string;
-  meta?: { label: string; value: string }[];
-  actions?: ReactNode;
-}) {
-  return (
-    <section className="relative bg-surface-dark pb-20 text-white">
-      <span className="absolute left-0 top-0 h-[3px] w-20 bg-action" />
-      <div className="mx-auto grid max-w-7xl grid-cols-1 items-end gap-14 px-8 pt-20 md:grid-cols-2 md:pt-24">
-        <div className="pb-8">
-          <p className="mb-5 font-heading text-[11px] font-bold uppercase tracking-[0.18em] text-white/85">
-            {eyebrow}
-          </p>
-          <h1 className="m-0 font-heading text-[40px] font-semibold leading-[1.05] tracking-[-0.025em] md:text-[52px]">
-            {title}
-          </h1>
-          {subtitle ? (
-            <p className="mt-5 max-w-md text-[16px] leading-[1.6] text-white/85">{subtitle}</p>
-          ) : null}
-          {meta.length > 0 ? (
-            <div className="mt-9 flex flex-wrap gap-9 border-t border-white/15 pt-5">
-              {meta.map((m) => (
-                <div key={m.label}>
-                  <p className="m-0 font-heading text-[10px] font-semibold uppercase tracking-[0.15em] text-white/85">
-                    {m.label}
-                  </p>
-                  <p className="m-0 mt-1 text-sm font-medium text-white">{m.value}</p>
-                </div>
-              ))}
-            </div>
-          ) : null}
-          {actions ? <div className="mt-8 flex flex-wrap gap-4">{actions}</div> : null}
-        </div>
-        <div className="relative -mb-20 h-[380px] md:h-[480px]">
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 50vw"
-            priority
-          />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/** Marquee card. Photo top, tinted content block. */
-export function PhotoLedCard({
+/** A text link with the arrow: the site's one link shape outside running copy. */
+export function TextLink({
   href,
-  image,
-  imageAlt = "",
-  tag,
-  title,
-  description,
-  ratio = 0.62,
+  children,
+  className = "",
 }: {
   href: string;
-  image: string;
-  imageAlt?: string;
-  tag: string;
-  title: string;
-  description: string;
-  ratio?: number;
+  children: ReactNode;
+  className?: string;
 }) {
+  const ext = external(href);
   return (
     <Link
       href={href}
-      className="group flex h-full flex-col bg-surface-tint text-ink no-underline transition-transform duration-[250ms] ease-out hover:-translate-y-[3px]"
+      {...(ext ? NEW_TAB : {})}
+      className={`inline-flex w-fit items-center gap-3 font-heading text-[16px] font-semibold text-[var(--field-link)] underline underline-offset-[6px] transition-colors hover:text-[var(--field-link)] hover:no-underline ${className}`.trim()}
     >
-      <div
-        className="relative w-full overflow-hidden bg-wos-slate"
-        style={{ paddingTop: `${ratio * 100}%` }}
-      >
-        <Image
-          src={image}
-          alt={imageAlt}
-          fill
-          className="object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]"
-          sizes="(max-width: 768px) 100vw, 33vw"
-        />
-      </div>
-      <div className="flex flex-1 flex-col p-7">
-        {/* Red rule is the only accent mark; the label stays muted ink. */}
-        <span className="mb-2.5 block h-0.5 w-6 bg-accent" />
-        <p className="mb-2 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-muted">
-          {tag}
-        </p>
-        <h3 className="m-0 mb-3 font-heading text-[21px] font-semibold leading-[1.25] tracking-[-0.01em] text-ink">
-          {title}
-        </h3>
-        <p className="m-0 flex-1 text-sm leading-[1.55] text-ink-muted">{description}</p>
-        {/* No "Learn more" tail: the whole card is already the link, so the label
-            restates the affordance and the arrow decorates it twice over. */}
-        <span className="mt-5 block h-0.5 w-8 bg-accent transition-[width] duration-300 ease-out group-hover:w-14" />
-      </div>
+      {children}
+      <Arrow />
+      {ext && <span className="sr-only">(opens in a new tab)</span>}
     </Link>
-  );
-}
-
-/** Uniform certificate/topic grid item. */
-export function TintedCard({
-  href,
-  image,
-  imageAlt = "",
-  tag = "Certificate",
-  name,
-  line,
-}: {
-  href: string;
-  image?: string;
-  imageAlt?: string;
-  tag?: string;
-  name: string;
-  line?: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group flex h-full flex-col overflow-hidden bg-surface-tint text-ink no-underline transition-transform duration-[250ms] ease-out hover:-translate-y-[3px]"
-    >
-      {image ? (
-        <div className="relative w-full overflow-hidden bg-wos-slate" style={{ paddingTop: "62%" }}>
-          <Image
-            src={image}
-            alt={imageAlt}
-            fill
-            className="object-cover transition-transform duration-[600ms] ease-out group-hover:scale-[1.04]"
-            sizes="(max-width: 768px) 50vw, 25vw"
-          />
-        </div>
-      ) : null}
-      <div
-        className={`relative flex flex-1 flex-col px-6 py-5 ${
-          image ? "border-t-2 border-accent" : ""
-        }`}
-      >
-        {!image ? <span className="absolute left-6 right-6 top-0 h-0.5 bg-accent" /> : null}
-        <p className="mb-3 mt-2 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-muted">
-          {tag}
-        </p>
-        <h4 className="m-0 mb-2.5 font-heading text-[18px] font-semibold leading-[1.25] tracking-[-0.01em] text-ink">
-          {name}
-        </h4>
-        {line ? <p className="m-0 flex-1 text-[13px] leading-[1.55] text-ink-muted">{line}</p> : null}
-        <span className="mt-5 block h-0.5 w-8 bg-accent transition-[width] duration-300 ease-out group-hover:w-14" />
-      </div>
-    </Link>
-  );
-}
-
-/** Four numbers across. Numerals stay slate on light - red would read as an alert. */
-export function StatsBar({
-  stats,
-  dark = false,
-}: {
-  stats: { value: string; label: string }[];
-  dark?: boolean;
-}) {
-  return (
-    <div className={dark ? "bg-surface-dark text-white" : "text-ink"}>
-      <div className="mx-auto max-w-6xl px-6 py-14">
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
-          {stats.map((s) => (
-            <div key={s.label} className="text-center">
-              <p
-                className={`m-0 font-heading text-[42px] font-semibold leading-none tracking-[-0.02em] ${
-                  dark ? "text-white" : "text-surface-dark"
-                }`}
-              >
-                {s.value}
-              </p>
-              <p
-                className={`m-0 mt-3 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] ${
-                  dark ? "text-white/75" : "text-ink-muted"
-                }`}
-              >
-                {s.label}
-              </p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-export function PullQuote({
-  quote,
-  name,
-  role,
-  large = false,
-}: {
-  quote: string;
-  name?: string;
-  role?: string;
-  large?: boolean;
-}) {
-  return (
-    <blockquote className="m-0 border-l-[3px] border-accent pl-6">
-      <p
-        className={`m-0 max-w-2xl font-normal italic leading-[1.5] text-ink ${
-          large ? "text-2xl md:text-[26px]" : "text-xl"
-        }`}
-      >
-        &ldquo;{quote}&rdquo;
-      </p>
-      {name ? (
-        <p className="mt-4 text-[13px] text-ink-muted">
-          - <strong className="font-semibold text-ink">{name}</strong>
-          {role ? `, ${role}` : null}
-        </p>
-      ) : null}
-    </blockquote>
   );
 }
 
 /**
- * The h2 that opens a section, shared so the prose pages and the hub grids agree.
+ * A chapter's heading, with an optional intro beneath it.
  *
- * The hubs used an Eyebrow here, which gave their card grid no heading at all: on
- * /managed-service-centers/ that left six card h3s sitting directly under the page h1
- * with the level between them missing. An eyebrow is a label, not an outline entry.
+ * `as` keeps the outline right: a section that is itself under an h2 passes "h3" and
+ * keeps the same visual size, because the size marks a chapter, not an outline depth.
  */
 export function SectionHeading({
   children,
-  dark = false,
+  label,
+  intro,
+  as: H = "h2",
+  className = "",
 }: {
   children: ReactNode;
-  dark?: boolean;
+  /** What the chapter is, above its heading, when the heading alone does not say. */
+  label?: string;
+  intro?: ReactNode;
+  as?: "h2" | "h3";
+  className?: string;
 }) {
   return (
-    <h2
-      className={`font-heading text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] md:text-[34px] ${
-        dark ? "text-white" : "text-ink"
+    <div className={className}>
+      {label && <p className={`reveal mb-4 ${TYPE.label}`}>{label}</p>}
+      <H className={`reveal ${TYPE.h2} max-w-[24ch] text-balance`}>{children}</H>
+      {intro && (
+        <p className={`reveal mt-6 max-w-[62ch] ${TYPE.body} text-[var(--field-muted)]`} style={stagger(1)}>
+          {intro}
+        </p>
+      )}
+    </div>
+  );
+}
+
+/**
+ * Every interior page opens here: the signature gradient, the title, and what the page
+ * is in a sentence or two. With `media` the copy and the media share the row, as on the
+ * homepage; without, the copy holds a reading measure and the field runs on.
+ *
+ * `label` names where the page sits (its nav group, or the board a person is on). With
+ * `labelHref` it is a way back up, which is the only reason to make it a link.
+ */
+export function PageHero({
+  label,
+  labelHref,
+  title,
+  lead,
+  actions,
+  media,
+  mediaShape = "wide",
+  children,
+}: {
+  label?: string;
+  labelHref?: string;
+  title: ReactNode;
+  lead?: ReactNode | string[];
+  actions?: ReactNode;
+  media?: ReactNode;
+  /** `square` for a portrait, `wide` for a photograph, `free` for a drawing. */
+  mediaShape?: "wide" | "square" | "free";
+  children?: ReactNode;
+}) {
+  const leads = Array.isArray(lead) ? lead : lead ? [lead] : [];
+  const copy = (
+    <div>
+      {label &&
+        (labelHref ? (
+          <Link
+            href={labelHref}
+            className={`${TYPE.label} mb-5 inline-flex items-center gap-2 no-underline hover:underline hover:underline-offset-[5px] md:mb-6`}
+          >
+            <Arrow className="h-[11px] w-[14px] flex-none rotate-180" />
+            {label}
+          </Link>
+        ) : (
+          <p className={`${TYPE.label} mb-5 md:mb-6`}>{label}</p>
+        ))}
+      <h1 className={`${TYPE.title} max-w-[22ch] text-balance`}>{title}</h1>
+      {leads.length > 0 && (
+        <div className="rise-in mt-7 max-w-[56ch] space-y-4 md:mt-8">
+          {leads.map((p, i) => (
+            <p key={i} className={`${i === 0 ? TYPE.lead : TYPE.body} text-[var(--field-muted)]`}>
+              {p}
+            </p>
+          ))}
+        </div>
+      )}
+      {actions && (
+        <div className="rise-in mt-9 flex flex-wrap gap-4" style={{ ["--delay" as string]: "360ms" }}>
+          {actions}
+        </div>
+      )}
+      {children}
+    </div>
+  );
+
+  return (
+    <Chapter field="gradient" className="overflow-clip">
+      <div className={`${WRAP} pb-16 pt-14 md:pb-24 md:pt-20`}>
+        {media ? (
+          <div
+            className={`grid items-center gap-10 md:gap-14 ${
+              mediaShape === "square"
+                ? "md:grid-cols-[minmax(0,1.3fr)_minmax(0,0.7fr)]"
+                : "md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]"
+            }`}
+          >
+            {copy}
+            <div className="rise-in" style={{ ["--delay" as string]: "160ms" }}>
+              {media}
+            </div>
+          </div>
+        ) : (
+          copy
+        )}
+      </div>
+    </Chapter>
+  );
+}
+
+PageHero.field = "gradient" as const;
+
+/** A photograph for PageHero's `media`, cropped to the hero's frame. */
+export function HeroImage({
+  src,
+  alt,
+  shape = "wide",
+  position = "object-center",
+}: {
+  src: string;
+  alt: string;
+  shape?: "wide" | "square";
+  position?: string;
+}) {
+  return (
+    <div
+      className={`relative w-full overflow-hidden bg-surface-deep ${
+        shape === "square" ? "mx-auto aspect-square max-w-[420px] md:mr-0" : "aspect-[16/10]"
       }`}
     >
-      {children}
-    </h2>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        priority
+        sizes={shape === "square" ? "420px" : "(min-width: 768px) 50vw, 100vw"}
+        className={`object-cover ${position}`}
+      />
+    </div>
+  );
+}
+
+/**
+ * The close: a page's last chapter, on the gradient, meeting the footer. One line, one
+ * button, and the motif opposite so the line has a partner rather than a void.
+ */
+export function CloseChapter({
+  title,
+  body,
+  href,
+  action,
+}: {
+  title: string;
+  body?: string;
+  href: string;
+  action: string;
+}) {
+  return (
+    <Chapter field="gradient" id="close" className="overflow-clip">
+      <InView className={`${WRAP} grid items-center gap-10 py-20 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] md:py-28`}>
+        <div>
+          <h2 className={`reveal ${TYPE.statement} max-w-[22ch] text-balance text-[clamp(34px,4.4vw,60px)]`}>
+            {title}
+          </h2>
+          {body && (
+            <p className={`reveal mt-6 max-w-[52ch] ${TYPE.lead} text-[var(--field-muted)]`} style={stagger(1)}>
+              {body}
+            </p>
+          )}
+          <div className="reveal mt-9" style={stagger(2)}>
+            <PrimaryButton href={href} size="lg">
+              {action}
+            </PrimaryButton>
+          </div>
+        </div>
+        <Motif
+          draw={false}
+          className="pointer-events-none hidden h-auto w-full max-w-[240px] justify-self-end md:block"
+          firstFill="fill-white"
+        />
+      </InView>
+    </Chapter>
+  );
+}
+
+CloseChapter.field = "gradient" as const;
+
+export type Band = {
+  href: string;
+  title: string;
+  description?: string;
+  image: string;
+  imageAlt: string;
+};
+
+/**
+ * The colours a run of `count` bands takes: slate, crimson and deep in turn, so no two
+ * neighbours match, started so the run ends on crimson. Crimson is the one dark field
+ * that cannot merge with what usually follows a run, a slate chapter or the footer.
+ */
+export function bandFields(count: number): Field[] {
+  const cycle: Field[] = ["slate", "crimson", "deep"];
+  const start = (((1 - (count - 1)) % 3) + 3) % 3;
+  return Array.from({ length: count }, (_, n) => cycle[(start + n) % 3]);
+}
+
+/**
+ * Links to other pages as full-bleed bands of colour that alternate their picture side.
+ *
+ * Edge to edge rather than inset: inset, a run of coloured blocks reads as a stack of
+ * cards; full bleed, they read as chapters inside the chapter. The text's outer edge
+ * lines up with the page grid on wide screens, so the bands bleed while their words stay
+ * on the grid.
+ */
+export function ServiceBands({
+  items,
+  fields = bandFields(items.length),
+  headingLevel = "h3",
+}: {
+  items: Band[];
+  /** One per item. Defaults to bandFields, which ends the run on crimson. */
+  fields?: Field[];
+  headingLevel?: "h2" | "h3" | "h4";
+}) {
+  if (fields.length !== items.length) {
+    throw new Error(`ServiceBands got ${items.length} items and ${fields.length} fields.`);
+  }
+  const H = headingLevel;
+  return (
+    <ul className="m-0 list-none p-0">
+      {items.map((s, n) => (
+        <li key={s.href} className={fieldClass(fields[n])}>
+          <Link
+            href={s.href}
+            className={`group grid items-stretch text-[var(--field-ink)] no-underline hover:text-[var(--field-ink)] md:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] ${
+              n % 2 ? "md:[&>*:first-child]:order-2" : ""
+            }`}
+          >
+            {/* From the wrap breakpoint the outer padding is the cell's half-width less 628px (half
+                the 1320 grid, less its 32px gutter), which lands the text on WRAP's
+                edge. In % of the grid cell, not vw: vw counts the scrollbar and would
+                put the text 8px off the grid on any system that shows one. */}
+            <div
+              className={`flex flex-col justify-center gap-5 px-5 py-10 md:py-14 ${
+                n % 2
+                  ? "md:pl-14 md:pr-8 wrap:pr-[calc(100%-628px)]"
+                  : "md:pl-8 md:pr-14 wrap:pl-[calc(100%-628px)]"
+              }`}
+            >
+              <H className="max-w-[18ch] font-heading text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] lg:text-[40px]">
+                {s.title}
+              </H>
+              {s.description && (
+                <p className={`max-w-[46ch] ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>
+                  {s.description}
+                </p>
+              )}
+              <span className="inline-flex items-center gap-3 font-heading text-[16px] font-semibold underline-offset-[6px] group-hover:underline">
+                Explore <Arrow />
+              </span>
+            </div>
+            <div className="relative aspect-[16/9] overflow-hidden bg-surface-deep md:aspect-auto md:min-h-[300px]">
+              <Image
+                src={s.image}
+                alt={s.imageAlt}
+                fill
+                sizes="(min-width: 768px) 50vw, 100vw"
+                className="object-cover transition-transform duration-700 ease-[var(--ease-fade)] group-hover:scale-[1.03]"
+              />
+            </div>
+          </Link>
+        </li>
+      ))}
+    </ul>
+  );
+}
+
+/** A titled set of short facts, each on the field's rule. */
+export function FactList({
+  title,
+  items,
+  start = 0,
+  as: H = "h3",
+}: {
+  title?: string;
+  items: string[];
+  start?: number;
+  as?: "h3" | "h4";
+}) {
+  return (
+    <div>
+      {title && (
+        <H className={`reveal ${TYPE.label}`} style={stagger(start)}>
+          {title}
+        </H>
+      )}
+      <ul className={`m-0 list-none p-0 ${title ? "mt-3" : ""}`}>
+        {items.map((item, n) => (
+          <li
+            key={item}
+            className="reveal border-t-2 border-[var(--field-rule)] py-3 font-heading text-[19px] font-semibold leading-snug md:text-[20px]"
+            style={stagger(start + n + 1)}
+          >
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }

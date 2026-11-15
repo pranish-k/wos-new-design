@@ -29,9 +29,12 @@ const COLUMN_HEADING =
   "mb-1 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-white/85";
 
 export default function Footer() {
+  // No top margin: every page ends on a full-bleed chapter, and a white strip between
+  // that chapter and this one reads as a gap in the page. A page's last chapter is never
+  // slate or deep, so the two never merge; ContentSections enforces that for its pages.
   return (
-    <footer className="mt-20 bg-surface-dark text-white">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-6 py-14 md:grid-cols-3">
+    <footer className="bg-surface-dark text-white">
+      <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-10 px-5 py-14 md:grid-cols-3 md:px-8 md:py-16">
         <div>
           <WosMark variant="onDark" className="h-9 w-auto" />
           <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
@@ -106,7 +109,7 @@ export default function Footer() {
 
       {/* The footer is the only path to both of these, so this line is load-bearing. */}
       <div className="border-t border-white/15">
-        <div className="mx-auto flex max-w-6xl flex-col gap-2 px-6 py-4 text-xs text-white/75 md:flex-row md:items-center md:justify-between">
+        <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-2 px-5 py-4 text-xs text-white/75 md:flex-row md:items-center md:justify-between md:px-8">
           <p className="m-0">
             &copy; {new Date().getFullYear()} {ORG}
           </p>

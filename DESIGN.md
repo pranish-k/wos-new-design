@@ -7,12 +7,12 @@ This file is the single source of truth for all visual decisions on this site.
 Before writing any component, check here.
 Before making a judgment call, add it here.
 
-Colour, type, components, and the anti-pattern list are ported from the center site at
-`/Users/pranish/Documents/wos-new-center/proposed_center/site/`, including the reasoning
-for the rejected alternatives.
-That reasoning is worth keeping verbatim: re-deriving it means repeating the mistakes.
-Sections 0 and 4 are the ones rewritten for this site, because brand and navigation are
-where the two differ.
+The site runs in the **colour-chapter** direction.
+It was developed as `/alternate-home`, compared side by side with the original homepage on the real site, and adopted for the whole site by the client on 2026-11-15.
+The original editorial direction is preserved in git: `main` holds it, and the `alternate-home` branch holds both homepages side by side.
+
+The tokens, the type, the anti-pattern list and the reasoning behind the rejected colours were ported from the center site at `/Users/pranish/Documents/wos-new-center/proposed_center/site/`.
+That reasoning is kept verbatim where it still holds: re-deriving it means repeating the mistakes.
 
 For the rules of the rebuild rather than its appearance, see [CLAUDE.md](CLAUDE.md).
 
@@ -29,14 +29,14 @@ Carrying either across is the most likely brand error here, because the componen
 Practically:
 - The WOS lockup is the only logo, in both the header and the footer.
 - Corporate and academic partners are content, on `/corporate-partners/` and `/academic-partners/`. They are not chrome.
-- Northeastern is a real page on this site (the WOS-Northeastern Talent Pipeline Program) and one of the 15 unreachable pages awaiting a decision. The center site's rule against mentioning it does not apply here.
+- Northeastern is a real page on this site (the WOS-Northeastern Talent Pipeline Program). The center site's rule against mentioning it does not apply here.
 
 Brand name strings live in `lib/brand.ts` and nowhere else.
 
 ### One sanctioned Teachers College credit
 
 The chrome carries no co-brand, and that part of the rule is unchanged.
-The single exception is the homepage section for the Center for Strategic Learning and Leadership for the Digital Age, a WOS sub-brand center, which states that it runs in partnership with Teachers College, Columbia University.
+The single exception is the homepage panel for the Center for Strategic Learning and Leadership for the Digital Age, a WOS sub-brand center, which states that it runs in partnership with Teachers College, Columbia University.
 
 The compliant version was to name the Center without its institution.
 A center with no institution behind it reads as a marketing label rather than as a thing that exists, which is the opposite of the reason for listing it at all.
@@ -49,28 +49,29 @@ Two conditions on the exception.
 
 **It appears on the homepage and nowhere else.**
 §9 check 5a fails if the phrase reaches any other built route, which is what a co-branded header or footer would do.
-`/alternate-home` (§11) is a second rendering of the homepage's own content, so it carries the same credit in the same sentence and is the one other route 5a allows.
 
 ---
 
 ## 1. Design philosophy
 
-The reference bar is **Columbia GSAPP, MIT Media Lab, Harvard GSD**, not a SaaS startup or a Squarespace template.
+Every page is a run of **chapters**.
+A chapter is a full-bleed field of one brand colour that meets its neighbours edge to edge, so the page reads as a sequence of distinct rooms rather than as text on a white sheet.
 
 That means:
-- **Editorial, not promotional.** Space, type, and restraint do the work, not gradients, shadows, or decorative animation. Motion exists here but it is a narrow, documented set, and §10 is the boundary around it rather than a relaxation of this line.
-- **Typographic hierarchy is the design.** If the layout collapsed and you only had text, it should still communicate authority.
-- **Images support the content.** They are never decoration. Every image earns its space or it does not appear.
-- **Earned complexity.** A page should feel considered, not busy. One strong visual move per section, then get out of the way.
+- **Colour carries structure.** Where the old direction separated sections with hairlines, tints and a ladder of rule weights, a chapter's field does that job. Change of field is change of subject.
+- **Typography is still the design.** Large Montserrat headings, a reading measure for prose, and no ornament standing in for hierarchy. If the fields were removed the page would still read in order.
+- **Dense copy is set as structure, never cut.** Lists inside sentences become lists, figures inside a paragraph become a statement, a definition becomes a label over its body. No copy is invented to fill a layout.
+- **One shape.** The O from the WOS mark, the two conversion arrows, is the site's only graphic device (§6, `Motif`). It is the brand's own picture of what WOS does.
+- **Every page has the same frame.** It opens on the signature gradient and, when it has a closing instruction, closes on it. Between them the fields vary.
 
 What we are explicitly **not** doing:
-- Glassmorphism, gradient overlays on every image, drop shadows on everything
-- Uniform section rhythm where every section is eyebrow → h2 → 3 cards → CTA
-- A dark hero block, white content block, and dark CTA block on every single page
+- Rounded corners, drop shadows, glassmorphism, gradient overlays on photographs
+- Decorative motion: anything that loops for attention, parallax, motion on chrome
+- Uniform rhythm where every chapter is the same field, the same padding and the same heading-then-grid
+- A second accent hue. Red, slate and the neutrals are the whole palette.
 
-Note this is a deliberate divergence from the WOS Branding Guide.
-The guide's own marketing cards (p.10-12) use rounded corners, drop shadows, and solid campaign-colour tiles.
-Those are right for a campaign deck and wrong for an executive-education site, so this site takes the guide's **palette and typography** and keeps the editorial layout discipline above.
+This is still a deliberate divergence from the WOS Branding Guide's campaign cards (p.10-12), which use rounded corners, drop shadows and campaign-colour tiles.
+The site takes the guide's **palette and typography** and builds the colour fields from them.
 
 ---
 
@@ -94,19 +95,65 @@ NOT DECLARED, deliberately  (guide p.6 colours this site does not tokenise)
   gray-light  #e5e9ea   hue 192, a desaturated cyan - it tinted the neutrals
   gray-mid    #879299   3.18:1, cannot carry text at these sizes
 
-SEMANTIC ROLES  (what components actually consume)
+SEMANTIC ROLES
   --color-action           wos-red     rules, active nav, large display emphasis
   --color-action-deep      #bf3b28     button fills, small red text          5.42:1
-  --color-action-deeper    #a63321     hover on the above
+  --color-action-deeper    #a63321     hover on the above, the crimson field
   --color-accent           wos-red     decorative rules
-  --color-surface-dark     wos-slate   heroes, footer, dark panels
-  --color-surface-deep     #1b212a     photo overlays
-  --color-surface-tint     #f7f7f7     card fill (neutral, zero saturation)
+  --color-surface-dark     wos-slate   the slate field, the footer
+  --color-surface-deep     #1b212a     the deep field, the gradient's dark side
+  --color-surface-tint     #f7f7f7     the tint field (neutral, zero saturation)
   --color-ink              wos-slate   headings and body                    12.54:1
   --color-ink-muted        #6a6a6a     captions, metadata, descriptions      5.41:1
   --color-hairline         #e3e3e3     1px dividers
-  --color-hairline-strong  #d0d0d0     hover borders
+  --color-hairline-strong  #d0d0d0     seams between cells
 ```
+
+### Fields
+
+A field is a class (`field field-<name>`) that sets a background and **every colour that has to change with it**.
+Components never take a `dark` prop and never hard-code a surface colour; they read the field's variables.
+
+```
+FIELD     BACKGROUND        INK     WHAT CHANGES ON IT
+paper     white             slate   (the root values: red button, red rule, red link)
+tint      surface-tint      slate   panels inside it are white, not tint
+slate     wos-slate         white   numerals and accent marks are white: red is 2.8:1 here
+deep      surface-deep      white   red numerals legal at 24px+ (3.62:1)
+crimson   action-deeper     white   button turns white with slate label; rules turn white
+red       wos-red           white   as crimson; large type only (white is 4.47:1)
+gradient  the signature     white   reads as deep; reserved for openings and closes
+```
+
+```
+VARIABLE              WHAT IT IS
+--field-bg            the field's background
+--field-ink           headings and body
+--field-muted         secondary copy
+--field-link          link colour, and SecondaryButton's outline and label
+--field-btn / -hover  PrimaryButton fill
+--field-btn-ink       PrimaryButton label
+--field-rule          the red rule above a list item or a card
+--field-accent        numerals and icons
+--field-panel         a cell or frame inside the field
+--field-seam          the gap colour in a gap-px grid
+--field-ring          the focus ring
+```
+
+The root carries the paper values, so the nav, a dialog, and anything not inside a chapter read as paper.
+Base `a` and `:focus-visible` read the field too, so a link or a focus ring dropped into a red chapter does not vanish into it.
+
+**Why the variables exist at all.**
+The first version of this direction lived on one page and hard-coded `border-wos-red` and `bg-action-deep`.
+On the crimson and red fields both vanish: a red rule on red is invisible and a red button on crimson is 1.3:1.
+Making the colour a property of the field rather than of the component is what lets the same list, button or card sit on any chapter.
+
+**The gradient.**
+The site's one gradient: deep slate holding the left side, where type sits, with red and crimson drifting at the right edge.
+White text is measured against deep (16:1) and never against red.
+It drifts over 24 seconds, with no JavaScript, and freezes under reduced motion.
+**Below `md` it holds still and the red gathers in the bottom corner**, because full-width copy on a phone runs into the top-right red, and white body copy on red is 4.47:1.
+Axe cannot measure text over a gradient, so this one was found by eye; check it by eye.
 
 ### Five deviations from the guide, and why
 
@@ -115,11 +162,11 @@ Each deviation is recorded in `globals.css` with its measured ratio.
 
 | Token | Value | Why the guide colour could not be used |
 |---|---|---|
-| `action-deep` | `#bf3b28` | Guide red is 4.47:1 on white. Every button label here is 13-15px and needs 4.5:1. |
-| `action-deeper` | `#a63321` | Hover state for the above. |
-| `ink-muted` | `#6a6a6a` | Guide gray-mid is 3.18:1. It cannot carry 90+ body-text sites. |
+| `action-deep` | `#bf3b28` | Guide red is 4.47:1 on white. Every button label here is 15-16px and needs 4.5:1. |
+| `action-deeper` | `#a63321` | Hover state for the above, and the crimson field: white body copy on it is 6.74:1. |
+| `ink-muted` | `#6a6a6a` | Guide gray-mid is 3.18:1. It cannot carry body text. |
 | `hairline` | `#e3e3e3` | Neutral, to match the fill. |
-| `surface-tint` | `#f7f7f7` | See "the card fill" below. |
+| `surface-tint` | `#f7f7f7` | See "the tint" below. |
 
 ### Teal is gone
 
@@ -134,14 +181,13 @@ That note was wrong on both counts.
 `@theme` emits every `--color-*` into `:root` whether a component consumes it or not, so it did ship.
 And a declared token is an invitation: `bg-wos-teal` worked, so the rule against it was something each person had to know rather than something the system enforced.
 
-The declaration is now removed, along with blue, green, gray-light and gray-mid, which were unused for the same kind of reason.
+The declaration is now removed, along with blue, green, gray-light and gray-mid.
 A colour that should not be used is best represented by a token that does not exist.
 
-### The card fill
+### The tint
 
-The card fill is `#f7f7f7`, a true neutral at zero saturation.
+The tint field is `#f7f7f7`, a true neutral at zero saturation.
 All three channels drop 8 from white, so the fill carries lightness but no hue.
-The card separates from the page without the surface itself having a colour.
 
 Three approaches were tried before this one, and none should be revisited without reading why they failed.
 
@@ -151,24 +197,20 @@ That is not a subtle fill, it is no fill.
 
 **Derived from the red accent, at 8%.**
 It read as pink.
-Red dilutes to blush before it dilutes to warm and there is no usable band in between, which is why deriving surfaces from this particular accent does not work even though it is better systems thinking.
+Red dilutes to blush before it dilutes to warm and there is no usable band in between.
 
 **A warm cream, `#f7f5ee`, hue 47.**
 Its blue channel drops 17 against red's 8, and that skew is the warmth.
-On a card meant to read as a neutral surface it registers as yellow rather than as neutral, which is the wrong kind of visible.
+On a surface meant to read as neutral it registers as yellow.
 
-Ceiling on any card fill is roughly 12% of a mid-tone, past which `ink-muted` drops below 4.5:1.
-At `#f7f7f7` there is a lot of headroom: muted ink is 5.05:1 and the link red is 5.06:1.
-
-If the fill ever needs to be more present, go **darker on all three channels equally**: `#f6f6f6`, `#f4f4f4`, `#f2f2f2` all still clear AA.
+If the tint ever needs to be more present, go **darker on all three channels equally**: `#f6f6f6`, `#f4f4f4`, `#f2f2f2` all still clear AA.
 Do not reintroduce a hue.
 
 ### Contrast rules that are easy to get wrong
 
-- **Red is 4.47:1 on white and 2.8:1 on slate.** So red marks rules and fills, but never small text on either surface.
-- **Label text is `ink-muted` on light surfaces and white on dark.** Not red, on either.
-- **Teal was 2.64:1 on white.** The token is gone; if it ever returns it is decorative only, never text.
-- `gray-mid` and `green` are non-text colours at these sizes, which is part of why neither is declared.
+- **Red is 4.47:1 on white and 2.8:1 on slate.** Red text appears only at 24px and up (the impact figures, step numerals), and never on slate at any size. `--field-accent` encodes this.
+- **White on the red field is 4.47:1.** The red field takes large type only: a statement, never a paragraph. Body copy on a red-family field goes on crimson.
+- **Label text is the field's muted ink.** Not red, on any field.
 
 ### Approved and banned pairings (Branding Guide p.8)
 
@@ -187,48 +229,43 @@ Montserrat for headings, Lato for body, both self-hosted via `next/font/google` 
 No external requests are made to Google.
 
 ```
---font-heading   Montserrat   headings, nav, labels, buttons, eyebrows
---font-sans      Lato         body copy, descriptions, quotes
+--font-heading   Montserrat   headings, nav, labels, buttons, list items set as names
+--font-sans      Lato         body copy, descriptions
 ```
 
-Two things to know:
-
 - **Montserrat is variable**, so omitting `weight` ships one file covering 100-900. Do not enumerate weights.
-- **Lato is not variable and has no 500 or 600.** It loads 400/700 in normal and italic. `font-medium` and `font-semibold` on body copy will snap or synthesise, so keep 500/600 on Montserrat headings only.
-
-Georgia and Trajan Pro are both gone.
-Trajan was also an Adobe font shipping as downloadable `.ttf`/`.otf` from `public/`, which was a licensing exposure as well as a brand mismatch.
-
-**Montserrat sets roughly 15% wider than Georgia.** Display sizes inherited from the old design will overflow their columns. Budget a size pass rather than a find-and-replace when converting a page.
+- **Lato is not variable and has no 500 or 600.** It loads 400/700 in normal and italic. `font-medium` and `font-semibold` on body copy will snap or synthesise, so keep 500/600 on Montserrat.
 
 ### Scale
 
+The scale is `TYPE` in `components/Brand.tsx`, as class strings, so a page sets an element without a wrapper.
+
 ```
-Homepage H1        44px → 64px md      font-semibold, tracking -0.03em
-Interior hero H1   42px → 52px md      font-semibold, tracking -0.025em
-Section H2         30px → 44px         font-semibold
-Card H3            21px                font-semibold, tracking -0.01em
-Body               16px / 1.65         Lato 400
-Small / caption    12-13px
-Eyebrow label      11px uppercase, tracking 0.15em, font-semibold
-```
-
-Base sets `h1`-`h4` to weight 600.
-Do not add `font-normal` to a heading; it fights the base and leaves Montserrat looking thin.
-
-### Eyebrow pattern
-
-**An uppercase label never floats alone.** It always carries a rule.
-
-```tsx
-<span className="block h-0.5 w-6 bg-accent" />
-<p className="mt-3 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-muted">
-  Label
-</p>
+Homepage tagline   clamp(34px, 5vw, 72px)    bold, UPPERCASE, -0.02em   the homepage only
+TYPE.title         clamp(36px, 4.8vw, 64px)  semibold, -0.025em         every interior h1
+TYPE.h2            32px -> 46px md            semibold, -0.02em          a chapter's heading
+TYPE.h3            22px -> 26px md            semibold
+TYPE.statement     set per use, ~30-60px      semibold                   a sentence as display type
+TYPE.lead          20px -> 22px md            Lato, 1.55                 the first paragraph
+TYPE.body          18px / 1.65                Lato
+TYPE.small         16px / 1.6                 Lato                       card bodies, descriptions
+TYPE.label         16px -> 18px md            Montserrat semibold, muted
 ```
 
-Use the `Eyebrow` component in body sections.
-Interior heroes carry the same mark with the rule *below* the label. See `InteriorHero`.
+Body copy is 18px, not 16px.
+At chapter scale, with headings at 46px, 16px body read as a caption.
+
+Headings carry `text-balance`, so a two-line heading does not strand one word on the second line.
+
+### Labels, not eyebrows
+
+**The eyebrow is retired.**
+The old pattern was an 11px uppercase label with a red rule above it, on every section.
+In this direction it competed with the field for the job of saying "new section", and lost.
+
+What a group of things is, above the group, is a **label**: `TYPE.label`, sentence case, the field's muted ink, no rule.
+"Consulting to Hire Services" over its bands, "The framework" over "The Fantasy Arc", the date over a post's title.
+A label never stands in for a heading; the outline is the headings.
 
 ---
 
@@ -236,11 +273,14 @@ Interior heroes carry the same mark with the rule *below* the label. See `Interi
 
 The one place this site diverges from the center site by more than a detail.
 The center has four flat links; this site has four top-level items and five grouping labels.
-It had six grouping labels across three levels until "Other Services" was flattened away, which is what settled open decision 5.
+
+**§2 to §8 are written for page content, and a menu is chrome.**
+The nav is the one part of the site that does not sit on a field; it is white with ink, which is the root's values.
 
 ### The bar
 
-- Sticky, white, 72px tall, 1px `hairline` bottom border, `max-w-6xl`.
+- Sticky, white, 72px tall, with a 1px `hairline` border on the full width of the header.
+- Its content sits on the page grid (`max-w-[1320px]`, `px-5 md:px-8`), so the logo lines up with every chapter's left edge.
 - The full WOS lockup at 36px. No adjacent name text: the wordmark is in the asset.
 - Four top-level items plus a right-aligned Donate button in `action-deep`. About, Services and Join Us open panels; News & Events is a plain link.
 - Active state is a 2px `border-action` underline, and a top-level item counts as active when any page beneath it is.
@@ -250,39 +290,28 @@ It had six grouping labels across three levels until "Other Services" was flatte
 This menu was built three times.
 The record matters more than the rules, because the first two both followed the rules and both were rejected.
 
-1. **Columns, an `Eyebrow` accent rule per column head, `surface-tint` fill, anchored to the trigger's right edge.** Every choice was defensible against this document. Together they read as a designed object rather than a menu. Rejected as "pretty but impractical".
+1. **Columns, an accent rule per column head, `surface-tint` fill, anchored to the trigger's right edge.** Every choice was defensible against this document. Together they read as a designed object rather than a menu. Rejected as "pretty but impractical".
 2. **A conventional single-column white dropdown.** Rejected too.
 3. **A bordered card of columns divided by vertical rules**, built to a reference the client chose (`screenshot/image.png`, the Browserbase header). This is what shipped.
 
-The lesson worth keeping: **§2 to §8 are written for page content, and a menu is chrome.**
-Applying the page rules literally to the nav is what produced version 1.
-
 - The tree is data, in `lib/nav.ts`, not nested JSX. It is two levels below the bar.
-- **The panel is a bordered white card**, positioned against the bar rather than the trigger, so all three panels share one position. `right-6` matches the bar's `px-6`, putting the card's right edge where Donate ends.
-- **Groups become labelled columns, divided by `divide-x divide-hairline`.** All loose links collect into one unlabelled column whose position follows source order: About opens with a link so its loose column leads with Our Story, Services opens with a group so Managed Services and Research trail. One rule, correct in both.
-- The unlabelled column holds an empty label line so every column's first link shares a baseline. Join Us has no labelled column to align with, so it holds nothing.
-- **Two tiers, not three.** The reference puts a one-line description under each item. We have no copy for that: meta descriptions average 155 characters and several are junk, page opening lines run 90 to 137, and three pages have none. Writing them was declined. **If WOS ever supplies ~20 short lines, the third tier is the single biggest improvement available here.**
-- Column widths are content-driven; `min-w-[170px]` is only a floor. "Professional Development Fundamentals" sets the card's width. At `px-8` and a 190px floor, Services' four columns came to ~1153px against 1104px of container and spilled past the left edge, so the spacing is `px-6` inside `p-6`.
-- Items are `text-[15px]` `ink` hovering to `action-deep`, with **no hover fill**, which competed with the dividers.
+- **The panel is a bordered white card**, positioned against the bar rather than the trigger, so all three panels share one position. Its right edge matches the bar's padding, where Donate ends.
+- **Groups become labelled columns, divided by `divide-x divide-hairline`.** All loose links collect into one unlabelled column whose position follows source order.
+- The unlabelled column holds an empty label line so every column's first link shares a baseline.
+- **Two tiers, not three.** The reference puts a one-line description under each item. We have no copy for that. **If WOS ever supplies ~20 short lines, the third tier is the single biggest improvement available here.**
+- Column widths are content-driven; `min-w-[170px]` is only a floor.
+- Items are `text-[15px]` `ink` hovering to `action-deep`, with **no hover fill**.
 - Grouping labels render as headings, never as links. The live site gives all six `href="#"`, which lands a keyboard user on a target that does nothing. Do not reproduce that.
-- The mobile overlay is untouched by all of this. It keeps `PanelNodes`, the recursive heading-and-indent list, because an accordion has no columns to put a subtree in.
+- The mobile overlay keeps `PanelNodes`, the recursive heading-and-indent list.
 
-#### Two sanctioned exceptions, both here
-
-**The border.** The panel is white with a 1px `hairline` border and no shadow.
-§8 bans a 1px light border around a white card, and that rule stands where it was aimed: a card sitting inside a section.
-A menu floating over page content is not that. It needs an edge to be a menu, and the tinted fill §8 prescribes instead was built, looked at, and read as a grey slab.
-No shadow, so it stays a smaller exception than the partner wall's in §7.
-
-**The bare uppercase column label.** §8 bans an uppercase label with no rule because it floats.
-Inside a divided column it does not float: the divider anchors it, which is the reason the dividers are structural rather than decorative.
-Version 1 obeyed §8 here by using `Eyebrow`, and the red rules were what read as decoration.
+**The border** is the one 1px light border around a white card on the site, and it is right here: a menu floating over page content needs an edge, and the tinted fill was built, looked at, and read as a grey slab.
+**The bare uppercase column label** is anchored by the column divider, so it does not float.
 
 ### Keyboard
 
 This is the part most likely to ship broken, and type checking catches none of it.
 
-- The APG **disclosure navigation** pattern, not a menubar: panel links stay in normal tab order. A menubar would make a three-level menu require arrow keys to reach any leaf.
+- The APG **disclosure navigation** pattern, not a menubar: panel links stay in normal tab order.
 - Left and right arrows walk the top bar, down opens a panel and enters it, Escape closes and returns focus to the trigger.
 - Focus leaving the bar closes the open panel, as does a pointer down anywhere outside it.
 - Verify by tabbing to every leaf under Services with no mouse.
@@ -290,247 +319,187 @@ This is the part most likely to ship broken, and type checking catches none of i
 ### Mobile
 
 - Full-screen white overlay, not a dropdown, with body scroll locked and Escape wired.
-- The overlay serves everything below `lg`, not `md`. Five bar items plus Donate need about 830px, so at 768 the bar ran 57px off the page once the AI Institute joined it. Shrinking the bar type to fit a tablet would cost every desktop visitor legibility; a tablet in the overlay loses nothing.
-- One accordion level, and now that the tree is two levels deep it is the only level there is. Flattening "Other Services" removed a tap from every leaf under Educational and Advisory Services, which is the touch-device complaint open decision 5 was actually about.
+- The overlay serves everything below `lg`, not `md`. Five bar items plus Donate need about 830px.
+- One accordion level, which is the only level the tree has.
 
 All logo references go through `components/WosMark.tsx`.
-It is the only file that touches the asset, so swapping in a real SVG lockup is a one-file change.
 
 ---
 
-## 5. Layout and spacing
+## 5. Layout
 
-### Max widths
-```
-Text-heavy content pages     max-w-3xl    768px
-Standard page sections       max-w-6xl    1152px
-Wide feature sections        max-w-7xl    1280px
-Full-bleed panels            no max-w, inner content still constrained
-```
-
-### Section rhythm
-Not every section gets `py-20`.
-Use contrast to create rhythm:
-```
-Tight (stats bar, banners)          py-8  – py-12
-Standard section                    py-16 – py-20
-Feature (hero, quote, big visual)   py-24 – py-32
-```
-
-### Grid
-- 2-col content: `gap-12`
-- Card grids: `gap-4` to `gap-6`
-- Max 3 content-heavy cards per row on desktop; certificate tiles go 4-across
-
----
-
-### Lists are tiles, not a rule down the left
-
-A `list` renders as a band of filled cells split by its own `gap-px`, never as items
-with a hairline on the left edge.
-
-The left rule drew a long vertical line beside a column of text and separated nothing,
-and these lists are selling points, delivery options and tool names - sets of things,
-which want to read as a set.
-The separation is fill and gap, not an outline on each cell, so this stays inside the
-no-box rule in §8: `gap-px` over a `hairline-strong` background is the same construction
-as the homepage approach band.
-
-Short items (six or more, four words or fewer) go two to four across; substantive items
-go two across and take the accent rule above the text.
-
-### A closing instruction is a `cta` block
-
-The last line of a service page is usually an instruction - "Begin with a readiness
-assessment", "Start with a pilot".
-On three pages it was a full sentence used as a section `h2` over an empty section, which
-rendered as an orphan heading with nothing under it and nothing to click.
-`cta` carries the sentence, a destination and a button label.
-The label reuses the homepage's "Schedule a free consultation" rather than inventing a
-second verb for the same action.
-
----
-
-### The interior hero is a panel, not a band
-
-A content page with a hero renders it beside the title inside the slate header, on a
-`md:grid-cols-[1.05fr_0.95fr]` split, not as a full-bleed `aspect-[8/3]` strip under it.
-
-The strip was the loudest thing on every service page and carried no information: 1600
-by 600 of stock photography spanning the viewport, directly above a `max-w-3xl` column
-of text.
-Paired with the slate block the same photograph reads as one masthead, the accent bar
-sits on it the way it does on the homepage and `ProgramHero`, and the page starts at its
-content instead of at a banner.
-
-A page with no hero keeps the full-width header, so nothing is left with a hole in it.
-
-### Width follows content, not the page
-
-Prose is capped at `max-w-3xl` because that is a reading measure.
-Structure is not prose: a `steps` or `cards` grid inside a reading column has nowhere to
-go, and that is what made the services pages look like text packed into one strip.
-`ContentSections` gives a section carrying either block `max-w-6xl` and everything else
-`max-w-3xl`.
-
----
-
-### The content page block vocabulary
-
-`lib/content.ts` defines what a prose page can say, and the vocabulary is the ceiling on
-how structured those pages can look.
-It was four kinds - `heading`, `para`, `list`, `image` - and a step sequence had no way
-to be anything but a run of headings, so every services page rendered as one flat column.
+### The grid
 
 ```
-heading   a sub-heading inside a section
-para      body copy
-list      a set of items; six or more short ones render in columns, not a tall stack
-steps     an ordered process, numerals rendered positionally
-cards     titled peers in a grid, no photo and no link
-image     measured against lib/image-dims.json, never upscaled
+WRAP        mx-auto w-full max-w-[1320px] px-5 md:px-8
 ```
 
-`steps` and `cards` differ only in whether order carries meaning, and that is the whole
-test for which to use.
-Neither takes a photograph: `PhotoLedCard` is the one that does, and it needs a real
-`href` and a real description, so a block of copy with a stock image bolted on is not the
-same thing.
+Every chapter's content, the header and the footer share this edge.
+The old site had four widths (`3xl`, `6xl`, `7xl`, full); there is now one grid, and a reading measure inside it for prose (`max-w-3xl`, or a `ch` cap on the element).
 
-### Section density and fill
+The `wrap` breakpoint (`82.5rem`, in `globals.css`) is where WRAP stops growing.
+**Use it, not `min-[1320px]:`.** Tailwind emits arbitrary breakpoint variants before the named ones, so `md:pl-8` silently overrides anything set at `min-[1320px]:`.
+That shipped once: the service bands' text sat on the gutter instead of the grid at every desktop width.
 
-A `Section` takes an optional `density` and `fill`.
-Leave both unset unless the default is wrong.
+### Chapters
+
+`Chapter` in `components/Chapter.tsx` renders one field as a full-bleed `<section>`.
+`Chapters` wraps a hand-built page's run of them.
+
+**Two neighbouring chapters never share a field.**
+Two chapters of one colour read as one oversized block with a seam in it.
+`Chapters` throws at build time naming the pair, and so does `ContentSections` over its own run, so this cannot ship.
+`PageHero` and `CloseChapter` declare their field statically (`PageHero.field = "gradient"`), which is how `Chapters` sees inside them.
+
+**A page's last chapter is never slate or deep.**
+The footer is slate.
+`ContentSections` throws when a page would end on either, and a step sequence that would otherwise go deep stays light when it is the last thing before the footer.
+
+The footer has no top margin.
+Every page ends on a full-bleed chapter, and a white strip between it and the footer reads as a gap.
+
+### Padding
 
 ```
-density   tight    py-12    one block
-          normal   py-16    the default
-          feature  py-24    opt-in only; long prose does not want more air
-fill      white | tint | dark, alternating from the section above when unset
+PAD         py-20 md:py-28    a standard chapter
+PAD_TIGHT   py-14 md:py-20    a chapter carrying one short block
 ```
 
-Density defaults from how much is in the block, which is what the weight ladder in §6
-asks for.
-Every section at `py-16` with the fill alternating on array index is the flat rhythm
-§8 rules out, and it is what these pages did before.
+A one-paragraph chapter given the room of a six-block one is the flat rhythm this direction exists to break.
 
-`ContentSections` throws when two tinted or two dark sections end up adjacent, so that
-anti-pattern fails the build rather than shipping.
+### The frame: open, chapters, close
+
+**Every page opens with `PageHero`** on the gradient: an optional label (where the page sits), the title, a lead, optional actions, and optional media beside them.
+With media (a hero photograph, a portrait, a drawing) copy and media share the row, as on the homepage.
+Without, the copy holds a reading measure and the gradient runs on.
+The label is a link back up only where there is somewhere to go back to: a person's board, the News & Events index.
+
+**A page with a closing instruction ends on `CloseChapter`**, on the gradient: one line, one button, and the motif opposite.
+`ContentSections` lifts a final `cta`-only section into it automatically.
+A page with no closing instruction ends on its last chapter; it does not get an invented one.
+
+### How content sections choose a field
+
+`ContentSections` resolves every section's field before anything renders:
+
+```
+fill set in content     white -> paper, tint -> tint, dark -> slate
+steps, no fill          deep  (unless the chapter above is deep, or the footer is next)
+anything else           alternates paper / tint from the chapter above
+```
+
+A step sequence is the one block that reads better as a scene than as copy, which is why it goes deep: it breaks the light run the way the homepage's approach chapter does.
+
+Within a chapter:
+- A section with a heading and only prose sets the heading left and the copy right on `lg`, on a `0.85fr / 1.15fr` split.
+- A section carrying structure (steps, cards, a list of more than four) puts the heading on top and gives the structure the full grid.
+- A section with no heading holds a reading measure.
+
+### Lists
+
+How a list item is set follows **how long it is, not how many there are**:
+
+- Every item eight words or fewer, no definition: **names**. Montserrat 18px, each on the field's rule, two across, three once there are five or more.
+- "Label : body": **definitions**. The label as a Montserrat heading over its body, two across.
+- Anything longer: **sentences**. Body copy on the rule, two across.
+
+The rule is the field's (`--field-rule`): red on the light fields and on slate and deep, white on crimson and red.
 
 ---
 
 ## 6. Components
 
-All primitives live in `components/Brand.tsx`.
+All primitives live in `components/Brand.tsx`, except `Chapter`/`Chapters`/`Arrow` (`components/Chapter.tsx`).
+None takes a `dark` prop: each reads its field.
 
-| Component | Notes |
+| Component | What it is |
 |---|---|
-| `Eyebrow` | Red rule + muted label. `dark` variant for slate backgrounds. |
-| `InteriorHero` | Slate band, red signature bar top-left, red rule under the eyebrow. Optional `image` prop renders a square portrait beside the text. `subtitle` accepts `ReactNode` so parts can be emphasised. |
-| `ProgramHero` | Slate band with an overlapping photo, for program detail pages. |
-| `PrimaryButton` | The one filled CTA. `size="lg"` is the loud variant. One per page, read as one per *distinct* action: the homepage hero and its closing band both point at `/contact` and bookend the same ask, which is the one place two appear. |
-| `SecondaryButton` | Outlined, so it never competes with the primary. `dark` is required on slate: the default is red-on-slate at 2.31:1. |
-| `ArrowLink` | Underlined red inline link with a nudging arrow. |
-| `PhotoLedCard` | Photo top, tinted block below. No border. |
-| `TintedCard` | Smaller certificate tile, same language. |
-| `StatsBar` | Four numbers. Numerals stay slate on light; red reads as an alert. No boxes or borders. |
-| `PullQuote` | 3px red left rule, Lato italic. |
-| `Divider` | `border-t border-hairline my-16`. |
+| `PageHero` | Every interior page's opening, on the gradient. §5. |
+| `HeroImage` | A photograph or portrait for `PageHero`'s `media`, `wide` (16:10) or `square`. |
+| `CloseChapter` | A page's last chapter, on the gradient: one line, one button, the motif. |
+| `SectionHeading` | A chapter's h2, with an optional `label` above and `intro` below. |
+| `ServiceBands` | Links to other pages as full-bleed bands of colour, the picture alternating sides. |
+| `FactList` | A titled set of short facts, each on the field's rule. |
+| `PrimaryButton` | The one filled call to action. `size="lg"` for openings and closes. |
+| `SecondaryButton` | Outlined in the field's link colour; hover fills it and drops the label into the field's own background. |
+| `TextLink` | A text link with the arrow: the site's one link shape outside running copy. |
+| `Motif` | The O from the WOS mark. The site's one shape. |
+| `JourneyScene` | The homepage approach, pinned and scrubbed on wide screens. |
+| `VideoEmbed` | A YouTube video as its poster frame until played. §7. |
+| `PeopleGrid` | Person cards, linked where the person has a bio. |
+| `PartnerWall` | Logo tiles. The one shadow on the site, §7. |
 
-### The weight ladder
+### Service bands
 
-Separation is chosen by **how much content is in the block**, not by eye.
-A section must never carry a heavier treatment than a richer section beside it.
+Hub pages (`/managed-service-centers/`, `/consulting-to-hire-services/`) and the homepage services use `ServiceBands`.
+Edge to edge rather than inset: inset, a run of coloured blocks reads as a stack of cards; full bleed, they read as chapters inside the chapter.
+The text's outer edge sits on the grid at every width, so the bands bleed while their words line up with the page.
 
-| Level | Content | Treatment |
-|---|---|---|
-| 1 | Standfirst, pull quote, short labelled item | `border-l-[3px] border-accent pl-6`, or a `w-0.5 bg-accent` bar in a flex row |
-| 2 | Single-line list items (topics, roles, audiences) | `border-t border-hairline pt-3` |
-| 3 | Title + body grid ("Why this course", objectives) | `border-t-2 border-accent pt-6` |
-| 4 | Content-heavy card (agenda day, instructor, creator) | `bg-surface-tint p-6` to `p-8`, no border |
-| 5 | Closing CTA panel | `bg-surface-tint p-10 md:p-12`, no border |
+By default a run's fields cycle slate, crimson, deep, **started so the run ends on crimson**.
+Crimson is the one dark field that cannot merge with what usually follows a run: a slate chapter, or the footer.
+A page that puts content after a run passes `after="crimson"` to `ContentSections`.
 
-Level 2 exists because its absence caused a real problem.
-Single-line lists had nothing lighter than level 3 available, so a full box got reached for instead, and on every program page "Topics covered" ended up outranking the richer "Why this course" grid directly below it.
-1px neutral reads clearly below 2px red, which puts the hierarchy back the right way round.
+### Panels
 
-**Never put two filled blocks in a row.**
-Levels 4 and 5 both carry `surface-tint`, and with only `space-y-20` between them they merge into one oversized block.
-Put a level 2 or level 3 section between them.
-This is the light-surface version of the two-dark-sections anti-pattern in §8.
-
-### Cards have no border
-
-A 1px light border between a white card and a white page divides nothing: inside and outside are the same colour, so it reads as a faint outline rather than an edge.
-Separation comes from the tinted fill and the photo.
-
-If a card ever needs more definition, the answer is a stronger fill or a colour-blocked text area, not a border.
-
-Borders that remain are the ones doing real work: an outlined button, where the outline *is* the button, and form controls, where an input with no boundary is not recognisably an input.
+A panel is a cell on the field's `--field-panel` colour (white inside tint, tint inside paper), or a nested field (`fieldClass("crimson")` on an element).
+The contact page's careers block and the AI Institute's closing cells are nested fields.
+A panel is filled, never outlined.
 
 ### Icons
 
-Line icons from `lucide-react`, at `strokeWidth={1.5}` and 28px, and only on `/ai-institute`, where a set of named fields, pillars and audiences needed a mark to scan by.
-They are decorative and carry `aria-hidden`; the label beside each one is what says it.
-Red on light surfaces is legal because an icon is not text, and white on slate.
-Never set one inside a filled circle or a tinted square: that is the SaaS feature-grid look §1 rules out, and the icon reads fine bare.
-Never use an icon in place of a label, and never in body copy, for the same reason as emoji.
+Line icons from `lucide-react`, at `strokeWidth={1.5}` and 28px, and only on `/ai-institute`, where named fields, pillars and audiences needed a mark to scan by.
+They are decorative and carry `aria-hidden`.
+They take `--field-accent`: red on the light fields and deep, white on slate and the red family.
+Never set one inside a filled circle or a tinted square, never use one in place of a label, never in body copy.
 
 ### Buttons must match
 
-`PrimaryButton size="lg"` is `px-8 py-4`.
-Any hand-rolled button sitting beside it needs the same padding, or they render at different heights on a shared baseline and look misaligned.
+`PrimaryButton size="lg"` is `px-8 py-4`, and `SecondaryButton size="lg"` matches it with a 2px border inside.
+A hand-rolled button beside either needs the same box, or they sit at different heights on a shared baseline.
 
 ---
 
 ## 7. Imagery
 
-### Rules
-- Session photos: full width or large panels only. Never shrunk into small card insets.
-- Art Langer headshot: Leadership hero only.
-- Art Langer collage: Leadership "In action" section only.
-- Course/stock images: program detail pages, where no real photo exists.
-
 ### Treatment
 - **No rounded corners.** Straight edges read as authoritative.
-- **No drop shadows,** with exactly one exception: the partner logo wall. See below.
-- Dark overlays for legibility: `bg-surface-deep/85`, never a flat opaque colour.
-- Image placeholders behind loading photos are `bg-wos-slate`, not a colour.
-- Crop anchoring matters: the homepage hero uses `object-top` because the container runs taller than the 4:3 source and a centre crop cuts off heads.
+- **No drop shadows,** with exactly one exception: the partner logo wall.
+- **No overlays.** A photograph sits beside type, never under it. The old homepage set its tagline over a darkened photo at 70%; the gradient opening exists so that no photograph has to be dimmed to carry text.
+- Every image frame has a background (`surface-deep` in the dark fields, the field's panel colour in light ones), so a slow or failed image leaves a panel rather than a hole.
+- Crop anchoring matters: the homepage photograph uses `object-top` because the faces sit in the upper half.
 
-### The partner logo wall is the one exception to no-box and no-shadow
-`components/PartnerWall.tsx` lays logos as white tiles with `shadow-sm` on a
-`surface-tint` section, four across at full width. This breaks two rules on purpose and nothing else on the site may.
+### The partner logo wall is the one exception to no-shadow
+`components/PartnerWall.tsx` lays logos as white tiles with `shadow-sm` on a tint chapter, four across at full width.
 
-The reasoning: a logo wall is not content in a container. Every mark is a different shape,
-colour, weight and aspect ratio, and most are drawn to sit on white. On bare tint they
-fight each other and the darker marks read as heavier than the lighter ones, which says
-something about the partners that is not true. A uniform tile is what makes eighty-odd
-unrelated logos scan as one set.
+A logo wall is not content in a container.
+Every mark is a different shape, colour, weight and aspect ratio, and most are drawn to sit on white.
+On bare tint they fight each other and the darker marks read as heavier than the lighter ones, which says something about the partners that is not true.
+A uniform tile is what makes eighty-odd unrelated logos scan as one set.
 
-Two conditions on the exception:
-- **The section behind it must be `surface-tint`.** On white the tiles disappear and the
-  shadow becomes the only separation, which is the cheap look the rule exists to prevent.
-  Both partner pages therefore tint the wall section and leave the CTA below it plain, so
-  no two tinted blocks end up adjacent.
-- **`shadow-sm` and no more.** Anything heavier reads as a SaaS card.
+Two conditions:
+- **The chapter behind it must be tint.** On white the tiles disappear and the shadow becomes the only separation.
+- **`shadow-sm` and no more.**
 
-The grid reflows on track width, not on breakpoints:
-`grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))]`. Four tracks fit the 6xl
-container, and it steps down to three, two and one wherever the content actually runs out
-of room rather than at three fixed sizes. The inner `min(240px,100%)` is what stops the
-track overflowing a viewport narrower than 240px. Prefer this to breakpoint columns for
-any grid of same-shaped items.
+The grid reflows on track width, not on breakpoints: `grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))]`.
+
+The homepage's twelve client logos are the same tiles without the shadow, in a gap-1 grid: twelve marks need no shadow to read as a set.
+
+### Video
+A video is its own poster frame and a play button until clicked, then becomes the youtube-nocookie player, so a page loads one image per video and no YouTube script.
+Without scripts the poster is a plain link to the video.
+`next.config.ts` allows `i.ytimg.com/vi/` for the posters and nothing else on that host.
+Titles are the channel's own and summaries are cut from each video's own description (`content/videos.ts`).
 
 ### Portraits
 - Every person photo is a 1200x1200 WebP at `/images/people/<slug>.webp`, written by `tools/people-image.mjs`. Never reference a portrait by its original filename.
-- Square, and cropped on the face rather than on the centre of the frame. These are shot for a landscape card, so a centre crop lands on the chest.
-- The pipeline deliberately produces one file per person, not a set of responsive variants. Next/Image generates those already. What it does not do is fix EXIF rotation, aspect ratio, and ingest size, which is the whole job here.
-- Alt text is the person's name. On the group grid the name is also the visible heading, so the card link is already labelled and the photo carries no extra burden.
+- Square, and cropped on the face rather than on the centre of the frame.
+- On a person page the portrait is the opening's media, square, beside the name.
+- Alt text is the person's name.
 
 ### Group landing pages
-- The intro block above a member grid is `surface-tint`, and the grid below it is plain. Three of the five groups have no intro copy at all, and a page that opens straight into the grid under the dark header is correct rather than unfinished.
-- Responsibility lists use a 2px `accent` left rule per item. A bulleted list of four items reads as filler; the rule gives them weight without drawing a box.
+- The intro is a tint chapter between the opening and the grid; the grid is on paper. Three of the five groups have no intro, and a page that opens straight into the grid is correct rather than unfinished.
+- Responsibility lists sit on the rule like every other list.
+- Names are h2 on a group landing (nothing sits between the h1 and the grid) and h3 anywhere the grid sits under a heading.
 
 ---
 
@@ -538,55 +507,45 @@ any grid of same-shaped items.
 
 **Text on a surface that resolves to the same token.**
 `--color-ink` and `--color-surface-dark` are both `--color-wos-slate`.
-A `text-ink` heading on `bg-surface-dark` is therefore 1:1 and invisible, and 112 of them
-shipped that way because `ContentPage` recoloured only `p` inside its dark header.
-The fix was to narrow the type so the case cannot be expressed, not to recolour it:
-`PageContent.lead` accepts paragraphs only, and a heading there is a compile error.
-When a block can land on either surface, pass the surface down and pick the colour from
-it, the way `Blocks` takes `dark`.
-
+A `text-ink` heading on a slate surface is 1:1 and invisible, and 112 of them once shipped that way.
+The fields make this unwriteable inside a chapter: read `--field-ink`, never `text-ink`.
 
 | Pattern | Why | Replace with |
 |---|---|---|
-| Any hex literal in a component | Defeats the token system; this is the mess the rebrand existed to fix | A semantic token |
-| `text-accent` on a white surface | Red is 4.47:1 and fails AA for small text | `text-ink-muted`, with the red in the rule above |
-| Red text on slate | 2.8:1, fails AA | `text-white/85` |
-| Reaching for a guide colour that is not a token | It was removed on purpose; see §2 | An existing semantic token |
-| Campaign yellow/orange/green in core UI | Guide reserves them for campaign material | Palette colours |
-| Red + green, or teal + green | Banned pairings, Guide p.8 | An approved trio |
-| A 1px light border around a white card | Divides nothing, reads as unfinished | Tinted fill, no border. The nav panel is the written exception, §4: a menu over page content needs an edge, and the tinted version read as a grey slab |
-| `font-normal` on a heading | Fights the base 600 and reads thin in Montserrat | Let the base weight stand |
-| Uppercase label with no rule | Floats, reads as an afterthought | The eyebrow pattern. The nav card's column labels are the written exception, §4: a column divider anchors the label, and the eyebrow's rule read as decoration in a menu |
-| `rounded-*` or `shadow-*` on photos | Softens everything, loses authority | Straight edges, no shadow |
-| Emoji in body copy | Unprofessional on a graduate institution site | Small typographic labels |
-| Every section `py-20` | Flat rhythm | Vary per §5 |
-| A full box drawn around content | Decoration pretending to be structure | The weight ladder, §6 |
-| Two `surface-tint` blocks in a row | They merge into one oversized block | Put a level 2 or 3 section between |
-| A drop shadow anywhere but the partner wall | Reads as a SaaS card; the wall earns it, nothing else does | Separate with fill, spacing and type |
-| Two dark sections back to back | Reads as one oversized block with a gap in it | Break with a light section |
-| Decorative animation: parallax, autoplay, looping, entrance animation on chrome | Motion here is a state change, not an effect | The gestures in §10, or nothing |
-| `SecondaryButton` on a dark surface without `dark` | Resolves to red on slate at 2.31:1, the row three above this one. It shipped in the homepage hero | `SecondaryButton dark`, §6 |
-
+| Any hex literal in a component | Defeats the token system | A semantic token |
+| `border-wos-red`, `bg-action-deep`, `text-white` inside a chapter | Correct on one field, invisible on another: a red rule on red, a red button on crimson | `var(--field-rule)`, `var(--field-btn)`, `var(--field-ink)` |
+| A `dark` prop on a component | The field already knows | Read `var(--field-*)` |
+| Two neighbouring chapters on one field | Reads as one block with a seam | A different field; `Chapters` throws |
+| A page ending on slate or deep | Merges into the slate footer | A light field, crimson, or the CloseChapter |
+| White body copy on the red field | 4.47:1, under the floor | Crimson for body copy; red for a statement |
+| Red text under 24px, or red text on slate at any size | Fails AA | `--field-accent`, which already knows |
+| `min-[1320px]:` for layout | Sorts before `md:` and is silently overridden | `wrap:` |
+| Copy over a photograph, or an overlay to make it legible | The gradient exists so no photo is dimmed | Type beside the image |
+| A 1px light border around a white card | Divides nothing | A panel fill. The nav panel is the written exception, §4 |
+| `rounded-*`, or `shadow-*` anywhere but the partner wall | Softens everything; reads as a SaaS card | Straight edges, fill and spacing |
+| An 11px uppercase eyebrow | Retired, §3 | `TYPE.label`, or nothing |
+| `font-normal` on a heading | Fights the base 600 | Let the base weight stand |
+| A second accent hue, campaign colours, banned pairings | §2 | The palette |
+| Invented copy to fill a layout | The site carries the client's words | Restructure what exists, or leave the slot empty |
+| Emoji in body copy | Unprofessional | Typographic labels |
+| Motion outside §10 | Motion is a state change or an arrival, not an effect | The gestures in §10, or nothing |
 
 **`/admin/people` is outside this document on purpose.**
-It is a development-only tool that never reaches a visitor, so it uses plain form controls
-and borrowed tokens rather than the design system. Do not spend design effort on it, and do
-not let its input and select styling leak into the site.
+It is a development-only tool that never reaches a visitor, so it uses plain form controls and borrowed tokens.
+Do not spend design effort on it, and do not let its styling leak into the site.
 
 ---
 
 ## 9. Verification
 
 Colour and type regressions are invisible to the type-checker, so check them explicitly.
-All of these must return empty except the last.
+All of these must return empty except check 6.
 
 ```bash
 cd wos-new-design
 
 # 1. No hex literals in components. globals.css is excluded: it is the token
 #    DEFINITION site, and the rule is "no hex in a component", not "no hex anywhere".
-#    The reference repo's version of this check omitted the exclusion and therefore
-#    returned ~20 hits on a clean tree, which is how a check gets ignored.
 grep -rnoE '#[0-9A-Fa-f]{3,8}\b' app components lib --exclude=globals.css
 
 # 2. Hex smuggled through rgb()/rgba()
@@ -595,45 +554,25 @@ grep -rnE 'rgba?\(' app components lib
 # 3. Any arbitrary-value colour utility
 grep -rnE '(bg|text|border[a-z-]*|fill|ring|placeholder|shadow)-\[(#|rgb|hsl|oklch)' app components
 
-# 4. Retired typography. Excludes comment lines: globals.css documents that the
-#    Georgia/Trajan shims were removed, and naming a thing in order to say it is gone
-#    should not trip the check that looks for it.
+# 4. Retired typography. Excludes comment lines.
 grep -rniE 'font-serif|wordmark|trajan|georgia' app components lib \
   --exclude=globals.css | grep -vE '^\S+:[0-9]+: *(//|/\*|\*)'
 
 # 5. Center-site brand language must not reach the PAGE. Grepped in the rendered
 #    output rather than in source, because lib/brand.ts deliberately names these in a
-#    comment to tell the next person not to add them. Source-grepping made the comment
-#    that prevents the mistake indistinguishable from the mistake.
+#    comment to tell the next person not to add them.
 #
-#    The chrome phrase, not the words. The reference site's version caught "Columbia",
-#    "Northeastern", and any mention of Teachers College, and all three belong on this
-#    site: the WOS model derives from Columbia research and /our-story/ says so, the
-#    WOS-Northeastern Talent Pipeline Program is a real page, and two board biographies
-#    name Teachers College as where their faculty post or doctorate is. What must never
-#    appear is the co-branding line, which always reads "in partnership with".
-#    A check that flags the site's own history gets ignored.
+#    The chrome phrase, not the words. "Columbia", "Northeastern" and Teachers College
+#    all legitimately appear on this site. What must never appear is the co-branding
+#    line, which always reads "in partnership with".
 #
-#    Narrowed for the one sanctioned occurrence, §0. The homepage section for the
-#    Center for Strategic Learning and Leadership for the Digital Age credits its
-#    Teachers College partnership. What the check was written to catch is
-#    this site's own CHROME being co-branded, and chrome renders on every route, so
-#    5a is a stronger version of the original: a co-branded header or footer returns
-#    every page, and it names them.
-#
-# 5a. The phrase may appear on the homepage and nowhere else. /alternate-home renders
-#     the homepage's own content in the §11 exploration, so it is the one other route
-#     allowed, and only because it is the same sentence from the same content file.
+# 5a. The phrase may appear on the homepage and nowhere else. A co-branded header or
+#     footer would return every route, and name them.
 grep -rl -iE 'in partnership with (teachers college|columbia)' \
   .next/server/app --include='*.html' \
-  | grep -vE '^\.next/server/app/(index|alternate-home)\.html$'
+  | grep -vE '^\.next/server/app/index\.html$'
 
 # 5b. And on that page the sentence must be about the CENTER, never about WOS.
-#     Matched on the words immediately before the phrase rather than on the Center's
-#     name: the name runs 60 characters and sits in its own element, so a window wide
-#     enough to reach it is wide enough to swallow a second sentence. "A WOS center,"
-#     is the sanctioned subject and is what §0 actually requires.
-#     Tags are stripped first, since the name and the credit are separate elements.
 sed -e 's/<[^>]*>/ /g' .next/server/app/index.html \
   | grep -ioE '.{0,40}in partnership with (teachers college|columbia)' \
   | grep -ivE 'A WOS center, in partnership with'
@@ -641,131 +580,84 @@ sed -e 's/<[^>]*>/ /g' .next/server/app/index.html \
 # 6. POSITIVE control - tokens must exist in the BUILT css
 npm run build
 grep -oh -- '--color-[a-z-]*' .next/static/chunks/*.css | sort -u
-```
 
-All of these must return empty except the last, which must list every token. Check 5 is two commands and both must be empty.
+# 7. Every field variable a component reads is one globals.css defines. A misspelled
+#    var(--field-*) resolves to nothing, exactly as a misspelled token does.
+comm -23 \
+  <(grep -rhoE 'var\(--field-[a-z-]+\)' app components | sed 's/var(//;s/)//' | sort -u) \
+  <(grep -oE '^\s*--field-[a-z-]+:' app/globals.css | tr -d ' :' | sort -u)
+```
 
 **Check 6 matters most and is the one that gets skipped.**
 A misspelled token in Tailwind v4 produces no error: `text-ink-mutedd` generates no rule, the element inherits, and the page looks almost right.
 Checks 1-5 all pass on a completely broken build.
 
-Two further traps found the hard way:
+Traps found the hard way:
 
-- **Grep the compiled CSS, not just components.** The teal border on `.pull-quote` lived in `globals.css` and was used by all twelve program detail pages; no component-level search would have found it.
-- **Turbopack's cache goes stale on token changes.** After editing `globals.css`, `rm -rf .next` and restart, then confirm the value in the CSS the browser actually receives. A hot reload will silently serve the old colour.
+- **Grep the compiled CSS, not just components.** A stale token can live in `globals.css` and reach every page without appearing in any component.
+- **Turbopack's cache goes stale on token changes.** After editing `globals.css`, `rm -rf .next` and restart. A hot reload will silently serve the old value.
+- **Axe cannot see text over a gradient.** It reports contrast on the gradient chapters as incomplete, not as a failure. Look at every opening at 390px wide.
+- **The adjacency and footer rules are enforced at build time**, so a page that breaks them is a 500 in development and a failed build, never a page that ships.
 
 ---
 
 ## 10. Motion
 
-§1 says restraint does the work rather than animation, and that still governs.
-This section is the boundary around it, not a relaxation of it.
-
-It is written down because the boundary already existed and was undocumented.
-`--duration-fade` and `--ease-fade` sat in `globals.css` with zero call sites, and `PhotoLedCard` carried three hover gestures that no page on the homepage used.
-The rule and the code disagreed, and an undocumented boundary is one each person has to guess at.
-
-Motion here is a state change or an arrival.
-It is never an effect, never a loop, and never something a visitor has to wait through.
+Motion is a state change or an arrival.
+It is never something a visitor has to wait through to read the page.
 
 ### The sanctioned gestures
 
-There are seven, and there is no eighth without a row in this table.
+There is no gesture without a row in this table.
 
-| Gesture | Where | Timing |
+| Gesture | Where | How |
 |---|---|---|
-| Colour swap | Links, buttons, nav items | `transition-colors`, Tailwind's default 150ms |
-| Card lift | `PhotoLedCard`, `TintedCard`, `ServiceCard` | `-translate-y-[3px]`, 250ms `ease-out` |
-| Image scale inside a fixed frame | The same three cards | `scale-[1.03]` to `scale-[1.04]`, 500 to 600ms `ease-out` |
-| Accent rule growth | The same three cards | `w-8` to `w-14`, `transition-[width]` 300ms `ease-out` |
-| Section arrival | `FadeIn`, on body sections below the fold, including every `ContentSections` section | opacity plus a 12px rise, `--duration-fade` on `--ease-fade` |
-| Arc draw | `ArcDraw`, the Fantasy Arc on `/ai-institute` only | `stroke-dashoffset` 1 to 0 on a `pathLength={1}` path, 1100ms on `--ease-fade`, once |
-| Node sequence | The same diagram's nodes, drop lines and labels | opacity, 250ms `ease-out`, each delayed to the moment the stroke reaches it, once |
-
-The homepage partner wall desaturates its tiles and restores colour on hover.
-That is the colour swap row applied to a filter, and it is opt-in: on `/corporate-partners/` and `/academic-partners/` the logos are the content of the page, and greying out the content is not a treatment.
-
-`CountUp` is the one exception to "nothing a visitor waits through".
-It counts a figure from zero over 1100ms on an ease-out cubic.
-It earns the exception because the number is the content, and the count is what makes a visitor read the figure rather than scroll past it.
-`ArcDraw` earns the same exception on the same argument.
-The arc is a developmental sequence, and drawing it left to right is the sequence; a static curve has to be read to be understood, a drawn one is understood as it arrives.
-It runs once, is 1100ms like `CountUp`, and follows the SSR rule below: the drawn state ships in the HTML and is only rewound below the fold.
-The nodes do not use the grid's 60ms stagger. `--ease-fade` covers most of the distance in the first third of the time, so a fixed stagger left the line three nodes ahead of its dots; each node is instead delayed by the inverse of the easing, so it appears as the stroke arrives. Its fade is 250ms because it is a response to the stroke, not an arrival of its own.
-Nothing else on this site animates its own content.
+| Colour swap | Links, buttons, nav items | `transition-colors`, 150ms |
+| Image scale inside a fixed frame | Service bands, people cards, post cards, video posters | `scale-[1.03]` on hover, 700ms `--ease-fade` |
+| Chapter arrival | `.reveal` elements inside an `InView` | opacity plus a 16px rise, 800ms `--ease-fade`, staggered 70ms by `--i` |
+| Opening rise | `.rise-in`: an opening's lead, actions and media | opacity plus a 14px rise, 900ms, once on load |
+| Headline mask rise | The homepage tagline only, line by line | `.mask-line`, 1000ms, once on load |
+| Motif draw | `Motif` with `draw`: the homepage opening | a masked stroke along each arrow, 1800ms, once |
+| Gradient drift | The signature gradient, md and up | registered custom properties, 24s alternate |
+| Pinned scene | `JourneyScene`, the homepage approach, 900px and up | GSAP ScrollTrigger pin and scrub; the ring fills and the current stage is lit |
+| Count | `CountUp`, the three homepage figures | 1100ms ease-out cubic, once |
+| Arc draw and node sequence | `ArcDraw`, the Fantasy Arc on `/ai-institute` | stroke draws 1100ms; each node fades as the stroke reaches it |
 
 Durations are vocabulary, not free values.
-250ms is a response to a pointer and 600ms is an arrival.
-A value picked between them was picked by feel and should move to one of the two.
+Prefer an explicit property list to `transition-all`.
 
-Prefer an explicit property list to `transition-all`, which animates layout properties nobody meant to animate.
-`transition-[width]` on the card rule is the pattern to copy.
+**Two exceptions to "never a loop" and "never scroll-jacking", and why they stand.**
+The gradient drift loops, but over 24 seconds at a pace nobody watches; it is a field that is alive rather than an animation that asks to be looked at, and it holds still on phones and under reduced motion.
+The pinned scene holds the approach on screen while the visitor scrolls, but it never changes scroll speed or direction, releases with the list complete, and exists only where there is room for it.
+Neither is a licence for a second.
 
 ### Reduced motion is a guarantee, not a courtesy
 
 `globals.css` collapses every animation and transition duration to 0.01ms under `prefers-reduced-motion: reduce`.
-It is a global rule on `*`, `*::before` and `*::after`, so any CSS transition added anywhere is already covered and the author does not have to remember.
-
-JavaScript motion is not covered by that and has to guard itself.
-`CountUp` and `FadeIn` both read `window.matchMedia("(prefers-reduced-motion: reduce)").matches` and skip the animation outright rather than shortening it.
-Skipping is correct and shortening is not: a 0.01ms count from zero still repaints the figure, and a 0.01ms fade is still a fade.
+Every hidden starting state (`.reveal`, `.rise-in`, `.mask-line`, the motif stroke) lives inside `prefers-reduced-motion: no-preference`, so under reduced motion the server-rendered page is the finished page.
+JavaScript motion guards itself: `CountUp` and `ArcDraw` skip outright, and `JourneyScene` only arms inside a GSAP `matchMedia` that requires `no-preference`.
 
 ### The SSR rule
 
 **The final state ships in the HTML.**
-A scroll-triggered component renders its finished appearance on the server and departs from it only after mount, in the browser, and only for elements the visitor cannot currently see.
+A scroll-triggered element renders its finished appearance on the server and departs from it only after mount, only in the browser, and only for elements the visitor cannot currently see.
 
-This is not a style preference.
-`CountUp` holds `useState(target)`, so the real figure is in the markup: the page is correct with JavaScript off and a screen reader never announces an intermediate value.
-`FadeIn` holds `useState(true)`, so a wrapped section ships visible and hides itself after paint, only when it is below the fold, and only when reduced motion is not set.
+`InView` sets `data-armed` only when its element starts below the fold, and `.reveal` hides only under `[data-armed]:not([data-inview])`.
+A page whose scripts never run shows everything; nothing already on screen blinks out and back in.
+`CountUp` holds the real figure in its initial state, so the page is correct with JavaScript off and a screen reader never announces an intermediate value.
+`JourneyScene` server-renders the whole ring drawn and every stage readable.
 
-An earlier version of `FadeIn` on the reference site computed the reduced-motion query during render.
-That query is always false on the server, so every wrapped section shipped at `opacity: 0`.
-A slow or failed script load rendered a hero above blank space, and a reduced-motion visitor hydrated straight into a style mismatch.
-The docblock in `components/FadeIn.tsx` records this and is not surplus.
+### Where motion does not go
 
-### Where FadeIn does not go
-
-- Anything containing the `h1`. The page's identity does not arrive, it is there.
-- Anything above the fold. On the homepage that is the hero and the impact band under it. `FadeIn` guards this at runtime, but relying on the guard leaves the intent out of the source.
-- The `<section>` element itself when it carries a fill. Wrap the inner container, so the band stays put and only its content arrives. A fading full-bleed band is a curtain going up.
-- Anything already carrying a scroll-triggered gesture. The impact figures have `CountUp` at `threshold: 0.4` and `FadeIn` fires at `0.1`, so the numbers would start counting while the block was still fading.
-- Chrome. The header and the footer are furniture, and furniture does not arrive.
-
-Stagger is `delay={i * 60}` and it belongs only inside a grid of sibling cards.
-It resets per grid, so a second row does not begin half a second after the first.
-A stagger running across unrelated sections is a page assembling itself, which is the promotional register §1 rules out.
+- Chrome. The header, the footer and the nav panels are furniture, and furniture does not arrive.
+- An interior page's `h1`. The page's identity is there, not arriving; only what sits beside it rises in.
+- A full-bleed field. Wrap the content, so the chapter stays put and only its content arrives.
 
 ### Still banned
 
 Parallax.
-Scroll-jacking of any kind.
-Autoplaying carousels and anything that loops.
-Entrance animation on the header, the footer or the nav panels.
+Autoplaying carousels and video.
+Changing scroll speed or direction.
 Animated counters on any figure that is not a headline statistic.
-Hover motion on a photograph that is not inside a card.
+Hover motion on a photograph that is not inside a link.
 Any gesture whose duration was chosen so that it would be noticed.
-
----
-
-## 11. `/alternate-home`: the colour-chapter exploration
-
-`/alternate-home` renders the homepage's content in a different direction, so the two can be compared side by side on the real site.
-It is a design exploration, not a page: nothing links to it, it is out of `app/sitemap.ts`, and it is set to `noindex`.
-It was developed as a standalone demo first and approved by the client for comparison.
-
-**It is exempt from §1, §2's single-accent rule, §6's eyebrow and card patterns and §10's motion list, and from nothing else.**
-Everything it uses is deliberately scoped so that the rest of the site is unaffected and the whole exploration can be removed by deleting `app/alternate-home/` and `components/alternate-home/`.
-
-What it does differently:
-
-- **Colour chapters.** Every section is a full-bleed field of a brand colour: white, `surface-tint`, slate, `surface-deep`, `action-deeper` and red. The fields are classes in `app/alternate-home/alternate-home.css` built only from existing tokens; no hue is added. Two neighbouring chapters never share a field, and `Chapters` throws at build time if they do.
-- **One gradient.** The opening and the close sit on a slow drifting gradient of deep slate, slate and red. White type is placed over the deep side only. It is frozen under reduced motion.
-- **The conversion arrows.** The O from the WOS mark, drawn as an SVG (`components/alternate-home/Motif.tsx`), is the page's one shape.
-- **Dense copy set as structure.** Lists inside sentences are set as lists, the impact figures are written into one sentence, and the conversion sentence gets a chapter of its own. No copy is cut and every word comes from the same content files as `/`.
-- **Video.** The WOS overview film sits after the impact figures, and three partner stories (Prudential, PSEG, Alight) follow the approach scene. Titles are the YouTube channel's own and each summary is cut from the video's own description (`content/videos.ts`). A video is its poster frame and a play button until clicked, then becomes the youtube-nocookie player, so the page loads one image per video and no YouTube script. Without scripts the poster is a plain link to the video. `next.config.ts` allows `i.ytimg.com/vi/` for the posters and nothing else on that host.
-- **Motion.** The headline rises line by line, sections reveal as they arrive, the arrows draw on, and "Our approach" pins and fills a ring as the visitor scrolls (GSAP ScrollTrigger, 900px and up only). Every hidden state sits inside `prefers-reduced-motion: no-preference` and is armed by script, so the server-rendered page is always complete.
-
-It keeps square corners, no shadows, the site's header and footer, its buttons and its type.
-
-If the direction is adopted, this section and §1, §2 and §10 are what get rewritten, and the full rules are in the demo's `DEMO-DESIGN.md`.

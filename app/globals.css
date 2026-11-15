@@ -77,6 +77,12 @@
   --font-heading: var(--font-montserrat);
   --font-sans: var(--font-lato);
 
+  /* ---- Layout ---- */
+  /* Where the page grid (WRAP, max-w-[1320px]) stops growing. A named breakpoint rather
+     than min-[1320px]: Tailwind emits arbitrary variants before the named ones, so md:
+     would silently override anything set at min-[1320px]. Named, it sorts after xl. */
+  --breakpoint-wrap: 82.5rem;
+
   /* ---- Motion ---- */
   --duration-fade: 600ms;
   --ease-fade: cubic-bezier(0.16, 1, 0.3, 1);
@@ -121,28 +127,23 @@
     letter-spacing: -0.005em;
   }
 
+  /* Links take their field's link colour, so a link dropped into a red chapter does not
+     vanish into it. In the base layer on purpose: any utility on the element wins. */
   a {
-    color: #bf3b28;
+    color: var(--field-link);
   }
 
   a:hover {
-    color: #a63321;
+    color: var(--field-link-hover);
   }
 
-  /* One focus ring for the whole site. It is offset rather than inset so it stays
-     visible on the red button fills and on the slate surfaces, where an inset outline
-     disappears into the background. Slate rather than red: red is 2.8:1 on slate and
-     the ring has to read on both surfaces from one declaration.
+  /* One focus ring for the whole site, in the field's own ring colour: slate on the
+     light fields, white on every dark and red one. Offset rather than inset so it stays
+     visible on the button fills.
      :focus-visible, not :focus, so a mouse click on a card does not draw it. */
   :focus-visible {
-    outline: 2px solid var(--color-wos-slate);
+    outline: 2px solid var(--field-ring);
     outline-offset: 2px;
-  }
-
-  /* On dark sections the slate ring vanishes, so invert it there. */
-  .bg-surface-dark :focus-visible,
-  .bg-surface-deep :focus-visible {
-    outline-color: #ffffff;
   }
 
   /* Anchor targets must clear the sticky header, which is 72px at lg and up. */
@@ -151,23 +152,240 @@
   }
 }
 
-/* The --font-serif and .wordmark shims are gone: every call site now reads
-   `font-heading`, so the scaffolding that carried the Georgia/Trajan migration has
-   nothing left to carry.
-
-   .pull-quote stays because 12 program pages still use it. Note it sets Lato
-   deliberately - italic here is a real italic face, and overriding this to
-   `font-heading` gives a browser-synthesised slant, because Montserrat loads
-   upright only. */
-.pull-quote {
-  border-left: 3px solid var(--color-wos-red);
-  padding-left: 1.5rem;
+/*
+ * Fields. DESIGN.md §2.
+ *
+ * Every page is a run of chapters, and every chapter is a full-bleed field of one brand
+ * colour. A field sets its background and everything that has to change with it: ink,
+ * muted ink, link, button, rule, accent numeral and focus ring. A component inside never
+ * needs to know what it is sitting on; it reads var(--field-*).
+ *
+ *   paper     slate ink 12.54:1          tint     slate ink 11.70:1
+ *   slate     white 12.54:1              deep     white 16.18:1
+ *   crimson   white 6.74:1, body copy may sit on it
+ *   red       white 4.47:1, large type only
+ *
+ * The root carries the paper values, so chrome and anything outside a chapter reads as
+ * paper. Every colour is an existing token: nothing here adds a hue.
+ */
+:root,
+.field-paper,
+.field-tint {
+  --field-ink: var(--color-ink);
+  --field-muted: var(--color-ink-muted);
+  --field-link: var(--color-action-deep);
+  --field-link-hover: var(--color-action-deeper);
+  --field-btn: var(--color-action-deep);
+  --field-btn-hover: var(--color-action-deeper);
+  --field-btn-ink: white;
+  --field-rule: var(--color-wos-red);
+  /* Red numerals clear 3:1 here only at 24px and up, which is the only size they are set at. */
+  --field-accent: var(--color-wos-red);
+  --field-seam: var(--color-hairline-strong);
+  --field-ring: var(--color-wos-slate);
+}
+:root,
+.field-paper {
+  --field-bg: white;
+  /* A panel inside a paper chapter is tinted; inside a tint chapter it is white. */
+  --field-panel: var(--color-surface-tint);
+}
+.field-tint {
+  --field-bg: var(--color-surface-tint);
+  --field-panel: white;
 }
 
-.pull-quote p {
-  color: var(--color-wos-slate);
-  font-family: var(--font-lato), system-ui, sans-serif;
-  font-size: 20px;
-  font-style: italic;
-  line-height: 1.5;
+/* The dark fields. White everywhere text sits; red keeps the button and the rule. */
+.field-slate,
+.field-deep,
+.field-crimson,
+.field-red {
+  --field-ink: white;
+  --field-muted: color-mix(in oklab, white 78%, transparent);
+  --field-link: white;
+  --field-link-hover: color-mix(in oklab, white 78%, transparent);
+  --field-btn: var(--color-action-deep);
+  --field-btn-hover: var(--color-action-deeper);
+  --field-btn-ink: white;
+  --field-rule: var(--color-wos-red);
+  --field-seam: color-mix(in oklab, white 20%, transparent);
+  --field-ring: white;
+}
+.field-slate {
+  --field-bg: var(--color-wos-slate);
+  --field-panel: var(--color-surface-deep);
+  /* Red is 2.8:1 on slate, under the large-text floor, so slate's numerals are white. */
+  --field-accent: white;
+}
+.field-deep {
+  --field-bg: var(--color-surface-deep);
+  --field-panel: var(--color-wos-slate);
+  /* Red on deep is 3.62:1: legal for the 24px+ numerals, never for text. */
+  --field-accent: var(--color-wos-red);
+}
+
+/* On the two red fields a red button, a red rule or a red numeral disappears, so all
+   three turn white and the button's label turns slate. */
+.field-crimson,
+.field-red {
+  --field-btn: white;
+  --field-btn-hover: var(--color-surface-tint);
+  --field-btn-ink: var(--color-ink);
+  --field-rule: white;
+  --field-accent: white;
+}
+.field-crimson {
+  --field-bg: var(--color-action-deeper);
+  --field-panel: var(--color-wos-red);
+}
+.field-red {
+  --field-bg: var(--color-wos-red);
+  --field-panel: var(--color-action-deeper);
+}
+
+/* In the components layer so a utility on the same element still wins. Unlayered, this
+   would outrank every bg-* and text-* utility in the stylesheet. */
+@layer components {
+  .field {
+    background-color: var(--field-bg);
+    color: var(--field-ink);
+  }
+}
+
+/*
+ * The signature gradient: the site's one gradient, used by every page's opening and by
+ * the closing band. Brand colours only. Deep slate holds the left side, where the type
+ * sits, so white text is measured against deep (16:1) and never against red. The stop
+ * positions are registered custom properties so they interpolate, which lets the field
+ * drift with no JavaScript; the reduced-motion rule above freezes it.
+ */
+@property --g-red-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 84%;
+}
+@property --g-red-y {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 16%;
+}
+@property --g-crimson-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 96%;
+}
+.field.field-gradient {
+  background-color: var(--color-surface-deep);
+  background-image:
+    radial-gradient(55% 70% at var(--g-red-x) var(--g-red-y), color-mix(in oklab, var(--color-wos-red) 80%, transparent) 0%, transparent 70%),
+    radial-gradient(50% 65% at var(--g-crimson-x) 100%, color-mix(in oklab, var(--color-action-deeper) 85%, transparent) 0%, transparent 70%),
+    radial-gradient(70% 90% at 8% 30%, var(--color-surface-deep) 0%, transparent 75%),
+    linear-gradient(105deg, var(--color-surface-deep) 40%, var(--color-wos-slate) 100%);
+  animation: gradient-drift 24s ease-in-out infinite alternate;
+}
+/* Below md the copy runs the full width, so the red can no longer sit beside it: in the
+   top right it lands behind the lead paragraph, and white body copy on red is 4.47:1,
+   under the 4.5:1 floor. On a phone the red gathers in the bottom corner instead, under
+   the photograph or the button row, and the field holds still. */
+@media (max-width: 767.98px) {
+  .field.field-gradient {
+    animation: none;
+    background-image:
+      radial-gradient(75% 28% at 100% 100%, color-mix(in oklab, var(--color-wos-red) 75%, transparent) 0%, transparent 70%),
+      radial-gradient(60% 22% at 70% 100%, color-mix(in oklab, var(--color-action-deeper) 70%, transparent) 0%, transparent 70%),
+      linear-gradient(180deg, var(--color-surface-deep) 55%, var(--color-wos-slate) 100%);
+  }
+}
+@keyframes gradient-drift {
+  0% {
+    --g-red-x: 84%;
+    --g-red-y: 16%;
+    --g-crimson-x: 96%;
+  }
+  50% {
+    --g-red-x: 72%;
+    --g-red-y: 30%;
+    --g-crimson-x: 84%;
+  }
+  100% {
+    --g-red-x: 90%;
+    --g-red-y: 8%;
+    --g-crimson-x: 100%;
+  }
+}
+
+/*
+ * Motion. DESIGN.md §10.
+ *
+ * Every hidden starting state lives inside prefers-reduced-motion: no-preference, so
+ * with reduced motion the server-rendered page is the finished page. Scroll reveals also
+ * wait for InView to arm them, so a page whose scripts never run shows everything.
+ */
+.mask-line {
+  display: block;
+  overflow: hidden;
+  padding-bottom: 0.06em;
+  margin-bottom: -0.06em;
+}
+.mask-line > span {
+  display: block;
+}
+.motif-stroke {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* The homepage headline rises line by line, once, on load. */
+  .mask-line > span {
+    animation: mask-rise 1000ms var(--ease-fade) both;
+    animation-delay: calc(var(--i, 0) * 80ms + 120ms);
+  }
+  /* What sits beside an opening heading follows it in. */
+  .rise-in {
+    animation: soft-rise 900ms var(--ease-fade) both;
+    animation-delay: var(--delay, 240ms);
+  }
+
+  /* The motif draws itself: on load when it is marked to, otherwise when scrolled to. */
+  .motif-draw .motif-stroke {
+    animation: motif-draw 1800ms var(--ease-fade) both;
+    animation-delay: calc(var(--i, 0) * 220ms + 200ms);
+  }
+  [data-observe] .motif-stroke {
+    transition: stroke-dashoffset 1800ms var(--ease-fade);
+    transition-delay: calc(var(--i, 0) * 220ms + 200ms);
+  }
+  [data-armed]:not([data-inview]) .motif-stroke {
+    stroke-dashoffset: 1;
+  }
+
+  /* Chapter content arrives gently, staggered by --i. */
+  .reveal {
+    transition:
+      opacity 800ms var(--ease-fade),
+      transform 800ms var(--ease-fade);
+    transition-delay: calc(var(--i, 0) * 70ms);
+  }
+  [data-armed]:not([data-inview]) .reveal {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+@keyframes mask-rise {
+  from {
+    transform: translateY(105%);
+  }
+}
+@keyframes soft-rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+}
+@keyframes motif-draw {
+  from {
+    stroke-dashoffset: 1;
+  }
 }

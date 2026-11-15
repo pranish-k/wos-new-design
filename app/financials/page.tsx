@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { Eyebrow } from "@/components/Brand";
+import { PAD, PageHero, TYPE, WRAP, stagger } from "@/components/Brand";
+import { Chapter } from "@/components/Chapter";
+import InView from "@/components/InView";
 import { AUDITED_STATEMENTS, FORM_990, type Filing } from "@/content/financial-documents";
 import { LEGAL_STATUS } from "@/lib/brand";
 import page from "@/content/financials";
@@ -11,52 +13,42 @@ export const metadata: Metadata = {
 
 function Filings({ label, filings }: { label: string; filings: Filing[] }) {
   return (
-    <div>
-      <h2 className="font-heading text-[24px] font-semibold leading-[1.2] text-ink">
-        {label}
-      </h2>
-      <ul className="mt-5 list-none p-0">
-        {filings.map((f) => (
-          <li key={`${label}-${f.year}`} className="border-t border-hairline">
+    <InView>
+      <h2 className={`reveal ${TYPE.h3}`}>{label}</h2>
+      <ul className="m-0 mt-6 list-none p-0">
+        {filings.map((f, n) => (
+          <li key={`${label}-${f.year}`} className="reveal border-t-2 border-[var(--field-rule)]" style={stagger(n + 1)}>
             <a
               href={f.file}
-              // A PDF is a download, not a page, and the reader deserves to know
-              // before the click rather than after it.
-              className="flex items-baseline justify-between gap-4 py-4 text-[17px] text-ink no-underline transition-colors hover:text-action-deep"
+              // A PDF is a download, not a page, and the reader deserves to know before
+              // the click rather than after it.
+              className="group flex items-baseline justify-between gap-4 py-4 font-heading text-[18px] font-semibold text-[var(--field-ink)] no-underline hover:text-[var(--field-ink)]"
             >
-              <span>Year Ending September 30th, {f.year}</span>
-              <span className="font-heading text-[11px] font-semibold uppercase tracking-[0.12em] text-ink-muted">
-                PDF
-              </span>
+              <span className="underline-offset-[5px] group-hover:underline">Year Ending September 30th, {f.year}</span>
+              <span className="text-[13px] font-semibold tracking-[0.08em] text-[var(--field-muted)]">PDF</span>
             </a>
           </li>
         ))}
       </ul>
-    </div>
+    </InView>
   );
 }
 
 export default function Page() {
   return (
     <article>
-      <header className="bg-surface-dark">
-        <div className="mx-auto max-w-6xl px-6 pb-16 pt-20">
-          <Eyebrow label="About" dark />
-          <h1 className="font-heading text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[56px]">
-            Financials
-          </h1>
-          <p className="mt-6 max-w-2xl text-[17px] leading-[1.65] text-white/80">
-            {LEGAL_STATUS} Our annual filings and audited statements are published here.
-          </p>
-        </div>
-      </header>
+      <PageHero
+        label="About"
+        title="Financials"
+        lead={`${LEGAL_STATUS} Our annual filings and audited statements are published here.`}
+      />
 
-      <section className="py-16">
-        <div className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-2">
+      <Chapter field="paper">
+        <div className={`${WRAP} ${PAD} grid gap-14 md:grid-cols-2 md:gap-16`}>
           <Filings label="Form 990" filings={FORM_990} />
           <Filings label="Audited financial statements" filings={AUDITED_STATEMENTS} />
         </div>
-      </section>
+      </Chapter>
     </article>
   );
 }

@@ -42,7 +42,7 @@ const nextConfig: NextConfig = {
   // sharp is a native module used by the dev-only people admin. Bundling it breaks the
   // binary lookup, and it must never be traced into a production build.
   serverExternalPackages: ["sharp"],
-  // YouTube poster frames for the videos on /alternate-home. Scoped to the video
+  // YouTube poster frames for the videos on the homepage. Scoped to the video
   // thumbnail path so the optimiser cannot be pointed at anything else on that host.
   images: {
     remotePatterns: [{ protocol: "https", hostname: "i.ytimg.com", pathname: "/vi/**" }],

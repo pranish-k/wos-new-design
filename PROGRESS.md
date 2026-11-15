@@ -23,6 +23,20 @@ Design system ported from the reference site so tokens needed no translation.
 
 **Green:** build, lint, types. All six DESIGN.md §9 checks including check 6 (14 `--color-*` in built CSS). Zero broken internal links, zero `<img>` without alt, one h1 per page, no two same-fill sections adjacent. Mirror byte-identical.
 
+## The colour-chapter redesign (2026-11-15)
+
+The client chose `/alternate-home` over the original homepage and asked for the whole site in that direction.
+The original is on `main`; both homepages side by side are on the `alternate-home` branch.
+
+- **Fields, not a page.** The exploration's styles were one route's stylesheet. They are now global, and a field sets every colour that changes with it (ink, link, button, rule, accent, focus ring) as `var(--field-*)`. The exploration hard-coded red rules and red buttons, which vanish on its own red and crimson fields; it only worked because the one page never put them there.
+- **One frame for every page.** `PageHero` on the gradient opens every page, `ContentSections` renders the content as chapters, and a final cta-only section becomes `CloseChapter`. About 30 pages changed by changing those three.
+- **Rules enforced at build time.** Two neighbouring chapters on one field, or a page ending on slate or deep against the slate footer, throw. Four content files ended on a `dark` fill that the old design used and the new one cannot; the fills were removed, words untouched.
+- **One grid.** Header, footer and every chapter share `max-w-[1320px]`. The header had been 1152px wide against 1320px content, so the logo sat 76px right of every left edge on the exploration.
+- **Retired:** `Eyebrow`, `InteriorHero`, `ProgramHero`, `PhotoLedCard`, `TintedCard`, `StatsBar`, `PullQuote`, `Divider`, `ArrowLink`, `ServiceCard`, `FadeIn`, and the dead `.pull-quote` CSS.
+- **Found on the way:** `md:` silently overrode `min-[1320px]:`, so the service bands' text sat on the gutter at every desktop width; a `wrap` breakpoint fixes it. On phones the gradient's red sat behind full-width white body copy at 4.47:1; it now gathers in the bottom corner. "What We Deliver" on `/facilities-management/` was the first item of its own list and is now its heading. `/contact/` set its title twice.
+
+**Green:** build, lint, types, DESIGN.md §9 checks 1 to 7. All 87 routes 200; no horizontal overflow at 390px or 1440px; no neighbouring same-field chapters; zero axe colour-contrast, heading-order, link-name or image-alt violations on any route at either width.
+
 ## People engine
 
 One record per person at `content/people/<slug>.json`, read through `lib/people/store.ts`.

@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
-import { PhotoLedCard, SectionHeading } from "@/components/Brand";
-import ContentPage from "@/components/ContentPage";
+import { HeroImage, PageHero, SectionHeading, ServiceBands, WRAP } from "@/components/Brand";
+import { Chapter } from "@/components/Chapter";
+import { ContentSections } from "@/components/ContentPage";
+import InView from "@/components/InView";
 import { CONSULTING_CARDS } from "@/content/consulting-to-hire-hub";
 import page from "@/content/consulting-to-hire-services";
 
@@ -12,33 +14,29 @@ export const metadata: Metadata = {
 /**
  * The Overview of a four-item nav group, so it is a hub rather than a leaf.
  *
- * Same shape as /managed-service-centers/: header, then the grid that is the reason to
- * be on this page at all. There is no prose below it because the live page has none
- * that is not a placeholder.
+ * Same shape as /managed-service-centers/: the opening, then the bands that are the
+ * reason to be on this page at all. The live page has no prose that is not a
+ * placeholder, so the bands are the page.
  */
 export default function Page() {
   return (
-    <>
-      <ContentPage page={page} />
+    <article>
+      <PageHero
+        label={page.eyebrow}
+        title={page.title}
+        lead={page.lead.map((b) => b.text)}
+        media={page.hero ? <HeroImage src={page.hero.src} alt="" /> : undefined}
+      />
 
-      <section className="bg-surface-tint py-16">
-        <div className="mx-auto max-w-6xl px-6">
+      <Chapter field="paper">
+        <InView className={`${WRAP} pb-12 pt-20 md:pb-14 md:pt-28`}>
           <SectionHeading>Consulting to Hire Services</SectionHeading>
-          <div className="mt-8 grid gap-6 md:grid-cols-3">
-            {CONSULTING_CARDS.map((card) => (
-              <PhotoLedCard
-                key={card.href}
-                href={card.href}
-                image={card.image}
-                imageAlt={card.imageAlt}
-                tag="Service"
-                title={card.title}
-                description={card.description}
-              />
-            ))}
-          </div>
-        </div>
-      </section>
-    </>
+        </InView>
+        <ServiceBands items={CONSULTING_CARDS} />
+      </Chapter>
+
+      {/* after="crimson": the chapter above ends on its last band, which is crimson. */}
+      <ContentSections sections={page.sections} after="crimson" />
+    </article>
   );
 }

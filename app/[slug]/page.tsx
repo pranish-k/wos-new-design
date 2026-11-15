@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import Image from "next/image";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Eyebrow } from "@/components/Brand";
+import { PAD, PAD_TIGHT, PageHero, TextLink, TYPE, WRAP, stagger } from "@/components/Brand";
+import { Chapter } from "@/components/Chapter";
+import InView from "@/components/InView";
 import PeopleGrid from "@/components/PeopleGrid";
 import { POSTS } from "@/content/posts";
 import { getGroup, listGroups, listPeople } from "@/lib/people/store";
@@ -37,50 +38,51 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return post ? { title: post.title, description: post.excerpt } : {};
 }
 
+/**
+ * A group's intro sits on tint between the gradient and the grid, which is on paper.
+ * Three of the five groups have no intro copy at all, and a page that opens straight
+ * into the grid is correct rather than unfinished.
+ */
 function GroupLanding({ path }: { path: string }) {
   const group = getGroup(path)!;
   const people = listPeople(group.id);
   return (
     <article>
-      <header className="bg-surface-dark">
-        <div className="mx-auto max-w-6xl px-6 pb-16 pt-20">
-          <Eyebrow label={group.eyebrow} dark />
-          <h1 className="font-heading text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[56px]">
-            {group.title}
-          </h1>
-        </div>
-      </header>
+      <PageHero label={group.eyebrow} title={group.title} />
 
       {group.intro.length > 0 && (
-        <section className="bg-surface-tint py-14">
-          <div className="mx-auto max-w-3xl px-6">
-            {group.intro.map((block, i) =>
-              block.kind === "list" ? (
-                <ul key={i} className="mt-5 list-none space-y-2 p-0">
-                  {block.items.map((item) => (
-                    <li
-                      key={item}
-                      className="border-l-2 border-accent pl-4 text-[17px] leading-[1.6] text-ink-muted"
-                    >
-                      {item}
-                    </li>
-                  ))}
-                </ul>
-              ) : block.kind === "para" ? (
-                <p key={i} className="mt-5 text-[17px] leading-[1.7] text-ink-muted first:mt-0">
-                  {block.text}
-                </p>
-              ) : null,
-            )}
-          </div>
-        </section>
+        <Chapter field="tint">
+          <InView className={`${WRAP} ${PAD_TIGHT}`}>
+            <div className="max-w-3xl">
+              {group.intro.map((block, i) =>
+                block.kind === "list" ? (
+                  <ul key={i} className="m-0 mt-8 grid list-none gap-x-10 p-0 md:grid-cols-2">
+                    {block.items.map((item, j) => (
+                      <li
+                        key={item}
+                        className={`reveal border-t-2 border-[var(--field-rule)] py-3 ${TYPE.small} md:text-[17px]`}
+                        style={stagger(j)}
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                ) : block.kind === "para" ? (
+                  <p key={i} className={`reveal mt-5 first:mt-0 ${i === 0 ? TYPE.lead : TYPE.body}`} style={stagger(i)}>
+                    {block.text}
+                  </p>
+                ) : null,
+              )}
+            </div>
+          </InView>
+        </Chapter>
       )}
 
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <PeopleGrid people={people} groupId={group.id} />
-        </div>
-      </section>
+      <Chapter field="paper" label="Members">
+        <InView className={`${WRAP} ${PAD}`}>
+          <PeopleGrid people={people} groupId={group.id} headingLevel="h2" />
+        </InView>
+      </Chapter>
     </article>
   );
 }
@@ -100,49 +102,46 @@ export default async function Page({ params }: Props) {
 
   return (
     <article>
-      <header className="bg-surface-dark">
-        <div className="mx-auto max-w-3xl px-6 pb-14 pt-20">
-          <Eyebrow label={date} dark />
-          <h1 className="font-heading text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-white md:text-[46px]">
-            {post.title}
-          </h1>
+      <PageHero label="News & Events" labelHref="/blog" title={post.title}>
+        <p className={`rise-in mt-6 ${TYPE.label}`}>
+          <time dateTime={post.date}>{date}</time>
+        </p>
+      </PageHero>
+
+      <Chapter field="paper">
+        <div className={`${WRAP} ${PAD}`}>
+          {post.image && (
+            <div className="relative mb-14 aspect-[16/9] w-full max-w-5xl overflow-hidden bg-surface-tint md:mb-16">
+              <Image
+                src={post.image}
+                alt=""
+                fill
+                sizes="(min-width: 1100px) 1024px, 100vw"
+                className="object-cover"
+                priority
+              />
+            </div>
+          )}
+
+          <div className="max-w-3xl">
+            {post.blocks.map((block, i) =>
+              block.kind === "heading" ? (
+                <h2 key={i} className={`mt-12 first:mt-0 ${TYPE.h3}`}>
+                  {block.text}
+                </h2>
+              ) : (
+                <p key={i} className={`mt-5 first:mt-0 ${i === 0 ? TYPE.lead : TYPE.body}`}>
+                  {block.text}
+                </p>
+              ),
+            )}
+
+            <TextLink href="/blog" className="mt-14">
+              All news &amp; events
+            </TextLink>
+          </div>
         </div>
-      </header>
-
-      {post.image && (
-        <Image
-          src={post.image}
-          alt=""
-          width={1600}
-          height={900}
-          className="mx-auto aspect-[16/9] w-full max-w-5xl bg-surface-tint object-cover"
-          priority
-        />
-      )}
-
-      <div className="mx-auto max-w-3xl px-6 py-14">
-        {post.blocks.map((block, i) =>
-          block.kind === "heading" ? (
-            <h2
-              key={i}
-              className="mt-10 font-heading text-[24px] font-semibold leading-[1.2] text-ink first:mt-0"
-            >
-              {block.text}
-            </h2>
-          ) : (
-            <p key={i} className="mt-4 text-[17px] leading-[1.7] text-ink-muted">
-              {block.text}
-            </p>
-          ),
-        )}
-
-        <Link
-          href="/blog"
-          className="mt-12 inline-block font-heading text-[15px] font-semibold text-action-deep no-underline hover:text-action-deeper"
-        >
-          All news &amp; events
-        </Link>
-      </div>
+      </Chapter>
     </article>
   );
 }

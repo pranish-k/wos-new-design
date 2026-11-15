@@ -1,108 +1,77 @@
 import Image from "next/image";
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Eyebrow, PrimaryButton, SecondaryButton } from "@/components/Brand";
+import {
+  CloseChapter,
+  FactList,
+  PAD,
+  PrimaryButton,
+  SecondaryButton,
+  SectionHeading,
+  ServiceBands,
+  TextLink,
+  TYPE,
+  WRAP,
+  stagger,
+} from "@/components/Brand";
+import { Chapter, Chapters, fieldClass, type Field } from "@/components/Chapter";
 import CountUp from "@/components/CountUp";
-import FadeIn from "@/components/FadeIn";
-import PartnerWall from "@/components/PartnerWall";
-import ServiceCard from "@/components/ServiceCard";
+import InView from "@/components/InView";
+import JourneyScene from "@/components/JourneyScene";
+import Motif from "@/components/Motif";
+import VideoEmbed from "@/components/VideoEmbed";
 import { HOME_PROSE } from "@/content/home-prose";
-import { APPROACH, CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES } from "@/content/home-sections";
-import { PARTNERSHIPS, type Partnership } from "@/content/partnerships";
-import { ORG, TAGLINE } from "@/lib/brand";
+import { APPROACH, CONSULTING_TO_HIRE, IMPACT, OTHER_SERVICES, type ServiceCard } from "@/content/home-sections";
+import { PARTNERS } from "@/content/partners";
+import { PARTNERSHIPS } from "@/content/partnerships";
+import { CHANNEL_URL, OVERVIEW, PARTNER_STORIES } from "@/content/videos";
+import { DESCRIPTION } from "@/lib/brand";
 
-/**
- * The four HOME_PROSE blocks are now placed individually rather than mapped, because
- * they no longer sit in one run: Our History moved down to introduce the partner wall.
- *
- * Throws rather than returning undefined. A heading renamed in content/home-prose.ts
- * should fail the build naming the heading, not render a section with no copy in it.
- */
 function prose(heading: string) {
   const section = HOME_PROSE.find((s) => s.heading === heading);
   if (!section) throw new Error(`content/home-prose.ts has no section "${heading}"`);
-  return section;
+  return section.body.join(" ");
 }
 
-/** The two-column prose block, used by sections 3 and 4. */
-function ProseSection({ heading, tint }: { heading: string; tint?: boolean }) {
-  const section = prose(heading);
-  return (
-    <section className={tint ? "bg-surface-tint py-20" : "py-20"}>
-      <FadeIn className="mx-auto grid max-w-6xl gap-12 px-6 md:grid-cols-[1fr_1.4fr]">
-        <div>
-          <Eyebrow label={section.heading} />
-          <h2 className="font-heading text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-ink md:text-[38px]">
-            {section.heading}
-          </h2>
-        </div>
-        <div className="text-[17px] leading-[1.65] text-ink-muted">
-          {section.body.map((para, i) => (
-            <p key={i} className={i === 0 ? "" : "mt-5"}>
-              {para}
-            </p>
-          ))}
-        </div>
-      </FadeIn>
-    </section>
-  );
+/** Split `text` at `marker`, failing the build if the copy no longer contains it. */
+function cut(text: string, marker: string): [string, string] {
+  const at = text.indexOf(marker);
+  if (at < 0) throw new Error(`HomePage expected "${marker}" in: ${text.slice(0, 60)}...`);
+  return [text.slice(0, at).trim(), text.slice(at + marker.length).trim()];
 }
+
+function impact(label: string) {
+  const figure = IMPACT.find((s) => s.label === label);
+  if (!figure) throw new Error(`content/home-sections.ts has no impact figure "${label}"`);
+  return figure;
+}
+
+const bands = (items: ServiceCard[]) =>
+  items.map((s) => ({ href: s.href, title: s.label, image: s.image, imageAlt: s.imageAlt }));
 
 /**
- * One partnership or center, as a homepage section in its own right.
- *
- * Single column rather than the two-column ProseSection shape above. Those sections
- * carry one long paragraph each; these carry two or three sentences, which would leave
- * the wide right column looking half empty beside a display heading.
- *
- * `dark` alternates from the call site rather than living on the record, so adding a
- * fourth entry keeps the fills legal without anyone having to think about it. The run
- * starts tint, and whether it ends tint or dark the section after it is white either way.
- *
- * The heading is smaller than the page's other h2s at 26/32 against 30/38. These are long
- * proper names, not short headings: the Center's runs to 62 characters and would take
- * three lines at 38px.
+ * Each service is a band of its own colour, assigned here rather than on the records, in
+ * an order where no two neighbours match, including across the two groups.
  */
-function PartnershipSection({ item, dark }: { item: Partnership; dark: boolean }) {
-  return (
-    <section className={dark ? "bg-surface-dark py-16" : "bg-surface-tint py-16"}>
-      <FadeIn className="mx-auto max-w-6xl px-6">
-        <Eyebrow label={item.status} dark={dark} />
-        <h2
-          className={`max-w-3xl font-heading text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] md:text-[32px] ${
-            dark ? "text-white" : "text-ink"
-          }`}
-        >
-          {item.title}
-        </h2>
-        <p
-          className={`mt-5 max-w-2xl text-[17px] leading-[1.65] ${
-            dark ? "text-white/75" : "text-ink-muted"
-          }`}
-        >
-          {item.body}
-        </p>
-        {item.href && (
-          <Link
-            href={item.href}
-            {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            aria-label={item.external ? `${item.title} (opens in a new tab)` : undefined}
-            /* Red is 2.8:1 on slate, so on dark the link is white and carries an
-               underline to stay distinguishable from the body copy without colour. On
-               tint action-deep is 5.06:1 and needs no underline to be found. */
-            className={`mt-6 inline-block font-heading text-[15px] font-semibold ${
-              dark
-                ? "text-white underline underline-offset-[5px] hover:no-underline"
-                : "text-action-deep no-underline hover:text-action-deeper"
-            }`}
-          >
-            {item.external ? "Visit the Center" : "Read more"}
-          </Link>
-        )}
-      </FadeIn>
-    </section>
-  );
-}
+const GROUPS: { title: string; items: ServiceCard[]; fields: Field[] }[] = [
+  { title: "Consulting to Hire Services", items: CONSULTING_TO_HIRE, fields: ["slate", "crimson", "deep"] },
+  { title: "Other Services", items: OTHER_SERVICES, fields: ["deep", "slate", "crimson"] },
+];
+
+const PANEL_FIELDS: Field[] = ["slate", "crimson", "tint"];
+
+/** Clients Our History names, or their neighbours on the partner wall, with a logo on file. */
+const CLIENT_NAMES = [
+  "HP", "BNY Mellon", "American Airlines", "Eaton Corporation", "Eversource", "Bristol Myers Squibb",
+  "Chubb", "Guardian Life Insurance", "HBO", "Mount Sinai Health System", "Panasonic", "Fannie Mae",
+];
+const CLIENT_LOGOS = CLIENT_NAMES.map((name) => {
+  const logo = PARTNERS.find((p) => p.name === name);
+  if (!logo) throw new Error(`content/partners.ts has no partner "${name}"`);
+  return logo;
+});
+
+const i = stagger;
 
 /**
  * The homepage, shared by `/` and `/announcements-demo` so the demo is the real page
@@ -110,215 +79,332 @@ function PartnershipSection({ item, dark }: { item: Partnership; dark: boolean }
  *
  * Two slots and no more, because they are the only two places the demo puts anything
  * inside the page; everything else it shows sits around it. `/` passes neither, and an
- * empty slot renders nothing, so the homepage is byte for byte what it was.
+ * empty slot renders nothing.
+ *
+ * Every word, figure and photograph comes from the content files. Dense copy is set as
+ * structure rather than cut: lists inside sentences become lists, and the impact figures
+ * sit inside one sentence.
  */
 export default function HomePage({
   heroNotice,
   afterImpact,
 }: {
-  /** Sits under the hero buttons, inside the photograph band. */
+  /** Sits under the hero buttons, on the opening gradient. */
   heroNotice?: ReactNode;
-  /** A full section between the impact band and The WOS Business Solution. */
+  /** A full chapter between the impact figures and the overview film. */
   afterImpact?: ReactNode;
 }) {
-  return (
-    <>
-      {/* 1. Hero. The section keeps its slate fill under the photograph, so a failed
-             image load lands on exactly the design this page had before, and the white
-             text is measured against slate rather than against whatever the photo does.
-             §7 sanctions bg-surface-deep/85 for legibility over an image, and at 85 the
-             photograph is not legible content, it is invisible: the band rendered
-             indistinguishable from the flat slate it replaced. 70 was measured rather
-             than eyeballed. Sampling the composited pixels behind the text block, the
-             99th percentile brightest gives white 4.99:1 at /70 and 4.47:1 at /65, so 70
-             is the last stop that clears 4.5:1 for the 11px eyebrow, which is the
-             smallest text here and therefore the binding constraint.
-             object-top because the faces sit in the upper half and a centre crop cuts
-             them, which is the same crop-anchoring note §7 records for this photograph. */}
-      <section className="relative bg-surface-dark text-white">
-        <Image
-          src="/images/171206_4700_cropped-scaled-1-1.jpg"
-          alt=""
-          fill
-          priority
-          sizes="100vw"
-          className="object-cover object-top"
-        />
-        <div className="absolute inset-0 bg-surface-deep/70" />
-        <span className="absolute left-0 top-0 z-10 h-[3px] w-20 bg-action" />
-        <div className="relative z-10 mx-auto max-w-6xl px-6 pb-28 pt-28 md:pb-32 md:pt-32">
-          <p className="mb-4 font-heading text-[11px] font-bold uppercase tracking-[0.18em] text-white/85">
-            {ORG}
-          </p>
-          <h1 className="max-w-4xl font-heading text-[42px] font-semibold leading-[1.05] tracking-[-0.03em] md:text-[68px]">
-            {TAGLINE}
-          </h1>
-          <div className="mt-10 flex flex-wrap gap-4">
-            <PrimaryButton href="/contact">Schedule a free consultation</PrimaryButton>
-            <SecondaryButton href="/our-story" dark>
-              Our story
-            </SecondaryButton>
-          </div>
-          {heroNotice}
-        </div>
-      </section>
+  // The Business Solution paragraph turns on four words. Set as type they carry the
+  // argument, so the sentence that lists them is split around them.
+  const [solutionLead, solutionRest] = cut(
+    prose("The WOS Business Solution"),
+    "The decision typically comes down to a question of culture, cost, control, and continuity.",
+  );
 
-      {/* 2. Our impact, moved up from position seven. It is the strongest thing the page
-             has and it used to sit below six screens of prose. As a tight band directly
-             under the hero it reads as proof, and it gives the dark hero a light section
-             to land on. Not wrapped in FadeIn: it is above the fold.
-             On tint the labels go to ink and the notes to ink-muted; red stays on the
-             rules only, since it never carries small text on either surface. */}
-      <section className="bg-surface-tint py-12">
-        <div className="mx-auto max-w-6xl px-6">
-          <ul className="m-0 grid list-none grid-cols-1 gap-10 p-0 md:grid-cols-3 md:gap-16">
-            {IMPACT.map((stat) => (
-              <li key={stat.label}>
-                <CountUp
-                  value={stat.value}
-                  className="block font-heading text-[52px] font-semibold leading-none tracking-[-0.03em] text-ink md:text-[64px]"
+  // The Method paragraph is three ideas run together. The first stays prose; the other
+  // two are lists inside a sentence, and are set as lists.
+  const [methodLead] = cut(prose("Our Unique Method and Solution"), "WOS finds talent");
+  const [historyLead, historyClients] = cut(prose("Our History"), "We have over 85 clients including");
+
+  const careers = impact("Careers impacted");
+  const partners = impact("Corporate partners");
+  const locations = impact("Locations");
+  const countries = (locations.note ?? "").split(/,\s*|\s*&\s*/);
+
+  return (
+    <Chapters>
+      {/* 1. Opening, on the signature gradient. The tagline runs the full width in
+             capitals; the supporting copy and the photograph share the row beneath. */}
+      <Chapter field="gradient" className="overflow-clip">
+        <div className={`${WRAP} pb-16 pt-14 md:pb-20 md:pt-20`}>
+          <h1 className="font-heading text-[clamp(34px,5vw,72px)] font-bold uppercase leading-[1.02] tracking-[-0.02em]">
+            <span className="mask-line" style={i(0)}>
+              <span>We find, develop,</span>
+            </span>
+            <span className="mask-line" style={i(1)}>
+              <span>and convert talent</span>
+            </span>
+            <span className="mask-line" style={i(2)}>
+              <span className="text-wos-red">from local communities.</span>
+            </span>
+          </h1>
+          <div className="mt-10 grid items-center gap-10 md:mt-12 md:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] md:gap-14">
+            <div className="rise-in" style={{ ["--delay" as string]: "480ms" }}>
+              <p className={`max-w-[44ch] ${TYPE.body} text-[var(--field-muted)]`}>{DESCRIPTION}</p>
+              <div className="mt-8 flex flex-wrap gap-4">
+                <PrimaryButton href="/contact" size="lg">
+                  Schedule a free consultation
+                </PrimaryButton>
+                <SecondaryButton href="/our-story" size="lg">
+                  Our story
+                </SecondaryButton>
+              </div>
+              {heroNotice}
+            </div>
+            <div className="relative">
+              <Motif
+                className="absolute -left-12 -top-14 z-10 hidden h-[120px] w-[120px] md:block"
+                firstFill="fill-white"
+              />
+              <div className="relative aspect-[16/10] w-full overflow-hidden bg-surface-deep">
+                <Image
+                  src="/images/171206_4700_cropped-scaled-1-1.jpg"
+                  alt="Three people on a panel at a WOS event, one speaking into a microphone"
+                  fill
+                  priority
+                  sizes="(min-width: 768px) 55vw, 100vw"
+                  className="object-cover object-top"
                 />
-                <span className="mt-4 block h-0.5 w-10 bg-accent" />
-                <p className="mt-3 font-heading text-[13px] font-semibold uppercase tracking-[0.12em] text-ink">
-                  {stat.label}
-                </p>
-                {stat.note && (
-                  <p className="mt-2 text-[14px] leading-[1.5] text-ink-muted">{stat.note}</p>
-                )}
+              </div>
+            </div>
+          </div>
+        </div>
+      </Chapter>
+
+      {/* 2. Impact, as one sentence with the figures inside it. */}
+      <Chapter field="tint" label="Our impact">
+        <div className={`${WRAP} grid gap-10 py-16 md:grid-cols-[minmax(0,2fr)_minmax(0,1fr)] md:items-center md:gap-16 md:py-20`}>
+          <p className={`${TYPE.statement} text-[clamp(30px,3.6vw,50px)]`}>
+            Since 2005, <CountUp value={careers.value} className="text-action-deeper" /> careers impacted, with{" "}
+            <CountUp value={partners.value} className="text-action-deeper" /> corporate partners, in{" "}
+            <CountUp value={locations.value} className="text-action-deeper" /> countries.
+          </p>
+          <ul className="m-0 list-none p-0 font-heading text-[20px] font-semibold">
+            {countries.map((c) => (
+              <li key={c} className="border-t-2 border-[var(--field-rule)] py-2.5">
+                {c}
               </li>
             ))}
           </ul>
         </div>
-      </section>
+      </Chapter>
 
       {afterImpact}
 
-      {/* 3 and 4. */}
-      <ProseSection heading="The WOS Business Solution" />
-      <ProseSection heading="Our Unique Method and Solution" tint />
-
-      {/* 5. Our Services. py-24 rather than py-20: it is the largest block on the page
-             and DESIGN.md §5 asks for a rhythm rather than a uniform one. */}
-      <section className="py-24">
-        <FadeIn className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="Our services" />
-          <h2 className="max-w-3xl font-heading text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-ink md:text-[38px]">
-            Our Services
-          </h2>
-          {prose("Our Services").body.map((para, i) => (
-            <p key={i} className="mt-6 max-w-3xl text-[17px] leading-[1.65] text-ink-muted">
-              {para}
+      {/* The overview film, straight after the figures: the numbers say what WOS has
+             done, and this is the quickest way to see what that looks like. */}
+      <Chapter field="deep" id="watch">
+        <InView className={`${WRAP} ${PAD} grid items-center gap-10 md:grid-cols-[minmax(0,0.75fr)_minmax(0,1.25fr)] md:gap-16`}>
+          <div>
+            <h2 className={`reveal ${TYPE.h2}`}>{OVERVIEW.title}</h2>
+            <p className={`reveal mt-6 max-w-[40ch] ${TYPE.lead} text-[var(--field-muted)]`} style={i(1)}>
+              {OVERVIEW.summary}
             </p>
+            <div className="reveal mt-8" style={i(2)}>
+              <TextLink href={CHANNEL_URL}>More on our YouTube channel</TextLink>
+            </div>
+          </div>
+          <div className="reveal" style={i(1)}>
+            <VideoEmbed video={OVERVIEW} sizes="(min-width: 768px) 60vw, 100vw" />
+          </div>
+        </InView>
+      </Chapter>
+
+      {/* 3. The business solution and the method. Headings run the full width so they
+             hold to two lines; the copy splits into two columns beneath. */}
+      <Chapter field="paper" id="solution">
+        <div className={`${WRAP} ${PAD}`}>
+          <InView>
+            <h2 className={`reveal ${TYPE.h2}`}>The WOS Business Solution</h2>
+            <div className="mt-8 grid gap-10 md:mt-10 md:grid-cols-2 md:gap-16">
+              <div>
+                <p className={`reveal max-w-[38ch] ${TYPE.lead}`} style={i(1)}>
+                  {solutionLead}
+                </p>
+                <p className={`reveal mt-6 max-w-[52ch] ${TYPE.body}`} style={i(2)}>
+                  {solutionRest}
+                </p>
+              </div>
+              <div>
+                <p className={`reveal ${TYPE.body} text-[var(--field-muted)]`} style={i(2)}>
+                  The decision typically comes down to a question of
+                </p>
+                <ul className="m-0 mt-4 grid list-none grid-cols-2 gap-x-6 gap-y-4 p-0">
+                  {["Culture", "Cost", "Control", "Continuity"].map((w, n) => (
+                    <li
+                      key={w}
+                      className="reveal border-t-4 border-[var(--field-rule)] pt-3 font-heading text-[26px] font-semibold tracking-[-0.02em] lg:text-[34px]"
+                      style={i(n + 3)}
+                    >
+                      {w}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </InView>
+
+          <InView className="mt-20 md:mt-28">
+            <h2 className={`reveal ${TYPE.h2}`}>Our Unique Method and Solution</h2>
+            <div className="mt-8 grid gap-10 md:mt-10 md:grid-cols-[minmax(0,0.8fr)_minmax(0,1.2fr)] md:gap-16">
+              <div className="reveal relative aspect-[4/3] w-full overflow-hidden bg-surface-tint md:aspect-auto" style={i(1)}>
+                <Image
+                  src="/images/20160527_21_cropped-scaled-1-1.jpg"
+                  alt="Participants working at computers in a WOS training classroom"
+                  fill
+                  sizes="(min-width: 768px) 40vw, 100vw"
+                  className="object-cover object-[35%_50%]"
+                />
+              </div>
+              <div>
+                <p className={`reveal max-w-[42ch] ${TYPE.lead}`} style={i(2)}>
+                  {methodLead}
+                </p>
+                <div className="mt-10 grid gap-10 lg:grid-cols-2">
+                  <FactList
+                    title="Where our talent comes from"
+                    items={["Local communities", "College graduates", "Military veterans"]}
+                    start={3}
+                  />
+                  <FactList
+                    title="How we help our employees succeed"
+                    items={[
+                      "Professional development and technical training",
+                      "Paid part-time college tuition",
+                      "Special financial assistance where needed",
+                    ]}
+                    start={6}
+                  />
+                </div>
+              </div>
+            </div>
+          </InView>
+        </div>
+      </Chapter>
+
+      {/* 4. The one sentence that explains the model, given a chapter of its own, with
+             the arrows on the other side so the statement has a partner, not a void. */}
+      <Chapter field="red" className="overflow-clip" label="Why conversion works">
+        <InView className={`${WRAP} grid items-center gap-10 py-20 md:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] md:py-24`}>
+          <p className={`reveal ${TYPE.statement} text-[clamp(30px,3.8vw,54px)]`}>
+            Upon conversion to employment, our consultants already know your business and culture.
+          </p>
+          <Motif
+            draw={false}
+            className="pointer-events-none mx-auto hidden h-auto w-full max-w-[300px] md:block"
+            firstFill="fill-surface-deep"
+            secondFill="fill-white"
+          />
+        </InView>
+      </Chapter>
+
+      {/* 5. Services, as full-width bands of colour that alternate their picture side. */}
+      <Chapter field="paper" id="services">
+        <InView className={`${WRAP} pb-12 pt-20 md:pb-14 md:pt-28`}>
+          <SectionHeading intro={prose("Our Services")}>Our Services</SectionHeading>
+        </InView>
+
+        {GROUPS.map((group, g) => (
+          <div key={group.title}>
+            <h3 className={`${WRAP} pb-5 ${TYPE.label} ${g ? "pt-12" : ""}`}>{group.title}</h3>
+            <ServiceBands items={bands(group.items)} fields={group.fields} headingLevel="h4" />
+          </div>
+        ))}
+      </Chapter>
+
+      {/* 6. Partnerships and centers, side by side. What each one is (a partnership, a
+             center, an institute) closes the panel rather than labelling it from above.
+             The Center's Teachers College credit is the sanctioned one, DESIGN.md §0. */}
+      <Chapter field="slate" id="partnerships" label="Partnerships and centers">
+        <ul className="m-0 grid list-none p-0 lg:grid-cols-3">
+          {PARTNERSHIPS.map((p, n) => (
+            <li key={p.title} className={`${fieldClass(PANEL_FIELDS[n])} flex`}>
+              <InView className="flex w-full flex-col justify-between gap-10 px-5 py-14 md:px-10 md:py-16">
+                <div>
+                  <h2 className="reveal font-heading text-[26px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[30px]">
+                    {p.title}
+                  </h2>
+                  <p className={`reveal mt-4 max-w-[46ch] ${TYPE.body}`} style={i(1)}>
+                    {p.body}
+                  </p>
+                </div>
+                <div className="reveal flex flex-wrap items-baseline justify-between gap-4" style={i(2)}>
+                  <span className="text-[15px] text-[var(--field-muted)]">{p.status}</span>
+                  {p.href && (
+                    <Link
+                      href={p.href}
+                      {...(p.external
+                        ? { target: "_blank", rel: "noopener noreferrer", "aria-label": `${p.title} (opens in a new tab)` }
+                        : {})}
+                      className="font-heading text-[16px] font-semibold text-[var(--field-link)] underline underline-offset-[6px] hover:text-[var(--field-link)] hover:no-underline"
+                    >
+                      {p.external ? "Visit the Center" : "Read more"}
+                    </Link>
+                  )}
+                </div>
+              </InView>
+            </li>
           ))}
+        </ul>
+      </Chapter>
 
-          {/* Subordinate to "Our Services": these are the two groupings inside it, not
-              two more sections. An eyebrow with the accent rule sets them a clear level
-              below the h2 without shrinking them into captions. */}
-          <div className="mt-16">
-            <Eyebrow label="Consulting to Hire Services" />
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {CONSULTING_TO_HIRE.map((card) => (
-              <ServiceCard key={card.href} card={card} />
-            ))}
-          </div>
+      {/* 7. The approach, as the page's one pinned scene. */}
+      <Chapter field="deep" id="approach">
+        <JourneyScene steps={APPROACH} />
+      </Chapter>
 
-          <div className="mt-14">
-            <Eyebrow label="Other Services" />
-          </div>
-          <div className="grid gap-6 md:grid-cols-3">
-            {OTHER_SERVICES.map((card) => (
-              <ServiceCard key={card.href} card={card} />
-            ))}
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* 6, 7 and 8. One section each, named for what each thing actually is.
-             They were one band under the heading "What we are building next", which was
-             written here rather than carried from the live site. Every other heading on
-             this page is the client's own words and this one was not, which is the
-             promotional register DESIGN.md §1 rules out.
-             No Hunter logo in any of them. It is purple, it would not read on slate, and
-             it lives on the white tiles of the academic partner wall and on its own page. */}
-      {PARTNERSHIPS.map((item, i) => (
-        <PartnershipSection key={item.title} item={item} dark={i % 2 === 1} />
-      ))}
-
-      {/* 9. Our approach. White rather than tint: its tiles are slate, and a tinted
-             section holding dark tiles directly under the dark section above would read
-             as two dark blocks with a grey seam between them. */}
-      <section className="py-20">
-        <FadeIn className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="Our approach" />
-          {/* One continuous slate band split by hairlines, as on the live page. Four
-              separate cards would read as four unrelated things rather than a sequence. */}
-          <ol className="m-0 grid list-none grid-cols-1 gap-px bg-hairline-strong p-0 md:grid-cols-4">
-            {APPROACH.map((a, i) => (
-              <li key={a.step} className="bg-surface-dark px-6 py-8">
-                {/* Red on slate is 2.8:1, so it never carries text. A numeral at 34px
-                    is well past the large-text threshold and reads cleanly. */}
-                <span className="block font-heading text-[34px] font-semibold leading-none text-action">
-                  {i + 1}
-                </span>
-                <span className="mt-3 block h-0.5 w-6 bg-white/25" />
-                <h3 className="mt-4 font-heading text-[14px] font-semibold uppercase tracking-[0.08em] text-white">
-                  {a.step}
+      {/* Partner stories: three of the partnerships the page names, in their own words. */}
+      <Chapter field="paper" id="stories">
+        <div className={`${WRAP} ${PAD}`}>
+          <InView className="flex flex-wrap items-end justify-between gap-6">
+            <h2 className={`reveal ${TYPE.h2}`}>Partner stories</h2>
+            <div className="reveal" style={i(1)}>
+              <TextLink href={CHANNEL_URL}>All videos on YouTube</TextLink>
+            </div>
+          </InView>
+          <InView as="ul" className="m-0 mt-10 grid list-none gap-10 p-0 md:mt-12 md:grid-cols-3 md:gap-8">
+            {PARTNER_STORIES.map((video, n) => (
+              <li key={video.id} className="reveal" style={i(n)}>
+                <VideoEmbed video={video} sizes="(min-width: 768px) 33vw, 100vw" />
+                <h3 className="mt-5 font-heading text-[22px] font-semibold leading-snug tracking-[-0.01em]">
+                  {video.title}
                 </h3>
-                <p className="mt-3 text-[14px] leading-[1.6] text-white/75">{a.body}</p>
+                <p className={`mt-2 ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>{video.summary}</p>
               </li>
             ))}
-          </ol>
-        </FadeIn>
-      </section>
-
-      {/* 10. Our History, merged with the partner wall it used to sit six sections away
-             from. The copy names Parsons, J&J, GE, HP, Prudential, BNY Mellon, American
-             Airlines and JetBlue, and the wall below shows those marks, so running one
-             into the other makes the wall evidence rather than decoration.
-             Tinted because the wall's white tiles need a ground; see PartnerWall. */}
-      <section className="bg-surface-tint py-20">
-        <FadeIn className="mx-auto max-w-6xl px-6">
-          <Eyebrow label="Our history" />
-          <h2 className="font-heading text-[30px] font-semibold leading-[1.12] tracking-[-0.015em] text-ink md:text-[38px]">
-            Our History
-          </h2>
-          {prose("Our History").body.map((para, i) => (
-            <p key={i} className="mt-6 max-w-3xl text-[17px] leading-[1.65] text-ink-muted">
-              {para}
-            </p>
-          ))}
-          {/* This line closed the impact band before it moved up. It is a history fact
-              rather than an impact figure, and under three numerals it read as a
-              footnote to nothing, so it lands here rather than being dropped. */}
-          <p className="mt-5 max-w-3xl text-[17px] leading-[1.65] text-ink-muted">
-            Founded in 2005 as a 501(c)(3) social enterprise.
-          </p>
-
-          <div className="mt-14">
-            <Eyebrow label="Corporate partners served" />
-          </div>
-          <PartnerWall limit={16} muted />
-          <div className="mt-8">
-            <Link
-              href="/corporate-partners"
-              className="font-heading text-[15px] font-semibold text-action-deep no-underline hover:text-action-deeper"
-            >
-              See all corporate partners
-            </Link>
-          </div>
-        </FadeIn>
-      </section>
-
-      {/* 11. */}
-      <section className="bg-surface-dark py-16">
-        <div className="mx-auto flex max-w-6xl flex-col gap-6 px-6 md:flex-row md:items-center md:justify-between">
-          <h2 className="max-w-xl font-heading text-[28px] font-semibold leading-[1.15] tracking-[-0.01em] text-white md:text-[34px]">
-            Schedule your free consultation
-          </h2>
-          <PrimaryButton href="/contact">Get in touch</PrimaryButton>
+          </InView>
         </div>
-      </section>
-    </>
+      </Chapter>
+
+      {/* 8. History, beside the people it is about, with the partners it names below. */}
+      <Chapter field="tint" id="history">
+        <div className={`${WRAP} ${PAD}`}>
+          <InView className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.15fr)] md:items-center md:gap-16">
+            <div>
+              <h2 className={`reveal ${TYPE.h2}`}>Our History</h2>
+              <p className={`reveal mt-6 ${TYPE.lead}`} style={i(1)}>
+                {historyLead}
+              </p>
+              <p className={`reveal mt-5 ${TYPE.body}`} style={i(2)}>
+                We have over 85 clients including {historyClients}
+              </p>
+            </div>
+            <div className="reveal relative aspect-[16/10] w-full overflow-hidden bg-surface-deep" style={i(1)}>
+              <Image
+                src="/images/Cohort_2024.jpg"
+                alt="The 2024 WOS cohort standing together in front of a mural"
+                fill
+                sizes="(min-width: 768px) 55vw, 100vw"
+                className="object-cover object-[50%_45%]"
+              />
+            </div>
+          </InView>
+
+          <InView as="ul" className="m-0 mt-12 grid list-none grid-cols-2 gap-1 p-0 sm:grid-cols-3 md:mt-16 lg:grid-cols-6">
+            {CLIENT_LOGOS.map((logo, n) => (
+              <li key={logo.src} className="reveal flex h-24 items-center justify-center bg-white p-5" style={i(n % 6)}>
+                <Image src={logo.src} alt={logo.name} width={200} height={80} className="max-h-11 w-auto max-w-full object-contain" />
+              </li>
+            ))}
+          </InView>
+          <TextLink href="/corporate-partners" className="mt-8">
+            See all corporate partners
+          </TextLink>
+        </div>
+      </Chapter>
+
+      {/* 9. The close, back on the gradient, meeting the footer. */}
+      <CloseChapter title="Schedule your free consultation" href="/contact" action="Get in touch" />
+    </Chapters>
   );
 }

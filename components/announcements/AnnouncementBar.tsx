@@ -30,7 +30,7 @@ export default function AnnouncementBar({ item }: { item: Announcement }) {
       className="bg-action-deep text-white"
       suppressHydrationWarning
     >
-      <div className="mx-auto flex max-w-6xl items-center gap-3 px-6 py-1.5">
+      <div className="mx-auto flex w-full max-w-[1320px] items-center gap-3 px-5 py-1.5 md:px-8">
         <p className="m-0 flex-1 py-1.5 text-[14px] leading-[1.45]">
           <span className="mr-3 font-heading text-[11px] font-bold uppercase tracking-[0.15em]">
             New

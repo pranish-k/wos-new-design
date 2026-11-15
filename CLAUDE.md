@@ -149,8 +149,8 @@ The menu was reorganised and the old landing pages were left behind.
 Read it before writing any component.
 Before making a visual judgment call, add it there.
 
-`/alternate-home` is a scoped design exploration that breaks several of the rules below on purpose.
-Its exemptions are written out in `DESIGN.md` §11; they do not apply anywhere else.
+The site runs in the colour-chapter direction, adopted site-wide on 2026-11-15.
+The original editorial direction is on `main` and, beside the exploration that replaced it, on the `alternate-home` branch.
 
 The rules below are the ones most often broken.
 
@@ -158,31 +158,35 @@ The rules below are the ones most often broken.
 Every colour is a token in `app/globals.css`.
 If the colour you want is not a token, the answer is almost always an existing token.
 
-**Red is the only accent.**
-It is 4.47:1 on white and 2.8:1 on slate, so it marks rules and fills but never small text on either surface.
-Label text is muted ink on light surfaces and white on dark.
+**Inside a chapter, every colour comes from the field.**
+Pages are runs of full-bleed chapters (`components/Chapter.tsx`), and each field sets its own ink, link, button, rule and accent as `var(--field-*)`.
+Use those, never `border-wos-red`, `bg-action-deep` or `text-white`: a red rule vanishes on the red field and a red button vanishes on crimson.
+No component takes a `dark` prop.
+
+**Two neighbouring chapters never share a field, and a page never ends on slate or deep.**
+The first reads as one oversized block; the second merges into the slate footer.
+Both throw at build time, in `Chapters` and `ContentSections`. Fix the field, not the check.
+
+**Red is the only accent hue.**
+It is 4.47:1 on white and 2.8:1 on slate, so red text appears only at 24px and up and never on slate.
+White body copy goes on crimson, never on the red field.
 
 **Teal does not exist as a token and that is deliberate.**
 `bg-wos-teal` will not compile.
 It read as a second accent competing with red, and its hue leaked into the neutrals and tinted every surface.
 A colour that should not be used is best represented by a token that does not exist.
 
-**No rounded corners, no drop shadows, no glassmorphism.**
-The reference bar is Columbia GSAPP and MIT Media Lab, not a SaaS startup.
-Straight edges read as authoritative.
+**No rounded corners, no drop shadows, no glassmorphism, no copy over photographs.**
+The partner logo wall's `shadow-sm` is the one exception, and `DESIGN.md` §7 says why.
 
-**No full box drawn around content.**
-A dark or high contrast box is the fastest way to make a page look cheap.
-Separation comes from fill, spacing, and type hierarchy.
-A 1px light border between a white card and a white page divides nothing and reads as unfinished: give the card a `surface-tint` fill instead.
+**Never invent copy to fill a layout.**
+Restructure what the client wrote, as a list, a statement or a label, or leave the slot empty.
 
-**Vary the section rhythm.**
-Not every section gets `py-20`.
-Never put two `surface-tint` blocks in a row or two dark sections back to back; both read as one oversized block.
+**Use the `wrap:` breakpoint, never `min-[1320px]:`.**
+Tailwind emits arbitrary breakpoints before the named ones, so `md:` silently overrides them.
 
-**Motion is the seven gestures in `DESIGN.md` §10 and nothing else.**
-Any JavaScript-driven motion ships its final state in the server-rendered HTML and guards itself on `prefers-reduced-motion`.
-CSS transitions are already covered by the global reduced-motion rule in `globals.css`.
+**Motion is the gestures in `DESIGN.md` §10 and nothing else.**
+Every hidden starting state sits inside `prefers-reduced-motion: no-preference` and is armed by script, so the server-rendered page is always complete.
 
 ## Verifying visual changes
 
@@ -193,6 +197,7 @@ The check commands are in `DESIGN.md` §9.
 **Check 6 is the one that matters and the one that gets skipped.**
 It greps the built CSS to prove the tokens actually shipped.
 Checks 1 through 5 all pass on a completely broken build.
+Check 7 does the same for the `--field-*` variables, which fail just as silently.
 
 Grep the compiled CSS, not just the components.
 A stale token can live in `globals.css` and reach every page without appearing in any component.

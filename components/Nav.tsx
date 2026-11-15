@@ -271,13 +271,13 @@ export default function Nav() {
   };
 
   return (
-    <header className="sticky top-0 z-50 bg-white">
+    <header className="sticky top-0 z-50 border-b border-hairline bg-white">
       {/* z-50 lifts the bar over the mobile overlay below it, which shares this header's
           stacking context. Without it the overlay covered the logo and the close button,
           and Escape was the only way out of the menu. */}
       <div
         ref={barRef}
-        className="relative z-50 mx-auto flex w-full max-w-6xl items-center justify-between gap-4 border-b border-hairline px-6 py-3 lg:min-h-[72px] lg:py-0"
+        className="relative z-50 mx-auto flex w-full max-w-[1320px] items-center justify-between gap-4 px-5 py-3 md:px-8 lg:min-h-[72px] lg:py-0"
         onMouseLeave={close}
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node)) close();
@@ -346,9 +346,9 @@ export default function Nav() {
                 </button>
 
                 {/* Positioned against the bar, not the trigger, so all three panels
-                    share one position. right-6 matches the bar's px-6, putting the
-                    card's right edge where Donate ends; a three-column card is about
-                    700px against 1104px of content width, so it still covers its own
+                    share one position. right-5 and md:right-8 match the bar's padding,
+                    putting the card's right edge where Donate ends; a three-column card
+                    is about 700px against 1256px of content width, so it still covers its own
                     trigger and cannot overflow. mt-px clears the bar's bottom border.
 
                     White with a 1px hairline border, no shadow. §8 bans a border around
@@ -358,7 +358,7 @@ export default function Nav() {
                 <div
                   id={`nav-panel-${i}`}
                   hidden={open !== i}
-                  className="absolute right-6 top-full mt-px w-max max-w-[calc(100vw-3rem)] border border-hairline bg-white p-6"
+                  className="absolute right-5 top-full mt-px w-max max-w-[calc(100vw-2.5rem)] border border-hairline bg-white p-6 md:right-8 md:max-w-[calc(100vw-4rem)]"
                 >
                   <Panel group={node} onNavigate={close} />
                 </div>

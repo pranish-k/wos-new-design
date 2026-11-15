@@ -67,10 +67,7 @@ export const IMPACT = [
   { value: "8,000+", label: "Careers impacted" },
 ];
 
-/**
- * The four stages of the WOS approach, shared by the homepage and /alternate-home so
- * the two cannot drift apart.
- */
+/** The four stages of the WOS approach, the homepage's pinned scene. */
 export const APPROACH = [
   {
     step: "Recruit the best",

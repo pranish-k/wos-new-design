@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect } from "react";
-import { Eyebrow, SecondaryButton } from "@/components/Brand";
+import { PAD_TIGHT, PageHero, SecondaryButton, WRAP } from "@/components/Brand";
+import { Chapter } from "@/components/Chapter";
 
 /**
  * The route-level error boundary.
@@ -29,38 +30,29 @@ export default function Error({
 
   return (
     <article>
-      <header className="bg-surface-dark">
-        <div className="mx-auto max-w-6xl px-6 pb-16 pt-20">
-          <Eyebrow label="Error" dark />
-          <h1 className="max-w-3xl font-heading text-[40px] font-semibold leading-[1.08] tracking-[-0.02em] text-white md:text-[56px]">
-            Something went wrong
-          </h1>
-          <p className="mt-6 max-w-xl text-[17px] leading-[1.7] text-white/75">
-            This page failed to load. Trying again often clears it.
-          </p>
-        </div>
-      </header>
-
-      <section className="py-16">
-        <div className="mx-auto max-w-6xl px-6">
-          <div className="flex flex-wrap gap-4">
+      <PageHero
+        label="Error"
+        title="Something went wrong"
+        lead="This page failed to load. Trying again often clears it."
+        actions={
+          <>
             <button
               type="button"
               onClick={reset}
-              className="inline-block bg-action-deep px-7 py-3 font-heading text-sm font-semibold tracking-[0.02em] text-white transition-colors hover:bg-action-deeper"
+              className="inline-block cursor-pointer bg-[var(--field-btn)] px-7 py-3.5 font-heading text-[15px] font-semibold tracking-[0.01em] text-[var(--field-btn-ink)] transition-colors hover:bg-[var(--field-btn-hover)]"
             >
               Try again
             </button>
             <SecondaryButton href="/">Return home</SecondaryButton>
-          </div>
+          </>
+        }
+      />
 
-          {error.digest && (
-            <p className="mt-10 font-mono text-sm text-ink-muted">
-              Reference: {error.digest}
-            </p>
-          )}
-        </div>
-      </section>
+      {error.digest && (
+        <Chapter field="paper">
+          <p className={`${WRAP} ${PAD_TIGHT} font-mono text-sm text-[var(--field-muted)]`}>Reference: {error.digest}</p>
+        </Chapter>
+      )}
     </article>
   );
 }

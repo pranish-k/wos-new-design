@@ -43,7 +43,6 @@ const page: PageContent = {
     },
     {
       heading: "Staff Augmentation Model",
-      fill: "dark",
       density: "feature",
       blocks: [
         {

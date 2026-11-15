@@ -3,7 +3,7 @@ import { useId } from "react";
 /**
  * The motif: the O from the WOS mark, two arrows chasing each other round a ring.
  *
- * The one shape on /alternate-home, chosen because it is the brand's own picture of
+ * The site's one shape, chosen because it is the brand's own picture of
  * what WOS does: talent goes round, and comes back converted. Drawn after the mark:
  *
  * - the arrows run anticlockwise: the left one down to a head at the bottom pointing
@@ -17,7 +17,7 @@ import { useId } from "react";
  * a stroked line with a triangle stuck on the end: that is what keeps the head's back
  * flush with the band and the gaps even. The draw-on is a stroke inside a mask running
  * along each arrow's centre line, so the whole arrow, head included, draws in one
- * motion (see .alt-motif-stroke in alternate-home.css).
+ * motion (see .motif-stroke in globals.css).
  */
 
 const C = 120;
@@ -114,7 +114,7 @@ export default function Motif({
       viewBox="0 0 240 240"
       aria-hidden="true"
       focusable="false"
-      className={`${draw ? "alt-motif-draw" : ""} ${className}`.trim()}
+      className={`${draw ? "motif-draw" : ""} ${className}`.trim()}
     >
       <defs>
         {arrows.map((a, n) => (
@@ -125,7 +125,7 @@ export default function Motif({
               fill="none"
               stroke="white"
               strokeWidth={REVEAL_WIDTH}
-              className="alt-motif-stroke"
+              className="motif-stroke"
               style={{ ["--i" as string]: n }}
             />
             {a.stars && STARS.map((deg) => <path key={deg} d={star(deg, 14)} fill="black" />)}
