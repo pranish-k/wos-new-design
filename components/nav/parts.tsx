@@ -1,6 +1,5 @@
 import Link from "next/link";
 import type { ReactNode } from "react";
-import { Arrow } from "@/components/Chapter";
 import { DONATE, NAV, type NavGroup, type NavLink, type NavNode } from "@/lib/nav";
 
 /**
@@ -100,7 +99,7 @@ export function MenuLink({
 // Every top-level entry is a bold heading, whether it is a page on its own or a group.
 // White on the deep field, which both menus sit on.
 const HEAD =
-  "block font-heading text-[21px] font-bold leading-snug text-white no-underline underline-offset-[5px] hover:text-white";
+  "block font-heading text-h4 font-bold text-white no-underline underline-offset-[5px] hover:text-white";
 
 /**
  * One unit: a run of bold page headings, or a group's bold heading with its pages
@@ -120,17 +119,11 @@ export function UnitView({ unit, onNavigate }: { unit: Unit; onNavigate: () => v
     );
   }
 
-  const words = unit.label.split(" ");
   return (
     <div>
       {unit.heading ? (
         <MenuLink link={unit.heading} onNavigate={onNavigate} className={`${HEAD} hover:underline`}>
-          {/* The arrow is bound to the last word, so a wrap takes both. */}
-          {words.slice(0, -1).join(" ")}{" "}
-          <span className="whitespace-nowrap">
-            {words.at(-1)}
-            <Arrow className="ml-2 inline h-[11px] w-[14px] align-[0.02em]" />
-          </span>
+          {unit.label}
         </MenuLink>
       ) : (
         <p className={HEAD}>{unit.label}</p>
@@ -141,7 +134,7 @@ export function UnitView({ unit, onNavigate }: { unit: Unit; onNavigate: () => v
             <MenuLink
               link={link}
               onNavigate={onNavigate}
-              className="block py-2 text-[19px] leading-snug text-white/80 no-underline underline-offset-[4px] hover:text-white hover:underline"
+              className="block py-2 text-body leading-snug text-white/80 no-underline underline-offset-[4px] hover:text-white hover:underline"
             />
           </li>
         ))}

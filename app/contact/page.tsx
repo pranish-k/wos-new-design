@@ -23,7 +23,7 @@ export const metadata: Metadata = {
  * different destination, and it should not read as part of the address.
  */
 export default function Page() {
-  const contact = "font-heading text-[22px] font-semibold leading-snug text-[var(--field-ink)] no-underline underline-offset-[6px] hover:text-[var(--field-ink)] hover:underline md:text-[26px]";
+  const contact = "font-heading text-h4 font-semibold text-[var(--field-ink)] no-underline underline-offset-[6px] hover:text-[var(--field-ink)] hover:underline";
 
   return (
     <article>
@@ -37,7 +37,7 @@ export default function Page() {
         <InView className={`${WRAP} ${PAD} grid gap-12 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)] lg:gap-16`}>
           <div>
             <h2 className={`reveal ${TYPE.label}`}>{HQ.name}</h2>
-            <address className={`reveal mt-4 not-italic ${TYPE.statement} text-[clamp(28px,3.2vw,42px)]`} style={stagger(1)}>
+            <address className={`reveal mt-4 not-italic ${TYPE.statement}`} style={stagger(1)}>
               {HQ.street}
               <br />
               {HQ.unit}

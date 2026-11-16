@@ -49,7 +49,7 @@ export default async function Page({ params }: Props) {
 
       <Chapter field="paper">
         <div className={`${WRAP} ${PAD}`}>
-          <div className="max-w-3xl">
+          <div className="max-w-measure">
             {p.bio.map((block, i) =>
               block.kind === "heading" ? (
                 <h2 key={i} className={`mt-12 first:mt-0 ${TYPE.h3}`}>

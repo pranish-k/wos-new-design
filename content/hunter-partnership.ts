@@ -23,7 +23,7 @@ const page: PageContent = {
   lead: [
     {
       kind: "para",
-      text: "The Workforce Opportunity Services (WOS)-Hunter College AI & Digital Operations Partnership creates a new model for developing and delivering enterprise technology talent. By combining Hunter College’s exceptional pipeline of students and graduates with the unique managed workforce model of WOS, a nationally recognized 501(c)(3) nonprofit, organizations gain access to scalable, professionally managed teams that support digital transformation while building a sustainable local workforce for hire.",
+      text: "The Workforce Opportunity Services (WOS)-Hunter College AI & Digital Operations Partnership creates a new model for developing and delivering enterprise technology talent. By combining Hunter College’s exceptional pipeline of students and graduates with the unique managed workforce model of WOS, a nationally recognized 501(c)⁠(3) nonprofit, organizations gain access to scalable, professionally managed teams that support digital transformation while building a sustainable local workforce for hire.",
     },
     {
       kind: "para",

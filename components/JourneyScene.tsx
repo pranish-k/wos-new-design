@@ -11,13 +11,14 @@ gsap.registerPlugin(ScrollTrigger, useGSAP);
 export type JourneyStep = { step: string; body: string };
 
 /**
- * The WOS approach as the homepage's one pinned scene.
+ * The WOS approach, tied to the scroll as the visitor passes it.
  *
  * The server renders the finished state: the whole ring drawn and all four stages
- * readable as a list. Only on a wide screen with motion allowed does the section pin
- * and scrub: the ring fills as the visitor scrolls and the stage under way is lit while
- * the others wait. Narrow screens and reduced motion keep the plain list, which is the
- * same content with nothing hidden.
+ * readable as a list. On a wide screen with motion allowed, the ring fills and the stage
+ * at the middle of the screen is lit while the visitor scrolls past. The page never
+ * stops: this used to pin for 1.8 screens of scrolling, and a page that stops moving
+ * halfway down reads as stuck rather than as a journey. Narrow screens and reduced motion
+ * keep the plain list, which is the same content with nothing hidden.
  */
 export default function JourneyScene({ steps }: { steps: JourneyStep[] }) {
   const root = useRef<HTMLDivElement>(null);
@@ -44,10 +45,11 @@ export default function JourneyScene({ steps }: { steps: JourneyStep[] }) {
         const tl = gsap.timeline({
           defaults: { ease: "none" },
           scrollTrigger: {
-            trigger: el,
-            start: "top top",
-            end: `+=${n * 45}%`,
-            pin: true,
+            // The stages, not the section: the first is lit as it reaches the middle
+            // of the screen and the last as it leaves it.
+            trigger: el.querySelector("ol"),
+            start: "top 60%",
+            end: "bottom 45%",
             scrub: 0.5,
             onUpdate: (self) => setStage(Math.min(n, Math.floor(self.progress * n) + 1)),
           },
@@ -59,11 +61,11 @@ export default function JourneyScene({ steps }: { steps: JourneyStep[] }) {
           tl.to(items[i - 1], { opacity: 0.22, duration: 0.3 }, i - 0.3);
           tl.to(item, { opacity: 1, duration: 0.3 }, i - 0.3);
         });
-        // Hold the last stage, then hand back a finished list as the pin releases.
+        // Hand back a finished list as the stages scroll on.
         tl.to(items, { opacity: 1, duration: 0.3 }, n - 0.6);
 
         // matchMedia reverts the tweens but not text, so restore the static caption when
-        // the window narrows out of the pinned layout.
+        // the window narrows out of the scroll-linked layout.
         return () => {
           setStage(n);
           if (caption.current) caption.current.textContent = "stages";
@@ -75,37 +77,37 @@ export default function JourneyScene({ steps }: { steps: JourneyStep[] }) {
   );
 
   return (
-    <div ref={root} className="flex items-center py-20 md:py-24 min-[900px]:min-h-[100svh]">
+    <div ref={root} className="py-20 md:py-28">
       <div className="mx-auto grid w-full max-w-[1320px] items-center gap-14 px-5 md:px-8 min-[900px]:grid-cols-[minmax(0,0.9fr)_minmax(0,1.1fr)] min-[900px]:gap-20">
         <div className="relative mx-auto aspect-square w-full max-w-[460px]">
           <MotifRing className="absolute inset-0 h-full w-full" />
           <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
             <span
               ref={counter}
-              className="font-heading text-[112px] font-semibold leading-[0.9] tracking-[-0.03em] text-[var(--field-accent)] md:text-[144px]"
+              className="font-heading text-numeral font-semibold text-[var(--field-accent)]"
             >
               {steps.length}
             </span>
-            <span ref={caption} className="mt-2 font-heading text-[16px] font-medium text-[var(--field-muted)]">
+            <span ref={caption} className="mt-2 font-heading text-small font-medium text-[var(--field-muted)]">
               stages
             </span>
           </div>
         </div>
 
         <div>
-          <h2 className="font-heading text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] md:text-[48px]">
+          <h2 className="font-heading text-h2 font-semibold">
             Our approach
           </h2>
-          <p className="mt-5 max-w-[46ch] text-[18px] leading-[1.6] text-[var(--field-muted)]">
+          <p className="mt-5 max-w-[46ch] text-body text-[var(--field-muted)]">
             One path, four stages, from the first conversation to a professional who stays.
           </p>
           <ol className="m-0 mt-10 grid list-none gap-7 p-0">
             {steps.map((s, i) => (
               <li key={s.step} data-step className="grid grid-cols-[3.2rem_1fr] gap-4">
-                <span className="font-heading text-[26px] font-semibold leading-none text-[var(--field-accent)]">{i + 1}</span>
+                <span className="font-heading text-h3 font-semibold leading-none text-[var(--field-accent)]">{i + 1}</span>
                 <div>
-                  <h3 className="font-heading text-[22px] font-semibold leading-tight md:text-[26px]">{s.step}</h3>
-                  <p className="mt-2 max-w-[52ch] text-[18px] leading-[1.6] text-[var(--field-muted)]">{s.body}</p>
+                  <h3 className="font-heading text-h4 font-semibold">{s.step}</h3>
+                  <p className="mt-2 max-w-[52ch] text-body text-[var(--field-muted)]">{s.body}</p>
                 </div>
               </li>
             ))}

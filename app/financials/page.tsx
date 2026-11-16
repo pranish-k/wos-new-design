@@ -22,10 +22,10 @@ function Filings({ label, filings }: { label: string; filings: Filing[] }) {
               href={f.file}
               // A PDF is a download, not a page, and the reader deserves to know before
               // the click rather than after it.
-              className="group flex items-baseline justify-between gap-4 py-4 font-heading text-[18px] font-semibold text-[var(--field-ink)] no-underline hover:text-[var(--field-ink)]"
+              className="group flex items-baseline justify-between gap-4 py-4 font-heading text-body font-semibold leading-snug text-[var(--field-ink)] no-underline hover:text-[var(--field-ink)]"
             >
               <span className="underline-offset-[5px] group-hover:underline">Year Ending September 30th, {f.year}</span>
-              <span className="text-[13px] font-semibold tracking-[0.08em] text-[var(--field-muted)]">PDF</span>
+              <span className="text-small font-semibold text-[var(--field-muted)]">PDF</span>
             </a>
           </li>
         ))}

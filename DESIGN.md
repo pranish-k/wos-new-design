@@ -162,7 +162,7 @@ Each deviation is recorded in `globals.css` with its measured ratio.
 
 | Token | Value | Why the guide colour could not be used |
 |---|---|---|
-| `action-deep` | `#bf3b28` | Guide red is 4.47:1 on white. Every button label here is 15-16px and needs 4.5:1. |
+| `action-deep` | `#bf3b28` | Guide red is 4.47:1 on white. Every button label here is 16-20px semibold, under the large-text line (24px, or 18.7px at bold 700), and needs 4.5:1. |
 | `action-deeper` | `#a63321` | Hover state for the above, and the crimson field: white body copy on it is 6.74:1. |
 | `ink-muted` | `#6a6a6a` | Guide gray-mid is 3.18:1. It cannot carry body text. |
 | `hairline` | `#e3e3e3` | Neutral, to match the fill. |
@@ -238,24 +238,85 @@ No external requests are made to Google.
 
 ### Scale
 
-The scale is `TYPE` in `components/Brand.tsx`, as class strings, so a page sets an element without a wrapper.
+Every size on the site is one of ten tokens in `app/globals.css`, and nothing else compiles.
+Components reach them through `TYPE` in `components/Brand.tsx`, or directly as `text-body`, `text-h2` and so on.
+Each step is fluid from a 390px phone to a 1280px laptop and fixed beyond, and each carries its own line height and tracking, so `text-h2` is the whole setting.
 
 ```
-Homepage tagline   clamp(34px, 5vw, 72px)    bold, UPPERCASE, -0.02em   the homepage only
-TYPE.title         clamp(36px, 4.8vw, 64px)  semibold, -0.025em         every interior h1
-TYPE.h2            32px -> 46px md            semibold, -0.02em          a chapter's heading
-TYPE.h3            22px -> 26px md            semibold
-TYPE.statement     set per use, ~30-60px      semibold                   a sentence as display type
-TYPE.lead          20px -> 22px md            Lato, 1.55                 the first paragraph
-TYPE.body          18px / 1.65                Lato
-TYPE.small         16px / 1.6                 Lato                       card bodies, descriptions
-TYPE.label         16px -> 18px md            Montserrat semibold, muted
+token           phone  laptop  leading  tracking   role
+text-display     36     60     1.02     -0.02em    the homepage tagline only, bold, capitals
+text-title       36     50     1.05     -0.025em   every h1, and the close's one line
+text-h2          31     41     1.1      -0.02em    a chapter's heading, or a claim set large
+text-statement   27     35     1.15     -0.02em    a quote, an address
+text-h3          24     29     1.2      -0.015em   a sub-heading, a band title, a step numeral
+text-h4          21     24     1.25     -0.01em    card, step, person and nav-panel headings
+text-lead        21     24     1.5                 the paragraph under a title
+text-body        18     20     1.6                 running text, and short Montserrat items at reading size
+text-small       16     17     1.5                 meta, buttons, the header bar, the footer
+text-numeral    112    144     0.9      -0.03em    the homepage's counting figure only
 ```
 
-Body copy is 18px, not 16px.
-At chapter scale, with headings at 46px, 16px body read as a caption.
+The `TYPE` recipes put a family and weight on a step:
+
+```
+TYPE.title / h2 / h3 / h4 / statement   Montserrat semibold on the step of the same name
+TYPE.lead / body / small                Lato on the step
+TYPE.item    Montserrat semibold at body   a list of names, a fact, a link in a list
+TYPE.label   TYPE.item in muted ink        what a group is, above the group
+TYPE.ui      Montserrat semibold at small  buttons, text links, small headings
+```
+
+#### Why these numbers
+
+The client asked for larger type, because much of the audience is past 35, and for one standard instead of sizes picked page by page.
+Body text sets the whole scale.
+
+1. **Body is the common modern size: 18px on a phone, 20px on a laptop.**
+   Measured on live sites in November 2026, 20px is the laptop body size at Medium, Mayo Clinic and Year Up, and Per Scholas uses 18px; 16px is the older default (Wikipedia, United Way, ssa.gov, AARP).
+   18px on a phone is at the top of normal, alongside Medium and GOV.UK.
+2. **24px was tried first and rejected.**
+   Vision research alone points to 24px on a laptop: it keeps a lowercase letter at about 0.28° of visual angle, where readers in their late sixties still read at full speed (Legge & Bigelow, 2011; Calabrèse et al., 2016), and readability stops improving at 24px (Rello, Pielot & Marcos, 2016).
+   On the site it was larger than every site measured, and the client chose the standard size over it.
+   What 20px costs: on a laptop its letter is about 0.23°, which covers readers to their mid-forties at full speed; older readers still read it, a little slower.
+   18px on a phone is still 0.28°, because a phone is held closer.
+3. **Steps up are a ratio, not a guess:** x1.15 on a phone and x1.2 on a laptop.
+   A phone gets the flatter ratio because a 390px screen cannot hold a 45px title: "Opportunities" at that size is wider than the screen.
+   The display step starts at the title's 36px on a phone for the same reason: capitals run about a fifth wider than lowercase.
+4. **One step below body, and a floor.**
+   Guidance for older readers asks for at least 12-14pt, 16-19px (NIA and the National Library of Medicine).
+   `text-small` is 16px at its smallest, and nothing on the site is smaller.
+   The 11px spaced-capital labels this replaced are gone.
+5. **rem, so the visitor's own setting wins.**
+   A reader who wants more than 20px can raise the browser's default text size and gets every step larger, and the header panel's height is in rem so it grows with them.
+   vw appears only inside a rem clamp, so page zoom still scales every step.
+6. **Leading and measure.**
+   Body leading is 1.6; WCAG 1.4.12 requires a page to survive 1.5.
+   Running text is held to `max-w-measure`, 52ch, about 67 characters a line, inside the 45-75 that reading research and typesetting practice agree on.
+   Lato's "0" is 1.29 average characters wide, so the 66ch and 768px columns this replaced ran to 85-92.
+
+#### Rules
+
+- **Pick by role, never by eye.**
+  If no role fits, the answer is a role added here first, not a new size.
+- **Sentences are body.**
+  `text-small` is for meta (a date, a role, a status), and for the interface (buttons, the header bar, the footer).
+  A sentence someone reads is never small.
+- **No arbitrary sizes and no Tailwind defaults.**
+  The defaults (`text-sm`, `text-lg`) are reset in `@theme`, so they do not compile.
+  `text-[17px]` would, so §9 check 8 catches it.
+- **When text does not fit, use fewer columns, never smaller type.**
+  Five columns of text are out: they set about 25 characters a line, and a long word at h4 is wider than a fifth of the grid at 1024px.
+- **Two exceptions, both graphics.**
+  `text-numeral` is the homepage's counting figure.
+  SVG text inside a drawing (the AI chip in `ChipTemple`) is in the drawing's own units, as a `fontSize` attribute, and scales with the picture.
 
 Headings carry `text-balance`, so a two-line heading does not strand one word on the second line.
+
+Sources:
+- Legge, G. E., & Bigelow, C. A. (2011). Does print size matter for reading? A review of findings from vision science and typography. *Journal of Vision*, 11(5):8.
+- Calabrèse, A., et al. (2016). Baseline MNREAD measures for normally sighted subjects from childhood to old age. *Investigative Ophthalmology & Visual Science*, 57(8), 3836-3843.
+- Rello, L., Pielot, M., & Marcos, M.-C. (2016). Make it big! The effect of font size and line spacing on online readability. *CHI 2016*, 3637-3648.
+- National Institute on Aging and National Library of Medicine, *Making Your Website Senior Friendly*.
 
 ### Labels, not eyebrows
 
@@ -263,7 +324,7 @@ Headings carry `text-balance`, so a two-line heading does not strand one word on
 The old pattern was an 11px uppercase label with a red rule above it, on every section.
 In this direction it competed with the field for the job of saying "new section", and lost.
 
-What a group of things is, above the group, is a **label**: `TYPE.label`, sentence case, the field's muted ink, no rule.
+What a group of things is, above the group, is a **label**: `TYPE.label`, at body size, sentence case, the field's muted ink, no rule.
 "Consulting to Hire Services" over its bands, "The framework" over "The Fantasy Arc", the date over a post's title.
 A label never stands in for a heading; the outline is the headings.
 
@@ -293,17 +354,17 @@ The header was rebuilt five times, and the record matters more than the rules, b
 - Sticky, white, 76px tall at `lg`, with a 1px `hairline` border across the full width of the header.
 - Content on the page grid (`max-w-[1320px]`, `px-5 md:px-8`), so the logo lines up with every chapter's left edge.
 - The full WOS lockup at 36px. No adjacent name text: the wordmark is in the asset.
-- Five items at **17px** Montserrat medium, then Donate in `action-deep`. About, Services and Join Us open panels; AI Institute and News & Events are links.
+- Five items at `text-small` Montserrat medium, then Donate in `action-deep`. About, Services and Join Us open panels; AI Institute and News & Events are links.
 - Active state is a 2px `border-action` underline, and a top-level item counts as active when any page beneath it is.
 
 ### The panels
 
 - **Full width, on the deep field**, directly under the bar. The page below dims (`surface-deep` at 45%) while one is open, so the panel is the one thing on screen and its edge shows over the dark homepage opening. The dim takes no pointer events, so moving onto the page closes the menu.
-- **One fixed height for every section**, so the edge below the menu never moves between About, Services and Join Us. Services is the tallest and sets it: `lg:h-[460px] xl:h-[435px]`, measured at 1440, 1280 and 1024px. **Change the tree and re-measure**: a taller Services overflows silently.
+- **One fixed height for every section**, so the edge below the menu never moves between About, Services and Join Us. Services is the tallest and sets it: `lg:h-[29.5rem]`, in rem so it grows with the visitor's text size, measured at 1440, 1280 and 1024px. **Change the tree and re-measure**: a taller Services overflows silently.
 - **At most three columns.** A section's groups, and its own pages as one unit, are packed in source order and balanced by rows (`stacks` in `components/nav/parts.tsx`). Services' five become [Consulting to Hire] [Educational, Advisory] [Research, Managed Services]. Five narrow columns wrapped long names onto three lines at 1024px.
-- **Every top-level entry is a bold 21px heading**, whether it is a page on its own ("Managed Services", "Our Story") or a group ("Boards"). The client asked for the rank to be visible regardless of what sits beneath.
-- **A group's pages are indented under its heading on a 2px red guide line**, at 19px. The indent says they belong to it; the red line says so at a glance. Without the line the hierarchy read by position alone; with a red rule over every column as well, there was more red than meaning.
-- **A group's "Overview" link becomes its heading.** The tree gives Consulting to Hire, Educational and Advisory Services an "Overview" child; the heading links there, with an arrow bound to its last word, and the Overview row goes.
+- **Every top-level entry is a bold `text-h4` heading**, whether it is a page on its own ("Managed Services", "Our Story") or a group ("Boards"). The client asked for the rank to be visible regardless of what sits beneath.
+- **A group's pages are indented under its heading on a 2px red guide line**, at `text-body`. The indent says they belong to it; the red line says so at a glance. Without the line the hierarchy read by position alone; with a red rule over every column as well, there was more red than meaning.
+- **A group's "Overview" link becomes its heading.** The tree gives Consulting to Hire, Educational and Advisory Services an "Overview" child; the heading links there, underlined on hover, and the Overview row goes.
 - **Groups stacked in one column are 48px apart.** At 24px, Educational and Advisory read as one block.
 - **"Schedule a free consultation"** is one line along the bottom edge, not a block.
 - **Hover intent.** With nothing open, a pointer has to rest on a trigger for 150ms before its panel opens, so a mouse crossing the bar does not flash one over the page. With one open, moving between triggers switches at once.
@@ -321,8 +382,8 @@ This is the part most likely to ship broken, and type checking catches none of i
 
 ### Mobile
 
-- Below `lg`, one button opens a full-screen menu on the gradient, with page scroll locked and Escape wired. Five bar items and Donate need about 930px at 17px.
-- The five sections are 30px names that start closed, so the first thing a visitor sees is five names rather than the whole site. A section opens in place, and inside it the tree is drawn exactly as on the desktop panel: bold headings, pages indented on the red guide line.
+- Below `lg`, one button opens a full-screen menu on the gradient, with page scroll locked and Escape wired. The logo, five bar items and Donate need about 920px at `text-small`, more than a tablet leaves inside the gutters.
+- The five sections are `text-h2` names that start closed, so the first thing a visitor sees is five names rather than the whole site. A section opens in place, and inside it the tree is drawn exactly as on the desktop panel: bold headings, pages indented on the red guide line.
 
 All logo references go through `components/WosMark.tsx`.
 
@@ -359,6 +420,17 @@ The footer is slate.
 
 The footer has no top margin.
 Every page ends on a full-bleed chapter, and a white strip between it and the footer reads as a gap.
+
+**Every flip between a dark field and a light one is a hard cut, so spend them.**
+The homepage once flipped about seventeen times in eleven thousand pixels, counting service bands and panels, and felt choppy to scroll however good each chapter was.
+Its chapters now flip about five times: dark for the opening, the approach and the close, the red statement between, and a light run everywhere else.
+The service bands are the one deliberate run of colour inside that light run: photo cards on paper were tried in their place on 2026-11-16 and the bands were kept, because they sell the services better.
+A nested field inside a light chapter counts as two flips.
+
+**The homepage is a sales journey, one question per chapter.**
+Who WOS is (the opening), the proof (impact), the problem and the answer (the business solution with the overview film, and the method), why it works (the conversion statement), what a client can buy (services, straight after the promise rather than five screens down), how any of it runs (the approach), who trusts WOS (partner stories, then the partner marquee), what is new (the Institute, the partnerships and the newest posts as one list), and the close.
+Each thing is said once: the method paragraph's conversion sentence lives only in the red chapter, and the overview film carries no summary or title because both would restate the opening.
+Our History is not on the homepage: its figures are the impact chapter's, and it lives on its own page.
 
 ### Padding
 
@@ -407,6 +479,10 @@ How a list item is set follows **how long it is, not how many there are**:
 
 The rule is the field's (`--field-rule`): red on the light fields and on slate and deep, white on crimson and red.
 
+**The homepage is the exception.** Its method lists are `FactList`s: filled panels with a small square in the field's accent ahead of each item, the impact chapter's country marker.
+Stacks of red rules beside a paragraph read as lines to look past, and were replaced there on 2026-11-16.
+The Business Solution's four words (culture, cost, control, continuity) stay in their sentence: set as tiles they read as a slogan, because the paragraph names them as questions and never answers them.
+
 ---
 
 ## 6. Components
@@ -421,19 +497,22 @@ None takes a `dark` prop: each reads its field.
 | `CloseChapter` | A page's last chapter, on the gradient: one line, one button, the motif. |
 | `SectionHeading` | A chapter's h2, with an optional `label` above and `intro` below. |
 | `ServiceBands` | Links to other pages as full-bleed bands of colour, the picture alternating sides. |
-| `FactList` | A titled set of short facts, each on the field's rule. |
+| `FactList` | A titled set of short facts in a filled panel, each marked with a small accent square. The homepage method's two lists. |
 | `PrimaryButton` | The one filled call to action. `size="lg"` for openings and closes. |
 | `SecondaryButton` | Outlined in the field's link colour; hover fills it and drops the label into the field's own background. |
-| `TextLink` | A text link with the arrow: the site's one link shape outside running copy. |
+| `TextLink` | An underlined text link, no arrow: the site's one link shape outside running copy. Trailing arrows on links were removed site-wide on 2026-11-16 (text links, service bands' Explore, the menu headings and its consultation link); the underline says it is a link. The back link above a page title keeps its left arrow. |
 | `Motif` | The O from the WOS mark. The site's one shape. |
-| `JourneyScene` | The homepage approach, pinned and scrubbed on wide screens. |
+| `JourneyScene` | The homepage approach, scrubbed to the scroll on wide screens, never pinned. |
+| `PartnerMarquee` | The homepage's named corporate partners, one slow row of trimmed logos, four at a time. |
 | `VideoEmbed` | A YouTube video as its poster frame until played. §7. |
 | `PeopleGrid` | Person cards, linked where the person has a bio. |
 | `PartnerWall` | Logo tiles. The one shadow on the site, §7. |
 
 ### Service bands
 
-Hub pages (`/managed-service-centers/`, `/consulting-to-hire-services/`) and the homepage services use `ServiceBands`.
+Hub pages (`/managed-service-centers/`, `/consulting-to-hire-services/`) use `ServiceBands`.
+So do the homepage services, as one run of six with no group labels: "Consulting to Hire Services" and "Other Services" are menu headings and stay in the menu.
+Photo cards in a 3 by 2 grid were tried in their place and read as weaker; §5 says why the run of colour is worth its flips.
 Edge to edge rather than inset: inset, a run of coloured blocks reads as a stack of cards; full bleed, they read as chapters inside the chapter.
 The text's outer edge sits on the grid at every width, so the bands bleed while their words line up with the page.
 
@@ -484,13 +563,24 @@ Two conditions:
 
 The grid reflows on track width, not on breakpoints: `grid-cols-[repeat(auto-fill,minmax(min(240px,100%),1fr))]`.
 
-The homepage's twelve client logos are the same tiles without the shadow, in a gap-1 grid: twelve marks need no shadow to read as a set.
+The homepage's partner marquee (`components/PartnerMarquee.tsx`) uses the same white tiles without the shadow, on tint, four to the row (two on a phone): a moving row needs no shadow to read as a set.
+Two full-bleed rows of them were tried first and read as too much; four at a time, each logo is read as a name.
+Its logos are the trimmed set in `public/images/logos/`, cut to the mark by `tools/partner-logos.mjs`, because a third of the uploaded files carry their mark in a sea of empty canvas and read as tiny beside the rest.
+Each is sized to the same area rather than the same height, so a wide wordmark and a square badge carry the same weight.
+The unnamed logos are left out.
 
 ### Video
 A video is its own poster frame and a play button until clicked, then becomes the youtube-nocookie player, so a page loads one image per video and no YouTube script.
 Without scripts the poster is a plain link to the video.
 `next.config.ts` allows `i.ytimg.com/vi/` for the posters and nothing else on that host.
 Titles are the channel's own and summaries are cut from each video's own description (`content/videos.ts`).
+
+### The homepage opening
+
+The opening's picture is the faces reel: twelve portrait stills cut from the WOS overview film (`public/images/film/`), people at work and in interview, with the WOS sign among them, and one tile of the real logo in full colour on white.
+Stills, not the film: a frame of a real person reads at a glance and costs about 30KB, where the looping film cost 1.8MB and asked to be watched.
+A brand tile in crimson was tried and read as filler beside the faces; the drawn motif in a tile read as a second logo.
+New stills come from the same film, cropped to 4:5 on the subject, 576 by 720.
 
 ### Portraits
 - Every person photo is a 1200x1200 WebP at `/images/people/<slug>.webp`, written by `tools/people-image.mjs`. Never reference a portrait by its original filename.
@@ -583,11 +673,21 @@ sed -e 's/<[^>]*>/ /g' .next/server/app/index.html \
 npm run build
 grep -oh -- '--color-[a-z-]*' .next/static/chunks/*.css | sort -u
 
+# 6b. The type scale shipped. @theme inline writes each step into its utility rather
+#     than a variable, so list the font-size utilities: exactly the ten steps, and
+#     none of Tailwind's defaults (text-sm, text-lg).
+grep -ohE '\.text-[a-z0-9]+\{font-size' .next/static/chunks/*.css | sort -u
+
 # 7. Every field variable a component reads is one globals.css defines. A misspelled
 #    var(--field-*) resolves to nothing, exactly as a misspelled token does.
 comm -23 \
   <(grep -rhoE 'var\(--field-[a-z-]+\)' app components | sed 's/var(//;s/)//' | sort -u) \
   <(grep -oE '^\s*--field-[a-z-]+:' app/globals.css | tr -d ' :' | sort -u)
+
+# 8. Every type size is a step on the scale (§3). Arbitrary sizes, and the Tailwind
+#    defaults, which are reset and would generate nothing.
+grep -rnE 'text-\[[0-9.]+(px|rem|em)\]|text-\[clamp|\btext-(xs|sm|base|lg|[2-9]?xl)\b' \
+  app components --exclude=globals.css
 ```
 
 **Check 6 matters most and is the one that gets skipped.**
@@ -615,23 +715,34 @@ There is no gesture without a row in this table.
 | Gesture | Where | How |
 |---|---|---|
 | Colour swap | Links, buttons, nav items | `transition-colors`, 150ms |
-| Image scale inside a fixed frame | Service bands, people cards, post cards, video posters | `scale-[1.03]` on hover, 700ms `--ease-fade` |
+| Image scale inside a fixed frame | Service bands and cards, people cards, post cards, video posters | `scale-[1.03]` on hover, 700ms `--ease-fade` |
 | Chapter arrival | `.reveal` elements inside an `InView` | opacity plus a 16px rise, 800ms `--ease-fade`, staggered 70ms by `--i` |
 | Opening rise | `.rise-in`: an opening's lead, actions and media | opacity plus a 14px rise, 900ms, once on load |
 | Headline mask rise | The homepage tagline only, line by line | `.mask-line`, 1000ms, once on load |
-| Motif draw | `Motif` with `draw`: the homepage opening | a masked stroke along each arrow, 1800ms, once |
+| Motif draw | `Motif` inside an `InView`, when scrolled to | a masked stroke along each arrow, 1800ms, once |
+| Reel drift | `FacesReel`, the homepage opening | three columns of film stills drift 58 to 82s a loop, the middle one the other way; stops on hover and on its pause control |
+| Globe arrival | `Globe`, the homepage impact chapter | once, on scroll-in: a third of a turn into the Atlantic over 2600ms while each country fills, its pin drops and lands with a ripple, and its label slides out, west to east |
+| Globe pulse | `Globe`, after its arrival, while on screen | the globe stands still; a ripple is handed from pin to pin, west to east, 1.4s each, 1.7s apart (it also swayed until 2026-11-16, and beside the drifting faces the page never sat still) |
 | Gradient drift | The signature gradient, md and up | registered custom properties, 24s alternate |
-| Pinned scene | `JourneyScene`, the homepage approach, 900px and up | GSAP ScrollTrigger pin and scrub; the ring fills and the current stage is lit |
+| Scroll-linked scene | `JourneyScene`, the homepage approach, 900px and up | GSAP ScrollTrigger scrub, no pin; as the stages pass the middle of the screen the ring fills and the current stage is lit |
+| Partner marquee | `PartnerMarquee`, the homepage partners chapter | one row of logos, four in view, slides sideways at about five seconds a logo; stops on hover and on its pause control |
 | Count | `CountUp`, the three homepage figures | 1100ms ease-out cubic, once |
 | Arc draw and node sequence | `ArcDraw`, the Fantasy Arc on `/ai-institute` | stroke draws 1100ms; each node fades as the stroke reaches it |
 
 Durations are vocabulary, not free values.
 Prefer an explicit property list to `transition-all`.
 
-**Two exceptions to "never a loop" and "never scroll-jacking", and why they stand.**
+**Four exceptions to "never a loop", and why they stand.**
 The gradient drift loops, but over 24 seconds at a pace nobody watches; it is a field that is alive rather than an animation that asks to be looked at, and it holds still on phones and under reduced motion.
-The pinned scene holds the approach on screen while the visitor scrolls, but it never changes scroll speed or direction, releases with the list complete, and exists only where there is room for it.
-Neither is a licence for a second.
+The reel drift is the opening's picture, chosen on 2026-11-16 over a single photograph: the first screen should be full of the people WOS places.
+It is a loop and a kind of carousel, both banned below, and it stands because it carries no information (every tile is decorative, hidden from assistive technology, and never sits under copy), moves at a pace that reads as a field rather than a slideshow, stops on hover, has a pause control as WCAG 2.2.2 requires of anything moving past five seconds, and stands still under reduced motion.
+The globe pulse keeps the four countries alive after they arrive: four small ripples taking turns on a globe that has stopped turning, only while on screen, and still under reduced motion.
+The partner marquee, chosen on 2026-11-16 over a grid of twelve logos, shows every named partner in the space of one row; it carries the same guarantees as the reel drift (the same `Reel` wrapper, so the same pause control and hover stop), and every partner is also on `/corporate-partners`, so nothing is only reachable by waiting for it.
+None of the four is a licence for a fifth.
+
+The approach scene used to pin for nearly two screens of scrolling.
+It was unpinned on 2026-11-16: halfway down a long page, a page that stops moving reads as stuck rather than as a journey.
+Nothing on the site pins now, and nothing should.
 
 ### Reduced motion is a guarantee, not a courtesy
 
@@ -658,7 +769,7 @@ A page whose scripts never run shows everything; nothing already on screen blink
 ### Still banned
 
 Parallax.
-Autoplaying carousels and video.
+Autoplaying carousels and video, the reel drift above excepted.
 Changing scroll speed or direction.
 Animated counters on any figure that is not a headline statistic.
 Hover motion on a photograph that is not inside a link.
@@ -674,5 +785,11 @@ It is unlinked, out of `app/sitemap.ts`, and set to `noindex`.
 It lays five ways of announcing something over the real homepage, chosen by `?show=bar,hero,band,dialog,corner`.
 The bar sits above the header, which a page cannot reach, so it renders through the `@banner` slot.
 That slot needs three files that render nothing (`default.tsx`, `page.tsx`, `[...rest]/page.tsx`), because on a client-side navigation Next keeps a slot's last page when nothing in it matches the new URL; without them the demo's bar would follow the visitor out of the demo.
+
+`/motion-demo` compared openings for the homepage and arrangements of the impact chapter around a globe, in the same way.
+The faces reel and the stacked statements beside the globe were chosen on 2026-11-16 and are on `/` (§7, §10); the route came out with them, and the other candidates were never committed.
+
+`/solution-demo` compared arrangements of the homepage's Business Solution and Method, and ways of selling the Business Solution paragraph (the choice between consultants and staff resolved, the four Cs answered, a comparison table).
+The film-first arrangement was chosen on 2026-11-16 and is on `/`; the selling options wait on WOS for a cost answer and approved wording, and are in the conversation record rather than in git.
 
 `/nav-demo` was the same kind of route for the header. It came out once the header was chosen, §4, and is in git history.

@@ -39,7 +39,7 @@ export default function Error({
             <button
               type="button"
               onClick={reset}
-              className="inline-block cursor-pointer bg-[var(--field-btn)] px-7 py-3.5 font-heading text-[15px] font-semibold tracking-[0.01em] text-[var(--field-btn-ink)] transition-colors hover:bg-[var(--field-btn-hover)]"
+              className="inline-block cursor-pointer bg-[var(--field-btn)] px-7 py-3.5 font-heading text-small font-semibold text-[var(--field-btn-ink)] transition-colors hover:bg-[var(--field-btn-hover)]"
             >
               Try again
             </button>
@@ -50,7 +50,7 @@ export default function Error({
 
       {error.digest && (
         <Chapter field="paper">
-          <p className={`${WRAP} ${PAD_TIGHT} font-mono text-sm text-[var(--field-muted)]`}>Reference: {error.digest}</p>
+          <p className={`${WRAP} ${PAD_TIGHT} font-mono text-small text-[var(--field-muted)]`}>Reference: {error.digest}</p>
         </Chapter>
       )}
     </article>

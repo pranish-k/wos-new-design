@@ -47,7 +47,7 @@ export default function Page() {
             </p>
           </div>
           <p
-            className={`reveal m-0 border-l-4 border-[var(--field-rule)] pl-6 ${TYPE.statement} text-[clamp(26px,3vw,40px)] md:pl-10`}
+            className={`reveal m-0 border-l-4 border-[var(--field-rule)] pl-6 ${TYPE.statement} md:pl-10`}
             style={stagger(2)}
           >
             {page.vision}
@@ -65,14 +65,14 @@ export default function Page() {
             {page.hub.map((h, i) => (
               <li key={h.label} className="reveal bg-[var(--field-panel)] p-6 md:p-7" style={stagger(i)}>
                 <Icon icon={h.icon} className={ICON} />
-                <p className="mt-5 font-heading text-[18px] font-semibold leading-[1.3]">{h.label}</p>
+                <p className={`mt-5 ${TYPE.item}`}>{h.label}</p>
               </li>
             ))}
             {/* The eighth cell squares off the two- and four-column grids with the aim, so
                 the band ends on a statement rather than a gap. */}
             <li className={`reveal ${fieldClass("crimson")} p-6 md:p-7`} style={stagger(page.hub.length)}>
-              <p className="text-[15px] font-semibold text-[var(--field-muted)]">The aim</p>
-              <p className="mt-3 font-heading text-[18px] font-semibold leading-[1.35]">
+              <p className={TYPE.label}>The aim</p>
+              <p className={`mt-3 ${TYPE.item}`}>
                 Evidence-based systems that prepare future generations for the Imagination Age.
               </p>
             </li>
@@ -87,8 +87,8 @@ export default function Page() {
                   className="reveal grid grid-cols-[2.5rem_1fr] gap-2 border-t-2 border-[var(--field-rule)] pt-4"
                   style={stagger(i + 1)}
                 >
-                  <span className="font-heading text-[24px] font-semibold leading-none text-[var(--field-accent)]">{i + 1}</span>
-                  <span className={`${TYPE.small} md:text-[17px]`}>{m}</span>
+                  <span className={`${TYPE.h3} leading-none text-[var(--field-accent)]`}>{i + 1}</span>
+                  <span className={TYPE.body}>{m}</span>
                 </li>
               ))}
             </ol>
@@ -104,8 +104,8 @@ export default function Page() {
               The Fantasy Arc
             </SectionHeading>
             <div className="reveal border-l-4 border-[var(--field-rule)] pl-6" style={stagger(2)}>
-              <p className="font-heading text-[20px] font-semibold">{page.arc.principle}</p>
-              <p className={`mt-2 ${TYPE.small} text-[var(--field-muted)]`}>{page.arc.principleBody}</p>
+              <p className={TYPE.h4}>{page.arc.principle}</p>
+              <p className={`mt-2 ${TYPE.body} text-[var(--field-muted)]`}>{page.arc.principleBody}</p>
             </div>
           </InView>
 
@@ -128,11 +128,11 @@ export default function Page() {
                     aria-hidden="true"
                   />
                   <span>
-                    <span className="block font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--field-muted)]">
+                    <span className="block font-heading text-small font-semibold text-[var(--field-muted)]">
                       {s.tag}
                     </span>
-                    <span className="mt-1 block font-heading text-[18px] font-semibold">{s.name}</span>
-                    <span className="mt-1 block text-[15px] leading-[1.5] text-[var(--field-muted)]">{s.detail}</span>
+                    <span className={`mt-1 block ${TYPE.item}`}>{s.name}</span>
+                    <span className={`mt-1 block ${TYPE.body} text-[var(--field-muted)]`}>{s.detail}</span>
                   </span>
                 </li>
               );
@@ -142,16 +142,20 @@ export default function Page() {
           {/* The arc's second axis: the stages measure how far, the sectors measure in what. */}
           <InView className="mt-20">
             <h3 className={`reveal ${TYPE.h3}`}>Five creative skill sectors</h3>
-            {/* Subgrid rows, so a name that wraps does not push its line below its neighbours'. */}
-            <ul className="m-0 mt-8 grid list-none gap-x-8 gap-y-6 p-0 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-0">
+            {/* Subgrid rows, so a name that wraps does not push its line below its neighbours'.
+                Three columns, not five: five leaves about 25 characters a line, and
+                "Consciousness" at h4 is wider than a fifth of the grid at 1024.
+                The row gap is each item's bottom padding, since a grid gap would also
+                open between a name and its line. */}
+            <ul className="m-0 mt-8 grid list-none gap-x-8 gap-y-6 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-0">
               {page.arc.sectors.map((sector, i) => (
                 <li
                   key={sector.name}
-                  className="reveal border-t-2 border-[var(--field-rule)] pt-4 lg:row-span-2 lg:grid lg:grid-rows-subgrid"
+                  className="reveal border-t-2 border-[var(--field-rule)] pt-4 lg:row-span-2 lg:pb-12 lg:grid lg:grid-rows-subgrid"
                   style={stagger(i + 1)}
                 >
-                  <p className="font-heading text-[18px] font-semibold leading-[1.3]">{sector.name}</p>
-                  <p className="mt-1.5 text-[15px] leading-[1.5] text-[var(--field-muted)]">{sector.detail}</p>
+                  <p className={TYPE.item}>{sector.name}</p>
+                  <p className={`mt-1.5 ${TYPE.body} text-[var(--field-muted)]`}>{sector.detail}</p>
                 </li>
               ))}
             </ul>
@@ -175,18 +179,18 @@ export default function Page() {
             </SectionHeading>
           </InView>
           {/* Subgrid rows, so every body starts on one line however its title wraps. */}
-          <InView as="ul" className="m-0 mt-14 grid list-none gap-x-8 gap-y-10 p-0 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-0">
+          <InView as="ul" className="m-0 mt-14 grid list-none gap-x-8 gap-y-10 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-0">
             {page.foundation.map((f, i) => (
               <li
                 key={f.title}
-                className="reveal border-t-4 border-[var(--field-rule)] pt-6 lg:row-span-2 lg:grid lg:grid-rows-subgrid"
+                className="reveal border-t-4 border-[var(--field-rule)] pt-6 lg:row-span-2 lg:pb-12 lg:grid lg:grid-rows-subgrid"
                 style={stagger(i)}
               >
                 <div>
-                  <span className="block font-heading text-[30px] font-semibold leading-none text-[var(--field-accent)]">{i + 1}</span>
-                  <h3 className="mt-4 font-heading text-[19px] font-semibold leading-[1.25]">{f.title}</h3>
+                  <span className={`block ${TYPE.h3} leading-none text-[var(--field-accent)]`}>{i + 1}</span>
+                  <h3 className={`mt-4 ${TYPE.h4}`}>{f.title}</h3>
                 </div>
-                <p className="mt-2 text-[16px] leading-[1.6] text-[var(--field-muted)]">{f.body}</p>
+                <p className={`mt-2 ${TYPE.body} text-[var(--field-muted)]`}>{f.body}</p>
               </li>
             ))}
           </InView>
@@ -205,33 +209,33 @@ export default function Page() {
               <li key={p.title} className="reveal flex flex-col bg-[var(--field-panel)] p-8" style={stagger(i)}>
                 <div className="flex items-start justify-between">
                   <Icon icon={p.icon} className={ICON} />
-                  <span className="font-heading text-[14px] font-semibold text-[var(--field-muted)]">Pillar {i + 1}</span>
+                  <span className={`${TYPE.ui} text-[var(--field-muted)]`}>Pillar {i + 1}</span>
                 </div>
-                <h3 className="mt-6 border-t-2 border-[var(--field-rule)] pt-5 font-heading text-[21px] font-semibold leading-[1.25]">
+                <h3 className={`mt-6 border-t-2 border-[var(--field-rule)] pt-5 ${TYPE.h4}`}>
                   {p.title}
                 </h3>
-                <p className={`mt-3 ${TYPE.small} text-[var(--field-muted)]`}>{p.objective}</p>
+                <p className={`mt-3 ${TYPE.body} text-[var(--field-muted)]`}>{p.objective}</p>
                 <details className="group/d mt-auto pt-6">
-                  <summary className="cursor-pointer list-none font-heading text-[15px] font-semibold text-[var(--field-link)] underline underline-offset-[5px] hover:no-underline [&::-webkit-details-marker]:hidden">
+                  <summary className={`cursor-pointer list-none ${TYPE.ui} text-[var(--field-link)] underline underline-offset-[5px] hover:no-underline [&::-webkit-details-marker]:hidden`}>
                     <span className="group-open/d:hidden">Questions and {p.workLabel.toLowerCase()} +</span>
                     <span className="hidden group-open/d:inline">Hide detail -</span>
                   </summary>
                   {p.questions.length > 0 && (
                     <>
-                      <p className="mt-5 font-heading text-[14px] font-semibold text-[var(--field-muted)]">Research questions</p>
+                      <p className={`mt-5 ${TYPE.ui} text-[var(--field-muted)]`}>Research questions</p>
                       <ul className="m-0 mt-2 list-none p-0">
                         {p.questions.map((q) => (
-                          <li key={q} className="border-t border-hairline py-2 text-[15px] leading-[1.5]">
+                          <li key={q} className={`border-t border-hairline py-2 ${TYPE.body}`}>
                             {q}
                           </li>
                         ))}
                       </ul>
                     </>
                   )}
-                  <p className="mt-5 font-heading text-[14px] font-semibold text-[var(--field-muted)]">{p.workLabel}</p>
+                  <p className={`mt-5 ${TYPE.ui} text-[var(--field-muted)]`}>{p.workLabel}</p>
                   <ul className="m-0 mt-2 list-none p-0">
                     {p.work.map((w) => (
-                      <li key={w} className="border-t border-hairline py-2 text-[15px] leading-[1.5]">
+                      <li key={w} className={`border-t border-hairline py-2 ${TYPE.body}`}>
                         {w}
                       </li>
                     ))}
@@ -242,8 +246,8 @@ export default function Page() {
             {/* The sixth cell closes the two- and three-column grids rather than leaving a
                 hole, with the one scope statement every pillar shares. */}
             <li className={`reveal hidden ${fieldClass("slate")} flex-col justify-end p-8 md:flex`} style={stagger(page.pillars.length)}>
-              <p className="text-[15px] font-semibold text-[var(--field-muted)]">Across the lifespan</p>
-              <p className="mt-3 font-heading text-[24px] font-semibold leading-[1.25]">
+              <p className={TYPE.label}>Across the lifespan</p>
+              <p className={`mt-3 ${TYPE.h4}`}>
                 From K-12 through adult and executive education.
               </p>
             </li>
@@ -258,20 +262,20 @@ export default function Page() {
           <InView>
             <SectionHeading label="Structure">Five divisions</SectionHeading>
           </InView>
-          <InView as="ul" className="m-0 mt-14 grid list-none gap-x-8 gap-y-12 p-0 sm:grid-cols-2 lg:grid-cols-5 lg:gap-y-0">
+          <InView as="ul" className="m-0 mt-14 grid list-none gap-x-8 gap-y-12 p-0 sm:grid-cols-2 lg:grid-cols-3 lg:gap-y-0">
             {page.divisions.map((d, i) => (
               <li
                 key={d.name}
-                className="reveal border-t-4 border-[var(--field-rule)] pt-6 lg:row-span-2 lg:grid lg:grid-rows-subgrid"
+                className="reveal border-t-4 border-[var(--field-rule)] pt-6 lg:row-span-2 lg:pb-12 lg:grid lg:grid-rows-subgrid"
                 style={stagger(i)}
               >
                 <div>
                   <Icon icon={d.icon} className={ICON} />
-                  <h3 className="mt-4 font-heading text-[19px] font-semibold leading-[1.25]">{d.name}</h3>
+                  <h3 className={`mt-4 ${TYPE.h4}`}>{d.name}</h3>
                 </div>
                 <ul className="m-0 mt-4 list-none p-0">
                   {d.focus.map((f) => (
-                    <li key={f} className="border-t border-hairline py-2 text-[15px] leading-[1.45] text-[var(--field-muted)]">
+                    <li key={f} className={`border-t border-hairline py-2 ${TYPE.body} text-[var(--field-muted)]`}>
                       {f}
                     </li>
                   ))}
@@ -295,7 +299,7 @@ export default function Page() {
                 <h3 className={`mt-5 ${TYPE.h3}`}>{a.name}</h3>
                 <ul className="m-0 mt-5 list-none space-y-3 p-0">
                   {a.items.map((item) => (
-                    <li key={item} className="flex gap-3 text-[16px] leading-[1.5] text-[var(--field-muted)]">
+                    <li key={item} className={`flex gap-3 ${TYPE.body} text-[var(--field-muted)]`}>
                       <span className="mt-[0.6em] h-1.5 w-1.5 flex-none bg-[var(--field-rule)]" aria-hidden="true" />
                       {item}
                     </li>
@@ -317,10 +321,10 @@ export default function Page() {
             {page.outcomes.map((o, i) => (
               <li key={o.area} className="reveal bg-[var(--field-panel)] p-7" style={stagger(i)}>
                 <Icon icon={o.icon} className={ICON} />
-                <h3 className="mt-5 font-heading text-[19px] font-semibold">{o.area}</h3>
+                <h3 className={`mt-5 ${TYPE.h4}`}>{o.area}</h3>
                 <ul className="m-0 mt-4 list-none space-y-2 p-0">
                   {o.items.map((item) => (
-                    <li key={item} className="flex gap-3 text-[16px] leading-[1.5] text-[var(--field-muted)]">
+                    <li key={item} className={`flex gap-3 ${TYPE.body} text-[var(--field-muted)]`}>
                       <span className="mt-[0.6em] h-1.5 w-1.5 flex-none bg-[var(--field-rule)]" aria-hidden="true" />
                       {item}
                     </li>
@@ -336,7 +340,7 @@ export default function Page() {
               companion framework. */}
       <Chapter field="crimson">
         <InView className={`${WRAP} ${PAD}`}>
-          <p className={`reveal max-w-[34ch] ${TYPE.statement} text-[clamp(24px,2.6vw,34px)]`}>{page.closing}</p>
+          <p className={`reveal max-w-[34ch] ${TYPE.statement}`}>{page.closing}</p>
           <div className="reveal mt-10" style={stagger(1)}>
             <TextLink href="/langer-arc">The Langer Workforce Maturity Arc</TextLink>
           </div>

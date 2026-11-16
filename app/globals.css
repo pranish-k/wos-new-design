@@ -77,11 +77,66 @@
   --font-heading: var(--font-montserrat);
   --font-sans: var(--font-lato);
 
+  /* The type scale. DESIGN.md §3 has the reasoning. Body text sets it: 18px on a 390px
+     phone and 20px from a 1280px laptop up, fluid between. That is the common size for
+     modern reading sites (20px on a laptop at Medium, Mayo Clinic and Year Up), chosen
+     over the 24px that vision research alone would give, which read as oversized next
+     to every site a visitor knows. Up from body, each step is x1.15 on a phone and x1.2
+     on a laptop; below it there is one step, and nothing is smaller than 16px.
+     rem, so a visitor who has raised their browser's default text size gets it. vw only
+     inside a rem clamp, so page zoom still scales every step.
+
+     The defaults (text-sm, text-lg, ...) are reset: a size that is not on the scale
+     should not compile. DESIGN.md §9 check 8 catches arbitrary text-[Npx]. */
+  --text-*: initial;
+  /* Meta, captions, buttons, the header bar, the footer. */
+  --text-small: clamp(1rem, 0.9726rem + 0.1124vw, 1.0625rem); /* 16 -> 17px */
+  --text-small--line-height: 1.5;
+  /* Running text, and short headings set in it. */
+  --text-body: clamp(1.125rem, 1.07rem + 0.2247vw, 1.25rem); /* 18 -> 20px */
+  --text-body--line-height: 1.6;
+  /* The paragraph under a title. Same size as h4, looser lines. */
+  --text-lead: clamp(1.3125rem, 1.23rem + 0.3371vw, 1.5rem); /* 21 -> 24px */
+  --text-lead--line-height: 1.5;
+  /* Card, step, list and person headings. */
+  --text-h4: clamp(1.3125rem, 1.23rem + 0.3371vw, 1.5rem); /* 21 -> 24px */
+  --text-h4--line-height: 1.25;
+  --text-h4--letter-spacing: -0.01em;
+  --text-h3: clamp(1.5rem, 1.363rem + 0.5618vw, 1.8125rem); /* 24 -> 29px */
+  --text-h3--line-height: 1.2;
+  --text-h3--letter-spacing: -0.015em;
+  /* A sentence set as display type: a quote, an address, a claim. */
+  --text-statement: clamp(1.6875rem, 1.468rem + 0.8989vw, 2.1875rem); /* 27 -> 35px */
+  --text-statement--line-height: 1.15;
+  --text-statement--letter-spacing: -0.02em;
+  --text-h2: clamp(1.9375rem, 1.664rem + 1.124vw, 2.5625rem); /* 31 -> 41px */
+  --text-h2--line-height: 1.1;
+  --text-h2--letter-spacing: -0.02em;
+  --text-title: clamp(2.25rem, 1.867rem + 1.573vw, 3.125rem); /* 36 -> 50px */
+  --text-title--line-height: 1.05;
+  --text-title--letter-spacing: -0.025em;
+  /* The homepage tagline, and nothing else. It is set in capitals, which run about a
+     fifth wider than lowercase, so on a phone it starts at the title's 36px rather than
+     the 42px the ratio gives: "COMMUNITIES." at 42px is wider than a 390px screen. */
+  --text-display: clamp(2.25rem, 1.593rem + 2.697vw, 3.75rem); /* 36 -> 60px */
+  --text-display--line-height: 1.02;
+  --text-display--letter-spacing: -0.02em;
+  /* Off the scale on purpose: the one counting figure on the homepage, a graphic. */
+  --text-numeral: clamp(7rem, 6.123rem + 3.596vw, 9rem); /* 112 -> 144px */
+  --text-numeral--line-height: 0.9;
+  --text-numeral--letter-spacing: -0.03em;
+
   /* ---- Layout ---- */
   /* Where the page grid (WRAP, max-w-[1320px]) stops growing. A named breakpoint rather
      than min-[1320px]: Tailwind emits arbitrary variants before the named ones, so md:
      would silently override anything set at min-[1320px]. Named, it sorts after xl. */
   --breakpoint-wrap: 82.5rem;
+
+  /* The reading measure: max-w-measure on running text. In ch, so it holds at every step
+     of the type scale. Lato's "0" is 1.29 average characters wide, so 52ch is about 67
+     characters a line, inside the 45-75 that reading research and typesetting practice
+     agree on. The 66ch it replaces ran to 85. */
+  --container-measure: 52ch;
 
   /* ---- Motion ---- */
   --duration-fade: 600ms;
@@ -103,29 +158,17 @@
     background: #ffffff;
     color: var(--color-wos-slate);
     font-family: var(--font-lato), system-ui, -apple-system, sans-serif;
-    font-size: 16px; /* up from 15px: Lato's x-height needs the extra */
-    line-height: 1.65;
+    /* Unclassed text is body text. */
+    font-size: var(--text-body);
+    line-height: var(--text-body--line-height);
   }
 
   h1, h2, h3, h4 {
     font-family: var(--font-montserrat), system-ui, sans-serif;
     font-weight: 600; /* up from 400: Montserrat reads thin at display sizes */
   }
-
-  h1 {
-    line-height: 1.05;
-    letter-spacing: -0.025em;
-  }
-
-  h2 {
-    line-height: 1.15;
-    letter-spacing: -0.015em;
-  }
-
-  h3 {
-    line-height: 1.35;
-    letter-spacing: -0.005em;
-  }
+  /* No line-height or letter-spacing here: every heading takes a size step, and each
+     step carries its own. One source, so the two can never disagree. */
 
   /* Links take their field's link colour, so a link dropped into a red chapter does not
      vanish into it. In the base layer on purpose: any utility on the element wins. */
@@ -347,11 +390,7 @@
     animation-delay: var(--delay, 240ms);
   }
 
-  /* The motif draws itself: on load when it is marked to, otherwise when scrolled to. */
-  .motif-draw .motif-stroke {
-    animation: motif-draw 1800ms var(--ease-fade) both;
-    animation-delay: calc(var(--i, 0) * 220ms + 200ms);
-  }
+  /* The motif draws itself when an InView around it is scrolled to. */
   [data-observe] .motif-stroke {
     transition: stroke-dashoffset 1800ms var(--ease-fade);
     transition-delay: calc(var(--i, 0) * 220ms + 200ms);
@@ -373,6 +412,54 @@
   }
 }
 
+/*
+ * The faces reel, the homepage opening. DESIGN.md §10, reel drift.
+ *
+ * The columns fade into the field at top and bottom. At rest they stand still and
+ * staggered, which is what the server sends and what reduced motion keeps.
+ */
+.reel-fade {
+  mask-image: linear-gradient(transparent, black 9%, black 91%, transparent);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  /* Each column drifts half its doubled length and starts over, so there is no seam;
+     the middle one runs the other way. Stops on hover and on the pause control. */
+  .reel-col {
+    animation: reel-drift var(--reel, 70s) linear infinite;
+  }
+  .reel-col[data-reverse] {
+    animation-direction: reverse;
+  }
+  .reel-row {
+    animation: reel-slide var(--reel, 140s) linear infinite;
+  }
+  .reel-row[data-reverse] {
+    animation-direction: reverse;
+  }
+  .reel:hover :is(.reel-col, .reel-row),
+  .reel[data-paused] :is(.reel-col, .reel-row) {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes reel-drift {
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* The partner marquee: the same reel, sideways. DESIGN.md §10, partner marquee. */
+.reel-fade-x {
+  mask-image: linear-gradient(90deg, transparent, black 3%, black 97%, transparent);
+}
+
+@keyframes reel-slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
 @keyframes mask-rise {
   from {
     transform: translateY(105%);
@@ -382,10 +469,5 @@
   from {
     opacity: 0;
     transform: translateY(14px);
-  }
-}
-@keyframes motif-draw {
-  from {
-    stroke-dashoffset: 1;
   }
 }

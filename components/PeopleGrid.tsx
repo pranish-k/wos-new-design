@@ -31,13 +31,13 @@ function Card({
         </div>
       )}
       <H
-        className={`mt-5 font-heading text-[20px] font-semibold leading-[1.2] tracking-[-0.01em] text-[var(--field-ink)] md:text-[22px] ${
+        className={`mt-5 font-heading text-h4 font-semibold text-[var(--field-ink)] ${
           linked ? "underline-offset-[5px] group-hover:underline" : ""
         }`}
       >
         {person.name}
       </H>
-      <p className="mt-1.5 text-[16px] leading-[1.5] text-[var(--field-muted)]">{roleIn(person, groupId)}</p>
+      <p className="mt-1.5 text-small text-[var(--field-muted)]">{roleIn(person, groupId)}</p>
     </>
   );
 }

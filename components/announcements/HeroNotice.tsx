@@ -17,10 +17,10 @@ export default function HeroNotice({ item }: { item: Announcement }) {
       href={item.href}
       className="group mt-12 flex max-w-2xl items-start gap-4 border-t border-white/25 pt-6 no-underline md:items-center"
     >
-      <span className="mt-0.5 flex-shrink-0 bg-action-deep px-2.5 py-1 font-heading text-[11px] font-bold uppercase tracking-[0.15em] text-white md:mt-0">
+      <span className="mt-0.5 flex-shrink-0 bg-action-deep px-2.5 py-1 font-heading text-small font-bold text-white md:mt-0">
         New
       </span>
-      <span className="font-heading text-[16px] font-semibold leading-[1.4] text-white underline decoration-white/40 underline-offset-[5px] transition-colors group-hover:decoration-white">
+      <span className="font-heading text-body font-semibold leading-snug text-white underline decoration-white/40 underline-offset-[5px] transition-colors group-hover:decoration-white">
         {item.title}
       </span>
     </Link>

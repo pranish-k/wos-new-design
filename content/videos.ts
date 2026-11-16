@@ -18,7 +18,7 @@ export const OVERVIEW: Video = {
   id: "-qd6zEl1k9w",
   title: "WOS Overview",
   summary:
-    "Workforce Opportunity Services (WOS) is a 501(c)(3) nonprofit that recruits, trains, and places talent from underserved communities with leading organizations.",
+    "Workforce Opportunity Services (WOS) is a 501(c)⁠(3) nonprofit that recruits, trains, and places talent from underserved communities with leading organizations.",
   duration: "2:46",
 };
 

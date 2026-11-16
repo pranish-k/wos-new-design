@@ -35,7 +35,7 @@ export default function Page() {
               priority
             />
           </div>
-          <div className="max-w-[62ch]">
+          <div className="max-w-measure">
             {page.lead.map((block, i) => (
               <p key={i} className={`reveal mt-6 first:mt-0 ${i === 0 ? TYPE.lead : TYPE.body}`} style={stagger(i + 1)}>
                 {block.text}

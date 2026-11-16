@@ -182,6 +182,14 @@ The partner logo wall's `shadow-sm` is the one exception, and `DESIGN.md` §7 sa
 **Never invent copy to fill a layout.**
 Restructure what the client wrote, as a list, a statement or a label, or leave the slot empty.
 
+**Every font size is a step on the type scale.**
+`text-small`, `text-body`, `text-lead`, `text-h4`, `text-h3`, `text-statement`, `text-h2`, `text-title`, `text-display`, through `TYPE` in `components/Brand.tsx`.
+Never `text-[17px]`, `text-[clamp(...)]` or `text-sm`: the defaults are reset and do not compile, and `DESIGN.md` §9 check 8 catches the rest.
+Pick by role, never by eye.
+Sentences are body; small is for meta and the interface.
+Body is the common modern size, 20px on a laptop and 18px on a phone, chosen for an audience past 35 after 24px read as oversized; `DESIGN.md` §3 has the reasoning.
+Do not shrink a step to make something fit: use fewer columns.
+
 **Use the `wrap:` breakpoint, never `min-[1320px]:`.**
 Tailwind emits arbitrary breakpoints before the named ones, so `md:` silently overrides them.
 
@@ -197,7 +205,7 @@ The check commands are in `DESIGN.md` §9.
 **Check 6 is the one that matters and the one that gets skipped.**
 It greps the built CSS to prove the tokens actually shipped.
 Checks 1 through 5 all pass on a completely broken build.
-Check 7 does the same for the `--field-*` variables, which fail just as silently.
+Check 7 does the same for the `--field-*` variables, which fail just as silently, and check 8 holds every size to the type scale.
 
 Grep the compiled CSS, not just the components.
 A stale token can live in `globals.css` and reach every page without appearing in any component.

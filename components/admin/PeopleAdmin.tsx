@@ -80,13 +80,13 @@ export default function PeopleAdmin({ people, groups }: { people: PersonRecord[]
 
   return (
     <div className="mx-auto max-w-6xl px-6 py-12">
-      <p className="font-heading text-[11px] font-bold uppercase tracking-[0.18em] text-ink-muted">
+      <p className="font-heading text-small font-semibold text-ink-muted">
         Development only
       </p>
-      <h1 className="mt-2 font-heading text-[34px] font-semibold leading-[1.1] tracking-[-0.02em] text-ink">
+      <h1 className="mt-2 font-heading text-h2 font-semibold text-ink">
         People
       </h1>
-      <p className="mt-3 max-w-2xl text-[15px] leading-[1.6] text-ink-muted">
+      <p className="mt-3 max-w-2xl text-small text-ink-muted">
         Edits write to <code>content/people/</code>. Publishing is a commit and a deploy.
       </p>
 
@@ -95,7 +95,7 @@ export default function PeopleAdmin({ people, groups }: { people: PersonRecord[]
           <select
             value={filter}
             onChange={(e) => setFilter(e.target.value as GroupId | "all")}
-            className="w-full border border-hairline bg-white px-3 py-2 text-[15px] text-ink"
+            className="w-full border border-hairline bg-white px-3 py-2 text-small text-ink"
           >
             <option value="all">All groups ({people.length})</option>
             {groups.map((g) => (
@@ -111,7 +111,7 @@ export default function PeopleAdmin({ people, groups }: { people: PersonRecord[]
               setDraft({ ...BLANK, groups: [filter === "all" ? "team" : filter] });
               setNote("");
             }}
-            className="mt-3 w-full bg-action px-4 py-2 font-heading text-[14px] font-semibold text-white"
+            className="mt-3 w-full bg-action px-4 py-2 font-heading text-small font-semibold text-white"
           >
             Add a person
           </button>
@@ -135,8 +135,8 @@ export default function PeopleAdmin({ people, groups }: { people: PersonRecord[]
                     )}
                   </span>
                   <span className="min-w-0">
-                    <span className="block truncate text-[14px] font-semibold text-ink">{p.name}</span>
-                    <span className="block truncate text-[12px] text-ink-muted">
+                    <span className="block truncate text-small font-semibold text-ink">{p.name}</span>
+                    <span className="block truncate text-small text-ink-muted">
                       {p.status === "hidden" ? "Hidden" : p.groups.join(", ")}
                     </span>
                   </span>
@@ -159,15 +159,15 @@ export default function PeopleAdmin({ people, groups }: { people: PersonRecord[]
             onCancel={() => setDraft(null)}
           />
         ) : (
-          <p className="text-[15px] text-ink-muted">Pick someone from the list, or add a person.</p>
+          <p className="text-small text-ink-muted">Pick someone from the list, or add a person.</p>
         )}
       </div>
     </div>
   );
 }
 
-const field = "w-full border border-hairline bg-white px-3 py-2 text-[15px] text-ink";
-const label = "block font-heading text-[11px] font-bold uppercase tracking-[0.14em] text-ink-muted";
+const field = "w-full border border-hairline bg-white px-3 py-2 text-small text-ink";
+const label = "block font-heading text-small font-semibold text-ink-muted";
 
 function Editor({
   draft,
@@ -211,12 +211,12 @@ function Editor({
 
       <fieldset className="mt-6 border-0 p-0">
         <legend className={label}>Groups</legend>
-        <p className="mt-1 text-[13px] text-ink-muted">
+        <p className="mt-1 text-small text-ink-muted">
           The first one owns the URL. Someone on two boards still has one page.
         </p>
         <div className="mt-2 flex flex-wrap gap-x-5 gap-y-2">
           {groups.map((g) => (
-            <label key={g.id} className="flex items-center gap-2 text-[14px] text-ink">
+            <label key={g.id} className="flex items-center gap-2 text-small text-ink">
               <input
                 type="checkbox"
                 checked={draft.groups.includes(g.id)}
@@ -277,13 +277,13 @@ function Editor({
             <input
               type="file"
               accept="image/*"
-              className="text-[14px] text-ink-muted"
+              className="text-small text-ink-muted"
               onChange={(e) => {
                 const f = e.target.files?.[0];
                 if (f) onUpload(f);
               }}
             />
-            <p className="mt-2 max-w-sm text-[13px] leading-[1.5] text-ink-muted">
+            <p className="mt-2 max-w-sm text-small text-ink-muted">
               Any size or shape. It is rotated upright, cropped square on the face, and written as
               WebP named after the slug.
             </p>
@@ -295,7 +295,7 @@ function Editor({
         <label className={label} htmlFor="bio">
           Biography
         </label>
-        <p className="mt-1 text-[13px] text-ink-muted">
+        <p className="mt-1 text-small text-ink-muted">
           One paragraph per line. Empty means a card with no page.
         </p>
         <textarea
@@ -320,7 +320,7 @@ function Editor({
         <label className={label} htmlFor="legacy">
           Legacy URLs
         </label>
-        <p className="mt-1 text-[13px] text-ink-muted">
+        <p className="mt-1 text-small text-ink-muted">
           One per line. Each redirects permanently to this person. Next reads the redirect
           table once at startup, so a new one needs the dev server restarted.
         </p>
@@ -335,22 +335,22 @@ function Editor({
         />
       </div>
 
-      {note && <p className="mt-5 text-[14px] text-action-deep">{note}</p>}
+      {note && <p className="mt-5 text-small text-action-deep">{note}</p>}
 
       <div className="mt-7 flex flex-wrap items-center gap-4">
         <button
           type="button"
           disabled={busy}
           onClick={onSave}
-          className="bg-action px-5 py-2 font-heading text-[14px] font-semibold text-white disabled:opacity-50"
+          className="bg-action px-5 py-2 font-heading text-small font-semibold text-white disabled:opacity-50"
         >
           {busy ? "Working" : "Save"}
         </button>
-        <button type="button" onClick={onCancel} className="text-[14px] text-ink-muted underline">
+        <button type="button" onClick={onCancel} className="text-small text-ink-muted underline">
           Cancel
         </button>
         {draft.slug && (
-          <button type="button" disabled={busy} onClick={onDelete} className="ml-auto text-[14px] text-action-deep underline">
+          <button type="button" disabled={busy} onClick={onDelete} className="ml-auto text-small text-action-deep underline">
             Delete
           </button>
         )}

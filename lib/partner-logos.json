@@ -1,0 +1,342 @@
+{
+  "/images/ACE.png": {
+    "src": "/images/logos/ACE.webp",
+    "width": 480,
+    "height": 481
+  },
+  "/images/ADP.png": {
+    "src": "/images/logos/ADP.webp",
+    "width": 332,
+    "height": 151
+  },
+  "/images/Alliance-Bernstein.png": {
+    "src": "/images/logos/Alliance-Bernstein.webp",
+    "width": 480,
+    "height": 314
+  },
+  "/images/Amelia_Logo_B_Logo.jpg": {
+    "src": "/images/logos/Amelia_Logo_B_Logo.webp",
+    "width": 480,
+    "height": 95
+  },
+  "/images/American-Airlines.png": {
+    "src": "/images/logos/American-Airlines.webp",
+    "width": 480,
+    "height": 167
+  },
+  "/images/American-Arbitration-Association.png": {
+    "src": "/images/logos/American-Arbitration-Association.webp",
+    "width": 371,
+    "height": 54
+  },
+  "/images/Avon.png": {
+    "src": "/images/logos/Avon.webp",
+    "width": 206,
+    "height": 41
+  },
+  "/images/Bank-Leumi.png": {
+    "src": "/images/logos/Bank-Leumi.webp",
+    "width": 480,
+    "height": 135
+  },
+  "/images/Bard-Graduate-Center.png": {
+    "src": "/images/logos/Bard-Graduate-Center.webp",
+    "width": 285,
+    "height": 177
+  },
+  "/images/BCBS-Vermont.png": {
+    "src": "/images/logos/BCBS-Vermont.webp",
+    "width": 480,
+    "height": 60
+  },
+  "/images/cropped-bellcreativeco_plain_500px-2.png": {
+    "src": "/images/logos/cropped-bellcreativeco_plain_500px-2.webp",
+    "width": 480,
+    "height": 616
+  },
+  "/images/biotest-AG-from-nature-to-life@2x.png": {
+    "src": "/images/logos/biotest-AG-from-nature-to-life@2x.webp",
+    "width": 255,
+    "height": 106
+  },
+  "/images/BNY-Mellon.png": {
+    "src": "/images/logos/BNY-Mellon.webp",
+    "width": 348,
+    "height": 117
+  },
+  "/images/BP_Helios_logo.svg.png": {
+    "src": "/images/logos/BP_Helios_logo.svg.webp",
+    "width": 480,
+    "height": 638
+  },
+  "/images/Bristol-Myers_Squibb_logo_2020.svg.png": {
+    "src": "/images/logos/Bristol-Myers_Squibb_logo_2020.svg.webp",
+    "width": 480,
+    "height": 68
+  },
+  "/images/BSC-Logo-Horizontal_web-300x87-1.png": {
+    "src": "/images/logos/BSC-Logo-Horizontal_web-300x87-1.webp",
+    "width": 300,
+    "height": 87
+  },
+  "/images/CareCentrix.png": {
+    "src": "/images/logos/CareCentrix.webp",
+    "width": 222,
+    "height": 47
+  },
+  "/images/catalent-logo.svg": {
+    "src": "/images/logos/catalent-logo.webp",
+    "width": 480,
+    "height": 104
+  },
+  "/images/CCH_Final_Logo_CMYK.png": {
+    "src": "/images/logos/CCH_Final_Logo_CMYK.webp",
+    "width": 480,
+    "height": 152
+  },
+  "/images/Chubb-Logo.png": {
+    "src": "/images/logos/Chubb-Logo.webp",
+    "width": 480,
+    "height": 54
+  },
+  "/images/CNH_Industrial.svg": {
+    "src": "/images/logos/CNH_Industrial.webp",
+    "width": 329,
+    "height": 191
+  },
+  "/images/DTE-Energy.png": {
+    "src": "/images/logos/DTE-Energy.webp",
+    "width": 225,
+    "height": 225
+  },
+  "/images/eastern.generation_nybest_26.png": {
+    "src": "/images/logos/eastern.generation_nybest_26.webp",
+    "width": 221,
+    "height": 82
+  },
+  "/images/Eaton_Corporation_logo.png": {
+    "src": "/images/logos/Eaton_Corporation_logo.webp",
+    "width": 480,
+    "height": 131
+  },
+  "/images/emj_logo.jpg": {
+    "src": "/images/logos/emj_logo.webp",
+    "width": 200,
+    "height": 191
+  },
+  "/images/Eversource_logo_Social.jpg": {
+    "src": "/images/logos/Eversource_logo_Social.webp",
+    "width": 480,
+    "height": 58
+  },
+  "/images/og_logo_excellus.png": {
+    "src": "/images/logos/og_logo_excellus.webp",
+    "width": 480,
+    "height": 91
+  },
+  "/images/Express_Scripts_Logo.jpg": {
+    "src": "/images/logos/Express_Scripts_Logo.webp",
+    "width": 480,
+    "height": 102
+  },
+  "/images/Fannie_Mae_Logo.jpg": {
+    "src": "/images/logos/Fannie_Mae_Logo.webp",
+    "width": 480,
+    "height": 93
+  },
+  "/images/Feedback-Now.png": {
+    "src": "/images/logos/Feedback-Now.webp",
+    "width": 310,
+    "height": 69
+  },
+  "/images/Forrester.webp": {
+    "src": "/images/logos/Forrester.webp",
+    "width": 480,
+    "height": 252
+  },
+  "/images/GAF-logo.jpg": {
+    "src": "/images/logos/GAF-logo.webp",
+    "width": 200,
+    "height": 200
+  },
+  "/images/Guardian-Life-Insurance.png": {
+    "src": "/images/logos/Guardian-Life-Insurance.webp",
+    "width": 480,
+    "height": 91
+  },
+  "/images/HBO_logo.png": {
+    "src": "/images/logos/HBO_logo.webp",
+    "width": 480,
+    "height": 198
+  },
+  "/images/Hewlett-Packard-Enterprise.jpeg": {
+    "src": "/images/logos/Hewlett-Packard-Enterprise.webp",
+    "width": 480,
+    "height": 201
+  },
+  "/images/Horizon-BCBS-of-NJ.png": {
+    "src": "/images/logos/Horizon-BCBS-of-NJ.webp",
+    "width": 480,
+    "height": 144
+  },
+  "/images/1200px-HP_logo_2012.png": {
+    "src": "/images/logos/1200px-HP_logo_2012.webp",
+    "width": 480,
+    "height": 480
+  },
+  "/images/ibm-logo.png": {
+    "src": "/images/logos/ibm-logo.webp",
+    "width": 206,
+    "height": 82
+  },
+  "/images/IEEE.png": {
+    "src": "/images/logos/IEEE.webp",
+    "width": 125,
+    "height": 70
+  },
+  "/images/J-Crew.png": {
+    "src": "/images/logos/J-Crew.webp",
+    "width": 225,
+    "height": 225
+  },
+  "/images/Jewish-Theological-Seminary-scaled-1.jpg": {
+    "src": "/images/logos/Jewish-Theological-Seminary-scaled-1.webp",
+    "width": 480,
+    "height": 109
+  },
+  "/images/JJA_Logo_DarkBlue_V01.png": {
+    "src": "/images/logos/JJA_Logo_DarkBlue_V01.webp",
+    "width": 480,
+    "height": 211
+  },
+  "/images/Kenvue.png": {
+    "src": "/images/logos/Kenvue.webp",
+    "width": 480,
+    "height": 270
+  },
+  "/images/MCO.png": {
+    "src": "/images/logos/MCO.webp",
+    "width": 327,
+    "height": 140
+  },
+  "/images/medco-logo2x.png": {
+    "src": "/images/logos/medco-logo2x.webp",
+    "width": 320,
+    "height": 138
+  },
+  "/images/msk_h_rgb-43.jpg": {
+    "src": "/images/logos/msk_h_rgb-43.webp",
+    "width": 480,
+    "height": 102
+  },
+  "/images/logo-merck.png": {
+    "src": "/images/logos/logo-merck.webp",
+    "width": 363,
+    "height": 106
+  },
+  "/images/Mount_Sinai_Health_System_logo.png": {
+    "src": "/images/logos/Mount_Sinai_Health_System_logo.webp",
+    "width": 480,
+    "height": 592
+  },
+  "/images/nasco_logo.jpg": {
+    "src": "/images/logos/nasco_logo.webp",
+    "width": 184,
+    "height": 38
+  },
+  "/images/Navidor.png": {
+    "src": "/images/logos/Navidor.webp",
+    "width": 272,
+    "height": 185
+  },
+  "/images/New_York_City_Housing_Authority_logo.png": {
+    "src": "/images/logos/New_York_City_Housing_Authority_logo.webp",
+    "width": 480,
+    "height": 590
+  },
+  "/images/Novitex.png": {
+    "src": "/images/logos/Novitex.webp",
+    "width": 292,
+    "height": 173
+  },
+  "/images/Panasonic.webp": {
+    "src": "/images/logos/Panasonic.webp",
+    "width": 480,
+    "height": 71
+  },
+  "/images/RGS-Financial.png": {
+    "src": "/images/logos/RGS-Financial.webp",
+    "width": 169,
+    "height": 59
+  },
+  "/images/Logo-safe-horizon.png": {
+    "src": "/images/logos/Logo-safe-horizon.webp",
+    "width": 251,
+    "height": 88
+  },
+  "/images/sbli_of_massachusetts_logo.jpg": {
+    "src": "/images/logos/sbli_of_massachusetts_logo.webp",
+    "width": 136,
+    "height": 41
+  },
+  "/images/sealed_air_product_care_logo.jpg": {
+    "src": "/images/logos/sealed_air_product_care_logo.webp",
+    "width": 192,
+    "height": 45
+  },
+  "/images/TelVista.png": {
+    "src": "/images/logos/TelVista.webp",
+    "width": 200,
+    "height": 81
+  },
+  "/images/Thirteen.jpg": {
+    "src": "/images/logos/Thirteen.webp",
+    "width": 225,
+    "height": 225
+  },
+  "/images/Thomson-Reuters.png": {
+    "src": "/images/logos/Thomson-Reuters.webp",
+    "width": 480,
+    "height": 66
+  },
+  "/images/tmp-large.png": {
+    "src": "/images/logos/tmp-large.webp",
+    "width": 184,
+    "height": 189
+  },
+  "/images/Tradeweb_logo.jpg": {
+    "src": "/images/logos/Tradeweb_logo.webp",
+    "width": 238,
+    "height": 83
+  },
+  "/images/Turner.png": {
+    "src": "/images/logos/Turner.webp",
+    "width": 480,
+    "height": 135
+  },
+  "/images/Union_Theological_Seminary_New_York_seal.png": {
+    "src": "/images/logos/Union_Theological_Seminary_New_York_seal.webp",
+    "width": 315,
+    "height": 314
+  },
+  "/images/United_States_Department_of_Transportation_seal.svg": {
+    "src": "/images/logos/United_States_Department_of_Transportation_seal.webp",
+    "width": 246,
+    "height": 246
+  },
+  "/images/UseReady-logo.jpg": {
+    "src": "/images/logos/UseReady-logo.webp",
+    "width": 76,
+    "height": 63
+  },
+  "/images/Walker-Miller-Energy-Services.png": {
+    "src": "/images/logos/Walker-Miller-Energy-Services.webp",
+    "width": 480,
+    "height": 116
+  },
+  "/images/Weill-Cornell-Medicine.png": {
+    "src": "/images/logos/Weill-Cornell-Medicine.webp",
+    "width": 418,
+    "height": 96
+  }
+}

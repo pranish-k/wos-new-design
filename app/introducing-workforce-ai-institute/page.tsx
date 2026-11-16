@@ -19,7 +19,7 @@ export default function Page() {
 
       <Chapter field="paper">
         <div className={`${WRAP} ${PAD}`}>
-          <div className={`max-w-3xl ${TYPE.body}`}>
+          <div className={`max-w-measure ${TYPE.body}`}>
             <p className={TYPE.lead}>
               Workforce Opportunity Services is proud to introduce the Institute for Imagination,
               Reflective Development, and AI Futures, an interdisciplinary research laboratory

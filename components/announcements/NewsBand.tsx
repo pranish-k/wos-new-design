@@ -52,10 +52,10 @@ export default function NewsBand({ item }: { item: Announcement }) {
             {latest.map((post, n) => (
               <li key={post.slug} className="reveal border-t-2 border-[var(--field-rule)]" style={stagger(n + 2)}>
                 <Link href={`/${post.slug}`} className="group block py-5 text-[var(--field-ink)] no-underline hover:text-[var(--field-ink)]">
-                  <p className="m-0 text-[15px] text-[var(--field-muted)]">
+                  <p className="m-0 text-small text-[var(--field-muted)]">
                     <time dateTime={post.date}>{formatted(post.date)}</time>
                   </p>
-                  <p className="m-0 mt-1.5 font-heading text-[19px] font-semibold leading-[1.3] underline-offset-[5px] group-hover:underline">
+                  <p className="m-0 mt-1.5 font-heading text-h4 font-semibold underline-offset-[5px] group-hover:underline">
                     {post.title}
                   </p>
                 </Link>

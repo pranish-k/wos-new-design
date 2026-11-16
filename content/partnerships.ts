@@ -1,14 +1,10 @@
-// The three partnerships and centers shown on the homepage.
-//
-// One homepage SECTION each, not three columns of one band. They were a band under an
-// invented heading, which put a marketing line on a page whose every other heading is
-// the client's own words.
+// The partnerships and centers shown on the homepage, in What's new: they lead its list
+// beside the Institute (HOME_FEATURE in content/ai-institute.ts), ahead of the newest posts.
 //
 // They are not equals and the page must not present them as equals: Hunter is a live
-// partnership with a page behind it, the Center for Strategic Learning is an existing WOS
-// center with its own deployment, and the Institute is a WOS institute. `status` carries that
-// difference. It renders as each section's eyebrow, so the distinction is the first thing
-// read rather than something inferred from the copy.
+// partnership with a page behind it, and the Center for Strategic Learning is an existing
+// WOS center with its own deployment. `status` carries that difference. It heads each
+// item, so the distinction is stated rather than inferred from the copy.
 //
 // `href: null` means the item is named but not linked. A card that links nowhere is
 // honest; a card that links to a page which does not exist is not.
@@ -18,11 +14,8 @@
 // put two pages describing one center in competition for the same search result, which
 // is the problem PROGRESS.md records for /staff-augmentation/.
 //
-// Every image is a 3:2 WebP, so the three panels' titles start on one line. The Hunter mark
-// and the Institute drawing are padded to 3:2 on their own background, Hunter's purple and
-// the drawing's white, rather than letterboxed on the panel's field: a mark floating in a
-// band of slate read as a missing photograph, and a padded image keeps every hue out of the
-// components, where a hex literal is not allowed.
+// They had a photograph each when they were panels of their own. The list carries none:
+// the Hunter mark sat on its own purple, the one colour on the page outside the palette.
 
 export type Partnership = {
   status: string;
@@ -30,7 +23,6 @@ export type Partnership = {
   body: string;
   href: string | null;
   external?: boolean;
-  image: { src: string; alt: string };
 };
 
 export const PARTNERSHIPS: Partnership[] = [
@@ -39,10 +31,6 @@ export const PARTNERSHIPS: Partnership[] = [
     title: "WOS-Hunter College AI & Digital Operations",
     body: "Hunter College supplies one of New York City’s strongest and most diverse technology pipelines. WOS recruits, trains, employs and manages the people, and delivers them as a scalable team against your own KPIs.",
     href: "/wos-hunter-college-partnership",
-    image: {
-      src: "/images/partnerships/hunter-college.webp",
-      alt: "Hunter College, The City University of New York",
-    },
   },
   {
     status: "WOS Center",
@@ -55,18 +43,5 @@ export const PARTNERSHIPS: Partnership[] = [
     // redirect costs every visitor a round trip.
     href: "https://new-center-pi.vercel.app/",
     external: true,
-    image: {
-      src: "/images/partnerships/teachers-college.webp",
-      alt: "The entrance to Teachers College, Columbia University",
-    },
-  },
-  {
-    status: "WOS Institute",
-    title: "Institute for Imagination, Reflective Development, and AI Futures",
-    body: "Studying how people develop imagination, ethical foresight and innovation in the age of AI, grounded in Dr. Arthur Langer’s Fantasy Arc framework.",
-    href: "/ai-institute",
-    // Decorative: the title beside it names the Institute, and the drawing adds nothing a
-    // screen reader needs.
-    image: { src: "/images/partnerships/ai-institute.webp", alt: "" },
   },
 ];

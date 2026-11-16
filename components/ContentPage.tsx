@@ -97,7 +97,7 @@ function Blocks({ blocks, level = 3 }: { blocks: Block[]; level?: 2 | 3 }) {
 
           case "para":
             return (
-              <p key={i} className={`reveal mt-5 max-w-[66ch] ${TYPE.body} first:mt-0`} style={next()}>
+              <p key={i} className={`reveal mt-5 max-w-measure ${TYPE.body} first:mt-0`} style={next()}>
                 {b.text}
               </p>
             );
@@ -125,7 +125,7 @@ function Blocks({ blocks, level = 3 }: { blocks: Block[]; level?: 2 | 3 }) {
                   return terse ? (
                     <li
                       key={j}
-                      className="reveal border-t-2 border-[var(--field-rule)] py-3 font-heading text-[18px] font-semibold leading-snug"
+                      className={`reveal border-t-2 border-[var(--field-rule)] py-3 ${TYPE.item}`}
                       style={stagger(Math.min(j, 8))}
                     >
                       {item}
@@ -138,15 +138,15 @@ function Blocks({ blocks, level = 3 }: { blocks: Block[]; level?: 2 | 3 }) {
                     >
                       {label ? (
                         <>
-                          <strong className="block font-heading text-[19px] font-semibold leading-snug">
+                          <strong className={`block ${TYPE.item}`}>
                             {label}
                           </strong>
-                          <span className={`mt-2 block ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>
+                          <span className={`mt-2 block ${TYPE.body} text-[var(--field-muted)]`}>
                             {rest}
                           </span>
                         </>
                       ) : (
-                        <span className={`block ${TYPE.small} md:text-[17px]`}>{item}</span>
+                        <span className={`block ${TYPE.body}`}>{item}</span>
                       )}
                     </li>
                   );
@@ -157,7 +157,8 @@ function Blocks({ blocks, level = 3 }: { blocks: Block[]; level?: 2 | 3 }) {
 
           // An ordered process. The numeral is positional, so renumbering the data
           // renumbers the page and the two can never disagree. It is set in the field's
-          // accent at 28px, which clears the large-text floor on every field it can land on.
+          // accent at h3, 24px and up, which clears the large-text floor on every field it
+          // can land on.
           case "steps":
             return (
               <ol
@@ -166,13 +167,13 @@ function Blocks({ blocks, level = 3 }: { blocks: Block[]; level?: 2 | 3 }) {
               >
                 {b.items.map((step, j) => (
                   <li key={j} className="reveal grid grid-cols-[3rem_1fr] gap-4" style={stagger(Math.min(j, 8))}>
-                    <span className="font-heading text-[30px] font-semibold leading-none text-[var(--field-accent)]">
+                    <span className={`${TYPE.h3} leading-none text-[var(--field-accent)]`}>
                       {j + 1}
                     </span>
                     <div>
-                      <H className="font-heading text-[21px] font-semibold leading-tight md:text-[23px]">{step.title}</H>
+                      <H className={TYPE.h4}>{step.title}</H>
                       {step.body && (
-                        <p className={`mt-2 max-w-[52ch] ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>
+                        <p className={`mt-2 max-w-[52ch] ${TYPE.body} text-[var(--field-muted)]`}>
                           {step.body}
                         </p>
                       )}
@@ -202,10 +203,10 @@ function Blocks({ blocks, level = 3 }: { blocks: Block[]; level?: 2 | 3 }) {
                   >
                     {card.image && <ContentImage src={card.image} alt={card.imageAlt ?? ""} frame />}
                     <div className={withImages ? "p-6 md:p-7" : ""}>
-                      <H className="font-heading text-[21px] font-semibold leading-tight tracking-[-0.01em] md:text-[23px]">
+                      <H className={TYPE.h4}>
                         {card.title}
                       </H>
-                      <p className={`mt-3 ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>{card.body}</p>
+                      <p className={`mt-3 ${TYPE.body} text-[var(--field-muted)]`}>{card.body}</p>
                     </div>
                   </li>
                 ))}

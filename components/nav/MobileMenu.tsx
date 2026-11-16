@@ -71,7 +71,7 @@ export default function MobileMenu() {
                   <MenuLink
                     link={node}
                     onNavigate={close}
-                    className={`block py-4 font-heading text-[30px] font-semibold leading-tight tracking-[-0.02em] text-white no-underline hover:text-white ${
+                    className={`block py-4 font-heading text-h2 font-semibold text-white no-underline hover:text-white ${
                       isActive(pathname, node) ? "underline decoration-wos-red decoration-4 underline-offset-[10px]" : ""
                     }`}
                   />
@@ -83,10 +83,10 @@ export default function MobileMenu() {
                     aria-expanded={section === node.label}
                     aria-controls={`mobile-section-${node.label.toLowerCase().replace(/[^a-z]+/g, "-")}`}
                     onClick={() => setSection(section === node.label ? null : node.label)}
-                    className="flex w-full cursor-pointer items-center justify-between py-4 text-left font-heading text-[30px] font-semibold leading-tight tracking-[-0.02em] text-white"
+                    className="flex w-full cursor-pointer items-center justify-between py-4 text-left font-heading text-h2 font-semibold text-white"
                   >
                     {node.label}
-                    <span aria-hidden="true" className="text-[26px] font-medium text-wos-red">
+                    <span aria-hidden="true" className="text-h3 font-medium text-wos-red">
                       {section === node.label ? "−" : "+"}
                     </span>
                   </button>
@@ -103,7 +103,7 @@ export default function MobileMenu() {
               ),
             )}
           </ul>
-          <Donate onNavigate={close} className="mt-10 px-7 py-3.5 text-[18px]" />
+          <Donate onNavigate={close} className="mt-10 px-7 py-3.5 text-body" />
         </nav>
       </div>
     </div>

@@ -60,15 +60,15 @@ export default function CornerNotice({ item }: { item: Announcement }) {
           onClick={dismiss}
           className="absolute right-2 top-2 text-ink-muted hover:bg-surface-tint hover:text-ink"
         />
-        <p className="m-0 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-ink-muted">
+        <p className="m-0 font-heading text-small font-semibold text-ink-muted">
           {item.label}
         </p>
-        <p className="m-0 mt-2 pr-8 font-heading text-[18px] font-semibold leading-[1.3]">
+        <p className="m-0 mt-2 pr-8 font-heading text-body font-semibold leading-snug">
           {item.title}
         </p>
         <Link
           href={item.href}
-          className="mt-4 inline-block font-heading text-[14px] font-semibold text-action-deep underline underline-offset-[5px] hover:text-action-deeper hover:no-underline"
+          className="mt-4 inline-block font-heading text-small font-semibold text-action-deep underline underline-offset-[5px] hover:text-action-deeper hover:no-underline"
         >
           {item.cta}
         </Link>

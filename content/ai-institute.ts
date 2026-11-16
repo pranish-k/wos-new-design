@@ -366,3 +366,15 @@ const page = {
 };
 
 export default page;
+
+// The Institute's homepage section. The headline is not from the Institute's documents:
+// it was chosen in review on 2026-11-16 to say that WOS is moving with AI, and it is the
+// one line on the homepage that WOS did not write.
+export const HOME_FEATURE = {
+  label: "WOS Institute",
+  headline: "AI is changing how the world works. We’re preparing people to lead it.",
+  name: page.title,
+  body: "Studying how people develop imagination, ethical foresight and innovation in the age of AI, grounded in Dr. Arthur Langer’s Fantasy Arc framework.",
+  href: page.route,
+  cta: "Explore the Institute",
+};

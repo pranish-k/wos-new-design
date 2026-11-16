@@ -194,13 +194,13 @@ export default function ArcDraw({ steps }: { steps: ArcStep[] }) {
       >
         {steps.map((step, i) => (
           <li key={step.tag} className="row-span-3 grid grid-rows-subgrid text-center" style={fade(i)}>
-            <span className="block font-heading text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--field-muted)]">
+            <span className="block font-heading text-small font-semibold text-[var(--field-muted)]">
               {step.tag}
             </span>
-            <span className="mt-2 block font-heading text-[16px] font-semibold leading-[1.25]">
+            <span className="mt-2 block font-heading text-body font-semibold leading-snug">
               {step.name}
             </span>
-            <span className="mt-1.5 block text-[14px] leading-[1.45] text-[var(--field-muted)]">{step.detail}</span>
+            <span className="mt-1.5 block text-small text-[var(--field-muted)]">{step.detail}</span>
           </li>
         ))}
       </ol>

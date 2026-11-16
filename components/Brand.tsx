@@ -21,19 +21,30 @@ export const WRAP = "mx-auto w-full max-w-[1320px] px-5 md:px-8";
 export const PAD = "py-20 md:py-28";
 export const PAD_TIGHT = "py-14 md:py-20";
 
-/** The type scale, as class strings so a page can set an element without a wrapper. */
+/**
+ * The type scale as class strings, so a page can set an element without a wrapper. The
+ * sizes are tokens in globals.css (text-small up to text-display) and DESIGN.md §3 says
+ * why they are what they are. Pick by role, never by eye: if nothing here fits, the
+ * answer is a role that is missing from DESIGN.md, not a new size.
+ */
 export const TYPE = {
-  /** Interior page title. The homepage tagline is its own, larger, uppercase setting. */
-  title: "font-heading text-[clamp(36px,4.8vw,64px)] font-semibold leading-[1.05] tracking-[-0.025em]",
-  h2: "font-heading text-[32px] font-semibold leading-[1.1] tracking-[-0.02em] md:text-[46px]",
-  h3: "font-heading text-[22px] font-semibold leading-[1.2] tracking-[-0.015em] md:text-[26px]",
-  /** A sentence set as display type: a claim, a figure, a closing line. */
-  statement: "font-heading font-semibold leading-[1.15] tracking-[-0.02em]",
-  lead: "text-[20px] leading-[1.55] md:text-[22px]",
-  body: "text-[18px] leading-[1.65]",
-  small: "text-[16px] leading-[1.6]",
+  /** Interior page title, and the close's one line. */
+  title: "font-heading text-title font-semibold",
+  h2: "font-heading text-h2 font-semibold",
+  h3: "font-heading text-h3 font-semibold",
+  /** Card, step, list and person headings. */
+  h4: "font-heading text-h4 font-semibold",
+  /** A sentence set as display type: a quote, an address, a claim. */
+  statement: "font-heading text-statement font-semibold",
+  lead: "text-lead",
+  body: "text-body",
+  small: "text-small",
+  /** A short heading at reading size: a list of names, a fact, a link in a list. */
+  item: "font-heading text-body font-semibold leading-snug",
+  /** Buttons, text links and small headings: the interface voice. */
+  ui: "font-heading text-small font-semibold",
   /** What a group of things is, above the group: muted, sentence case, no rule. */
-  label: "font-heading text-[16px] font-semibold leading-snug text-[var(--field-muted)] md:text-[18px]",
+  label: "font-heading text-body font-semibold leading-snug text-[var(--field-muted)]",
 } as const;
 
 /** The stagger index a `.reveal` element reads. */
@@ -62,8 +73,8 @@ export function PrimaryButton({
     <Link
       href={href}
       {...(external(href) ? NEW_TAB : {})}
-      className={`inline-block bg-[var(--field-btn)] font-heading font-semibold tracking-[0.01em] text-[var(--field-btn-ink)] no-underline transition-colors hover:bg-[var(--field-btn-hover)] hover:text-[var(--field-btn-ink)] ${
-        size === "lg" ? "px-8 py-4 text-[16px]" : "px-7 py-3.5 text-[15px]"
+      className={`inline-block bg-[var(--field-btn)] ${TYPE.ui} text-[var(--field-btn-ink)] no-underline transition-colors hover:bg-[var(--field-btn-hover)] hover:text-[var(--field-btn-ink)] ${
+        size === "lg" ? "px-8 py-4" : "px-7 py-3.5"
       }`}
     >
       {children}
@@ -89,8 +100,8 @@ export function SecondaryButton({
     <Link
       href={href}
       {...(external(href) ? NEW_TAB : {})}
-      className={`inline-block border-2 border-[var(--field-link)] bg-transparent font-heading font-semibold tracking-[0.01em] text-[var(--field-link)] no-underline transition-colors hover:bg-[var(--field-link)] hover:text-[var(--field-bg)] ${
-        size === "lg" ? "px-8 py-[14px] text-[16px]" : "px-7 py-3 text-[15px]"
+      className={`inline-block border-2 border-[var(--field-link)] bg-transparent ${TYPE.ui} text-[var(--field-link)] no-underline transition-colors hover:bg-[var(--field-link)] hover:text-[var(--field-bg)] ${
+        size === "lg" ? "px-8 py-[14px]" : "px-7 py-3"
       }`}
     >
       {children}
@@ -113,10 +124,9 @@ export function TextLink({
     <Link
       href={href}
       {...(ext ? NEW_TAB : {})}
-      className={`inline-flex w-fit items-center gap-3 font-heading text-[16px] font-semibold text-[var(--field-link)] underline underline-offset-[6px] transition-colors hover:text-[var(--field-link)] hover:no-underline ${className}`.trim()}
+      className={`inline-flex w-fit items-center gap-3 ${TYPE.ui} text-[var(--field-link)] underline underline-offset-[6px] transition-colors hover:text-[var(--field-link)] hover:no-underline ${className}`.trim()}
     >
       {children}
-      <Arrow />
       {ext && <span className="sr-only">(opens in a new tab)</span>}
     </Link>
   );
@@ -147,7 +157,7 @@ export function SectionHeading({
       {label && <p className={`reveal mb-4 ${TYPE.label}`}>{label}</p>}
       <H className={`reveal ${TYPE.h2} max-w-[24ch] text-balance`}>{children}</H>
       {intro && (
-        <p className={`reveal mt-6 max-w-[62ch] ${TYPE.body} text-[var(--field-muted)]`} style={stagger(1)}>
+        <p className={`reveal mt-6 max-w-measure ${TYPE.body} text-[var(--field-muted)]`} style={stagger(1)}>
           {intro}
         </p>
       )}
@@ -292,7 +302,7 @@ export function CloseChapter({
     <Chapter field="gradient" id="close" className="overflow-clip">
       <InView className={`${WRAP} grid items-center gap-10 py-20 md:grid-cols-[minmax(0,1.6fr)_minmax(0,1fr)] md:py-28`}>
         <div>
-          <h2 className={`reveal ${TYPE.statement} max-w-[22ch] text-balance text-[clamp(34px,4.4vw,60px)]`}>
+          <h2 className={`reveal ${TYPE.title} max-w-[22ch] text-balance`}>
             {title}
           </h2>
           {body && (
@@ -307,7 +317,6 @@ export function CloseChapter({
           </div>
         </div>
         <Motif
-          draw={false}
           className="pointer-events-none hidden h-auto w-full max-w-[240px] justify-self-end md:block"
           firstFill="fill-white"
         />
@@ -380,16 +389,16 @@ export function ServiceBands({
                   : "md:pl-8 md:pr-14 wrap:pl-[calc(100%-628px)]"
               }`}
             >
-              <H className="max-w-[18ch] font-heading text-[28px] font-semibold leading-[1.1] tracking-[-0.02em] lg:text-[40px]">
+              <H className={`max-w-[18ch] ${TYPE.h3}`}>
                 {s.title}
               </H>
               {s.description && (
-                <p className={`max-w-[46ch] ${TYPE.small} text-[var(--field-muted)] md:text-[17px]`}>
+                <p className={`max-w-[46ch] ${TYPE.body} text-[var(--field-muted)]`}>
                   {s.description}
                 </p>
               )}
-              <span className="inline-flex items-center gap-3 font-heading text-[16px] font-semibold underline-offset-[6px] group-hover:underline">
-                Explore <Arrow />
+              <span className={`inline-flex items-center gap-3 ${TYPE.ui} underline-offset-[6px] group-hover:underline`}>
+                Explore
               </span>
             </div>
             <div className="relative aspect-[16/9] overflow-hidden bg-surface-deep md:aspect-auto md:min-h-[300px]">
@@ -408,7 +417,11 @@ export function ServiceBands({
   );
 }
 
-/** A titled set of short facts, each on the field's rule. */
+/**
+ * A titled set of short facts in a filled panel, each item marked with a small square in
+ * the field's accent rather than set on a rule: two stacks of red rules beside a paragraph
+ * read as lines to look past. The square is the impact chapter's country marker.
+ */
 export function FactList({
   title,
   items,
@@ -421,19 +434,13 @@ export function FactList({
   as?: "h3" | "h4";
 }) {
   return (
-    <div>
-      {title && (
-        <H className={`reveal ${TYPE.label}`} style={stagger(start)}>
-          {title}
-        </H>
-      )}
-      <ul className={`m-0 list-none p-0 ${title ? "mt-3" : ""}`}>
-        {items.map((item, n) => (
-          <li
-            key={item}
-            className="reveal border-t-2 border-[var(--field-rule)] py-3 font-heading text-[19px] font-semibold leading-snug md:text-[20px]"
-            style={stagger(start + n + 1)}
-          >
+    <div className="reveal bg-[var(--field-panel)] p-6 md:p-8" style={stagger(start)}>
+      {title && <H className={TYPE.label}>{title}</H>}
+      <ul className={`m-0 grid list-none gap-4 p-0 ${title ? "mt-5" : ""}`}>
+        {items.map((item) => (
+          <li key={item} className={`flex items-start gap-3.5 ${TYPE.item}`}>
+            {/* Centred on the first line at any type size: half a line down, less half the square. */}
+            <span aria-hidden="true" className="mt-[calc(0.5lh-5px)] h-2.5 w-2.5 flex-none bg-[var(--field-accent)]" />
             {item}
           </li>
         ))}

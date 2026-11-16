@@ -94,14 +94,11 @@ export default function Motif({
   className = "",
   firstFill = "fill-wos-slate",
   secondFill = "fill-wos-red",
-  draw = true,
 }: {
   className?: string;
   /** Fill class for the left arrow, the one that carries the stars. */
   firstFill?: string;
   secondFill?: string;
-  /** Draw on load. Off when an InView ancestor reveals it on scroll instead. */
-  draw?: boolean;
 }) {
   const id = useId().replace(/:/g, "");
   const arrows = [
@@ -114,7 +111,7 @@ export default function Motif({
       viewBox="0 0 240 240"
       aria-hidden="true"
       focusable="false"
-      className={`${draw ? "motif-draw" : ""} ${className}`.trim()}
+      className={className}
     >
       <defs>
         {arrows.map((a, n) => (

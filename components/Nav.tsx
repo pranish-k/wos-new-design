@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { Arrow } from "@/components/Chapter";
 import MobileMenu from "@/components/nav/MobileMenu";
 import { Donate, isActive, stacks, unitsOf, UnitView } from "@/components/nav/parts";
 import WosMark from "@/components/WosMark";
@@ -27,8 +26,8 @@ const panelId = (label: string) => `nav-panel-${label.toLowerCase().replace(/[^a
  * - Every panel is one fixed height, so the edge below the menu never moves between
  *   About, Services and Join Us. Services is the tallest and sets it; the height was
  *   measured at 1440, 1280 and 1024px.
- * - Reading-size type for an audience that skews past 35: 21px bold headings, 19px
- *   links, 17px bar items.
+ * - Reading-size type for an audience that skews past 35, from the site's scale: bold
+ *   headings at h4, links at body, bar items at small.
  * - At most three columns. Every top-level entry is a bold heading, whether it is a
  *   page or a group, and a group's pages are indented beneath it on a red guide line.
  * - The page dims while a panel is open, a panel waits briefly before opening under a
@@ -101,7 +100,7 @@ export default function Nav() {
   };
 
   const barItem = (active: boolean) =>
-    `inline-flex cursor-pointer items-center border-b-2 pb-0.5 font-heading text-[17px] font-medium text-ink no-underline transition-colors hover:text-action-deep ${
+    `inline-flex cursor-pointer items-center border-b-2 pb-0.5 font-heading text-small font-medium text-ink no-underline transition-colors hover:text-action-deep ${
       active ? "border-action" : "border-transparent"
     }`;
 
@@ -168,7 +167,7 @@ export default function Nav() {
               </div>
             ),
           )}
-          <Donate onNavigate={close} className="px-6 py-2.5 text-[16px]" />
+          <Donate onNavigate={close} className="px-6 py-2.5 text-small" />
         </nav>
 
         <MobileMenu />
@@ -188,7 +187,11 @@ function Panel({ group, open, onNavigate }: { group: NavGroup; open: boolean; on
           screen and its edge shows over any page. No pointer events, so moving onto
           the page still closes the menu. */}
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-0 top-full h-screen bg-surface-deep/45" />
-      <div className={`${WRAP} flex flex-col py-10 lg:h-[460px] xl:h-[435px]`}>
+      {/* rem, not px, so the panel grows with the type when a visitor raises their
+          browser's text size. Services needs 289px of columns at 1024 and 294px from
+          1280; 29.5rem leaves it about 20px spare at both, plus the padding and the
+          consultation row. */}
+      <div className={`${WRAP} flex flex-col py-10 lg:h-[29.5rem]`}>
         <div className="grid min-h-0 flex-1 grid-cols-3 gap-x-10 xl:gap-x-16">
           {stacks(unitsOf(group)).map((stack, i) => (
             <div key={i} className="space-y-12">
@@ -202,9 +205,9 @@ function Panel({ group, open, onNavigate }: { group: NavGroup; open: boolean; on
           <Link
             href="/contact"
             onClick={onNavigate}
-            className="inline-flex w-fit items-center gap-3 font-heading text-[17px] font-semibold text-white/85 no-underline underline-offset-[5px] hover:text-white hover:underline"
+            className="inline-flex w-fit items-center gap-3 font-heading text-small font-semibold text-white/85 no-underline underline-offset-[5px] hover:text-white hover:underline"
           >
-            Schedule a free consultation <Arrow />
+            Schedule a free consultation
           </Link>
         </div>
       </div>

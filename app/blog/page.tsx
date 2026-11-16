@@ -39,13 +39,13 @@ export default function Page() {
                     />
                   </div>
                 )}
-                <p className={`mt-5 ${TYPE.label} md:text-[15px]`}>
+                <p className={`mt-5 ${TYPE.ui} text-[var(--field-muted)]`}>
                   <time dateTime={post.date}>{formatted(post.date)}</time>
                 </p>
-                <h2 className="mt-2 font-heading text-[22px] font-semibold leading-[1.2] tracking-[-0.01em] underline-offset-[5px] group-hover:underline md:text-[24px]">
+                <h2 className={`mt-2 ${TYPE.h4} underline-offset-[5px] group-hover:underline`}>
                   {post.title}
                 </h2>
-                <p className={`mt-3 ${TYPE.small} text-[var(--field-muted)]`}>{post.excerpt}</p>
+                <p className={`mt-3 ${TYPE.body} text-[var(--field-muted)]`}>{post.excerpt}</p>
               </Link>
             </li>
           ))}

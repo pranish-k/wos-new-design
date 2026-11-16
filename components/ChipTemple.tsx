@@ -132,11 +132,14 @@ export default function ChipTemple() {
           <line x1={c.x - 42} y1={c.y - 42 + g} x2={c.x + 42} y2={c.y - 42 + g} />
         </g>
       ))}
+      {/* Drawing units, not type: the viewBox scales this with the picture, so it is an
+          attribute rather than a step on the type scale. */}
       <text
         x={c.x}
         y={c.y + 14}
         textAnchor="middle"
-        className="fill-white font-heading text-[40px] font-semibold tracking-[0.04em]"
+        fontSize={40}
+        className="fill-white font-heading font-semibold tracking-[0.04em]"
       >
         AI
       </text>

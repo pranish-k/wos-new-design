@@ -55,28 +55,28 @@ export default function FirstVisitDialog({ item }: { item: Announcement }) {
           onClick={close}
           className="absolute right-3 top-3 text-ink-muted hover:bg-surface-tint hover:text-ink"
         />
-        <p className="mb-3 font-heading text-[15px] font-semibold text-ink-muted">{item.label}</p>
+        <p className="mb-3 font-heading text-small font-semibold text-ink-muted">{item.label}</p>
         <h2
           id="first-visit-heading"
-          className="pr-8 font-heading text-[26px] font-semibold leading-[1.15] tracking-[-0.015em] text-ink md:text-[30px]"
+          className="pr-8 font-heading text-h3 font-semibold text-ink"
         >
           {item.title}
         </h2>
-        <p className="mt-4 text-[16px] leading-[1.65] text-ink-muted">{item.summary}</p>
+        <p className="mt-4 text-body text-ink-muted">{item.summary}</p>
         <div className="mt-8 flex flex-wrap items-center gap-6">
           {/* Hand-rolled to PrimaryButton's md classes rather than PrimaryButton itself,
               because it has to close the dialog on the way out. */}
           <Link
             href={item.href}
             onClick={close}
-            className="inline-block bg-action-deep px-7 py-3.5 font-heading text-[15px] font-semibold tracking-[0.01em] text-white no-underline transition-colors hover:bg-action-deeper hover:text-white"
+            className="inline-block bg-action-deep px-7 py-3.5 font-heading text-small font-semibold text-white no-underline transition-colors hover:bg-action-deeper hover:text-white"
           >
             {item.cta}
           </Link>
           <button
             type="button"
             onClick={close}
-            className="font-heading text-sm font-semibold text-ink-muted underline underline-offset-[4px] transition-colors hover:text-ink"
+            className="font-heading text-small font-semibold text-ink-muted underline underline-offset-[4px] transition-colors hover:text-ink"
           >
             Not now
           </button>

@@ -43,7 +43,7 @@ export default function NotFound() {
               <li key={item.href} className="border-t-2 border-[var(--field-rule)]">
                 <Link
                   href={item.href}
-                  className="block py-4 font-heading text-[19px] font-semibold text-[var(--field-ink)] no-underline underline-offset-[5px] hover:text-[var(--field-ink)] hover:underline"
+                  className="block py-4 font-heading text-body font-semibold leading-snug text-[var(--field-ink)] no-underline underline-offset-[5px] hover:text-[var(--field-ink)] hover:underline"
                 >
                   {item.label}
                 </Link>

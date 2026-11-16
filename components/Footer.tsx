@@ -25,8 +25,9 @@ function FooterLink({
   );
 }
 
-const COLUMN_HEADING =
-  "mb-1 font-heading text-[11px] font-semibold uppercase tracking-[0.15em] text-white/85";
+// Sentence case at the footer's own size, set apart by weight and full white. The
+// spaced capitals this replaced were 11px, the smallest type on the site.
+const COLUMN_HEADING = "mb-1 font-heading text-small font-semibold text-white";
 
 export default function Footer() {
   // No top margin: every page ends on a full-bleed chapter, and a white strip between
@@ -37,7 +38,7 @@ export default function Footer() {
       <div className="mx-auto grid w-full max-w-[1320px] grid-cols-1 gap-10 px-5 py-14 md:grid-cols-3 md:px-8 md:py-16">
         <div>
           <WosMark variant="onDark" className="h-9 w-auto" />
-          <p className="mt-5 max-w-xs text-sm leading-relaxed text-white/75">
+          <p className="mt-5 max-w-xs text-small text-white/75">
             {LEGAL_STATUS}
           </p>
 
@@ -48,13 +49,13 @@ export default function Footer() {
               href={CAREERS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-white px-5 py-2 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-surface-dark no-underline transition-colors hover:bg-white/85"
+              className="bg-white px-5 py-2.5 font-heading text-small font-semibold text-surface-dark no-underline transition-colors hover:bg-white/85"
             >
               Careers
             </a>
             <Link
               href={DONATE.href}
-              className="bg-action-deep px-5 py-2 font-heading text-[13px] font-semibold uppercase tracking-[0.08em] text-white no-underline transition-colors hover:bg-action-deeper"
+              className="bg-action-deep px-5 py-2.5 font-heading text-small font-semibold text-white no-underline transition-colors hover:bg-action-deeper"
             >
               Donate
             </Link>
@@ -62,7 +63,7 @@ export default function Footer() {
         </div>
 
         {/* White at 75%, not red: red is 2.8:1 on slate and fails AA at any size. */}
-        <nav aria-label="Services" className="flex flex-col gap-2.5 text-sm text-white/75">
+        <nav aria-label="Services" className="flex flex-col gap-2.5 text-small text-white/75">
           <p className={COLUMN_HEADING}>Services</p>
           {FOOTER_SERVICES.map((link) => (
             <FooterLink key={link.href} href={link.href}>
@@ -71,10 +72,10 @@ export default function Footer() {
           ))}
         </nav>
 
-        <div className="flex flex-col gap-2.5 text-sm text-white/75">
+        <div className="flex flex-col gap-2.5 text-small text-white/75">
           <p className={COLUMN_HEADING}>Contact</p>
           <FooterLink href="/contact/">Contact Us</FooterLink>
-          <address className="not-italic leading-relaxed">
+          <address className="not-italic">
             {HQ.name}
             <br />
             {HQ.street}, {HQ.unit}
@@ -109,7 +110,7 @@ export default function Footer() {
 
       {/* The footer is the only path to both of these, so this line is load-bearing. */}
       <div className="border-t border-white/15">
-        <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-2 px-5 py-4 text-xs text-white/75 md:flex-row md:items-center md:justify-between md:px-8">
+        <div className="mx-auto flex w-full max-w-[1320px] flex-col gap-2 px-5 py-4 text-small text-white/75 md:flex-row md:items-center md:justify-between md:px-8">
           <p className="m-0">
             &copy; {new Date().getFullYear()} {ORG}
           </p>

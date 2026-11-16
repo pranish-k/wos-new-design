@@ -53,14 +53,14 @@ function GroupLanding({ path }: { path: string }) {
       {group.intro.length > 0 && (
         <Chapter field="tint">
           <InView className={`${WRAP} ${PAD_TIGHT}`}>
-            <div className="max-w-3xl">
+            <div className="max-w-measure">
               {group.intro.map((block, i) =>
                 block.kind === "list" ? (
                   <ul key={i} className="m-0 mt-8 grid list-none gap-x-10 p-0 md:grid-cols-2">
                     {block.items.map((item, j) => (
                       <li
                         key={item}
-                        className={`reveal border-t-2 border-[var(--field-rule)] py-3 ${TYPE.small} md:text-[17px]`}
+                        className={`reveal border-t-2 border-[var(--field-rule)] py-3 ${TYPE.body}`}
                         style={stagger(j)}
                       >
                         {item}
@@ -123,7 +123,7 @@ export default async function Page({ params }: Props) {
             </div>
           )}
 
-          <div className="max-w-3xl">
+          <div className="max-w-measure">
             {post.blocks.map((block, i) =>
               block.kind === "heading" ? (
                 <h2 key={i} className={`mt-12 first:mt-0 ${TYPE.h3}`}>

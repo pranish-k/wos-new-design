@@ -49,7 +49,6 @@ export default function VideoEmbed({
         e.preventDefault();
         setPlaying(true);
       }}
-      aria-label={`Play video: ${video.title} (${video.duration})`}
       className="group relative block aspect-video w-full overflow-hidden bg-surface-deep"
     >
       <Image
@@ -71,7 +70,11 @@ export default function VideoEmbed({
           <path d="M6 4.5v15L19.5 12z" fill="currentColor" />
         </svg>
       </span>
-      <span aria-hidden="true" className="absolute bottom-3 left-4 font-heading text-[14px] font-semibold text-white">
+      {/* The name is the link's own text, not an aria-label: a label that leaves out the
+          duration printed on the frame fails WCAG 2.5.3, since a voice user who says what
+          they see would not match it. */}
+      <span className="sr-only">Play video: {video.title}, </span>
+      <span className="absolute bottom-3 left-4 font-heading text-small font-semibold text-white">
         {video.duration}
       </span>
     </a>

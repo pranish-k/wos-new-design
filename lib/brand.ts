@@ -15,11 +15,15 @@ export const ORG_SHORT = "WOS";
 /** Homepage hero line, verbatim from the live site. */
 export const TAGLINE = "We find, develop, and convert talent from local communities.";
 
+// "501(c)(3)" here and in content/ carries an invisible word joiner (U+2060) between
+// "(c)" and "(3)". Without it the browser may break the line there and print
+// "501(c)" / "(3)". A plain-text search for "501(c)(3)" will not find these strings.
+
 /** Live meta description. Also the fallback for pages that do not set their own. */
 export const DESCRIPTION =
-  "Workforce Opportunity Services (WOS) is a leading 501(c)(3) nonprofit dedicated to providing and developing talent from local communities.";
+  "Workforce Opportunity Services (WOS) is a leading 501(c)⁠(3) nonprofit dedicated to providing and developing talent from local communities.";
 
-export const LEGAL_STATUS = "WOS is a tax-exempt 501(c)(3) nonprofit organization.";
+export const LEGAL_STATUS = "WOS is a tax-exempt 501(c)⁠(3) nonprofit organization.";
 
 export const HQ = {
   name: "WOS Headquarters",
