@@ -58,7 +58,7 @@ const GROUPS: { title: string; items: ServiceCard[]; fields: Field[] }[] = [
   { title: "Other Services", items: OTHER_SERVICES, fields: ["deep", "slate", "crimson"] },
 ];
 
-const PANEL_FIELDS: Field[] = ["slate", "crimson", "tint"];
+const PANEL_FIELDS: Field[] = ["slate", "crimson", "paper"];
 
 /** Clients Our History names, or their neighbours on the partner wall, with a logo on file. */
 const CLIENT_NAMES = [
@@ -304,25 +304,33 @@ export default function HomePage({
 
       {/* 6. Partnerships and centers, side by side. What each one is (a partnership, a
              center, an institute) closes the panel rather than labelling it from above.
-             The Center's Teachers College credit is the sanctioned one, DESIGN.md §0. */}
-      <Chapter field="slate" id="partnerships" label="Partnerships and centers">
+             The Center's Teachers College credit is the sanctioned one, DESIGN.md §0.
+             The heading is a plain name for the three, not a line of copy, and it sits on
+             its own tint band: without it the crimson panel ran straight on from the last
+             crimson service band and read as part of Services. */}
+      <Chapter field="tint" id="partnerships">
+        <InView className={`${WRAP} pb-12 pt-20 md:pb-14 md:pt-28`}>
+          <SectionHeading>Partnerships, centers and institutes</SectionHeading>
+        </InView>
         <ul className="m-0 grid list-none p-0 lg:grid-cols-3">
           {PARTNERSHIPS.map((p, n) => (
-            <li key={p.title} className={`${fieldClass(PANEL_FIELDS[n])} flex`}>
-              <InView className="flex w-full flex-col justify-between gap-10 px-5 py-14 md:px-10 md:py-16">
+            <li key={p.title} className={`${fieldClass(PANEL_FIELDS[n])} flex flex-col`}>
+              {/* Flush to the panel's top and sides: an inset image left a frame of the
+                  field around it. */}
+              <div className="relative aspect-[3/2] w-full overflow-hidden">
+                <Image
+                  src={p.image.src}
+                  alt={p.image.alt}
+                  fill
+                  sizes="(min-width: 1024px) 33vw, 100vw"
+                  className="object-cover"
+                />
+              </div>
+              <InView className="flex w-full flex-1 flex-col justify-between gap-10 px-5 pb-14 pt-8 md:px-10 md:pb-16 md:pt-10">
                 <div>
-                  <div className="reveal relative mb-8 aspect-[3/2] w-full overflow-hidden">
-                    <Image
-                      src={p.image.src}
-                      alt={p.image.alt}
-                      fill
-                      sizes="(min-width: 1024px) 33vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  <h2 className="reveal font-heading text-[26px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[30px]">
+                  <h3 className="reveal font-heading text-[26px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[30px]">
                     {p.title}
-                  </h2>
+                  </h3>
                   <p className={`reveal mt-4 max-w-[46ch] ${TYPE.body}`} style={i(1)}>
                     {p.body}
                   </p>
