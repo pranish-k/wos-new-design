@@ -212,7 +212,9 @@ Match the existing naming, comment density, and idiom rather than importing a di
   A new component needs at least two call sites, or it is a one-off pretending to be a pattern.
 - **People are one record each, in `content/people/`.**
   Read them through `lib/people/store.ts` and never reach for the files directly.
-  A person's `groups` decides which pages they appear on and `groups[0]` owns their URL,
+  A person's `groups` decides which pages they appear on and `groups[0]` owns their URL
+  (a second group gets its own copy of the page, with that group's role and back link,
+  naming the first as canonical),
   `status: "hidden"` removes them without losing the record, an empty `bio` means a card
   with no page, and `legacyPaths` carries their old URLs.
   Group landing pages are configuration in `content/groups.ts`, not route files.

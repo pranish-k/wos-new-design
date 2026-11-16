@@ -65,7 +65,7 @@ export default function PeopleGrid({
   return (
     <ul className="m-0 grid list-none grid-cols-1 gap-x-8 gap-y-12 p-0 sm:grid-cols-2 lg:grid-cols-4">
       {people.map((person, n): ReactNode => {
-        const href = personHref(person);
+        const href = personHref(person, groupId);
         return (
           <li key={person.slug} className="reveal" style={stagger(n % 4)}>
             {href ? (

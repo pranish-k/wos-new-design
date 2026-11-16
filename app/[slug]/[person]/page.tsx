@@ -2,17 +2,19 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { HeroImage, PAD, PageHero, TextLink, TYPE, WRAP } from "@/components/Brand";
 import { Chapter } from "@/components/Chapter";
-import { getGroup, getPerson, listPeople, listGroups, roleIn } from "@/lib/people/store";
+import { getGroup, getPerson, listPeople, listGroups, personHref, roleIn } from "@/lib/people/store";
 
 // Nested paths, because the sitemap treats those as canonical. The top-level duplicate
 // slugs the live index cards use redirect here; those live on each person's record as
 // `legacyPaths` and next.config.ts builds the redirect table from them.
 //
-// A person's first group owns their URL, so someone on two boards still has one page.
+// A person's first group owns their URL. Someone on two boards also has a page under the
+// second, so a visitor who came from that board sees that role and goes back to it; that
+// page names the first as canonical, so search engines see one page, not two.
 export function generateStaticParams() {
   return listGroups().flatMap((g) =>
     listPeople(g.id)
-      .filter((p) => p.groups[0] === g.id && p.bio.length > 0)
+      .filter((p) => p.bio.length > 0)
       .map((p) => ({ slug: g.path, person: p.slug })),
   );
 }
@@ -25,7 +27,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug, person } = await params;
   const p = getPerson(slug, person);
   if (!p) return {};
-  return { title: p.name, description: `${p.name}. ${p.role}`.trim() };
+  const canonical = personHref(p);
+  return {
+    title: p.name,
+    description: `${p.name}. ${roleIn(p, getGroup(slug)!.id) || p.role}`.trim(),
+    ...(canonical && canonical !== `/${slug}/${person}` ? { alternates: { canonical } } : {}),
+  };
 }
 
 /** The portrait opens the page beside the name, as the photograph does on every page. */

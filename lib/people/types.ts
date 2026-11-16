@@ -72,9 +72,14 @@ export function orderIn(p: PersonRecord, groupId: GroupId): number | null {
   return p.membership?.[groupId]?.order ?? p.order;
 }
 
-/** The canonical page for a person, or null when they have no bio to put on one. */
-export function personHref(p: PersonRecord): string | null {
-  return p.bio.length > 0 ? `/${p.groups[0]}/${p.slug}` : null;
+/**
+ * A person's page, or null when they have no bio to put on one. With `groupId`, the page
+ * under that group, so a card on the Industry Advisory Board leads to a page that says
+ * so; without, the canonical page under their first group.
+ */
+export function personHref(p: PersonRecord, groupId: GroupId = p.groups[0]): string | null {
+  if (p.bio.length === 0) return null;
+  return `/${p.groups.includes(groupId) ? groupId : p.groups[0]}/${p.slug}`;
 }
 
 /**

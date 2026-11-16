@@ -32,7 +32,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const people = groups.flatMap((g) =>
     listPeople(g.id)
       .filter((p) => p.groups[0] === g.id)
-      .map(personHref)
+      .map((p) => personHref(p))
       .filter((href): href is string => href !== null),
   );
   return [

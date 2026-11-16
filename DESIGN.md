@@ -786,5 +786,7 @@ It lays five ways of announcing something over the real homepage, chosen by `?sh
 The bar sits above the header, which a page cannot reach, so it renders through the `@banner` slot.
 That slot needs three files that render nothing (`default.tsx`, `page.tsx`, `[...rest]/page.tsx`), because on a client-side navigation Next keeps a slot's last page when nothing in it matches the new URL; without them the demo's bar would follow the visitor out of the demo.
 
+**`/text-width-demo`** compares four ways to set group intros and bios wider than the 52ch column (a wider column, two columns, a label beside, full width), on the Industry Advisory Board intro and Arthur Langer's bio. Unlinked, out of the sitemap, `noindex`; it comes out once one is chosen.
+
 Earlier demo routes (`/nav-demo`, `/motion-demo`, `/solution-demo`) each came out once their choice was made; what was chosen is recorded in §4, §7 and §10. `/nav-demo` is in git history; the other two were never committed.
 The Business Solution selling options from `/solution-demo` (the four Cs answered, a comparison with consultants and staff) wait on WOS for a cost answer and approved wording; PROGRESS.md tracks it.

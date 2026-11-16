@@ -8,6 +8,13 @@
   "status": "published",
   "order": 6,
   "photo": "/images/people/harriet-hope.webp",
-  "bio": [],
-  "legacyPaths": []
+  "bio": [
+    {
+      "kind": "para",
+      "text": "Harriet Hope joined WOS in October 2010. Her responsibilities include finance, human resources, data management, office administration, and special projects. Prior to joining WOS, Harriet was a manager in the department of quality management of a large New York City hospital, where she was responsible for completing and reviewing quarterly reporting of the hospital’s performance to the corporation’s Board of Directors. She acted as a liaison to multiple departments for the collection, reporting, and statistical analysis of hospital performance data."
+    }
+  ],
+  "legacyPaths": [
+    "/harriet-hope-2"
+  ]
 }

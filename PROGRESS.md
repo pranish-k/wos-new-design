@@ -31,6 +31,8 @@ Nothing here gets written for them.
   The only cost claim on the site is the co-op page's "converted to your employment at no additional charge". Does that hold for consultants too?
 - **The Institute's supporting line**, "AI is changing how the world works. We're preparing people to lead it.", is the one homepage line WOS did not write and needs their sign-off.
 - **The Hunter 92% figure needs a source.** "Approximately 92% of WOS revenue is reinvested..." on `/wos-hunter-college-partnership/` should cite a year and a filing, or lose the number.
+- **Nine Industry Advisory Board bios.** Banerji, Donofrio, Hildebrand, O'Brien, Knight, Hackney, Sevola, Jones and Beecher have photos and no bio, so their cards do not link.
+  On the live site their photos point at Popup Maker pop-ups (`#popmake-6612` to `6636`) that are no longer on the page, so clicking them there opens nothing either; the pop-ups may still exist as drafts in WordPress.
 - **HR Advisory Board intro copy.**
 - **Consulting to Hire Services copy.** The page is a hub over its three services with one paragraph of its own.
 - **20 corporate and 15 academic partner logos have no name**, so a screen reader skips them and the homepage marquee leaves them out. One word each fixes it, in `content/partners.ts` and `content/academic-partners-logos.ts`.

@@ -138,10 +138,10 @@ export function listAllPeople(): PersonRecord[] {
   return [...all()].sort(comparePeople());
 }
 
-/** A published person by their canonical path. Hidden people resolve to undefined. */
+/** A published person with a bio, on any group they belong to. Hidden people resolve to undefined. */
 export function getPerson(groupId: string, slug: string): PersonRecord | undefined {
   return all().find(
-    (p) => p.status === "published" && p.slug === slug && p.groups[0] === groupId && p.bio.length > 0,
+    (p) => p.status === "published" && p.slug === slug && (p.groups as string[]).includes(groupId) && p.bio.length > 0,
   );
 }
 
