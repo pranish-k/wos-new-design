@@ -3,7 +3,7 @@
 // Names are recovered from the filenames because the live markup carries no alt text on
 // any of them. The wall is complete: every logo the live page shows is here.
 //
-// 18 of them carry name: "" - files named Picture1.png through Picture24.png, plus
+// 20 of them carry name: "" - files named Picture1.png through Picture24.png, plus
 // RR-logo.png and images.png, where nothing on the live page identifies the company. An
 // empty name renders as alt="" so a screen reader skips the image rather than announcing
 // a filename. They are visible to sighted visitors and invisible to assistive technology,

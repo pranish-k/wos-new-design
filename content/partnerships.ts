@@ -12,7 +12,7 @@
 // `external` leaves this site. The Center has its own deployment and its own chrome, so
 // the link goes there rather than to a summary of it here: duplicating its copy would
 // put two pages describing one center in competition for the same search result, which
-// is the problem PROGRESS.md records for /staff-augmentation/.
+// is the problem CLAUDE.md records for /staff-augmentation/.
 //
 // They had a photograph each when they were panels of their own. The list carries none:
 // the Hunter mark sat on its own purple, the one colour on the page outside the palette.

@@ -5,24 +5,21 @@ The live site runs on WordPress with the Kubio page builder.
 We are rebuilding it as a modern Next.js app with the same content and the same information architecture, and a new front end.
 
 This repo is the rebuild.
-The full build plan is at [BUILD-PLAN.md](BUILD-PLAN.md), and it is worth reading before starting work.
+What is still open, and what only WOS can supply, is in [PROGRESS.md](PROGRESS.md).
 
-## The three directories
+## The workspace
 
 | Directory | What it is | Editable |
 | --- | --- | --- |
 | `.` (this repo) | The rebuild. All new work happens here. | Yes |
 | `../wforce-mirror/` | HTTrack mirror of the live site, plus three verified inventory files. | **Never** |
-| `../screenshot/` | Screen captures of the live site used to verify the nav. | **Never** |
+| `../sources/` | Material WOS supplied: the overview film, the Center proposal, the Hunter overview, the Fantasy Arc deck, logos, video briefs. | Read only |
 
-`../wforce-mirror/` and `../screenshot/` sit outside this repo on purpose.
-They are large, they are reference, and they must never be committed here.
+Both sit outside this repo on purpose: they are large, they are reference, and they must never be committed here.
+**Keep the repo self contained.** A build-time read of `../anything` works in development and fails on deploy, so tools read the outside material once and commit their output.
 
-There is a fourth directory, also outside this repo:
-
-The reference center site (a separate private repo) is a Next.js app for a WOS sub-brand center site.
-It is the visual reference for this rebuild and is **read only**.
-Its `DESIGN.md` is the source of truth for how the rebuild looks.
+The reference center site (a separate private repo) is the visual source this design system was ported from.
+It is **read only**.
 
 ### `../wforce-mirror/` is never edited
 
@@ -30,8 +27,6 @@ This is a hard rule, not a preference.
 It is a mirror of a live production site and the only record of what that site currently contains.
 An error found in it is a finding to report, never a file to correct.
 If something in it looks wrong, say so and leave it alone.
-
-The same applies to `../screenshot/`.
 
 ## What the site actually contains
 
@@ -73,75 +68,37 @@ Hub pages are load bearing: empty one and everything it links to becomes unreach
 
 ## Open decisions
 
-Two of the five remain unresolved.
+Two remain unresolved.
 Do not silently resolve either of them.
 If a task depends on one, raise it.
 
-1. ~~**The four boards are handled four different ways.**~~ **Settled.**
-   All four boards now have landing pages and header placement.
-   Industry Advisory Board carries its live copy and 12 member cards.
-   HR Advisory Board had four live member pages and no landing page in the mirror at all,
-   so its page was built from the group config and its intro copy is still missing.
-   **That copy has to come from WOS. Do not write it here.**
-2. **Program pages have no consistent home.**
-   Cohorts and College Co-ops are reachable through a hub.
-   The WOS-Northeastern pipeline program has no path at all.
-3. **College CO-OP and Internship sits under Managed Service Centers.**
-   A student program filed under an IT service line looks like an accident of page building rather than a decision.
-4. **Person page URLs are inconsistent.**
-   19 of 29 person cards link to top level duplicate slugs while the sitemap treats the nested paths as canonical.
-   This governs 19 redirects and must be settled before person pages are built.
-5. ~~**The Services menu is four levels deep** including the top bar.~~ **Settled.**
-   The "Other Services" grouping was flattened away, so Educational Services and Advisory
-   Services are now peers of Consulting to Hire Services and the menu is two levels below
-   the bar. Nothing moved: all 33 hrefs are unchanged and only the wrapper label is gone.
-   This was the fix the decision asked for. The complaint was about touch devices, and the
-   mobile overlay renders the same tree, so it removed a tap from every leaf under
-   Educational and Advisory Services.
-   It also fixed the desktop panel, where the wrapper put two heading levels in the same
-   style and made "OTHER SERVICES" and "EDUCATIONAL SERVICES" indistinguishable.
-   **This is the one structural departure from the live menu.** The live site does have an
-   "Other Services" label; we do not.
+- **Program pages have no consistent home.**
+  Cohorts and College Co-ops are reachable through a hub.
+  The WOS-Northeastern pipeline program has no path at all.
+- **College CO-OP and Internship sits under Managed Service Centers.**
+  A student program filed under an IT service line looks like an accident of page building rather than a decision.
 
-### The unreachable pages are launch blockers
+Settled, and not to be reopened by accident:
 
-A breadth-first crawl from `/` reaches 95 URLs and misses 35 canonical pages.
-Eighteen of those are person pages whose content is reachable at a duplicate URL, and two are payment endpoints.
-`wforce-header-asis.txt` records the remaining 15 as live content with no path to them at any URL.
+- **The four boards** all have landing pages and header placement.
+  HR Advisory Board has no intro copy in the mirror; **that copy has to come from WOS. Do not write it here.**
+- **Person pages live at the nested paths** the sitemap treats as canonical, and the top-level duplicates redirect there (`legacyPaths`).
+- **The Services menu is two levels below the bar.**
+  The live "Other Services" wrapper label was flattened away; all 33 hrefs are unchanged.
+  **This is the one structural departure from the live menu.**
 
-**Nine of the 15 now have a path.**
-The people engine closed them: the Industry Advisory Board page, the four HR Advisory Board
-member pages, the three cardless staff pages, and `/warren-kudman-2/` as a redirect.
+### Four pages are built but deliberately unlinked
 
-**Two of the other six are now in the Services menu:**
-`/consulting-to-hire-services/` and `/managedservices/`.
+The live site has 15 pages with no path to them.
+Eleven now have one: the people engine reached nine, and `/consulting-to-hire-services/` and `/managedservices/` are in the Services menu.
 
-**The remaining four are built but deliberately unlinked.**
-`/talent-acquisition/`, `/direct-hire/`, `/staff-augmentation/` and
-`/wos-northeastern-talent-pipeline-program/` all exist at their live URLs and carry their
-live copy, and nothing links to them from anywhere.
-That is the state the live site is in, held on purpose: the content is now in the rebuild,
-so what remains is a placement decision rather than a content job.
+`/talent-acquisition/`, `/direct-hire/`, `/staff-augmentation/` and `/wos-northeastern-talent-pipeline-program/` exist at their live URLs with their live copy, and nothing links to them.
+That is the live site's state, held on purpose: what remains is a placement decision, not a content job.
+They stay out of `app/sitemap.ts` while unlinked, since a sitemap entry would be their only discovery path.
+**Placing one means adding it to the nav or a hub grid and to the sitemap in the same change.**
 
-They are out of `app/sitemap.ts` while they stay unlinked, since a sitemap entry would be
-the only discovery path for a page nothing links to.
-**Placing any of them means adding it to the nav or a hub grid and to the sitemap in the
-same change.**
-
-One of them is a near-duplicate: `/staff-augmentation/` shares about 90% of its copy with
-`/on-site-remote-staffing/`, which is in the header.
-Both are built, on instruction. If they are ever both linked, they compete for the same
-search result.
-
-A finding while closing these: `wforce-header-asis.txt` lists three cardless staff pages
-under `/team/`, but `/team/andrew-gold-2/` is a fourth that the live team page does link.
-The as-is file is right that his page exists; it is the rebuild's first extraction that
-missed his card. The mirror is untouched and the discrepancy is recorded here.
-
-Four of them form an isolated island.
-`/consulting-to-hire-services/` and `/talent-acquisition/` each link out to Cohorts, Direct Hire, and Staff Augmentation, and nothing links in.
-Note that the live menu has a grouping label named "Consulting to Hire Services" pointing at `href="#"` while a real page of that exact name sits stranded.
-The menu was reorganised and the old landing pages were left behind.
+`/staff-augmentation/` shares about 90% of its copy with `/on-site-remote-staffing/`, which is in the header.
+If both are ever linked, they compete for the same search result.
 
 ## Design
 

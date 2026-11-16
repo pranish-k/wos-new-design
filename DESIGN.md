@@ -786,10 +786,5 @@ It lays five ways of announcing something over the real homepage, chosen by `?sh
 The bar sits above the header, which a page cannot reach, so it renders through the `@banner` slot.
 That slot needs three files that render nothing (`default.tsx`, `page.tsx`, `[...rest]/page.tsx`), because on a client-side navigation Next keeps a slot's last page when nothing in it matches the new URL; without them the demo's bar would follow the visitor out of the demo.
 
-`/motion-demo` compared openings for the homepage and arrangements of the impact chapter around a globe, in the same way.
-The faces reel and the stacked statements beside the globe were chosen on 2026-11-16 and are on `/` (§7, §10); the route came out with them, and the other candidates were never committed.
-
-`/solution-demo` compared arrangements of the homepage's Business Solution and Method, and ways of selling the Business Solution paragraph (the choice between consultants and staff resolved, the four Cs answered, a comparison table).
-The film-first arrangement was chosen on 2026-11-16 and is on `/`; the selling options wait on WOS for a cost answer and approved wording, and are in the conversation record rather than in git.
-
-`/nav-demo` was the same kind of route for the header. It came out once the header was chosen, §4, and is in git history.
+Earlier demo routes (`/nav-demo`, `/motion-demo`, `/solution-demo`) each came out once their choice was made; what was chosen is recorded in §4, §7 and §10. `/nav-demo` is in git history; the other two were never committed.
+The Business Solution selling options from `/solution-demo` (the four Cs answered, a comparison with consultants and staff) wait on WOS for a cost answer and approved wording; PROGRESS.md tracks it.
