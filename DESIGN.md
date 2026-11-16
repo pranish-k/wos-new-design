@@ -9,9 +9,9 @@ Before making a judgment call, add it here.
 
 The site runs in the **colour-chapter** direction.
 It was developed as `/alternate-home`, compared side by side with the original homepage on the real site, and adopted for the whole site by the client on 2026-11-15.
-The original editorial direction is preserved in git: `main` holds it, and the `alternate-home` branch holds both homepages side by side.
+The original editorial direction is preserved in git history: it is `main` up to commit `11df318`, before the redesign was merged.
 
-The tokens, the type, the anti-pattern list and the reasoning behind the rejected colours were ported from the center site at `/Users/pranish/Documents/wos-new-center/proposed_center/site/`.
+The tokens, the type, the anti-pattern list and the reasoning behind the rejected colours were ported from the reference center site (a separate private repo).
 That reasoning is kept verbatim where it still holds: re-deriving it means repeating the mistakes.
 
 For the rules of the rebuild rather than its appearance, see [CLAUDE.md](CLAUDE.md).

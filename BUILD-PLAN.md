@@ -14,7 +14,7 @@ Two sources, both read only, answering different questions.
 A complete HTTrack mirror plus three verified inventory files.
 Content, images, page copy, and the information architecture all come from here.
 
-**`/Users/pranish/Documents/wos-new-center/proposed_center/site/` answers "how does it look".**
+**The reference center site (a separate private repo) answers "how does it look".**
 A Next.js 16 app for a WOS sub-brand center site with a mature design system.
 Its `DESIGN.md` is 18KB and unusually complete: it records not just the rules but the rejected alternatives and why each failed.
 Four card fill attempts, the teal removal, the Georgia and Trajan retirement.

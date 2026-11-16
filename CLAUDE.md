@@ -20,7 +20,7 @@ They are large, they are reference, and they must never be committed here.
 
 There is a fourth directory, also outside this repo:
 
-`/Users/pranish/Documents/wos-new-center/proposed_center/site/` is a Next.js app for a WOS sub-brand center site.
+The reference center site (a separate private repo) is a Next.js app for a WOS sub-brand center site.
 It is the visual reference for this rebuild and is **read only**.
 Its `DESIGN.md` is the source of truth for how the rebuild looks.
 
@@ -150,7 +150,7 @@ Read it before writing any component.
 Before making a visual judgment call, add it there.
 
 The site runs in the colour-chapter direction, adopted site-wide on 2026-11-15.
-The original editorial direction is on `main` and, beside the exploration that replaced it, on the `alternate-home` branch.
+The original editorial direction is in git history: `main` up to commit `11df318`, before the redesign was merged.
 
 The rules below are the ones most often broken.
 
