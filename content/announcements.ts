@@ -26,9 +26,9 @@ export type Announcement = {
 export const ANNOUNCEMENT: Announcement = {
   id: "workforce-ai-institute-2026",
   label: "Announcement",
-  title: "Introducing the Workforce AI Institute",
+  title: "Introducing the Institute for Imagination, Reflective Development, and AI Futures",
   summary:
-    "Home of the Center for Imagination, Reflective Development, and AI Futures, studying how people develop imagination, ethical foresight and innovation in the age of AI.",
+    "Studying how people develop imagination, ethical foresight and innovation in the age of AI.",
   href: "/ai-institute",
   cta: "Read about the Institute",
 };

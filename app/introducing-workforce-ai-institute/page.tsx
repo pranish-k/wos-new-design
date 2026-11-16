@@ -4,7 +4,7 @@ import { Chapter } from "@/components/Chapter";
 
 // Temporary preview of an announcement post, to be copied and then deleted.
 export const metadata: Metadata = {
-  title: "Introducing the Workforce AI Institute",
+  title: "Introducing the Institute for Imagination, Reflective Development, and AI Futures",
   robots: { index: false },
 };
 
@@ -14,18 +14,17 @@ export default function Page() {
       <PageHero
         label="News & Events"
         labelHref="/blog"
-        title="Introducing the Workforce AI Institute"
-        lead="Home of the Center for Imagination, Reflective Development, and AI Futures"
+        title="Introducing the Institute for Imagination, Reflective Development, and AI Futures"
       />
 
       <Chapter field="paper">
         <div className={`${WRAP} ${PAD}`}>
           <div className={`max-w-3xl ${TYPE.body}`}>
             <p className={TYPE.lead}>
-              Workforce Opportunity Services is proud to introduce the Workforce AI Institute, an
-              interdisciplinary research laboratory dedicated to understanding how people develop
-              imagination, abstract thinking, ethical foresight, and innovation in the age of
-              artificial intelligence.
+              Workforce Opportunity Services is proud to introduce the Institute for Imagination,
+              Reflective Development, and AI Futures, an interdisciplinary research laboratory
+              dedicated to understanding how people develop imagination, abstract thinking, ethical
+              foresight, and innovation in the age of artificial intelligence.
             </p>
             <p className="mt-5">
               The Institute is grounded in the Fantasy Arc, a framework developed by WOS founder
@@ -52,7 +51,7 @@ export default function Page() {
               Dr. Langer calls the “Imagination Age.”
             </p>
             <TextLink href="/ai-institute" className="mt-10">
-              Learn more about the Workforce AI Institute
+              Learn more about the Institute
             </TextLink>
           </div>
         </div>

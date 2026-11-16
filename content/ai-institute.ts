@@ -1,5 +1,11 @@
-// The Workforce AI Institute: the Center for Imagination, Reflective Development, and AI
-// Futures (CIRDAF), from "Proposal for the Center for Imagination".
+// The Institute for Imagination, Reflective Development, and AI Futures, from "Proposal
+// for the Center for Imagination".
+//
+// It went up as the Workforce AI Institute, home of the Center for Imagination,
+// Reflective Development, and AI Futures. WOS then named the Institute after the Center,
+// so the two names became one and the subtitle that carried the Center's went with it.
+// The header still says "AI Institute": that label is navigation, and a sixty-character
+// name does not fit the bar.
 //
 // The Institute is established. The page first went up as a proposal under a "Proposed"
 // eyebrow, and that label came off when WOS confirmed the Institute is real.
@@ -58,8 +64,7 @@ export type Outcome = { area: string; icon: LucideIcon; items: string[] };
 const page = {
   route: "/ai-institute",
   eyebrow: "Research institute",
-  title: "Workforce AI Institute",
-  subtitle: "Center for Imagination, Reflective Development, and AI Futures",
+  title: "Institute for Imagination, Reflective Development, and AI Futures",
   description:
     "An interdisciplinary research laboratory studying how people develop imagination, abstract thinking, ethical foresight, and innovation in the age of artificial intelligence.",
   lead: "An interdisciplinary research laboratory dedicated to understanding how individuals develop the capacity for imagination, abstract thinking, ethical foresight, and innovation in the Age of Artificial Intelligence.",

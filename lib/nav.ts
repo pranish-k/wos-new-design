@@ -144,8 +144,9 @@ export const NAV: NavNode[] = [
     ],
   },
   // The one top-level item that is not on the live site. WOS promoted the
-  // Center for Imagination to the bar as the Workforce AI Institute; the old
-  // /center-for-imagination URL redirects here from next.config.ts.
+  // Center for Imagination to the bar as an institute; the old
+  // /center-for-imagination URL redirects here from next.config.ts. The label stays
+  // short on purpose: the Institute's full name is everywhere except the navigation.
   { kind: "link", label: "AI Institute", href: "/ai-institute" },
   { kind: "link", label: "News & Events", href: "/blog/" },
   {

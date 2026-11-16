@@ -311,6 +311,15 @@ export default function HomePage({
             <li key={p.title} className={`${fieldClass(PANEL_FIELDS[n])} flex`}>
               <InView className="flex w-full flex-col justify-between gap-10 px-5 py-14 md:px-10 md:py-16">
                 <div>
+                  <div className="reveal relative mb-8 aspect-[3/2] w-full overflow-hidden">
+                    <Image
+                      src={p.image.src}
+                      alt={p.image.alt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, 100vw"
+                      className="object-cover"
+                    />
+                  </div>
                   <h2 className="reveal font-heading text-[26px] font-semibold leading-[1.15] tracking-[-0.02em] md:text-[30px]">
                     {p.title}
                   </h2>

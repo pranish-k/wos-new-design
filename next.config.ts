@@ -49,7 +49,7 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
-      // The proposal page moved when it became the Workforce AI Institute. One entry
+      // The proposal page moved when it became the AI Institute. One entry
       // covers both slash forms: Next strips the trailing slash before redirects run.
       { source: "/center-for-imagination", destination: "/ai-institute", permanent: true },
       ...personRedirects(),

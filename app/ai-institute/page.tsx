@@ -28,7 +28,7 @@ export default function Page() {
       <PageHero
         label={page.eyebrow}
         title={page.title}
-        lead={[page.subtitle, page.lead]}
+        lead={page.lead}
         media={
           <div className="hidden md:block">
             <ChipTemple />

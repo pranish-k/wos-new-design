@@ -444,7 +444,7 @@ A page that puts content after a run passes `after="crimson"` to `ContentSection
 ### Panels
 
 A panel is a cell on the field's `--field-panel` colour (white inside tint, tint inside paper), or a nested field (`fieldClass("crimson")` on an element).
-The contact page's careers block and the AI Institute's closing cells are nested fields.
+The contact page's careers block and the Institute page's closing cells are nested fields.
 A panel is filled, never outlined.
 
 ### Icons
